@@ -28,7 +28,7 @@ docker compose up --build
 |---|---|
 | [HIGUERA, CRISTIAN] | [Líder de proyecto / Backend] |
 | [JOAQUIN, ALLENDES] | [Frontend / QA] |
-| [HIGUERA, CRISTIAN] | [ej. Base de datos] |
+| [HIGUERA, CRISTIAN] | [Base de datos] |
 
 ## 5. Metodología de trabajo
 [Scrum / Kanban / DevOps. Explica ceremonias, tablero y herramienta usada.]
