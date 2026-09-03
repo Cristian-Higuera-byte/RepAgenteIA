@@ -1,7 +1,9 @@
 # RepAgenteIA
 
 ## 1. Descripción del proyecto
-[¿Qué hace la solución? ¿A quién va dirigida? ¿Qué problema resuelve?]
+El objetivo del proyecto es el de automatizar actividades claves de comunicación, capacitación y resolución de dudas para la empresa y sus trabajadores vía asistentes y agentes de IA generativa, como primer enfoque central.
+
+El segundo enfoque consistirá en el desarrollo de un agente especializado para análisis de la bolsa que ayudará en la toma de decisiones de la empresa para con ciertas acciones y decisiones futuras. 
 
 ## 2. Tecnologías utilizadas
 - **Lenguajes:** [ej. Python, JavaScript]
