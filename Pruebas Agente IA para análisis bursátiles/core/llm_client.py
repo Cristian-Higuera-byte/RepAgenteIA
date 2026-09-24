@@ -1,4 +1,4 @@
-"""Configura el cliente de la API de Groq y define el 'system prompt'
+"""Configura el cliente de la API de DeepSeek y define el 'system prompt'
 que le indica al modelo cómo comportarse como agente de análisis
 bursátil: cuándo usar las herramientas y cómo presentar los datos
 al usuario de forma clara (no solo devolver el JSON crudo).

@@ -248,5 +248,65 @@
         ]
       }
     }
+  },
+  {
+    "fecha_hora": "2026-09-24T18:02:52",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'Coherent Has Ripped 59% in 2026: Is It Too Late to Buy COHR Stock Now?' cuyo contenido es: 'Coherent stock has surged nearly 60% in 2026 riding the AI data center optical boom, yet its closest peers have lapped it twice over, raising a question the price chart alone cannot answer.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "consultar_rag",
+      "argumentos": {
+        "pregunta": "Perspectivas y valoración de Coherent COHR en el sector de óptica para centros de datos de IA"
+      },
+      "resultado": {
+        "contexto_documental": "--- CONTEXTO RECUPERADO DE DOCUMENTOS INTERNOS ---\n[1] (Fuente: Informe Preliminar de IA 2026)\nPiña y Jara Transportes y Servicios LTDA. evalúa la incorporación de agentes de inteligencia artificial basados en modelos de lenguaje (LLMs) y arquitectura RAG para optimizar la toma de decisiones financieras, permitiendo analizar datos bursátiles y documentación interna de forma unificada.\n\n"
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-24T17:58:33",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'IonQ Rises 4% as Post-Breakthrough Buying Continues; D-Wave Quantum Gains 3%, Rigetti Adds 2%' cuyo contenido es: 'Quantum computing stocks are climbing again as a fresh wave of technical breakthroughs reshapes what investors think these companies can actually deliver, and the gap between hype and commercial reality has never mattered more.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "obtener_info_empresa",
+      "argumentos": {
+        "ticker": "IONQ"
+      },
+      "resultado": {
+        "nombre": "IonQ, Inc.",
+        "sector": "Technology",
+        "industria": "Computer Hardware",
+        "precio_actual": 44.98,
+        "capitalizacion_mercado": 18223001600,
+        "per": null,
+        "dividend_yield": null,
+        "moneda": "USD"
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-24T18:00:01",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'Critical Metals Jumps 9% While the Rare Earth Group Stalls; MP Materials Ticks Up, USA Rare Earth Eases' cuyo contenido es: 'Critical Metals is surging while every name around it slides, and no confirmed catalyst explains why one stock in a tightly correlated rare earth basket suddenly decided to go its own way.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "obtener_indicadores_macro",
+      "argumentos": {},
+      "resultado": {
+        "indicadores_macro": {
+          "^TNX": {
+            "nombre": "Bonos del Tesoro 10 Años (Tasas de Interés)",
+            "valor_actual": 5.16,
+            "variacion_diaria_pct": 0.94
+          },
+          "GC=F": {
+            "nombre": "Oro (Refugio / Inflación)",
+            "valor_actual": 4307.6,
+            "variacion_diaria_pct": -0.25
+          },
+          "CL=F": {
+            "nombre": "Petróleo Crudo (Costos Energéticos)",
+            "valor_actual": 94.77,
+            "variacion_diaria_pct": 2.83
+          }
+        }
+      }
+    }
   }
 ]

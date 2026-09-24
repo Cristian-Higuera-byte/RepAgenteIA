@@ -14,3 +14,4 @@ python -m pip install supabase
 python -m pip install curl_cffi
 python -m pip install matplotlib
 pip install --upgrade openai
+pip install MetaTrader5

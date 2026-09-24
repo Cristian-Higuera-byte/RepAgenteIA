@@ -3,6 +3,7 @@ app.py
 ------
 Dashboard interactivo de Piña & Jara - Financial Terminal, 
 diseñado con distribución de 3 columnas de forma limpia y modularizada.
+Adaptado para MetaTrader 5 (MT5).
 """
 
 import os
@@ -36,99 +37,43 @@ st.set_page_config(
 )
 
 # ==========================================
-
-# ESTILOS CSS GLOBALES (Ajuste de Tipografía y Tamaños)
-
+# ESTILOS CSS GLOBALES (TEXTOS AMPLIADOS Y DISEÑO)
 # ==========================================
-
 st.markdown("""
-
     <style>
-
         /* 1. Tamaño del texto general en todo el dashboard */
-
         html, body, [class*="st-"] {
-
             font-size: 30px !important; /* Aumenta el tamaño base de la letra */
-
         }
-
-
 
         /* 2. Tamaño de los títulos principales y encabezados */
-
         h1 {
-
             font-size: 35px !important;
-
         }
-
         h2 {
-
-            font-size: 30px !important;
-
+            font-size: 35px !important;
         }
-
         h3 {
-
             font-size: 30px !important;
-
         }
-
-
 
         /* 3. Tamaño de números, métricas y valores clave */
-
         [data-testid="stMetricValue"] {
-
             font-size: 30px !important;
-
         }
-
         [data-testid="stMetricLabel"] {
-
             font-size: 30px !important;
-
         }
-
-
 
         /* 4. Texto dentro de las tarjetas del watchlist, chat y paneles */
-
         p, span, label {
-
             font-size: 25px !important;
-
         }
-
-
 
         /* 5. Tamaño de texto en tablas y dataframes */
-
         .dataframe {
-
             font-size: 30px !important;
-
         }
-
-    </style>
-
-""", unsafe_allow_html=True)
-
-# ==========================================
-# ESTILOS CSS GLOBALES (TEXTOS AMPLIADOS)
-# ==========================================
-st.markdown("""
-    <style>
-        /* Tamaño base de fuente general aumentado */
-        html, body, [class*="st-"] {
-            font-size: 30px !important; 
-        }
-        
-        /* Jerarquía de títulos más visible */
-        h1 { font-size: 30px !important; }
-        h2 { font-size: 35px !important; }
-        h3 { font-size: 30px !important; }
         
         /* Ajuste de fuentes en elementos de entrada y selectores */
         .stSelectbox label, .stSlider label, .stTextInput label {
@@ -144,7 +89,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 1. Cargar y actualizar datos seguros del mercado
+# 1. Cargar y actualizar datos reales de mercado (Conectado a MT5)
 cargar_datos_mercado()
 
 # 2. Renderizar barra superior de índices globales
