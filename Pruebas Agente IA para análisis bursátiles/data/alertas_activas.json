@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "ticker": "NVDA",
+        "condicion": "menor",
+        "valor_objetivo": 2500.0,
+        "fecha_creacion": "2026-09-22 10:13:59",
+        "activa": true
+    },
+    {
+        "id": 2,
+        "ticker": "TSLA",
+        "condicion": "menor",
+        "valor_objetivo": 250.0,
+        "fecha_creacion": "2026-09-22 10:19:01",
+        "activa": true
+    }
+]

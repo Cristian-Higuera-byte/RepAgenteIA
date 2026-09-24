@@ -1,0 +1,16 @@
+# requirements.txt
+yfinance>=0.2.40
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Pip Instalaciones
+pip install python-dotenv
+pip install yfinance
+pip install pandas
+pip install numpy
+pip install groq
+pip install openai
+python -m pip install supabase
+python -m pip install curl_cffi
+python -m pip install matplotlib
+pip install --upgrade openai

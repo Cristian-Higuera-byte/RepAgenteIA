@@ -1,0 +1,252 @@
+[
+  {
+    "fecha_hora": "2026-09-23T16:55:17",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'Domino’s Pizza Is Down 28% This Year. Is It Time to Sell or Load Up?' cuyo contenido es: 'Domino's Pizza has shed nearly a third of its value this year while a key rival moved in the opposite direction, and figuring out which force drove the gap changes everything about what comes next.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "obtener_indicadores_macro",
+      "argumentos": {},
+      "resultado": {
+        "indicadores_macro": {
+          "^TNX": {
+            "nombre": "Bonos del Tesoro 10 Años (Tasas de Interés)",
+            "valor_actual": 5.11,
+            "variacion_diaria_pct": 3.04
+          },
+          "GC=F": {
+            "nombre": "Oro (Refugio / Inflación)",
+            "valor_actual": 4319.3,
+            "variacion_diaria_pct": -1.3
+          },
+          "CL=F": {
+            "nombre": "Petróleo Crudo (Costos Energéticos)",
+            "valor_actual": 92.62,
+            "variacion_diaria_pct": -2.08
+          }
+        }
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-23T17:58:56",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'Sensitive Sector: Why Are Upstart, Affirm, and SoFi Dropping Faster Than the Broader Equities Market?' cuyo contenido es: 'Upstart, Affirm, and SoFi are sliding in tandem on Wednesday while the broader financials sector sits nearly unchanged, and that gap between consumer lenders and everything else tells a story that goes beyond any single company's news.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "obtener_indicadores_macro",
+      "argumentos": {},
+      "resultado": {
+        "indicadores_macro": {
+          "^TNX": {
+            "nombre": "Bonos del Tesoro 10 Años (Tasas de Interés)",
+            "valor_actual": 5.11,
+            "variacion_diaria_pct": 3.04
+          },
+          "GC=F": {
+            "nombre": "Oro (Refugio / Inflación)",
+            "valor_actual": 4321.5,
+            "variacion_diaria_pct": -1.25
+          },
+          "CL=F": {
+            "nombre": "Petróleo Crudo (Costos Energéticos)",
+            "valor_actual": 92.83,
+            "variacion_diaria_pct": -1.86
+          }
+        }
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-23T17:16:02",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'These 2 Stocks Are Bucking The Broader Market Selloff To Hit New Multi-Year Highs — Here’s What’s Driving The Enthusiasm' cuyo contenido es: 'Moderna and Twilio climbed to multi-year highs on Wednesday, fueled by optimism around Moderna’s broader mRNA pipeline and Twilio’s emerging opportunity from the rapid adoption of AI agents.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "calcular_rsi",
+      "argumentos": {
+        "ticker": "TWLO",
+        "periodo": "6mo"
+      },
+      "resultado": {
+        "ticker": "TWLO",
+        "rsi": 77.23
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-23T17:09:58",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'DraftKings Drops 4% as Prediction-Market Spending Plans Stir Margin Doubts; Flutter Entertainment Slips, Robinhood Ticks Up' cuyo contenido es: 'DraftKings CEO sketched out an aggressive spending push into prediction markets, and the stock is paying for it while a rival platform moves in the opposite direction on the exact same news.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "calcular_rsi",
+      "argumentos": {
+        "ticker": "DKNG"
+      },
+      "resultado": {
+        "ticker": "DKNG",
+        "rsi": 24.39
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-23T18:00:04",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'Domino’s Pizza Is Down 28% This Year. Is It Time to Sell or Load Up?' cuyo contenido es: 'Domino's Pizza has shed more ground this year than any peer or benchmark in its category, yet one close competitor moved in the opposite direction entirely, which makes the sell-or-hold question harder than the chart alone suggests.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "calcular_soportes_resistencias",
+      "argumentos": {
+        "ticker": "DPZ",
+        "ventana": 20
+      },
+      "resultado": {
+        "ticker": "DPZ",
+        "precio_actual": 296.43,
+        "soporte_estimado": 288.73,
+        "resistencia_estimada": 351.75,
+        "ventana_evaluada_dias": 20
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-23T17:00:38",
+    "pregunta": "Genera un gráfico de barras comparativo del rendimiento a 1 mes entre Tesla (TSLA), Apple (AAPL), Microsoft (MSFT) y Nvidia (NVDA)",
+    "resultado": {
+      "herramienta": "generar_grafico_barras_comparativo",
+      "argumentos": {
+        "tickers": [
+          "TSLA",
+          "AAPL",
+          "MSFT",
+          "NVDA"
+        ],
+        "periodo": "1mo"
+      },
+      "resultado": {
+        "resultado": "✅ Gráfico de barras comparativo generado exitosamente y guardado en: outputs\\grafico_barras_comparativo_1mo.png"
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-23T17:15:44",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'SpaceX Drops 4% Amid Share Supply and Valuation Concerns; AST SpaceMobile Falls 6%' cuyo contenido es: 'A looming share unlock, a top executive's $52 million stock sale, and stretched valuations are colliding at once for SpaceX, and the next few sessions will test whether buyers hold the line or step aside.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "obtener_volatilidad",
+      "argumentos": {
+        "ticker": "ASTS",
+        "periodo": "6mo"
+      },
+      "resultado": {
+        "ticker": "ASTS",
+        "periodo": "6mo",
+        "ventana": 20,
+        "volatilidad_anualizada": 0.7873000377387758
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-23T17:58:44",
+    "pregunta": "Dame la info fundamental de Microsoft",
+    "resultado": {
+      "herramienta": "obtener_info_empresa",
+      "argumentos": {
+        "ticker": "MSFT"
+      },
+      "resultado": {
+        "nombre": "Microsoft Corporation",
+        "sector": "Technology",
+        "industria": "Software - Infrastructure",
+        "precio_actual": 500.59,
+        "capitalizacion_mercado": 3717153947648,
+        "per": 28.075714,
+        "dividend_yield": 0.79,
+        "moneda": "USD"
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-24T10:09:05",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'From Gaming Chips to AI Dominance: $1,000 in Nvidia Outpaced the S&P 500 by 54x' cuyo contenido es: 'Nvidia's decade-long transformation from gaming chip maker to AI infrastructure backbone rewrote the rules of semiconductor investing, but the real question is whether the next $1,000 faces the same odds as the last one.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "calcular_rendimiento_periodo",
+      "argumentos": {
+        "ticker": "NVDA",
+        "fecha_inicio": "2024-01-01",
+        "fecha_fin": "2025-01-01"
+      },
+      "resultado": {
+        "ticker": "NVDA",
+        "fecha_inicio": "2024-01-01",
+        "fecha_fin": "2025-01-01",
+        "rendimiento_porcentual": 171.2492481291878
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-24T13:22:02",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'Webull Drops 6% as Selling Outlasts Its Insider-Sale Headlines; Robinhood and Interactive Brokers Dip 2%' cuyo contenido es: 'Webull just posted blockbuster revenue growth, yet its stock keeps sliding as insider-sale filings pile up and drag Robinhood and Interactive Brokers down with it. Here is what is driving the disconnect between strong earnings and relentless selling pressure.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "comparar_multi_activos",
+      "argumentos": {
+        "tickers": [
+          "BULL",
+          "HOOD",
+          "IBKR"
+        ],
+        "periodo": "1mo"
+      },
+      "resultado": {
+        "resultado": {
+          "BULL": {
+            "precio_actual": 7.35,
+            "rendimiento_pct": -13.83,
+            "estado": "Éxito"
+          },
+          "HOOD": {
+            "precio_actual": 121.72,
+            "rendimiento_pct": 17.47,
+            "estado": "Éxito"
+          },
+          "IBKR": {
+            "precio_actual": 89.96,
+            "rendimiento_pct": -3.23,
+            "estado": "Éxito"
+          }
+        }
+      }
+    }
+  },
+  {
+    "fecha_hora": "2026-09-24T14:41:09",
+    "pregunta": "Actúa como analista financiero experto. Analiza la siguiente noticia titulada 'BlackBerry Falls 2% Despite Record QNX Quarter and Raised Full-Year Outlook; Mobileye Holds Steady' cuyo contenido es: 'BlackBerry just posted record QNX results and raised its full-year outlook, yet the stock is sliding anyway. Understanding what is spooking investors reveals a tension at the heart of the company's growth story.'. Por favor, redacta un análisis estructurado de un MÁXIMO de 3 párrafos. Si el texto está en inglés, tradúcelo y preséntalo completamente en español de manera profesional y fluida.",
+    "resultado": {
+      "herramienta": "obtener_noticias_activo",
+      "argumentos": {
+        "ticker": "BB",
+        "limite": 5
+      },
+      "resultado": {
+        "ticker": "BB",
+        "noticias": [
+          {
+            "titulo": "Nvidia leads tech stocks lower as Treasury yields surge: AlphaCheck",
+            "fuente": "Desconocido",
+            "enlace": "https://finance.yahoo.com/markets/article/nvidia-leads-tech-stocks-lower-as-treasury-yields-surge-alphacheck-133744347.html"
+          },
+          {
+            "titulo": "BlackBerry Limited Q2 2027 Earnings Call Summary",
+            "fuente": "Desconocido",
+            "enlace": "https://finance.yahoo.com/markets/stocks/articles/blackberry-limited-q2-2027-earnings-164646474.html"
+          },
+          {
+            "titulo": "Tech, Media & Telecom Roundup: Market Talk",
+            "fuente": "Desconocido",
+            "enlace": "#"
+          },
+          {
+            "titulo": "BlackBerry Falls 2% Despite Record QNX Quarter and Raised Full-Year Outlook; Mobileye Holds Steady",
+            "fuente": "Desconocido",
+            "enlace": "https://finance.yahoo.com/markets/stocks/articles/blackberry-falls-2-despite-record-161549550.html"
+          },
+          {
+            "titulo": "BlackBerry Lifts Full-Year Outlook as Software Solutions Unit Drives Second-Quarter Growth",
+            "fuente": "Desconocido",
+            "enlace": "https://finance.yahoo.com/markets/stocks/articles/blackberry-lifts-full-outlook-software-160906344.html"
+          }
+        ]
+      }
+    }
+  }
+]
