@@ -13,8 +13,8 @@ El agente podrá realizar toma de decisiones, entregar análisis profundos e ide
 ## 3. Instrucciones para ejecutar el proyecto localmente
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/nombre-del-proyecto.git
-cd nombre-del-proyecto
+git clone https://github.com/Cristian-Higuera-byte/RepAgenteIA
+cd RepAgenteIA
 
 # 2. Variables de entorno (copiar el ejemplo y completar)
 cp docker/.env.example .env
