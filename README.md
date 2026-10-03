@@ -1,14 +1,13 @@
 # RepAgenteIA
 
 ## 1. Descripción del proyecto
-El objetivo del proyecto es el de automatizar actividades claves de comunicación, capacitación y resolución de dudas para la empresa y sus trabajadores vía asistentes y agentes de IA generativa, como primer enfoque central.
-
-El segundo enfoque consistirá en el desarrollo de un agente especializado para análisis de la bolsa que ayudará en la toma de decisiones de la empresa para con ciertas acciones y decisiones futuras. 
+El objetivo del proyecto es la creación de una pagina de trading para compra y venta de acciones + con el agregado de la inclusión de un agente de IA para análisis bursátiles, capaz de analizar, procesar, resumir y almacenar información en tiempo real de los mercados y noticias del mundo.
+El agente podrá realizar toma de decisiones, entregar análisis profundos e ideas para toma de decisiones para el usuario sobre que acción a tomar será el mas adecuado segundo el propio mercado.
 
 ## 2. Tecnologías utilizadas
-- **Lenguajes:** [ej. Python, JavaScript]
-- **Frameworks:** [ej. Django / React / Spring Boot]
-- **Base de datos:** [ej. PostgreSQL / MongoDB]
+- **Lenguajes:** [Python, JavaScript, CSS]
+- **Frameworks:** [StreamLit]
+- **Base de datos:** [PostgreSQL, SupaBase]
 - **Cloud / Infraestructura:** [ej. AWS / Azure / Docker]
 
 ## 3. Instrucciones para ejecutar el proyecto localmente
