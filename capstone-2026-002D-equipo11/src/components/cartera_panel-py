@@ -1,0 +1,196 @@
+"""
+cartera_panel.py
+----------------
+Lista de CARTERA (posiciones abiertas) que reemplaza al watchlist en la vista
+de Trading cuando el usuario entra a "Cartera". Misma estética que la watchlist;
+cada fila es clicable y carga ese símbolo en el gráfico central. Los datos salen
+en vivo de MT5 (tools.mt5_bridge.obtener_posiciones).
+"""
+import html
+import re
+
+import streamlit as st
+
+from tools.mt5_bridge import obtener_posiciones, cerrar_posicion
+from tools import watchlist_manager as wl
+
+try:
+    from components.favoritos_bar import icono_activo
+except ImportError:  # pragma: no cover
+    def icono_activo(ticker: str) -> str:
+        _ = ticker
+        return "<span></span>"
+
+ALTURA_LISTA = 640
+
+_CSS = """
+<style>
+  div[data-testid="stElementContainer"]:has(.ca-css),
+  div[data-testid="element-container"]:has(.ca-css) { display:none; }
+
+  .st-key-ca_panel { background:#0d1117; border:1px solid #1f2937; border-radius:10px; overflow:hidden; }
+  .st-key-ca_panel, .st-key-ca_panel [data-testid="stVerticalBlock"],
+  .st-key-ca_scroll { gap:0 !important; }
+  .st-key-ca_panel div[data-testid="stVerticalBlockBorderWrapper"] { background:transparent !important; border:none !important; }
+  .st-key-ca_panel div[data-testid="stMarkdownContainer"] { margin-bottom:0 !important; }
+
+  .ca-head { padding:14px 16px 12px; border-bottom:1px solid #1f2937; background:#0d1117; position:relative; z-index:2; }
+  .ca-title { display:flex; align-items:center; gap:8px; font-size:16px; font-weight:700; color:#fff; }
+  .ca-sub { font-size:12px; color:#8b949e; margin-top:2px; }
+
+  .ca-totals { display:flex; justify-content:space-between; padding:10px 16px; border-bottom:1px solid #141a22;
+      background:#0d1117; position:relative; z-index:2; }
+  .ca-totals .lbl { font-size:12px; color:#8b949e; }
+  .ca-totals .val { font-size:15px; font-weight:800; font-family:ui-monospace,Consolas,monospace; }
+
+  .st-key-ca_scroll { scrollbar-gutter:stable both-edges; scrollbar-width:thin; scrollbar-color:#2b3550 transparent;
+      padding-top:6px; padding-bottom:6px; }
+  .st-key-ca_scroll::-webkit-scrollbar { width:6px; }
+  .st-key-ca_scroll::-webkit-scrollbar-thumb { background:#2b3550; border-radius:3px; }
+
+  [class*="st-key-carow_"] { position:relative; overflow:hidden; transition:background .15s ease; }
+  [class*="st-key-carow_"] div[data-testid="stElementContainer"],
+  [class*="st-key-carow_"] div[data-testid="element-container"],
+  [class*="st-key-carow_"] div[data-testid="stMarkdownContainer"],
+  [class*="st-key-carow_"] div[data-testid="stMarkdown"] { margin:0 !important; }
+
+  .ca-row { display:flex; align-items:center; gap:10px; padding:11px 44px 11px 12px;
+      border-bottom:1px solid #1a2130; box-sizing:border-box; line-height:1.25; }
+  [class*="st-key-carow_"]:hover .ca-row { background:rgba(255,255,255,0.04); border-radius:8px; border-bottom-color:transparent; }
+  .ca-row.sel { background:#1a2236; border-radius:8px; border-bottom-color:transparent; }
+
+  .ca-ico { flex:0 0 32px; width:32px; height:32px; border-radius:50%; display:flex; align-items:center;
+      justify-content:center; font-size:15px; font-weight:800; }
+  .ca-mid { flex:1 1 auto; min-width:0; overflow:hidden; }
+  .ca-tk { font-size:15px; font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ca-meta { font-size:12px; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ca-buy { color:#2ebd85; }
+  .ca-sell { color:#f6465d; }
+  .ca-right { text-align:right; flex:0 0 auto; white-space:nowrap; }
+  .ca-pl { font-size:15px; font-weight:700; font-variant-numeric:tabular-nums; font-family:ui-monospace,Consolas,monospace; }
+  .ca-opn { font-size:11px; color:#8b949e; margin-top:2px; font-variant-numeric:tabular-nums; }
+  .ca-up { color:#2ebd85; } .ca-down { color:#f6465d; }
+
+  [class*="st-key-casel_"] { position:absolute !important; top:0 !important; right:0 !important; bottom:0 !important;
+      left:0 !important; width:100% !important; height:100% !important; margin:0 !important; padding:0 !important; z-index:1; }
+  [class*="st-key-casel_"] * { width:100% !important; height:100% !important; min-height:0 !important; margin:0 !important; padding:0 !important; }
+  [class*="st-key-casel_"] button { opacity:0; cursor:pointer; }
+
+  /* Botón X para cerrar la posición (por encima del overlay de selección) */
+  [class*="st-key-cacls_"] { position:absolute !important; right:8px; top:50%;
+      transform:translateY(-50%); width:30px !important; margin:0 !important; z-index:2; }
+  [class*="st-key-cacls_"] * { margin:0 !important; }
+  [class*="st-key-cacls_"] button { width:30px !important; height:30px !important; min-height:30px !important;
+      padding:0 !important; background:transparent !important; border:none !important; box-shadow:none !important;
+      color:#8b949e !important; border-radius:8px !important; font-size:15px !important; cursor:pointer; }
+  [class*="st-key-cacls_"] button:hover { background:rgba(248,81,73,0.15) !important; color:#f85149 !important; }
+
+  .ca-empty { padding:40px 20px; text-align:center; color:#8b949e; font-size:13px; line-height:1.6; }
+  .ca-result-ok { color:#2ebd85; font-size:13px; padding:8px 14px; }
+  .ca-result-err { color:#f85149; font-size:13px; padding:8px 14px; }
+</style>
+"""
+
+
+def renderizar_cartera_lista():
+    """Panel de posiciones abiertas (reemplaza al watchlist en 'Cartera')."""
+    st.markdown(_CSS, unsafe_allow_html=True)
+    pos = obtener_posiciones()
+
+    with st.container(key="ca_panel"):
+        st.markdown(
+            "<div class='ca-head'><div class='ca-title'><span>🧰</span>"
+            "<span>CARTERA</span></div>"
+            "<div class='ca-sub'>Posiciones abiertas en tiempo real</div></div>",
+            unsafe_allow_html=True,
+        )
+
+        total = sum(p.get("profit", 0.0) for p in pos) if pos else 0.0
+        cls_t = "ca-up" if total >= 0 else "ca-down"
+        st.markdown(
+            f"<div class='ca-totals'><span class='lbl'>P/G total ({len(pos)})</span>"
+            f"<span class='val {cls_t}'>{total:+,.2f} USD</span></div>",
+            unsafe_allow_html=True,
+        )
+
+        # Resultado del último cierre (persiste hasta el próximo cierre)
+        r = st.session_state.get("ca_result")
+        if r:
+            cls_r = "ca-result-ok" if r[0] == "ok" else "ca-result-err"
+            st.markdown(f"<div class='{cls_r}'>{html.escape(r[1])}</div>", unsafe_allow_html=True)
+
+        if not pos:
+            st.markdown(
+                "<div class='ca-empty'>Nada que mostrar.<br>"
+                "Las operaciones que abras aparecerán aquí.</div>",
+                unsafe_allow_html=True,
+            )
+            return
+
+        sel = st.session_state.get("activo_seleccionado")
+        with st.container(height=ALTURA_LISTA, border=False, key="ca_scroll"):
+            for i, p in enumerate(pos):
+                sym = p["symbol"]
+                base = wl.nombre_visible(sym)
+                slug = re.sub(r"\W", "", sym) + f"_{i}"
+                es_sel = (sel == sym)
+                cls_sel = " sel" if es_sel else ""
+                lado = p.get("tipo", "")
+                cls_lado = "ca-buy" if lado == "Compra" else "ca-sell"
+                prof = p.get("profit", 0.0)
+                cls_pl = "ca-up" if prof >= 0 else "ca-down"
+
+                with st.container(key=f"carow_{slug}"):
+                    st.markdown(
+                        f"<div class='ca-row{cls_sel}'>"
+                        f"<span class='ca-ico'>{icono_activo(sym)}</span>"
+                        f"<div class='ca-mid'><div class='ca-tk'>{html.escape(base)}</div>"
+                        f"<div class='ca-meta {cls_lado}'>{html.escape(lado)} · {p.get('volumen',0):,.2f} lotes</div></div>"
+                        f"<div class='ca-right'><div class='ca-pl {cls_pl}'>{prof:+,.2f}</div>"
+                        f"<div class='ca-opn'>{p.get('precio_apertura',0):,.5f}</div></div>"
+                        f"</div>",
+                        unsafe_allow_html=True,
+                    )
+                    # Clic en la fila -> carga el símbolo en el gráfico
+                    if st.button("ver", key=f"casel_{slug}"):
+                        st.session_state.activo_seleccionado = sym
+                        st.rerun(scope="app")
+                    # X -> abre el modal de confirmación de cierre
+                    if st.button("✕", key=f"cacls_{slug}", help="Cerrar posición"):
+                        st.session_state.ca_cerrar = {
+                            "ticket": p.get("ticket"), "symbol": base, "profit": prof,
+                            "tipo": lado, "volumen": p.get("volumen", 0),
+                        }
+                        st.session_state.pop("ca_result", None)
+                        st.rerun(scope="app")
+
+
+# --- Modal de confirmación de cierre (se renderiza FUERA del fragmento, en
+#     app.py, como el buscador, para no chocar con el auto-refresco) ---
+@st.dialog("¿Quiere cerrar su posición?")
+def _dialogo_cerrar():
+    c = st.session_state.get("ca_cerrar") or {}
+    prof = c.get("profit", 0.0)
+    verbo = "ganancia" if prof >= 0 else "pérdida"
+    st.markdown(
+        f"**{c.get('symbol','')}** · {c.get('tipo','')} · {c.get('volumen',0):,.2f} lotes"
+    )
+    etiqueta = f"Cerrar con {verbo} de {prof:+,.2f} USD"
+    if st.button(etiqueta, type="primary", width="stretch", key="ca_cerrar_ok"):
+        res = cerrar_posicion(c.get("ticket"))
+        if "error" in res:
+            st.session_state.ca_result = ("error", f"No se pudo cerrar: {res['error']}")
+        else:
+            st.session_state.ca_result = (
+                "ok", f"Posición de {c.get('symbol','')} cerrada ({res.get('profit', prof):+,.2f} USD)")
+        st.session_state.ca_cerrar = None
+        st.rerun()
+    if st.button("Cancelar", width="stretch", key="ca_cerrar_cancel"):
+        st.session_state.ca_cerrar = None
+        st.rerun()
+
+
+def render_modal_cerrar():
+    """Llamar desde app.py (fuera de los fragmentos en vivo)."""
+    if st.session_state.get("ca_cerrar"):
+        _dialogo_cerrar()

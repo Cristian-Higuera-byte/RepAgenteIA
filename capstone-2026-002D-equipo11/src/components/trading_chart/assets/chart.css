@@ -1,0 +1,145 @@
+body { background-color: #0d1117; margin: 0; padding: 0; color: #d1d4dc; }
+    #tv-wrap { background:#0d1117; border:1px solid #30363d; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; height:100vh; box-sizing:border-box; }
+    
+    #tv-wrap:fullscreen {
+        border: none; border-radius: 0; width: 100vw; height: 100vh; background: #0d1117;
+    }
+    #tv-wrap:-webkit-full-screen {
+        border: none; border-radius: 0; width: 100vw; height: 100vh; background: #0d1117;
+    }
+
+    #tv-topbar {
+        display:flex; align-items:center; justify-content:space-between;
+        padding:10px 14px; border-bottom:1px solid #1b2430; background:#0d1117;
+        font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+        flex-shrink: 0; z-index: 50;
+    }
+    #tv-legend {
+        position:absolute; top:8px; left:12px; z-index:15; pointer-events:none;
+        display:flex; flex-direction:column; gap:3px;
+        font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+        text-shadow:0 0 6px #0d1117, 0 0 3px #0d1117;
+    }
+    #tv-legend .lg-line { display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:12px; }
+    #tv-legend .lg-sym { font-size:14px; font-weight:700; color:#ffffff; }
+    #tv-legend .lg-dot { color:#484f58; }
+    #tv-legend .lg-tf, #tv-legend .lg-feed { color:#8b949e; font-weight:500; }
+    #tv-legend .tv-ohlc { color:#8b949e; font-family:ui-monospace,Consolas,monospace; font-size:12px; }
+    #tv-legend .tv-ohlc b { font-weight:600; margin-right:8px; }
+    #tv-legend .tv-vol { color:#8b949e; font-family:ui-monospace,Consolas,monospace; font-size:12px; }
+
+    #tv-actions { display:flex; align-items:center; gap:8px; }
+    .tvbtn {
+        display:flex; align-items:center; gap:7px;
+        background:rgba(255,255,255,0.04); border:1px solid #30363d; color:#c9d1d9;
+        font-size:13px; font-weight:500; padding:6px 11px; border-radius:6px; cursor:pointer;
+        transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    .tvbtn svg {
+        width:17px; height:17px; fill:none; stroke:currentColor;
+        stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;
+    }
+    .tvbtn svg.caret { width:10px; height:10px; stroke-width:1.8; opacity:.7; }
+    .tvbtn.icon { padding:6px 8px; }
+    .tvbtn:hover { background:rgba(255,255,255,0.08); color:#ffffff; border-color:#8b949e; }
+    .tvbtn.activo { background:rgba(139,92,246,0.2); color:#a78bfa; border-color:rgba(139,92,246,0.5); }
+    .tv-drop-item .lbl { display:flex; align-items:center; gap:10px; }
+    .tv-drop-item svg {
+        width:16px; height:16px; fill:none; stroke:currentColor;
+        stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;
+    }
+
+    /* Menús desplegables superiores */
+    .tv-dropdown { position: relative; display: inline-block; }
+    .tv-dropdown-content {
+        display: none; position: absolute; right: 0; top: 100%;
+        background-color: #161b22; min-width: 210px;
+        box-shadow: 0px 8px 24px rgba(0,0,0,0.6);
+        z-index: 1000; border: 1px solid #30363d; border-radius: 6px; padding: 4px 0;
+    }
+    .tv-dropdown-content.show { display: block; }
+    .tv-drop-item {
+        color: #d1d4dc; padding: 9px 14px; text-decoration: none; display: flex;
+        align-items: center; justify-content: space-between; font-size: 13px; cursor: pointer;
+        transition: background 0.1s;
+    }
+    .tv-drop-item:hover { background-color: rgba(139,92,246,0.2); color: #a78bfa; }
+    .tv-drop-item span.status { font-size: 11px; opacity: 0.6; }
+    .tv-drop-item.active-ind span.status { color: #3fb950; opacity: 1; font-weight: bold; }
+
+    #tv-body { display:flex; flex: 1; position: relative; overflow: hidden; flex-direction: column; }
+    #tv-main-canvas-area { display: flex; flex: 1; position: relative; overflow: hidden; }
+    
+    #tv-toolbar-left {
+        display:flex; flex-direction:column; align-items:center; gap:4px;
+        padding:8px 4px; border-right:1px solid #1b2430; background:#0d1117;
+        flex-shrink: 0; z-index: 20;
+    }
+    .tvtool {
+        width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+        background:transparent; border:none; color:#8b949e; padding:0;
+        border-radius:6px; cursor:pointer; transition: background .15s ease, color .15s ease;
+        position: relative;
+    }
+    .tvtool svg {
+        width:20px; height:20px; fill:none; stroke:currentColor;
+        stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;
+        pointer-events:none;
+    }
+    .tvtool:hover { background:rgba(255,255,255,0.08); color:#ffffff; }
+    .tvtool.active { background:rgba(139,92,246,0.18); color:#a78bfa; }
+    .tvsep { width:22px; height:1px; background:#1b2430; margin:4px 0; flex-shrink:0; }
+
+    /* Menú flotante lateral para herramientas de línea (Estilo TradingView) */
+    .tvtool-group { position: relative; display: flex; align-items: center; }
+    .tvtool-arrow {
+        position: absolute; right: 2px; bottom: 2px; width: 8px; height: 8px;
+        font-size: 8px; color: #8b949e; pointer-events: none;
+    }
+    .tvtool-flyout {
+        display: none; position: absolute; left: 42px; top: 0;
+        background-color: #161b22; min-width: 200px;
+        box-shadow: 0px 8px 24px rgba(0,0,0,0.7);
+        z-index: 2000; border: 1px solid #30363d; border-radius: 6px; padding: 6px 0;
+    }
+    .tvtool-flyout.show { display: block; }
+    .tvtool-flyout-item {
+        color: #d1d4dc; padding: 8px 14px; display: flex; align-items: center; gap: 10px;
+        font-size: 13px; cursor: pointer; white-space: nowrap; transition: background 0.1s;
+    }
+    .tvtool-flyout-item:hover { background-color: rgba(139,92,246,0.2); color: #a78bfa; }
+    .tvtool-flyout-item svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    .tvtool-flyout { max-height: calc(100vh - 24px); overflow-y: auto; }
+    .tvtool-flyout-item svg { flex-shrink:0; }
+
+    #chart-wrapper { flex:1; position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; }
+    #c { flex:1; width: 100%; height: 100%; }
+    
+    #drawing-canvas {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;
+    }
+
+    #rsi-container { height: 110px; width: 100%; border-top: 1px solid #1b2430; display: none; }
+
+    #tv-rangebar {
+        display:flex; align-items:center; gap:4px; padding:8px 12px;
+        border-top:1px solid #1b2430; background:#0d1117;
+        font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+        flex-shrink: 0; overflow-x: auto; z-index: 20;
+    }
+    .tvrange {
+        background:transparent; border:1px solid transparent; color:#8b949e; font-size:13px;
+        font-weight:600; padding:6px 12px; border-radius:6px; cursor:pointer; white-space: nowrap;
+        transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    .tvrange:hover { background:rgba(255,255,255,0.08); color:#ffffff; }
+    .tvrange.active { background:rgba(88,166,255,0.18); color:#58a6ff; border-color:rgba(88,166,255,0.3); }
+    #tv-tf { display:flex; align-items:center; gap:2px; font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+    .tvtf {
+        background:transparent; border:1px solid transparent; color:#8b949e; font-size:12px;
+        font-weight:600; padding:5px 8px; border-radius:6px; cursor:pointer; white-space:nowrap;
+        transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    .tvtf:hover { background:rgba(255,255,255,0.08); color:#ffffff; }
+    .tvtf.active { background:rgba(88,166,255,0.18); color:#58a6ff; border-color:rgba(88,166,255,0.3); }
+    .tv-rangelabel { color:#6e7681; font-size:12px; font-weight:600; padding:0 8px 0 2px; white-space:nowrap; }

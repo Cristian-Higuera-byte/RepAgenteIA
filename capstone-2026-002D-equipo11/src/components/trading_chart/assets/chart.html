@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <style>
+        /* CSS inyectado por la plantilla: __CHART_CSS__ */
+    </style>
+</head>
+<body>
+<div id="tv-wrap">
+    <div id="tv-topbar">
+            <div id="tv-tf" title="Temporalidad">
+            <button class="tvtf" data-tf="M1" data-n="1500">M1</button>
+            <button class="tvtf" data-tf="M5" data-n="1500">M5</button>
+            <button class="tvtf" data-tf="M15" data-n="1500">M15</button>
+            <button class="tvtf" data-tf="M30" data-n="1500">M30</button>
+            <button class="tvtf active" data-tf="H1" data-n="1500">H1</button>
+            <button class="tvtf" data-tf="H4" data-n="1500">H4</button>
+            <button class="tvtf" data-tf="D1" data-n="1000">D1</button>
+            <button class="tvtf" data-tf="W1" data-n="520">W1</button>
+            <button class="tvtf" data-tf="MN1" data-n="180">MN</button>
+        </div>
+        <div id="tv-actions">
+            <!-- Selector Tipo de Gráfico -->
+            <div class="tv-dropdown" id="type-dropdown">
+                <button class="tvbtn activo" id="btn-type-select" title="Cambiar tipo de gráfico">
+                    <svg viewBox="0 0 20 20"><path d="M6 3v3M6 14v3M14 5v2M14 15v2"/><rect x="4" y="6" width="4" height="8" rx=".6" fill="currentColor"/><rect x="12" y="7" width="4" height="8" rx=".6" fill="currentColor"/></svg>
+                    <span>Velas</span>
+                    <svg class="caret" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5"/></svg>
+                </button>
+                <div class="tv-dropdown-content" id="type-menu">
+                    <div class="tv-drop-item" data-type="candlestick" data-label="Velas"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M6 3v3M6 14v3M14 5v2M14 15v2"/><rect x="4" y="6" width="4" height="8" rx=".6" fill="currentColor"/><rect x="12" y="7" width="4" height="8" rx=".6" fill="currentColor"/></svg>
+                        Velas Japonesas</span></div>
+                    <div class="tv-drop-item" data-type="hollow" data-label="Velas huecas"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M6 3v3M6 14v3M14 5v2M14 15v2"/><rect x="4" y="6" width="4" height="8" rx=".6"/><rect x="12" y="7" width="4" height="8" rx=".6"/></svg>
+                        Velas Huecas</span></div>
+                    <div class="tv-drop-item" data-type="bars" data-label="Barras"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M6 3v14M6 7H3.5M6 13h2.5M14 4v13M14 8h-2.5M14 13h2.5"/></svg>
+                        Barras (OHLC)</span></div>
+                    <div class="tv-drop-item" data-type="line" data-label="Línea"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M2.5 14l4.5-5 3.5 3L17.5 5"/></svg>
+                        Línea</span></div>
+                    <div class="tv-drop-item" data-type="area" data-label="Área"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M2.5 14l4.5-5 3.5 3L17.5 5V17H2.5z" fill="currentColor" fill-opacity=".18" stroke="none"/><path d="M2.5 14l4.5-5 3.5 3L17.5 5"/></svg>
+                        Área</span></div>
+                    <div class="tv-drop-item" data-type="heikin" data-label="Heikin Ashi"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M4.5 4v2M4.5 13v3M10 3v3M10 12v2M15.5 6v2M15.5 15v2"/><rect x="3" y="6" width="3" height="7" rx=".5"/><rect x="8.5" y="6" width="3" height="6" rx=".5" fill="currentColor"/><rect x="14" y="8" width="3" height="7" rx=".5"/></svg>
+                        Heikin Ashi</span></div>
+                </div>
+            </div>
+
+            <!-- Selector de Indicadores Funcionales -->
+            <div class="tv-dropdown" id="ind-dropdown">
+                <button class="tvbtn" id="btn-ind-select" title="Añadir indicadores técnicos">
+                    <svg viewBox="0 0 20 20"><path d="M2.5 11c1.8-6 3.6-6 5.4 0s3.6 6 5.4 0 2.4-3 4.2-3"/></svg>
+                    <span>Indicadores</span>
+                    <svg class="caret" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5"/></svg>
+                </button>
+                <div class="tv-dropdown-content" id="ind-menu">
+                    <div class="tv-drop-item" data-ind="sma20"><span>SMA 20 (Media Simple)</span><span class="status" id="st-sma20">Off</span></div>
+                    <div class="tv-drop-item" data-ind="sma50"><span>SMA 50 (Media Simple)</span><span class="status" id="st-sma50">Off</span></div>
+                    <div class="tv-drop-item" data-ind="ema20"><span>EMA 20 (Media Exponencial)</span><span class="status" id="st-ema20">Off</span></div>
+                    <div class="tv-drop-item" data-ind="bollinger"><span>Bandas de Bollinger (20,2)</span><span class="status" id="st-bollinger">Off</span></div>
+                    <div class="tv-drop-item" data-ind="rsi"><span>RSI (14) - Oscilador</span><span class="status" id="st-rsi">Off</span></div>
+                </div>
+            </div>
+
+            <button class="tvbtn icon" id="btn-shot" title="Descargar imagen del gráfico">
+                <svg viewBox="0 0 20 20"><path d="M3 7h2.8l1.2-2h6l1.2 2H17v9H3z"/><circle cx="10" cy="11.2" r="2.8"/></svg>
+            </button>
+            <button class="tvbtn icon" id="btn-full" title="Pantalla completa">
+                <svg viewBox="0 0 20 20"><path d="M3 7.5V3h4.5M12.5 3H17v4.5M17 12.5V17h-4.5M7.5 17H3v-4.5"/></svg>
+            </button>
+        </div>
+    </div>
+    
+    <div id="tv-body">
+        <div id="tv-main-canvas-area">
+            <div id="tv-toolbar-left">
+                <button class="tvtool active" id="tool-cross" data-tool="cross" title="Cursor / Cruz">
+                    <svg viewBox="0 0 20 20"><path d="M10 2.5v5M10 12.5v5M2.5 10h5M12.5 10h5"/></svg>
+                </button>
+                <div class="tvsep"></div>
+                
+                <!-- ============================================================
+                     HERRAMIENTAS DE DIBUJO
+                     ============================================================ -->
+
+                <!-- GRUPO: LÍNEAS -->
+                <div class="tvtool-group" id="group-lines">
+                    <button class="tvtool" id="tool-trend" data-tool="trend" title="Herramientas de líneas">
+                        <svg viewBox="0 0 20 20"><path d="M5.2 14.8L14.8 5.2"/><circle cx="4" cy="16" r="1.9"/><circle cx="16" cy="4" r="1.9"/></svg>
+                        <span class="tvtool-arrow">▼</span>
+                    </button>
+                    <div class="tvtool-flyout" id="lines-flyout">
+                        <div class="tvtool-flyout-item" data-tool="trend"><svg viewBox="0 0 20 20"><path d="M5.2 14.8L14.8 5.2"/><circle cx="4" cy="16" r="1.5"/><circle cx="16" cy="4" r="1.5"/></svg>Línea de tendencia</div>
+                        <div class="tvtool-flyout-item" data-tool="ray"><svg viewBox="0 0 20 20"><path d="M4 16L16 4M16 4h-4M16 4v4"/><circle cx="4" cy="16" r="1.5"/></svg>Rayo</div>
+                        <div class="tvtool-flyout-item" data-tool="extended"><svg viewBox="0 0 20 20"><path d="M2 17L18 3"/><circle cx="6" cy="14" r="1.5"/><circle cx="14" cy="6" r="1.5"/></svg>Línea extendida</div>
+                        <div class="tvtool-flyout-item" data-tool="angle"><svg viewBox="0 0 20 20"><path d="M4 16L16 6M4 16h13"/><path d="M8 16a4 4 0 0 1 2.5-3.7"/></svg>Ángulo de tendencia</div>
+                        <div class="tvtool-flyout-item" data-tool="hline"><svg viewBox="0 0 20 20"><path d="M2 10h16"/></svg>Línea horizontal</div>
+                        <div class="tvtool-flyout-item" data-tool="hray"><svg viewBox="0 0 20 20"><path d="M4 10h12M16 10l-3-2M16 10l-3 2"/><circle cx="4" cy="10" r="1.5"/></svg>Rayo horizontal</div>
+                        <div class="tvtool-flyout-item" data-tool="vline"><svg viewBox="0 0 20 20"><path d="M10 2v16"/></svg>Línea vertical</div>
+                        <div class="tvtool-flyout-item" data-tool="crossline"><svg viewBox="0 0 20 20"><path d="M10 2v16M2 10h16"/><circle cx="10" cy="10" r="2"/></svg>Cruz</div>
+                        <div class="tvtool-flyout-item" data-tool="channel"><svg viewBox="0 0 20 20"><path d="M3 12L15 4M5 16L17 8"/></svg>Canal paralelo</div>
+                    </div>
+                </div>
+
+                <!-- GRUPO: FIBONACCI -->
+                <div class="tvtool-group" id="group-fibonacci">
+                    <button class="tvtool" id="tool-fib" data-tool="fib" title="Herramientas Fibonacci">
+                        <svg viewBox="0 0 20 20"><path d="M3 4h14M3 9h14M3 14h14"/><path d="M5 17.5L15 2.5" stroke-dasharray="2 2"/></svg>
+                        <span class="tvtool-arrow">▼</span>
+                    </button>
+                    <div class="tvtool-flyout" id="fib-flyout">
+                        <div class="tvtool-flyout-item" data-tool="fib"><svg viewBox="0 0 20 20"><path d="M3 4h14M3 9h14M3 14h14"/><path d="M5 17.5L15 2.5" stroke-dasharray="2 2"/></svg>Retrocesos de Fibonacci</div>
+                        <div class="tvtool-flyout-item" data-tool="fib_extension"><svg viewBox="0 0 20 20"><path d="M3 14L8 7l5 4 4-6"/><path d="M3 4h14M3 9h14M3 14h14"/></svg>Extensión de Fibonacci</div>
+                        <div class="tvtool-flyout-item" data-tool="fib_channel"><svg viewBox="0 0 20 20"><path d="M3 14L16 6M3 17L16 9"/><path d="M5 14v3M9 11v3M13 8v3"/></svg>Canal de Fibonacci</div>
+                    </div>
+                </div>
+
+                <!-- GRUPO: GEOMETRÍA -->
+                <div class="tvtool-group" id="group-geometry">
+                    <button class="tvtool" id="tool-geometry" data-tool="rectangle" title="Formas geométricas">
+                        <svg viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="12" rx="1"/></svg>
+                        <span class="tvtool-arrow">▼</span>
+                    </button>
+                    <div class="tvtool-flyout" id="geometry-flyout">
+                        <div class="tvtool-flyout-item" data-tool="rectangle"><svg viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="12" rx="1"/></svg>Rectángulo</div>
+                        <div class="tvtool-flyout-item" data-tool="ellipse"><svg viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="7" ry="5.5"/></svg>Elipse</div>
+                        <div class="tvtool-flyout-item" data-tool="triangle"><svg viewBox="0 0 20 20"><path d="M10 3L17 16H3z"/></svg>Triángulo</div>
+                        <div class="tvtool-flyout-item" data-tool="arrow"><svg viewBox="0 0 20 20"><path d="M3 16L16 4M16 4h-5M16 4v5"/></svg>Flecha</div>
+                    </div>
+                </div>
+
+                <!-- ANOTACIÓN -->
+                <div class="tvtool-group" id="group-annotations">
+                    <button class="tvtool" id="tool-text" data-tool="text" title="Anotaciones">
+                        <svg viewBox="0 0 20 20"><path d="M4.5 4.5h11M10 4.5v11M7.5 15.5h5"/></svg>
+                        <span class="tvtool-arrow">▼</span>
+                    </button>
+                    <div class="tvtool-flyout" id="annotations-flyout">
+                        <div class="tvtool-flyout-item" data-tool="text"><svg viewBox="0 0 20 20"><path d="M4.5 4.5h11M10 4.5v11M7.5 15.5h5"/></svg>Texto</div>
+                    </div>
+                </div>
+
+                <div class="tvsep"></div>
+
+                <!-- MEDICIÓN -->
+                <div class="tvtool-group" id="group-measure">
+                    <button class="tvtool" id="tool-measure" data-tool="measure" title="Herramientas de medición">
+                        <svg viewBox="0 0 20 20"><g transform="rotate(-45 10 10)"><rect x="1.5" y="6.5" width="17" height="7" rx="1.2"/><path d="M5.5 6.5v2.6M8.5 6.5v1.6M11.5 6.5v2.6M14.5 6.5v1.6"/></g></svg>
+                        <span class="tvtool-arrow">▼</span>
+                    </button>
+                    <div class="tvtool-flyout" id="measure-flyout">
+                        <div class="tvtool-flyout-item" data-tool="measure"><svg viewBox="0 0 20 20"><g transform="rotate(-45 10 10)"><rect x="1.5" y="6.5" width="17" height="7" rx="1.2"/><path d="M5.5 6.5v2.6M8.5 6.5v1.6M11.5 6.5v2.6M14.5 6.5v1.6"/></g></svg>Regla de medición</div>
+                    </div>
+                </div>
+
+                <!-- UTILIDADES -->
+                <button class="tvtool" id="tool-magnet" data-tool="magnet" title="Magnetismo: activado">
+                    <svg viewBox="0 0 20 20"><path d="M4 4v7a6 6 0 0 0 12 0V4"/><path d="M4 4h4M12 4h4"/></svg>
+                </button>
+                <button class="tvtool" id="tool-keep" data-tool="keep" title="Mantener herramienta activa">
+                    <svg viewBox="0 0 20 20"><path d="M5 4h10v12H5z"/><path d="M8 4v4h4V4M8 12h4"/></svg>
+                </button>
+                <div class="tvsep"></div>
+                <button class="tvtool" id="tool-lock" data-tool="lock" title="Bloquear dibujos">
+                    <svg viewBox="0 0 20 20"><rect x="4.5" y="9" width="11" height="8" rx="1.6"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9"/></svg>
+                </button>
+                <button class="tvtool" id="tool-clear" data-tool="clear" title="Limpiar elementos">
+                    <svg viewBox="0 0 20 20"><path d="M3.5 5.5h13M8 5.5V3.8h4v1.7M5.2 5.5l.8 11h8l.8-11M8.5 8.5v5M11.5 8.5v5"/></svg>
+                </button>
+            </div>
+            <div id="chart-wrapper">
+                <div id="c"></div>
+                <canvas id="drawing-canvas"></canvas>
+                <div id="tv-legend">
+                    <div class="lg-line">
+                        <span class="lg-sym">__SIMBOLO_HTML__</span><span class="lg-dot">·</span><span class="lg-tf" id="lg-tf">H1</span><span class="lg-dot">·</span><span class="lg-feed">XM</span>
+                        <span class="tv-ohlc" id="tv-ohlc-vals">Cargando…</span>
+                    </div>
+                    <div class="lg-line"><span class="tv-vol" id="tv-vol-val"></span></div>
+                </div>
+            </div>
+        </div>
+        <div id="rsi-container"></div>
+    </div>
+
+    <div id="tv-rangebar">
+        <span class="tv-rangelabel">Rango</span>
+        <button class="tvrange" data-tf="M5" data-n="288">1D</button>
+        <button class="tvrange" data-tf="M15" data-n="480">5D</button>
+        <button class="tvrange" data-tf="H1" data-n="528">1 mes</button>
+        <button class="tvrange" data-tf="H4" data-n="400">3 meses</button>
+        <button class="tvrange" data-tf="D1" data-n="132">6 meses</button>
+        <button class="tvrange" data-tf="D1" data-n="252">1 año</button>
+        <button class="tvrange" data-tf="W1" data-n="260">5 años</button>
+        <button class="tvrange" data-tf="W1" data-n="2000">Todo</button>
+    </div>
+</div>
+
+<script>
+window.TRADING_CHART_CONFIG = __CHART_CONFIG_JS__;
+</script>
+
+<script>
+__PREFLIGHT_JS__
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+
+<script>
+__CHART_JS__
+</script>
+</body>
+</html>
