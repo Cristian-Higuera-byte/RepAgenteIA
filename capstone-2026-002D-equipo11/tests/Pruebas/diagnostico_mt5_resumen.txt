@@ -1,0 +1,72 @@
+=== DIAGNÓSTICO MT5 ===
+Generado (UTC): 2026-10-02T19:36:44+00:00
+
+Cuenta:   {'modo': 'DEMO', 'margen': 'HEDGING', 'moneda': 'USD', 'apalancamiento': 1000, 'servidor': 'XMGlobalSC-MT5 5', 'empresa': 'XM (SC) Limited', 'trading_permitido': True}
+Terminal: {'conectado': True, 'trading_permitido': False, 'build': 6230}
+
+Símbolos en el servidor: 1639  (visibles en Market Watch: 64)
+
+--- CATEGORÍAS (primer nivel de la ruta) ---
+[Stocks] 1369 símbolos
+    Ambev | Ambev SA (ABEV.N) | Stocks\Brazil\Ambev | dígitos=2
+    BRF | BRF SA (BRFS.N) | Stocks\Brazil\BRF | dígitos=2
+    BancoBradesco | Banco Bradesco SA (BBD.N) | Stocks\Brazil\BancoBradesco | dígitos=2
+    Gerdau | Gerdau SA (GGB.N) | Stocks\Brazil\Gerdau | dígitos=2
+[Derivatives] 64 símbolos
+    BRENTCash | BRENT Cash | Derivatives\Cash\Cash Energies\BRENTCash | dígitos=2
+    NGASCash | Natural Gas Cash | Derivatives\Cash\Cash Energies\NGASCash | dígitos=3
+    OILCash | WTI Oil Cash | Derivatives\Cash\Cash Energies\OILCash | dígitos=2
+    AUS200Cash | Australia 200 Index Cash | Derivatives\Cash\Cash Indices\AUS200Cash | dígitos=2
+[ETF Derivatives] 64 símbolos
+    IWF | iShares Russell 1000 Growth ETF (IWF) | ETF Derivatives\Equities\IWF | dígitos=2
+    IJR | iShares Core S&P Small-Cap ETF (IJR) | ETF Derivatives\Equities\IJR | dígitos=2
+    TIP | iShares TIPS Bond ETF (TIP) | ETF Derivatives\Bonds\TIP | dígitos=2
+    XLP | State Street Consumer Staples Select Sector SPDR ETF (XLP) | ETF Derivatives\Equities\XLP | dígitos=2
+[Cryptocurrencies] 60 símbolos
+    AAVEUSD | Aave vs US Dollar | Cryptocurrencies\Standard\AAVEUSD | dígitos=2
+    ADAUSD | Cardano vs US Dollar | Cryptocurrencies\Standard\ADAUSD | dígitos=5
+    ALGOUSD | Algorand vs US Dollar | Cryptocurrencies\Standard\ALGOUSD | dígitos=5
+    AVAXUSD | Avalanche vs US Dollar | Cryptocurrencies\Standard\AVAXUSD | dígitos=3
+[Forex] 55 símbolos
+    CHFSGD | Swiss Franc vs Singapore Dollar | Forex\Standard\Exotics\CHFSGD | dígitos=5
+    EURDKK | Euro vs Danish Krone | Forex\Standard\Exotics\EURDKK | dígitos=5
+    EURHKD | Euro vs Hong Kong Dollar | Forex\Standard\Exotics\EURHKD | dígitos=5
+    EURHUF | Euro vs Hungarian Forint | Forex\Standard\Exotics\EURHUF | dígitos=3
+[Thematic Indices] 15 símbolos
+    ElectricVehicles | Electric Vehicles UST Index (ElectricVehicles) | Thematic Indices\Standard\ElectricVehicles | dígitos=2
+    Crypto_10 | Crypto 10 Index (Crypto_10) | Thematic Indices\Standard\Crypto_10 | dígitos=2
+    FAANGs_10 | FAANGs 10 Index (FAANGs_10) | Thematic Indices\Standard\FAANGs_10 | dígitos=2
+    Blockchain&NFT | NFT and Blockchain Giants Index  (Blockchain&NFT) | Thematic Indices\Standard\Blockchain&NFT | dígitos=2
+[Turbo Stocks] 12 símbolos
+    Adidas_turbo | Adidas AG (ADSGn.DE) | Turbo Stocks\EU\Germany\Adidas_turbo | dígitos=2
+    BP_turbo | BP PLC (BP.L) | Turbo Stocks\EU\UK\BP_turbo | dígitos=4
+    Amazon_turbo | Amazon.com Inc (AMZN.OQ) | Turbo Stocks\US\Amazon_turbo | dígitos=2
+    Apple_turbo | Apple Inc (AAPL.OQ) | Turbo Stocks\US\Apple_turbo | dígitos=2
+
+--- NOMBRES CON CARACTERES ESPECIALES (sufijos, puntos, #): 135 ---
+    Franco-Nevada, Toronto-Dominion, UPM-Kymmene, Gaztransport&Technigaz, E.ON, K&S, T-Immobilien, Pirelli&C, Mota-Engil, H&M, Kuehne&Nagel, Capital&Counties, Legal&Gen, Marks&Spen, Mitchells&Butlers, Rolls-Royce, Smith&Nephew, Tate&Lyle, AT&T, Black&Decker
+
+--- DECIMALES (dígitos) ---  {5: 60, 3: 360, 4: 35, 2: 1176, 0: 8}
+--- MODOS DE TRADING ---     {4: 1527, 0: 93, 3: 19}
+
+--- FICHAS DE SÍMBOLOS DE TU DASHBOARD ---
+BTCUSD: desc='Bitcoin vs US Dollar' ruta='Cryptocurrencies\Standard\BTCUSD' dígitos=2 moneda=USD contrato=1.0 vol(min/paso/max)=0.01/0.01/80.0 llenado=2
+EURUSD: desc='Euro vs US Dollar' ruta='Forex\Standard\Majors\EURUSD' dígitos=5 moneda=USD contrato=100000.0 vol(min/paso/max)=0.01/0.01/50.0 llenado=2
+USDJPY: desc='US Dollar vs Japanese Yen' ruta='Forex\Standard\Majors\USDJPY' dígitos=3 moneda=JPY contrato=100000.0 vol(min/paso/max)=0.01/0.01/50.0 llenado=2
+GBPUSD: desc='Great Britain Pound vs US Dollar' ruta='Forex\Standard\Majors\GBPUSD' dígitos=5 moneda=USD contrato=100000.0 vol(min/paso/max)=0.01/0.01/50.0 llenado=2
+GOLD: desc='GOLD' ruta='Derivatives\Spot Metals\GOLD' dígitos=2 moneda=USD contrato=100.0 vol(min/paso/max)=0.01/0.01/50.0 llenado=2
+AAVEUSD: desc='Aave vs US Dollar' ruta='Cryptocurrencies\Standard\AAVEUSD' dígitos=2 moneda=USD contrato=10.0 vol(min/paso/max)=0.05/0.01/1000.0 llenado=2
+3MCo: desc='3M Co (MMM.N)' ruta='Stocks\US\3MCo' dígitos=2 moneda=USD contrato=10.0 vol(min/paso/max)=0.05/0.01/29.0 llenado=2
+ABInbev: desc='Anheuser Busch Inbev NV (ABI.BR)' ruta='Stocks\EU\Belgium\ABInbev' dígitos=3 moneda=EUR contrato=10.0 vol(min/paso/max)=0.13/0.01/62.0 llenado=2
+A2A: desc='A2A SpA (A2.MI)' ruta='Stocks\EU\Italy\A2A' dígitos=3 moneda=EUR contrato=10.0 vol(min/paso/max)=3.9/0.1/183.0 llenado=2
+3iGroup: desc='3i Group PLC (III.L)' ruta='Stocks\EU\UK\3iGroup' dígitos=3 moneda=GBP contrato=100.0 vol(min/paso/max)=0.03/0.01/5.0 llenado=2
+
+--- HORA DEL SERVIDOR vs UTC ---
+    {'simbolo': 'BTCUSD', 'tick_hora_servidor': '2026-10-02 22:36:39', 'desfase_vs_utc_horas': 3.0, 'desfase_fiable': True, 'bid': 84183.35, 'ask': 84223.35, 'last': 0.0}
+    {'simbolo': 'EURUSD', 'tick_hora_servidor': '2026-10-02 22:36:42', 'desfase_vs_utc_horas': 3.0, 'desfase_fiable': True, 'bid': 1.12592, 'ask': 1.1261, 'last': 0.0}
+    {'simbolo': 'USDJPY', 'tick_hora_servidor': '2026-10-02 22:36:39', 'desfase_vs_utc_horas': 3.0, 'desfase_fiable': True, 'bid': 157.797, 'ask': 157.819, 'last': 0.0}
+    {'simbolo': 'GBPUSD', 'tick_hora_servidor': '2026-10-02 22:36:41', 'desfase_vs_utc_horas': 3.0, 'desfase_fiable': True, 'bid': 1.32476, 'ask': 1.3249900000000001, 'last': 0.0}
+    {'simbolo': 'GOLD', 'tick_hora_servidor': '2026-10-02 22:36:43', 'desfase_vs_utc_horas': 3.0, 'desfase_fiable': True, 'bid': 4149.1, 'ask': 4149.66, 'last': 0.0}
+    {'simbolo': 'AAVEUSD', 'tick_hora_servidor': '2026-10-02 22:36:42', 'desfase_vs_utc_horas': 3.0, 'desfase_fiable': True, 'bid': 179.76, 'ask': 181.49, 'last': 0.0}
+
+--- VELAS H1 ---  {'simbolo': 'BTCUSD', 'columnas': ['time', 'open', 'high', 'low', 'close', 'tick_volume', 'spread', 'real_volume'], 'ultima_vela_hora_servidor': '2026-10-02 22:00:00'}
