@@ -13,6 +13,8 @@ import pandas as pd  # type: ignore[import-untyped]
 import streamlit as st
 import streamlit.components.v1 as components
 
+from components.live_feed import attrs as _live, intervalo as _intervalo
+
 # Importar las funciones del puente de MetaTrader 5
 from tools.mt5_bridge import (
     inicializar_mt5,
@@ -2371,8 +2373,51 @@ setTimeout(function(){
       });
     });
 
+    // --- Ticks en vivo del feed SSE (components/live_feed.py) ---------------
+    // El feed reenvía cada tick por BroadcastChannel('pj-ticks'); aquí se mueve
+    // la vela actual (o se abre una nueva al cambiar de periodo) al instante.
+    var TF_SEG = {M1: 60, M5: 300, M15: 900, M30: 1800, H1: 3600, H4: 14400, D1: 86400};
+    var ultimoTickBC = 0, ultimoPoll = 0, rafTick = false;
+    if ('BroadcastChannel' in window){
+      var bcTicks = new BroadcastChannel('pj-ticks');
+      bcTicks.onmessage = function(ev){
+        var t = ev.data && ev.data.t && ev.data.t[SIMBOLO];
+        if (!t || !t.b || cargando || !datosActuales.length) return;
+        ultimoTickBC = Date.now();
+        var px = t.b;                       // las velas de MT5 se construyen con el Bid
+        var ultima = datosActuales[datosActuales.length - 1];
+        var seg = TF_SEG[tfActual];
+        var inicio = seg ? Math.floor(t.t / seg) * seg : ultima.time;
+        if (inicio > ultima.time){
+          datosActuales.push({time: inicio, open: px, high: px, low: px, close: px, volume: 0});
+        } else if (inicio === ultima.time){
+          datosActuales[datosActuales.length - 1] = Object.assign({}, ultima, {
+            close: px, high: Math.max(ultima.high, px), low: Math.min(ultima.low, px)
+          });
+        } else {
+          return;
+        }
+        if (rafTick) return;                // como máximo un repintado por frame
+        rafTick = true;
+        requestAnimationFrame(function(){
+          rafTick = false;
+          var v = datosActuales[datosActuales.length - 1];
+          var f = formatearDatos(datosActuales, tipoActual);
+          serie.update(f[f.length - 1]);
+          serieVolumen.update(aPuntoVolumen(v));
+          actualizarLeyenda(v);
+          actualizarIndicadoresActivos();
+          redibujarTodo();
+        });
+      };
+    }
+
     setInterval(function(){
       if (cargando || pollEnCurso || !datosActuales.length) return;
+      // Con el feed entregando ticks, el polling solo resincroniza (volumen real,
+      // vela cerrada) cada 5 s en vez de cada 1,5 s.
+      if (Date.now() - ultimoTickBC < 4000 && Date.now() - ultimoPoll < 5000) return;
+      ultimoPoll = Date.now();
       var tfLlamada = tfActual;
       var idLlamada = cargaId;
       pollEnCurso = true;
@@ -2530,7 +2575,7 @@ def renderizar_panel_central(main: Optional[ModuleType]):
     activo_visible = _limpiar_simbolo(activo_actual)
     digits, pip = _info_simbolo(activo_visible)
 
-    @st.fragment(run_every="2s")
+    @st.fragment(run_every=_intervalo("2s"))   # con feed: lo pinta live_feed.py
     def _cabecera_precio():
         info_tick = obtener_precio_actual(activo_visible)
         conectado = "error" not in info_tick
@@ -2565,8 +2610,8 @@ def renderizar_panel_central(main: Optional[ModuleType]):
                 <div style='display: flex; align-items: center; gap: 14px;'>
                     <span style='font-size: 20px; font-weight: bold; color: #ffffff;'>{escape(activo_visible)}</span>
                     <span style='background: #30363d; color: #8b949e; padding: 2px 8px; border-radius: 4px; font-size: 11px;'>XM / MT5</span>
-                    <span style='font-size: 22px; font-weight: bold; font-family: monospace; color: {color_var_activo};'>{precio_actual:,.{digits}f}</span>
-                    <span style='font-size: 14px; font-weight: 600; color: {color_var_activo};'>Bid: {bid:,.{digits}f} | Ask: {ask:,.{digits}f}</span>
+                    <span {_live(activo_visible, 'px', d=digits, flash=1)} style='font-size: 22px; font-weight: bold; font-family: monospace; color: {color_var_activo};'>{precio_actual:,.{digits}f}</span>
+                    <span style='font-size: 14px; font-weight: 600; color: {color_var_activo};'>Bid: <span {_live(activo_visible, 'bid', d=digits)}>{bid:,.{digits}f}</span> | Ask: <span {_live(activo_visible, 'ask', d=digits)}>{ask:,.{digits}f}</span></span>
                 </div>
                 <div style='font-size: 13px; color: #8b949e; font-weight: 600; display: flex; align-items: center; gap: 6px;'>
                     {texto_estado} <span style='color: {color_estado}; font-size: 16px;'>●</span>

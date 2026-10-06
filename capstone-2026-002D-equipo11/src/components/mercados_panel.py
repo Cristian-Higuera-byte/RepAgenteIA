@@ -18,7 +18,7 @@ import MetaTrader5 as mt5  # type: ignore[import-untyped]
 from tools.mt5_bridge import (
     MT5_LOCK, inicializar_mt5, resolver_simbolo, obtener_datos_historicos,
 )
-from components.favoritos_bar import icono_activo
+from components.iconos import icono_activo   # íconos estilo XM (comunes)
 
 _LIMITE_DEFECTO = 8  # filas visibles antes de "Ver todos"
 
@@ -82,9 +82,7 @@ _CSS = f"""
   .mkt-r {{ text-align:right; font-family:ui-monospace,Consolas,monospace;
             font-variant-numeric:tabular-nums; }}
   .mkt-nm {{ display:flex; align-items:center; gap:9px; }}
-  .mkt-ic {{ width:22px; height:22px; border-radius:50%; background:#161b22;
-             display:inline-flex; align-items:center; justify-content:center;
-             overflow:hidden; flex:0 0 auto; }}
+  .mkt-ic {{ display:inline-flex; align-items:center; flex:0 0 auto; }}
   .mkt-up {{ color:#3fb950 !important; font-weight:700; }}
   .mkt-down {{ color:#f85149 !important; font-weight:700; }}
   .mkt-arrow {{ font-size:10px; margin-right:2px; }}
@@ -175,7 +173,7 @@ def _fila_html(f) -> str:
     flecha = "▲" if f["var"] >= 0 else "▼"
     return (
         "<div class='mkt-row'>"
-        f"<div><div class='mkt-nm'><span class='mkt-ic'>{icono_activo(f['sym'])}</span>"
+        f"<div><div class='mkt-nm'><span class='mkt-ic'>{icono_activo(f['sym'], 24)}</span>"
         f"<b>{f['label']}</b></div></div>"
         f"<div class='mkt-r'>{f['last']:,.{d}f}</div>"
         f"<div class='mkt-r'>{f['high']:,.{d}f}</div>"
@@ -272,8 +270,8 @@ def _mostrar_ficha():
 
     # --- Cabecera (nombre, estático) ---
     st.html(
-        f"<div class='mkt-nm' style='gap:12px;'><span class='mkt-ic' style='width:34px;height:34px;'>"
-        f"{icono_activo(real)}</span>"
+        f"<div class='mkt-nm' style='gap:12px;'><span class='mkt-ic'>"
+        f"{icono_activo(real, 38)}</span>"
         f"<div><div style='font-size:20px;font-weight:800;color:#e6edf3;'>{label}</div>"
         f"<div class='fic-meta'>{real} · {cat}</div></div></div>"
     )

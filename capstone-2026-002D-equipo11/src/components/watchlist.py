@@ -5,6 +5,9 @@ import streamlit as st
 import MetaTrader5 as mt5  # type: ignore[import-untyped]
 from typing import Any
 
+from components.iconos import icono_activo
+from components.live_feed import attrs as _live
+
 try:
     from components.favoritos_bar import agregar_favorito, quitar_favorito
 except ImportError:
@@ -20,16 +23,6 @@ except ImportError:
 # Altura (px) de la zona con scroll de la lista
 ALTURA_LISTA = 640
 
-# Icono circular por activo: (texto, fondo, color del texto)
-_ICONOS = {
-    "EURUSD": ("€", "linear-gradient(135deg,#3b82f6,#1e3a8a)", "#ffffff"),
-    "GBPUSD": ("£", "linear-gradient(135deg,#ec4899,#831843)", "#ffffff"),
-    "USDJPY": ("¥", "linear-gradient(135deg,#f87171,#991b1b)", "#ffffff"),
-    "XAUUSD": ("Au", "linear-gradient(135deg,#fde047,#ca8a04)", "#1f1600"),
-    "BTCUSD": ("₿", "linear-gradient(135deg,#fbbf24,#ea580c)", "#ffffff"),
-    "ETHUSD": ("Ξ", "linear-gradient(135deg,#818cf8,#3730a3)", "#ffffff"),
-    "US30": ("30", "linear-gradient(135deg,#38bdf8,#0c4a6e)", "#ffffff"),
-}
 
 _CSS = """
 <style>
@@ -239,14 +232,6 @@ _CSS = """
 """
 
 
-def _icono_html(base: str) -> str:
-    texto, fondo, color = _ICONOS.get(base, (base[:2], "#374151", "#ffffff"))
-    return (
-        f"<div class='wl-ico' style='background:{fondo}; color:{color};'>"
-        f"{html.escape(texto)}</div>"
-    )
-
-
 def _quitar_de_lista(ticker: str):
     """Quita un símbolo de la watchlist del usuario (Supabase + sesión)."""
     from tools import watchlist_manager as wl
@@ -318,14 +303,14 @@ def renderizar_watchlist():
                     # Tarjeta visual del activo
                     st.markdown(f"""
                         <div class='wl-row{clase_sel}'>
-                            {_icono_html(base)}
+                            {icono_activo(ticker, 34)}
                             <div class='wl-mid'>
                                 <div class='wl-tk'>{html.escape(base)}</div>
                                 <div class='wl-nm'>{nombre}</div>
                             </div>
                             <div class='wl-right'>
-                                <div class='wl-px'>{formato_precio}</div>
-                                <div class='wl-var' style='color: {color_var};'>{variacion}</div>
+                                <div class='wl-px' {_live(ticker, 'px', pre='$' if precio_val > 100 else '')}>{formato_precio}</div>
+                                <div class='wl-var' {_live(ticker, 'var', up='#2ebd85', dn='#f6465d')} style='color: {color_var};'>{variacion}</div>
                             </div>
                         </div>
                     """, unsafe_allow_html=True)
