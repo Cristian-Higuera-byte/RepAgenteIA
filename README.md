@@ -137,7 +137,36 @@ python src/main.py
 
 ## 5. Metodología de trabajo
 
-> **Por completar por el equipo:** indicar si se trabajó con Scrum, Kanban u otra metodología, las ceremonias o reuniones realizadas y la herramienta del tablero (por ejemplo Trello, Jira o GitHub Projects).
+## 5. Metodología de trabajo
+
+El proyecto se desarrolló con una **metodología ágil, bajo el marco Scrum**. El trabajo se dividió en ciclos cortos (*sprints*) con entregables funcionales al final de cada uno. Así pudimos avanzar de forma incremental, validar lo construido y ajustar el rumbo según los resultados.
+
+### Roles
+
+| Rol Scrum | Responsable |
+|---|---|
+| Product Owner (prioriza el producto) | Cristian Higuera |
+| Scrum Master (facilita el proceso) | Cristian Higuera |
+| Equipo de desarrollo | Cristian Higuera y Joaquín Allendes |
+
+### Ceremonias
+
+- **Planificación del sprint:** se define el objetivo del ciclo y se eligen las tareas del *backlog* que el equipo se compromete a completar.
+- **Reuniones de seguimiento:** revisión breve del avance, de lo que viene y de los bloqueos.
+- **Revisión del sprint:** se muestra el incremento terminado (funcionalidades operativas de la plataforma) y se recoge retroalimentación.
+- **Retrospectiva:** se analiza qué funcionó, qué no, y qué mejorar en el siguiente ciclo.
+
+### Artefactos
+
+- **Product Backlog:** lista priorizada de funcionalidades (gráfico, órdenes, cartera, noticias, agente de IA, etc.).
+- **Sprint Backlog:** tareas comprometidas en cada ciclo.
+- **Incremento:** versión funcional de la plataforma al cierre de cada sprint.
+
+### Herramientas
+
+- **Control de versiones:** Git y GitHub.
+- **Tablero de tareas:** [indicar la herramienta, por ejemplo Trello, Jira o GitHub Projects].
+- **Bitácora de avances:** [`docs/_registro_avances_bursatil.md`](capstone-2026-002D-equipo11/docs/_registro_avances_bursatil.md).
 
 El control de versiones se hace con Git y GitHub. La bitácora de avances del desarrollo está en [`docs/_registro_avances_bursatil.md`](capstone-2026-002D-equipo11/docs/_registro_avances_bursatil.md).
 
