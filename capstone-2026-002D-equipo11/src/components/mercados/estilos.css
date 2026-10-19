@@ -1,0 +1,249 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* CABECERA DE LA PAGINA MERCADOS (clases mkt-hdr, mkt-title, mkt-sub, mkt-live, mkt-dot; HTML en panel.py) */
+  /* Barra superior: titulo y subtitulo a la izquierda, indicador de datos en vivo a la derecha */
+  .mkt-hdr { display:flex; align-items:flex-end; justify-content:space-between; margin:2px 0 14px; }
+  /* Titulo principal de la pagina */
+  .mkt-title { color:#e6edf3; font-size:24px; font-weight:800; margin:0; letter-spacing:-.2px; }
+  /* Subtitulo explicativo bajo el titulo */
+  .mkt-sub { color:#8b949e; font-size:13px; margin-top:3px; }
+  /* Pastilla "Datos en tiempo real / Actualizacion cada 3 s" */
+  .mkt-live { display:inline-flex; align-items:center; gap:7px; color:#c9d1d9; font-size:12px;
+               background:#0f1620; border:1px solid #202a37; border-radius:999px; padding:5px 12px; }
+  /* Punto verde de estado (abierto/en vivo); tambien se usa en la tabla y en la ficha */
+  .mkt-dot { width:7px; height:7px; border-radius:50%; background:#3fb950;
+              box-shadow:0 0 0 3px rgba(63,185,80,.18); display:inline-block; /* halo suave alrededor del punto */ }
+  /* Variante apagada (gris, sin halo) para mercado cerrado o sin feed en vivo */
+  .mkt-dot.off { background:#6e7681; box-shadow:none; }
+
+  /* RESUMEN DEL MERCADO (Pulso del mercado: tarjetas de secciones.py y piezas.py) */
+  /* Tarjeta de una referencia del mercado */
+  .mkt-card { background:#0f1620; border:1px solid #202a37; border-radius:12px;
+               padding:12px 14px 10px; transition:border-color .15s, background .15s; /* anima el realce al pasar el raton */ }
+  /* Fila superior de la tarjeta: icono, nombre y etiqueta */
+  .mkt-card-top { display:flex; align-items:center; gap:9px; }
+  /* Nombre del instrumento en la tarjeta */
+  .mkt-card-nm { color:#e6edf3; font-size:13px; font-weight:700; line-height:1.15; }
+  /* Simbolo del bróker bajo el nombre */
+  .mkt-card-sym { color:#8b949e; font-size:11px; }
+  /* Precio grande de la tarjeta (el feed en vivo lo actualiza); tipografia monoespaciada para que los digitos no salten */
+  .mkt-card-px { color:#e6edf3; font-size:20px; font-weight:700; margin-top:10px;
+                  font-family:ui-monospace,Consolas,monospace; font-variant-numeric:tabular-nums; /* digitos de ancho fijo */ }
+  /* Parte inferior: pastilla de variacion a la izquierda y mini-grafico a la derecha */
+  .mkt-card-bot { display:flex; align-items:flex-end; justify-content:space-between; margin-top:4px; }
+  /* Evita el hueco de linea bajo la imagen o SVG del mini-grafico */
+  .mkt-card-bot img, .mkt-card-bot svg { display:block; }
+  /* Etiqueta (que representa la referencia) alineada a la derecha y arriba */
+  .mkt-card-tag { margin-left:auto; align-self:flex-start; color:#c9d1d9; font-size:10.5px;
+                   background:#161b22; border:1px solid #30363d; border-radius:999px; padding:1px 8px;
+                   white-space:nowrap; }
+  /* Encabezado de seccion "Pulso del mercado" */
+  .mkt-sec { display:flex; align-items:baseline; gap:10px; margin:0 0 10px; }
+  /* Titulo en negrita de la seccion */
+  .mkt-sec b { color:#e6edf3; font-size:15px; }
+  /* Texto descriptivo de la seccion */
+  .mkt-sec span { color:#8b949e; font-size:12px; }
+  /* Contenedor de cada tarjeta (key mktcard_N de secciones.py): referencia de posicion para el boton invisible de clic */
+  [class*="st-key-mktcard_"] { position:relative; }
+  /* Realce de la tarjeta al pasar el raton sobre su contenedor */
+  [class*="st-key-mktcard_"]:hover .mkt-card { border-color:#30363d; background:#121b27; }
+
+  /* PESTANAS DE CATEGORIA (segmentado de Streamlit con forma de pestanas; key mkt_tabs de panel.py) */
+  /* Grupo de botones: linea inferior comun y ajuste a varias lineas */
+  .st-key-mkt_tabs [role="radiogroup"] { gap:4px; border-bottom:1px solid #202a37; width:100%;
+                                         flex-wrap:wrap; }
+  /* Cada pestana: se anulan los estilos de boton de Streamlit (!important para ganar a su CSS) y se deja solo el subrayado */
+  .st-key-mkt_tabs [role="radiogroup"] button { background:transparent !important; border:none !important;
+      border-radius:0 !important; border-bottom:2px solid transparent !important; color:#8b949e !important;
+      padding:8px 14px !important; margin-bottom:-1px; /* solapa la linea del grupo */ box-shadow:none !important; }
+  /* Pestana al pasar el raton */
+  .st-key-mkt_tabs [role="radiogroup"] button:hover { color:#e6edf3 !important; }
+  /* Pestana seleccionada: texto claro y subrayado naranja */
+  .st-key-mkt_tabs [role="radiogroup"] button[aria-checked="true"] {
+      color:#e6edf3 !important; border-bottom-color:#ff8f00 !important; font-weight:700; }
+  /* Tamano del texto dentro de la pestana */
+  .st-key-mkt_tabs [role="radiogroup"] button p { font-size:14px; }
+
+  /* TABLA DE INSTRUMENTOS (piezas.py: fila_html; cabecera en secciones.py) */
+  /* Cabecera y filas comparten el mismo reparto de 7 columnas: instrumento, precio, cambio, cambio %, rango, 5 dias y estado */
+  .mkt-head, .mkt-row { display:grid; grid-template-columns:minmax(230px,2.3fr) 1.15fr 0.95fr 0.95fr 1.55fr 112px 96px; align-items:center; }
+  /* Relleno lateral de cada celda */
+  .mkt-head > div, .mkt-row > div { padding:0 14px; }
+  /* Cabecera de la tabla: texto pequeno en mayusculas */
+  .mkt-head { background:#0f1620; border-bottom:1px solid #202a37; color:#8b949e; font-size:11px;
+               font-weight:600; text-transform:uppercase; letter-spacing:.5px; height:38px; }
+  /* Fila de instrumento: altura fija y separador inferior */
+  .mkt-row { border-bottom:1px solid #161d27; font-size:14px; color:#e6edf3; height:60px; }
+  /* Celdas numericas alineadas a la derecha */
+  .mkt-r { text-align:right; justify-content:flex-end; }
+  /* Tipografia monoespaciada con digitos de ancho fijo para precios y cambios */
+  .mkt-num { font-family:ui-monospace,Consolas,monospace; font-variant-numeric:tabular-nums; }
+  /* Celda del instrumento: icono mas nombre y simbolo */
+  .mkt-nm { display:flex; align-items:center; gap:11px; min-width:0; /* permite recortar el texto largo */ }
+  /* Nombre del instrumento, recortado con puntos suspensivos si no cabe */
+  .mkt-nm b { font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  /* Simbolo del bróker bajo el nombre */
+  .mkt-nm small { display:block; color:#8b949e; font-size:11px; font-weight:400; margin-top:1px; }
+  /* Contenedor del icono del activo (tabla, tarjetas y ficha) */
+  .mkt-ic { display:inline-flex; align-items:center; flex:0 0 auto; /* no se encoge */ }
+  /* Pastilla de variacion porcentual; el color de texto y fondo se pone en linea desde piezas.py (verde o rojo) */
+  .mkt-pill { display:inline-block; min-width:78px; text-align:center; border-radius:6px;
+               padding:3px 8px; font-size:12.5px; font-weight:700; }
+  /* Rango del dia: minimo, barra y maximo en una linea */
+  .mkt-rng { display:flex; align-items:center; gap:8px; font-size:11px; color:#8b949e; }
+  /* Barra del rango con degradado rojo a verde */
+  .mkt-rng .bar { position:relative; flex:1; height:4px; border-radius:3px;
+                   background:linear-gradient(90deg, rgba(248,81,73,.55), #30363d 50%, rgba(63,185,80,.55)); }
+  /* Punto que marca el precio actual dentro de la barra (su posicion left se fija en linea) */
+  .mkt-rng .dot { position:absolute; top:-3px; width:10px; height:10px; border-radius:50%;
+                   background:#e6edf3; border:2px solid #0d1117; transform:translateX(-50%); /* centra el punto en su posicion */ }
+  /* Texto de estado Abierto/Cerrado con su punto */
+  .mkt-est { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#c9d1d9; }
+  /* Flecha que indica que la fila es clicable */
+  .mkt-chev { color:#6e7681; font-size:18px; margin-left:6px; }
+  /* Mensaje cuando no hay instrumentos que mostrar */
+  .mkt-vacio { color:#8b949e; padding:28px 16px; text-align:center; font-size:13px; }
+  /* Pie de la tabla: conteo y hora de actualizacion */
+  .mkt-pie { color:#8b949e; font-size:12px; margin-top:10px; }
+  /* Contenedor del script del indicador cargando (panel.py): se reduce a cero para que no ocupe espacio */
+  .st-key-mkt_loadjs { position:absolute !important; width:0 !important; height:0 !important;
+                        overflow:hidden !important; }
+  /* Nota sobre la tabla (cuantos instrumentos se muestran) */
+  .mkt-nota { display:flex; align-items:center; gap:8px; color:#8b949e; font-size:12.5px; margin:0 0 10px 2px; }
+  /* Resaltado del texto en negrita de la nota */
+  .mkt-nota b { color:#e6edf3; font-weight:600; }
+  /* Icono de la nota (ligadura de la fuente Material Symbols Rounded) */
+  .mkt-nota .ico { font-family:'Material Symbols Rounded'; font-size:17px; color:#ff8f00; }
+
+  /* FILAS Y TARJETAS CLICABLES: boton invisible que cubre todo (patron watchlist) */
+  /* Contenedor de toda la tabla (key mkt_tabla de secciones.py): borde redondeado que recorta las esquinas de las filas */
+  .st-key-mkt_tabla { background:#0d1117; border:1px solid #202a37;
+                       border-radius:12px; overflow:hidden; }
+  /* Sin separacion vertical entre cabecera y filas (Streamlit agrega un hueco por defecto) */
+  .st-key-mkt_tabla [data-testid="stVerticalBlock"] { gap:0 !important; }
+  /* La ultima fila no lleva linea inferior */
+  .st-key-mkt_tabla [class*="st-key-mktrow_"]:last-child .mkt-row { border-bottom:none; }
+  /* Contenedor de cada fila (key mktrow_N): referencia de posicion para el boton invisible */
+  [class*="st-key-mktrow_"] { position:relative; }
+  /* Realce de la fila al pasar el raton */
+  [class*="st-key-mktrow_"]:hover .mkt-row { background:#111925; }
+  /* Contenedor del boton "ver" (mktclk_) y de los botones Vender/Comprar de la ficha (ficov_): se estira sobre todo el contenedor padre */
+  [class*="st-key-mktclk_"], [class*="st-key-ficov_"] {
+      position:absolute !important; top:0 !important; right:0 !important; bottom:0 !important;
+      left:0 !important; width:100% !important; height:100% !important;
+      margin:0 !important; padding:0 !important; z-index:2; /* por encima del HTML para recibir el clic */
+  }
+  /* Todos los descendientes ocupan el 100% y pierden margenes para que el boton cubra toda el area */
+  [class*="st-key-mktclk_"] *, [class*="st-key-ficov_"] * {
+      width:100% !important; height:100% !important; min-height:0 !important;
+      margin:0 !important; padding:0 !important;
+  }
+  /* El boton es transparente: se ve el HTML de debajo pero el clic lo recibe el boton */
+  [class*="st-key-mktclk_"] button, [class*="st-key-ficov_"] button { opacity:0; cursor:pointer; }
+
+  /* ---------------- FICHA (MODAL) (ficha.py; contenedor key fic_root) ---------------- */
+  /* Panel del dialogo de Streamlit, solo cuando contiene la ficha: fondo oscuro, borde y esquinas redondeadas */
+  [data-testid="stDialog"]:has(.st-key-fic_root) section {
+      background:#0d1117 !important; border:1px solid #30363d; border-radius:16px; }
+  /* Cabecera de la ficha: icono y nombre */
+  .fic-head { display:flex; align-items:center; gap:14px; }
+  /* Nombre del instrumento en la ficha */
+  .fic-nm { font-size:22px; font-weight:800; color:#e6edf3; line-height:1.1; }
+  /* Fila de chips (simbolo, categoria, descripcion) bajo el nombre */
+  .fic-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; align-items:center; }
+  /* Chip individual con forma de pastilla */
+  .fic-chip { display:inline-flex; align-items:center; gap:6px; background:#161b22; border:1px solid #30363d;
+               color:#c9d1d9; font-size:11.5px; padding:2px 9px; border-radius:999px; }
+  /* Precio grande de la ficha (se actualiza en vivo) */
+  .fic-px { font-size:38px; font-weight:800; line-height:1; color:#e6edf3;
+             font-family:ui-monospace,Consolas,monospace; font-variant-numeric:tabular-nums; }
+  /* Fila con el precio, la pastilla de variacion y el cambio absoluto */
+  .fic-pxrow { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:14px; }
+  /* Texto secundario bajo el precio (estado del mercado, ultimo tick y cierre anterior) */
+  .fic-pxsub { color:#8b949e; font-size:12px; margin-top:8px; }
+  /* Caja de precio de Vender o Comprar */
+  .fic-side { border-radius:10px; padding:10px 14px; color:#fff; }
+  /* Etiqueta VENDER o COMPRAR */
+  .fic-side .k { font-size:11px; font-weight:700; letter-spacing:.6px; opacity:.9; }
+  /* Precio bid o ask dentro de la caja */
+  .fic-side .v { font-size:19px; font-weight:800; margin-top:2px;
+                  font-family:ui-monospace,Consolas,monospace; font-variant-numeric:tabular-nums; }
+  /* Caja Vender en rojo */
+  .fic-sell { background:linear-gradient(135deg,#f85149,#da3633); }
+  /* Caja Comprar en verde, con el texto a la derecha */
+  .fic-buy { background:linear-gradient(135deg,#3fb950,#2ea043); text-align:right; }
+  /* Contenedores de las cajas Vender y Comprar (keys ficsd_sell y ficsd_buy): referencia para el boton invisible ficov_ */
+  [class*="st-key-ficsd_"] { position:relative; }
+  /* Realce de la caja al pasar el raton */
+  [class*="st-key-ficsd_"]:hover .fic-side { filter:brightness(1.08); }
+  /* Rejilla de seis celdas de rendimiento por periodo */
+  .fic-perf { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
+  /* Celda individual de rendimiento */
+  .fic-perf > div { background:#0f1620; border:1px solid #202a37; border-radius:10px; padding:9px 10px; }
+  /* Nombre del periodo */
+  .fic-perf .k { color:#8b949e; font-size:11px; }
+  /* Rendimiento en porcentaje (el color se pone en linea) */
+  .fic-perf .v { font-weight:700; font-size:15px; margin-top:2px; font-family:ui-monospace,Consolas,monospace; }
+  /* Pista de la barra de rendimiento */
+  .fic-perf .b { height:3px; border-radius:2px; margin-top:7px; background:#202a37; position:relative; overflow:hidden; }
+  /* Relleno de la barra: crece desde el centro (left o right y width se fijan en linea) */
+  .fic-perf .b span { position:absolute; top:0; bottom:0; }
+  /* Recuadro de Estadisticas clave y de Especificaciones del contrato */
+  .fic-box { background:#0f1620; border:1px solid #202a37; border-radius:12px; padding:14px 16px; height:100%; }
+  /* Titulo del recuadro */
+  .fic-box h4 { color:#e6edf3; font-size:13px; font-weight:700; margin:0 0 8px; text-transform:uppercase;
+                 letter-spacing:.5px; }
+  /* Fila clave y valor dentro de un recuadro */
+  .fic-r { display:flex; justify-content:space-between; gap:12px; padding:7px 0;
+            border-bottom:1px solid #161d27; font-size:13px; }
+  /* La ultima fila no lleva separador */
+  .fic-r:last-child { border-bottom:none; }
+  /* Nombre del dato */
+  .fic-r .k { color:#8b949e; }
+  /* Valor del dato */
+  .fic-r .v { color:#e6edf3; font-family:ui-monospace,Consolas,monospace; text-align:right; }
+  /* Bloque de rango (del dia o de 52 semanas) de html_rango en ficha.py */
+  .fic-rng { padding:8px 0 10px; border-bottom:1px solid #161d27; }
+  /* Linea de titulo y nota del rango */
+  .fic-rng .t { display:flex; justify-content:space-between; color:#8b949e; font-size:12px; }
+  /* Barra del rango con degradado rojo a verde */
+  .fic-rng .bar { position:relative; height:5px; border-radius:3px; margin:8px 0 6px;
+                   background:linear-gradient(90deg, rgba(248,81,73,.6), #30363d 50%, rgba(63,185,80,.6)); }
+  /* Punto que marca el precio actual dentro de la barra */
+  .fic-rng .dot { position:absolute; top:-4px; width:13px; height:13px; border-radius:50%;
+                   background:#e6edf3; border:2px solid #0f1620; transform:translateX(-50%); /* centra el punto */ }
+  /* Minimo y maximo bajo la barra */
+  .fic-rng .n { display:flex; justify-content:space-between; color:#c9d1d9; font-size:12px;
+                 font-family:ui-monospace,Consolas,monospace; }
+  /* Boton Operar (key fic_operar): degradado rojo a naranja que sustituye al estilo por defecto (!important) */
+  .st-key-fic_operar button { background:linear-gradient(90deg,#ff4b4b,#ff8f00) !important;
+      border:none !important; color:#fff !important; font-weight:700; }
+  /* Realce del boton Operar al pasar el raton */
+  .st-key-fic_operar button:hover { filter:brightness(1.08); }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

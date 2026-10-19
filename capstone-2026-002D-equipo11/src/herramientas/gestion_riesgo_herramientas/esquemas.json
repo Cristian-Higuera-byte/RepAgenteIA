@@ -1,0 +1,51 @@
+{
+  "calcular_tamano_posicion": {
+    "descripcion": "Calcula el tamaño exacto de la posición (lotaje) basado en el porcentaje de riesgo del capital, la distancia del Stop Loss en pips/puntos y el valor estimado del pip.",
+    "parametros": {
+      "simbolo": {
+        "type": "string",
+        "description": "Símbolo del activo (ej. 'EURUSD', 'USDCLP', 'XAUUSD')."
+      },
+      "distancia_sl_pips": {
+        "type": "number",
+        "description": "Distancia del Stop Loss en pips o puntos."
+      },
+      "porcentaje_riesgo": {
+        "type": "number",
+        "description": "Porcentaje máximo de capital a arriesgar (ej. 1.0 para 1%). Por defecto 1.0."
+      },
+      "capital_usd": {
+        "type": "number",
+        "description": "Capital base en USD. Si no se especifica, toma la equidad actual de MT5."
+      }
+    },
+    "requeridos": [
+      "simbolo",
+      "distancia_sl_pips"
+    ],
+    "nombre": "calcular_tamano_posicion"
+  },
+  "calcular_criterio_kelly": {
+    "descripcion": "Calcula la fracción óptima de capital a arriesgar utilizando la Fórmula de Criterio de Kelly y Criterio de Half-Kelly (conservador) según la tasa de acierto y el ratio Riesgo/Beneficio.",
+    "parametros": {
+      "win_rate_pct": {
+        "type": "number",
+        "description": "Tasa de acierto en porcentaje (ej. 55 para 55%)."
+      },
+      "ratio_rr": {
+        "type": "number",
+        "description": "Ratio Riesgo/Beneficio medio (ej. 1.5 si ganas $1.5 por cada $1 arriesgado)."
+      }
+    },
+    "requeridos": [
+      "win_rate_pct",
+      "ratio_rr"
+    ],
+    "nombre": "calcular_criterio_kelly"
+  },
+  "analizar_exposicion_divisas": {
+    "descripcion": "Analiza la exposición neta consolidada por divisa/moneda individual a través de todas las posiciones abiertas en la cuenta de MT5.",
+    "parametros": {},
+    "nombre": "analizar_exposicion_divisas"
+  }
+}

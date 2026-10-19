@@ -1,0 +1,52 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ---------------------------- INICIO Piña y Jara 20_menus_desplegables .CSS ----------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* [grafico] Menús desplegables de la barra superior */
+    /* MENÚS DESPLEGABLES DE LA BARRA SUPERIOR */
+    /* Menús desplegables superiores */
+    /* Envoltorio .tv-dropdown: referencia de posición para el panel desplegable. */
+    .tv-dropdown { position: relative; display: inline-block; }
+    /* Panel desplegable oculto por defecto; se alinea a la derecha bajo el botón. */
+    .tv-dropdown-content {
+        display: none; position: absolute; right: 0; top: 100%;
+        background-color: #161b22; min-width: 210px;
+        box-shadow: 0px 8px 24px rgba(0,0,0,0.6);
+        z-index: 1000; border: 1px solid #30363d; border-radius: 6px; padding: 4px 0; /* por encima del gráfico pero por debajo de las ventanas modales */
+    }
+    /* Panel visible: el JS agrega la clase show al abrir el menú. */
+    .tv-dropdown-content.show { display: block; }
+    /* Fila clicable dentro del menú desplegable. */
+    .tv-drop-item {
+        color: #d1d4dc; padding: 9px 14px; text-decoration: none; display: flex;
+        align-items: center; justify-content: space-between; font-size: 13px; cursor: pointer;
+        transition: background 0.1s;
+    }
+    /* Fila resaltada en violeta al pasar el ratón. */
+    .tv-drop-item:hover { background-color: rgba(139,92,246,0.2); color: #a78bfa; }
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------ FIN Piña y Jara 20_menus_desplegables .CSS -----------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

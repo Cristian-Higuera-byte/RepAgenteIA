@@ -1,0 +1,58 @@
+{
+  "acentos": {
+    "cap": [
+      "#58a6ff",
+      "account_balance_wallet",
+      "rgba(88,166,255,.14)",
+      "#58a6ff"
+    ],
+    "up": [
+      "#2ebd85",
+      "trending_up",
+      "rgba(46,189,133,.14)",
+      "#2ebd85"
+    ],
+    "down": [
+      "#f6465d",
+      "trending_down",
+      "rgba(246,70,93,.14)",
+      "#f6465d"
+    ],
+    "exp": [
+      "#f0b429",
+      "pie_chart",
+      "rgba(240,180,41,.14)",
+      "#f0b429"
+    ],
+    "risk": [
+      "#f85149",
+      "shield",
+      "rgba(248,81,73,.14)",
+      "#f85149"
+    ],
+    "fee": [
+      "#8b949e",
+      "receipt_long",
+      "rgba(139,148,158,.14)",
+      "#b4bdc8"
+    ],
+    "dd": [
+      "#ff8f00",
+      "stacked_line_chart",
+      "rgba(255,143,0,.14)",
+      "#ff8f00"
+    ],
+    "acum": [
+      "#a371f7",
+      "savings",
+      "rgba(163,113,247,.14)",
+      "#a371f7"
+    ]
+  },
+  "periodos": {
+    "7 días": 7,
+    "30 días": 30,
+    "90 días": 90,
+    "Todo": null
+  }
+}

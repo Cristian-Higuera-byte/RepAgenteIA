@@ -1,0 +1,35 @@
+# === Secretos y credenciales (NUNCA subir) ===
+.env
+*.env
+
+# === Entorno virtual de Python ===
+env/
+venv/
+.venv/
+
+# === Cache de Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === Carpetas de herramientas de IA / skills (NO subir) ===
+.agents/
+.claude/
+
+# === Archivos generados por el programa ===
+outputs/
+downloads/
+database/data/*.json
+database/data/*.db
+database/data/*.db-wal
+database/data/*.db-shm
+
+# === Respaldos locales ===
+_backup_pre_mt5_*/
+*.bak
+
+# === Sistema operativo / editor ===
+.DS_Store
+Thumbs.db
+.vscode/
+*.log

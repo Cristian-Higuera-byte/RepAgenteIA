@@ -1,0 +1,17 @@
+[
+  [
+    ":material/swap_vert:",
+    "order",
+    "Operar"
+  ],
+  [
+    ":material/reorder:",
+    "dom",
+    "Profundidad de mercado (DOM)"
+  ],
+  [
+    ":material/star:",
+    "fav",
+    "Favoritos"
+  ]
+]

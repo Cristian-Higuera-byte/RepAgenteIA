@@ -1,122 +1,129 @@
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.
+
+
+# -------------------------------------------------------------------------------------------------------
+# -------------------------------- INICIO Piña y Jara consola_agente .PY --------------------------------
+# -------------------------------------------------------------------------------------------------------
+
 """
 main.py
---------
-Punto de entrada del agente bursátil.
+-----------------
+Chat por terminal para probar el agente sin abrir el dashboard.
 
-Implementa el bucle de conversación con tool calling de forma robusta:
-- Soporta múltiples rondas de tool calling (no asume que hay solo una).
-- Si el modelo llama una herramienta con un nombre mal formado, el error
-  se le devuelve como resultado de la tool, y como 'tools' sigue
-  disponible en cada ronda, el modelo puede corregirse solo en el
-  siguiente intento (esto evita el error 400 "Tool choice is none,
-  but model called a tool" que ocurría cuando la segunda llamada no
-  incluía 'tools').
-- Cada ejecución de herramienta se guarda automáticamente en memoria
-  local (memoria.py), sin que el modelo tenga que pedirlo.
+Ejecutar:  python src/main.py
+
+Además de servir de consola, el dashboard (app.py) importa este módulo como "lógica principal
+del backend" y lo reparte a las vistas que lo necesitan.
 """
+import os
+import sys
 
-import json
-from typing import Any, cast
+# Deja src/ (paquetes del proyecto) y la raíz (carpeta database/) en la ruta de importación.
+_src = os.path.abspath(os.path.dirname(__file__))
+_raiz = os.path.dirname(_src)
+for _ruta in (_raiz, _src):
+    if _ruta not in sys.path:
+        sys.path.insert(0, _ruta)
 
-from core.agent import HERRAMIENTAS, ejecutar_herramienta  # type: ignore[attr-defined]
-from core.llm_client import cliente, MODELO, SYSTEM_PROMPT  # type: ignore[attr-defined]
-from tools.memoria import guardar_consulta
+import configuracion
+from core.agente import Agente  # type: ignore[import-untyped]
+from core.llm import ErrorLLM  # type: ignore[import-untyped]
+
+# Texto de ayuda que se muestra al iniciar la consola: lista los comandos disponibles.
+AYUDA = "Comandos: /reset (nueva conversación), /perfil <nombre>, /pensar (ver/ocultar razonamiento), /salir"
 
 
-def chat_agente(mensaje_usuario: str, historial: list[Any] | None = None, max_iteraciones: int = 5) -> tuple[str, list]:
+def principal() -> None:
     """
-    Procesa un mensaje del usuario a través del agente, ejecutando
-    herramientas si el modelo lo solicita, con soporte para varias
-    rondas de tool calling (incluyendo reintentos por errores).
+    Ejecuta el chat por terminal hasta que el usuario escribe /salir (o cierra la entrada con Ctrl+C / Ctrl+D).
 
-    Parámetros:
-        mensaje_usuario (str): Pregunta o instrucción del usuario.
-        historial (list): Historial de mensajes previos, para mantener
-                            contexto entre turnos. Si es None, se crea uno nuevo.
-        max_iteraciones (int): Tope de rondas de tool calling para evitar
-                                bucles infinitos si el modelo insiste en
-                                fallar repetidamente.
-
-    Retorna:
-        tuple[str, list]: (respuesta_final_en_texto, historial_actualizado)
+    Crea el agente del usuario local; si falta la configuración (por ejemplo, la clave de DeepSeek)
+    muestra el error y termina. Luego repite: lee una línea, atiende los comandos (/reset, /pensar,
+    /perfil, /salir) o, si es un mensaje normal, se lo envía al agente y va imprimiendo su respuesta
+    en vivo: texto, razonamiento (solo si está activado), herramientas usadas y un resumen final con
+    los tokens consumidos y el perfil. Los errores del modelo se muestran sin cerrar la consola.
     """
-    if historial is None:
-        historial = [{"role": "system", "content": SYSTEM_PROMPT}]
+    # Crea el agente; si falta la clave de la API u otra configuración, informa y termina.
+    try:
+        agente = Agente(usuario_id="local")
+    except RuntimeError as e:
+        print(e)
+        return
 
-    historial.append({"role": "user", "content": mensaje_usuario})
+    # Indica si se imprime el razonamiento interno del modelo (se alterna con /pensar).
+    mostrar_razonamiento = False
+    print("Agente bursátil listo.")
+    print("Memoria:", f"activa (chat {str(agente.memoria.chat_id)[:8]})" if agente.memoria else "DESACTIVADA")
+    print(AYUDA)
 
-    for intento in range(max_iteraciones):
-        respuesta = cliente.chat.completions.create(
-            model=MODELO,
-            messages=cast(Any, historial),
-            tools=cast(Any, HERRAMIENTAS),
-            tool_choice="auto",
-        )
-
-        mensaje = respuesta.choices[0].message
-
-        # Si el modelo ya no necesita ejecutar herramientas, esta es la respuesta final
-        if not mensaje.tool_calls:
-            historial.append({"role": "assistant", "content": mensaje.content})
-            return mensaje.content or "", historial
-
-        # El modelo pidió ejecutar una o más herramientas
-        historial.append(mensaje)
-
-        for llamada in mensaje.tool_calls:
-            # ``tool_calls`` también puede contener llamadas custom, que no
-            # exponen el atributo ``function``. Este agente solo procesa
-            # llamadas de función.
-            llamada_funcion = getattr(cast(Any, llamada), "function", None)
-            if llamada_funcion is None:
-                continue
-
-            nombre_funcion = llamada_funcion.name
-            argumentos = json.loads(llamada_funcion.arguments)
-
-            print(f"[Agente ejecutando herramienta: {nombre_funcion}({argumentos})]")
-
-            try:
-                resultado = ejecutar_herramienta(nombre_funcion, argumentos)
-            except Exception as error:
-                # El error se devuelve como resultado de la tool (no se
-                # interrumpe el programa), para que el modelo lo vea y
-                # pueda corregirse en la siguiente ronda del for.
-                resultado = {"error": str(error)}
-
-            # Registro automático en memoria local, fuera del control del modelo
-            guardar_consulta(
-                pregunta=mensaje_usuario,
-                resultado={
-                    "herramienta": nombre_funcion,
-                    "argumentos": argumentos,
-                    "resultado": resultado,
-                },
-            )
-
-            historial.append({
-                "role": "tool",
-                "tool_call_id": llamada.id,
-                "content": json.dumps(resultado, ensure_ascii=False),
-            })
-
-        # Vuelve a iterar: la siguiente llamada al modelo SIEMPRE incluye
-        # 'tools', ya sea para responder en texto o para reintentar.
-
-    # Si se agotaron los intentos sin una respuesta final en texto
-    return "No se pudo completar la solicitud tras varios intentos. Revisa los nombres de las herramientas.", historial
-
-
-if __name__ == "__main__":
-    print("=== Agente de Análisis Bursátil ===")
-    print("Escribe 'salir' para terminar.\n")
-
-    historial_conversacion = None
-
+    # Bucle principal: una iteración por cada línea que escribe el usuario.
     while True:
-        entrada = input("Tú: ")
-        if entrada.lower() == "salir":
+        try:
+            entrada = input("\nTú: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            # Ctrl+D / Ctrl+C: salida limpia.
+            print()
             break
+        if not entrada:
+            continue
 
-        respuesta, historial_conversacion = chat_agente(entrada, historial_conversacion)
-        print(f"\nAgente: {respuesta}\n")
+        # --- Comandos de la consola ---
+        if entrada == "/salir":
+            break
+        if entrada == "/reset":
+            agente.reiniciar()
+            print("Conversación reiniciada.")
+            continue
+        if entrada == "/pensar":
+            mostrar_razonamiento = not mostrar_razonamiento
+            print(f"Razonamiento visible: {mostrar_razonamiento}")
+            continue
+        if entrada.startswith("/perfil"):
+            partes = entrada.split()
+            if len(partes) == 2 and partes[1] in configuracion.PERFILES:
+                agente.perfil = partes[1]
+                print(f"Perfil activo: {partes[1]}")
+            else:
+                print("Perfiles disponibles:", ", ".join(configuracion.PERFILES))
+            continue
+
+        # --- Mensaje normal: se envía al agente y se imprime su respuesta a medida que llega ---
+        print("\nAgente: ", end="", flush=True)
+        try:
+            for ev in agente.responder_stream(entrada):
+                if ev.tipo == "texto":
+                    print(ev.texto, end="", flush=True)
+                elif ev.tipo == "razonamiento" and mostrar_razonamiento:
+                    print(ev.texto, end="", flush=True)
+                elif ev.tipo == "herramienta":
+                    print(f"\n  [herramienta] {ev.texto}({ev.datos})", flush=True)
+                elif ev.tipo == "fin":
+                    d = ev.datos
+                    print(f"\n  [{d['tokens_entrada']} entrada / {d['tokens_salida']} salida | perfil: {d['perfil']}]")
+        except ErrorLLM as e:
+            print(f"\n[Error] {e}")
+
+
+# Solo arranca el chat cuando el archivo se ejecuta directamente (python src/main.py),
+# no cuando el dashboard lo importa.
+if __name__ == "__main__":
+    principal()
+
+
+# -------------------------------------------------------------------------------------------------------
+# ---------------------------------- FIN Piña y Jara consola_agente .PY ---------------------------------
+# -------------------------------------------------------------------------------------------------------
+
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.

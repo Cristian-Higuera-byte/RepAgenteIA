@@ -1,0 +1,51 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ---------------------------------- INICIO Piña y Jara 30_lienzo .HTML ---------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!-- [grafico] Lienzo, leyenda OHLC y capa de dibujo -->
+            <!-- Contenedor del lienzo (css/40_lienzo.css). El JS le agrega las clases modo-* y cur-* según el cursor. -->
+            <div id="chart-wrapper">
+                <!-- Elemento donde Lightweight Charts monta el gráfico (10_grafico_base.js). -->
+                <div id="c"></div>
+                <!-- Capa transparente donde se pintan los dibujos del usuario (21_dibujo_hit_y_render.js). -->
+                <canvas id="drawing-canvas"></canvas>
+                <!-- Leyenda flotante sobre el gráfico; los valores los actualiza 40_datos_y_leyenda.js. -->
+                <div id="tv-legend">
+                    <div class="lg-line">
+                        <!-- Símbolo (el ensamblador sustituye el marcador de la línea siguiente por el nombre real), temporalidad (#lg-tf) y fuente de datos; en pantalla completa el símbolo abre el selector de activo. -->
+                        <span class="lg-sym" id="lg-sym" title="Cambiar de activo (pantalla completa)">__SIMBOLO_HTML__</span><span class="lg-dot">·</span><span class="lg-tf" id="lg-tf">H1</span><span class="lg-dot">·</span><span class="lg-feed">XM</span>
+                        <!-- Valores OHLC de la vela bajo el cursor. -->
+                        <span class="tv-ohlc" id="tv-ohlc-vals">Cargando…</span>
+                    </div>
+                    <!-- Línea con el volumen de la vela. -->
+                    <div class="lg-line"><span class="tv-vol" id="tv-vol-val"></span></div>
+                    <!-- Leyenda de símbolos comparados (la llena 35_comparar_simbolos.js). -->
+                    <div id="tv-cmp-legend"></div>
+                    <!-- Leyenda de indicadores activos (la llena 31_indicadores_paneles.js). -->
+                    <div id="tv-ind-legend"></div>
+                </div>
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ----------------------------------- FIN Piña y Jara 30_lienzo .HTML -----------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
