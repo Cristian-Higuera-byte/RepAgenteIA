@@ -1,0 +1,304 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ INICIO Piña y Jara ticket .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* Estilos del ticket de órdenes, acotados a las claves de este panel (.st-key-ord_*).
+   El ancho del panel lo define aplicacion.py (no se toca aquí). Lo inyecta interfaz.cargar_css()
+   (envuelto en una etiqueta de estilo).
+   OJO (gotcha de Streamlit): no escribir etiquetas HTML dentro de este CSS (ni en los
+   comentarios): el sanitizador de st.html eliminaría el bloque de estilos completo.
+   Las clases ord-* se generan en panel.py, calculadora.py y confirmacion.py; las claves
+   st-key-ord_* corresponden a los st.container(key=...) y a las keys de los widgets. */
+
+/* ====== TARJETA DEL PANEL ====== */
+/* Contenedor raiz del ticket (key orden_panel de panel.py): tarjeta oscura con borde redondeado */
+.st-key-orden_panel { background:#0f1620; border:1px solid #202a37; border-radius:14px;
+    padding:16px 14px 16px; }
+/* Separacion vertical de 12px entre los elementos del ticket */
+.st-key-orden_panel [data-testid="stVerticalBlock"] { gap:12px; }
+/* Titulo "Operar" con el simbolo */
+.orden-h { color:#e6edf3; font-weight:800; font-size:16px; margin:0 0 2px; }
+/* Subtitulo de texto gris; tambien lo usa el apartado de la segunda orden del OCO */
+.orden-subtitulo { color:#8b949e; font-size:12px; margin:0; }
+
+/* ====== INTERRUPTORES: TEXTO A LA IZQUIERDA, SWITCH A LA DERECHA, VERDE ======
+   Estructura de Streamlit 1.64 (medida en el navegador): stCheckbox, label,
+   [span con el input oculto] + [div = riel del switch] + [div = texto]. El
+   contenedor viene con width="fit-content", por eso se fuerza al 100 %.
+   Los contenedores orden_interruptor_* los crea panel.py y calculadora.py alrededor de cada st.toggle. */
+/* Contenedor del interruptor y su checkbox ocupan todo el ancho (anula el fit-content de Streamlit) */
+[class*="st-key-orden_interruptor_"] [data-testid="stElementContainer"],
+[class*="st-key-orden_interruptor_"] [data-testid="stCheckbox"] { width:100% !important; }
+/* Etiqueta en fila invertida: el texto queda a la izquierda y el switch a la derecha */
+[class*="st-key-orden_interruptor_"] [data-testid="stCheckbox"] label {
+    display:flex !important; flex-direction:row-reverse; justify-content:space-between;
+    align-items:center; width:100%; gap:12px; }
+/* Texto del interruptor: blanco y en negrita media */
+[class*="st-key-orden_interruptor_"] [data-testid="stCheckbox"] label p {
+    color:#e6edf3 !important; font-size:14px !important; font-weight:600 !important;
+    line-height:1.3 !important; }
+/* Riel del switch en verde cuando esta activado (el div que sigue al span del input) */
+[class*="st-key-orden_interruptor_"] [data-testid="stCheckbox"] label:has(input:checked) > span + div {
+    background:#2ea043 !important; }
+/* Se oculta el icono de ayuda de Streamlit (la ayuda sigue en el tooltip del texto) */
+[class*="st-key-orden_interruptor_"] [data-testid="stTooltipIcon"] { display:none !important; }
+
+/* ====== VENTA Y COMPRA UNIDOS (COMO XM) ====== */
+/* Barra que une SELL y BUY con borde redondeado; position relative para centrar el spread */
+.orden-unir { position:relative; display:flex; border-radius:12px; overflow:hidden;
+    border:1px solid #252f3d; }
+/* Cada mitad (SELL o BUY): ocupa el mismo ancho y puede encogerse sin desbordar */
+.orden-mitad { flex:1; min-width:0; overflow:hidden; padding:10px 12px; box-sizing:border-box;
+    background:#151c27; transition:background .12s ease; }
+/* Etiqueta SELL o BUY: gris cuando la mitad no esta elegida */
+.orden-mitad .orden-etiqueta { font-size:11px; font-weight:700; letter-spacing:.4px; white-space:nowrap;
+    color:#8b949e; }
+/* Precio de la mitad (bid o ask, actualizado en vivo por el feed); monoespaciado para que los digitos no salten */
+.orden-mitad .orden-precio { font-size:15px; font-weight:800; margin-top:2px; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis; color:#8b949e;
+    font-family:ui-monospace,Consolas,monospace; }
+/* SELL alineado a la izquierda */
+.orden-sell { text-align:left; }
+/* BUY alineado a la derecha */
+.orden-buy { text-align:right; }
+/* SELL elegido: degradado rojo */
+.orden-sell.sel { background:linear-gradient(135deg,#f85149,#da3633); }
+/* BUY elegido: degradado verde */
+.orden-buy.sel  { background:linear-gradient(135deg,#3fb950,#2ea043); }
+/* Texto blanco en la mitad elegida */
+.orden-mitad.sel .orden-etiqueta, .orden-mitad.sel .orden-precio { color:#ffffff; }
+/* Recuadro del spread centrado sobre la union de las dos mitades; no recibe clics para no tapar los botones invisibles */
+.orden-spread { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    background:#e9edf2; color:#111820; font-size:12px; font-weight:800;
+    border-radius:8px; padding:3px 8px; font-family:ui-monospace,Consolas,monospace;
+    pointer-events:none; z-index:4; box-shadow:0 1px 4px rgba(0,0,0,.35); }
+
+/* Botones invisibles que hacen clicable cada mitad / el botón grande */
+/* Contenedores orden_zona_fila y orden_zona_colocar de panel.py: referencia de posicion para los botones superpuestos */
+[class*="st-key-orden_zona_"] { position:relative; }
+/* Contenedor de los botones orden_ov* (Vender, Comprar y Colocar orden): cubre todo el contenedor padre */
+[class*="st-key-orden_superposicion_"] { position:absolute !important; inset:0 !important; /* inset:0 equivale a top, right, bottom y left en 0 */
+    width:100% !important; height:100% !important; margin:0 !important;
+    padding:0 !important; z-index:3; }
+/* Descendientes al 100% y sin margenes para que el boton cubra toda el area */
+[class*="st-key-orden_superposicion_"] * { width:100% !important; height:100% !important;
+    min-height:0 !important; margin:0 !important; padding:0 !important; }
+/* El boton es transparente: se ve el HTML de debajo pero el clic lo recibe el boton */
+[class*="st-key-orden_superposicion_"] button { opacity:0; cursor:pointer; }
+/* Boton Vender: solo la mitad izquierda */
+[class*="st-key-orden_superposicion_sell"] { right:auto !important; width:50% !important; }
+/* Boton Comprar: solo la mitad derecha */
+[class*="st-key-orden_superposicion_buy"]  { left:auto !important;  width:50% !important; }
+
+/* ====== CANTIDAD Y LOTES (SEGMENTADO A TODO EL ANCHO) ====== */
+/* Se comparte entre los tres selectores segmentados: tipo de volumen (orden_modo), lado del OCO (orden_oco_lado) y modo de riesgo (orden_calculadora_riesgo_modo) */
+/* Grupo de botones al 100% del ancho */
+.st-key-orden_modo [data-testid="stButtonGroup"],
+.st-key-orden_oco_lado [data-testid="stButtonGroup"],
+.st-key-orden_calculadora_riesgo_modo [data-testid="stButtonGroup"] { width:100%; }
+/* Barra oscura con borde que agrupa las opciones */
+.st-key-orden_modo [role="radiogroup"],
+.st-key-orden_oco_lado [role="radiogroup"],
+.st-key-orden_calculadora_riesgo_modo [role="radiogroup"] { width:100%; display:flex;
+    background:#0d1117; border:1px solid #252f3d; border-radius:10px; padding:3px; gap:3px; }
+/* Cada opcion reparte el ancho por igual y pierde el estilo por defecto de Streamlit */
+.st-key-orden_modo button, .st-key-orden_oco_lado button, .st-key-orden_calculadora_riesgo_modo button {
+    flex:1 1 0; border:none !important; border-radius:8px !important;
+    background:transparent !important; min-height:36px !important; box-shadow:none !important; }
+/* Texto de cada opcion */
+.st-key-orden_modo button p, .st-key-orden_oco_lado button p, .st-key-orden_calculadora_riesgo_modo button p {
+    color:#c9d1d9 !important; font-size:14px !important; font-weight:700 !important; }
+/* Opcion seleccionada: fondo mas claro */
+.st-key-orden_modo button[aria-checked="true"],
+.st-key-orden_oco_lado button[aria-checked="true"],
+.st-key-orden_calculadora_riesgo_modo button[aria-checked="true"] { background:#2a3342 !important; }
+/* Texto de la opcion seleccionada en blanco */
+.st-key-orden_modo button[aria-checked="true"] p,
+.st-key-orden_oco_lado button[aria-checked="true"] p,
+.st-key-orden_calculadora_riesgo_modo button[aria-checked="true"] p { color:#ffffff !important; }
+
+/* Botón "Aplicar al ticket" (Calculadora de riesgo) */
+/* Fondo azul del boton de calculadora.py (key orden_calculadora_riesgo_aplicar) */
+.st-key-orden_calculadora_riesgo_aplicar button { background:#1f6feb !important; border:none !important; }
+/* Texto blanco del boton Aplicar */
+.st-key-orden_calculadora_riesgo_aplicar button p { color:#fff !important; font-weight:700 !important; }
+
+/* ====== CAMPOS TIPO TARJETA: ETIQUETA DENTRO + NUMERO GRANDE ====== */
+/* Los contenedores orden_caja_* los crea interfaz.campo(); la etiqueta y el sufijo se superponen al number_input */
+/* Contenedor del campo: referencia de posicion para la etiqueta y el sufijo */
+[class*="st-key-orden_caja_"] { position:relative; }
+/* Sin separacion vertical entre la etiqueta y el input */
+[class*="st-key-orden_caja_"] [data-testid="stVerticalBlock"] { gap:0 !important; }
+/* El bloque HTML de la etiqueta se saca del flujo y se coloca encima del input, sin interceptar clics */
+[class*="st-key-orden_caja_"] [data-testid="stElementContainer"]:has(.orden-caja-etiqueta) {
+    position:absolute !important; inset:0; z-index:2; pointer-events:none; }
+/* Etiqueta pequena en la esquina superior izquierda del campo */
+.orden-caja-etiqueta { position:absolute; top:9px; left:15px; color:#8b949e; font-size:12px; }
+/* Sufijo (unidad, moneda o %) en la esquina inferior derecha */
+.orden-caja-sufijo { position:absolute; right:15px; bottom:13px; color:#8b949e; font-size:14px;
+    font-weight:600; }
+/* Caja del number_input: fondo oscuro, borde y altura fija de 62px */
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputContainer"] {
+    background:#0d1117 !important; border:1px solid #2b3546 !important;
+    border-radius:12px !important; height:62px; }
+/* Borde azul cuando el campo tiene el foco */
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputContainer"]:focus-within {
+    border-color:#2f81f7 !important; box-shadow:0 0 0 1px #2f81f7 !important; }
+/* Numero grande en blanco; el relleno superior deja espacio para la etiqueta de arriba */
+[class*="st-key-orden_caja_"] input {
+    font-size:20px !important; font-weight:700 !important; color:#ffffff !important;
+    padding:22px 15px 6px !important; background:transparent !important;
+    font-family:ui-monospace,Consolas,monospace !important; }
+/* + / - como en XM: apilados a la derecha y visibles SOLO al pasar el mouse.
+   En Streamlit 1.64 van en un div después del input: [StepDown][StepUp];
+   column-reverse deja el + arriba. */
+/* Referencia de posicion para los botones + y - */
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputContainer"] { position:relative; }
+/* Div de los botones: apilado a la derecha y centrado en vertical, oculto y sin clics hasta pasar el raton */
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputContainer"] > div {
+    position:absolute; right:8px; top:50%; transform:translateY(-50%); z-index:3;
+    display:flex; flex-direction:column-reverse; gap:3px;
+    opacity:0; pointer-events:none; transition:opacity .15s ease; }
+/* Al pasar el raton sobre el campo o enfocarlo, los botones aparecen y vuelven a recibir clics */
+[class*="st-key-orden_caja_"]:hover [data-testid="stNumberInputContainer"] > div,
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputContainer"]:focus-within > div {
+    opacity:1; pointer-events:auto; }
+/* Botones + y -: cuadrados pequenos con fondo gris azulado */
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputStepUp"],
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputStepDown"] {
+    width:26px !important; height:23px !important; min-height:0 !important; padding:0 !important;
+    background:#2a3342 !important; border:none !important; border-radius:6px !important;
+    color:#e6edf3 !important; display:flex; align-items:center; justify-content:center; }
+/* Realce de los botones al pasar el raton */
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputStepUp"]:hover,
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputStepDown"]:hover { background:#3a4558 !important; }
+/* El boton - deshabilitado (valor en el minimo) se atenua */
+[class*="st-key-orden_caja_"] [data-testid="stNumberInputStepDown"]:disabled { opacity:.35; }
+/* El sufijo se desplaza con una transicion suave cuando aparecen los botones */
+.orden-caja-sufijo { transition:right .15s ease; }
+/* Con el campo en hover o con foco el sufijo se corre a la izquierda (44px) para no quedar bajo los botones */
+[class*="st-key-orden_caja_"]:hover .orden-caja-sufijo,
+[class*="st-key-orden_caja_"]:focus-within .orden-caja-sufijo { right:44px; }
+
+/* ====== MARGEN ====== */
+/* Fila "Margen requerido": etiqueta gris y valor resaltado (tambien la usa la calculadora de riesgo) */
+.orden-margen { color:#8b949e; font-size:13px; display:flex; gap:6px; align-items:baseline; }
+/* Valor de la fila en blanco */
+.orden-margen b { color:#e6edf3; font-weight:700; }
+/* Fila de la barra de margen con su porcentaje */
+.orden-barra-margen-fila { display:flex; align-items:center; gap:12px; margin-top:8px; }
+/* Pista gris de la barra; el relleno interno lo dimensiona panel.py en linea */
+.orden-barra-margen { flex:1; height:6px; border-radius:6px; background:#2b3546; overflow:hidden; }
+/* Relleno de la barra con animacion del ancho */
+.orden-barra-margen > div { height:100%; border-radius:6px; transition:width .2s ease; }
+/* Porcentaje a la derecha de la barra */
+.orden-barra-margen-porcentaje { font-size:14px; font-weight:700; color:#e6edf3; min-width:58px;
+    text-align:right; }
+/* Mensaje rojo cuando no hay margen suficiente */
+.orden-sin-margen { color:#f85149; font-size:13px; font-weight:600; margin-top:6px; }
+/* Linea de ayuda (precio actual, tipo de orden, mensajes de la calculadora) */
+.orden-pista { color:#8b949e; font-size:12px; }
+/* Valor resaltado de la linea de ayuda, en bloque propio y monoespaciado */
+.orden-pista b { display:block; color:#e6edf3; font-size:14px; margin-top:2px;
+    font-family:ui-monospace,Consolas,monospace; }
+
+/* ====== TARJETAS AGRUPADAS (ORDEN PENDIENTE / TP-SL) ====== */
+/* Contenedores orden_tarjeta_pendiente, orden_tarjeta_take_profit_stop_loss y orden_tarjeta_calculadora_riesgo: tarjeta con borde redondeado */
+[class*="st-key-orden_tarjeta_"] { background:#151c27; border:1px solid #252f3d;
+    border-radius:12px; padding:12px 14px; }
+/* Separacion de 10px entre los elementos dentro de la tarjeta */
+[class*="st-key-orden_tarjeta_"] [data-testid="stVerticalBlock"] { gap:10px; }
+/* Linea separadora que llega a los bordes de la tarjeta (margen horizontal negativo) */
+.orden-separador { height:1px; background:#252f3d; margin:2px -14px; }
+
+/* ====== BOTON GRANDE "COLOCAR ORDEN EN" ====== */
+/* Bloque visual del boton (panel.py); el boton real va invisible encima (orden_superposicion_colocar) */
+.orden-colocar { display:flex; align-items:center; justify-content:space-between;
+    border-radius:12px; padding:13px 18px; min-height:64px; }
+/* Texto "Colocar orden en" */
+.orden-colocar .ganancia-perdida-etiqueta { font-size:13px; color:rgba(255,255,255,.92); }
+/* Precio grande del boton (en vivo si la orden es a mercado) */
+.orden-colocar .ganancia-perdida-precio { font-size:22px; font-weight:800; color:#fff; line-height:1.15;
+    white-space:nowrap; font-family:ui-monospace,Consolas,monospace; }
+/* Flecha que indica compra o venta */
+.orden-colocar .ganancia-perdida-arrow { font-size:24px; color:#fff; font-weight:700; }
+/* Boton en verde para compra */
+.orden-colocar-buy  { background:linear-gradient(135deg,#3fb950,#2ea043); }
+/* Boton en rojo para venta */
+.orden-colocar-sell { background:linear-gradient(135deg,#f85149,#da3633); }
+/* Boton desactivado (sin margen u OCO invalido): fondo apagado; !important para ganar a los colores de compra y venta */
+.orden-colocar-apagado { background:#1c2a24 !important; opacity:.6; }
+/* Textos grises dentro del boton desactivado */
+.orden-colocar-apagado .ganancia-perdida-etiqueta, .orden-colocar-apagado .ganancia-perdida-precio, .orden-colocar-apagado .ganancia-perdida-arrow { color:#8b949e !important; }
+
+/* ====== CONFIRMACION ====== */
+/* Estilos anteriores de la confirmacion en linea: tarjeta oscura con borde */
+.ord-conf { background:#151c27; border:1px solid #2b3546; border-radius:12px;
+    padding:12px 14px; color:#c9d1d9; font-size:13px; line-height:1.45; }
+/* Texto resaltado en blanco */
+.ord-conf b { color:#ffffff; }
+/* Titulo pequeno gris de la confirmacion */
+.ord-conf .t { color:#8b949e; font-size:12px; margin-bottom:4px; }
+/* Botones de confirmar (orden simple u OCO) en verde */
+.st-key-ord_ok button, .st-key-ord_oco_ok button { background:#2ea043 !important; border:none !important; }
+/* Texto blanco de esos botones */
+.st-key-ord_ok button p, .st-key-ord_oco_ok button p { color:#fff !important; font-weight:700 !important; }
+
+/* ====== CONFIRMACION FLOTANTE (ABAJO-DERECHA DEL PANEL), FORMATO NARANJA ====== */
+/* Tarjeta flotante fija en la esquina inferior derecha de la pantalla (key orden_confirmacion_tarjeta de confirmacion.py), por encima del resto */
+.st-key-orden_confirmacion_tarjeta { position:fixed !important; right:16px; bottom:16px;
+    width:290px; max-width:calc(100% - 20px); z-index:100006;
+    background:#0d1117; border:1px solid #30363d; border-radius:14px;
+    padding:14px; box-shadow:0 14px 40px rgba(0,0,0,.6); }
+/* Separacion de 10px entre el resumen y los botones */
+.st-key-orden_confirmacion_tarjeta [data-testid="stVerticalBlock"] { gap:10px !important; }
+/* Titulo "Confirmar orden" o "Confirmar OCO" */
+.orden-confirmacion-t { color:#ffffff; font-weight:700; font-size:16px; margin:0 0 4px; }
+/* Detalle de la orden */
+.orden-confirmacion-d { color:#c9d1d9; font-size:13px; line-height:1.5; }
+/* Datos resaltados del detalle */
+.orden-confirmacion-d b { color:#e6edf3; }
+/* Boton "Colocar orden" / "Colocar OCO": degradado naranja y mayor altura */
+.st-key-orden_confirmacion_aceptar button { background:linear-gradient(135deg,#ff4b4b,#ff8f00) !important;
+    border:none !important; height:50px !important; border-radius:10px !important; }
+/* Texto blanco y grande del boton principal */
+.st-key-orden_confirmacion_aceptar button p { color:#fff !important; font-weight:700 !important; font-size:16px !important; }
+/* Brillo extra al pasar el raton */
+.st-key-orden_confirmacion_aceptar button:hover { filter:brightness(1.1) !important; }
+/* Boton Cancelar: oscuro con borde, mas bajo que el principal */
+.st-key-orden_confirmacion_cancelar button { background:#161b22 !important; border:1px solid #30363d !important;
+    height:44px !important; border-radius:10px !important; }
+/* Texto blanco del boton Cancelar */
+.st-key-orden_confirmacion_cancelar button p { color:#fff !important; font-weight:600 !important; }
+/* Borde azul y fondo mas claro al pasar el raton */
+.st-key-orden_confirmacion_cancelar button:hover { border-color:#58a6ff !important; background:#21262d !important; }
+
+/* Inyector del toast del resultado: sin tamaño (no ocupa espacio) */
+/* Contenedor orden_toastjs de panel.py que aloja el script del aviso (avisos.js): se reduce a cero */
+.st-key-orden_toastjs { position:absolute !important; width:0 !important; height:0 !important;
+    overflow:hidden !important; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara ticket .CSS -------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

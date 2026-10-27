@@ -1,0 +1,171 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* TITULO CONTENEDOR GENERAL DE LA VISTA RESUMEN */
+  /* Contenedor raíz (st.container(key="resumen_contenedor") en panel.py): centrado y con ancho máximo de 1200px. */
+  .st-key-resumen_contenedor { max-width:1200px; margin-left:auto; margin-right:auto; width:100%; }
+  /* Separación vertical de 22px entre los bloques hijos que Streamlit apila dentro del contenedor. */
+  .st-key-resumen_contenedor [data-testid="stVerticalBlock"] { gap:22px; }
+  /* Ícono Material Symbols de la cabecera con relleno degradado naranja (el texto se recorta al fondo). */
+  .rmi { font-family:'Material Symbols Rounded'; font-weight:400; line-height:1;
+         background:linear-gradient(135deg,#ff6a3d,#ff8f00); -webkit-background-clip:text;
+         background-clip:text; color:transparent; font-size:20px; }
+
+  /* TITULO CABECERA DE LA VISTA */
+  /* Fila con el ícono, el título y el subtítulo (HTML de panel.py). */
+  .resumen-cabecera { display:flex; align-items:center; gap:12px; margin-bottom:2px; }
+  /* Caja redondeada del ícono; flex 0 0 auto evita que se encoja. */
+  .resumen-cabecera .ic { width:42px; height:42px; border-radius:12px; display:flex; align-items:center;
+      justify-content:center; background:linear-gradient(135deg,rgba(255,75,75,.16),rgba(255,143,0,.16));
+      border:1px solid #2a2320; flex:0 0 auto; }
+  /* Título "Resumen". */
+  .resumen-titulo { font-size:22px; font-weight:800; color:#fff; letter-spacing:-.2px; }
+  /* Subtítulo descriptivo bajo el título. */
+  .resumen-subtitulo { font-size:12.5px; color:#8b949e; margin-top:2px; }
+
+  /* ---- Rejilla de tarjetas KPI ---- */
+  /* TITULO REJILLA DE TARJETAS KPI */
+  /* Rejilla de 4 columnas que contiene las 8 tarjetas generadas por secciones.tarjetas_kpi. */
+  .resumen-cuadricula { display:grid; grid-template-columns:repeat(4,1fr); column-gap:18px; row-gap:14px; }
+  /* En pantallas de hasta 1100px la rejilla pasa a 2 columnas. */
+  @media (max-width:1100px){ .resumen-cuadricula { grid-template-columns:repeat(2,1fr); column-gap:16px; row-gap:14px; } }
+  /* En celular las tarjetas van una bajo otra: en dos columnas la segunda se sale de la pantalla. */
+  @media (max-width:640px){ .resumen-cuadricula { grid-template-columns:1fr; } }
+  /* Tarjeta KPI (tarjetas.py): fondo degradado, borde y animación de elevación al pasar el cursor. */
+  .resumen-tarjeta { background:linear-gradient(180deg,#111926,#0d131d); border:1px solid #202a37;
+      border-radius:16px; padding:15px 17px 16px; position:relative; overflow:hidden;
+      box-sizing:border-box; transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease; }
+  /* Franja de color de 3px a la izquierda; usa la variable --acc que fija cada tarjeta con style en línea. */
+  .resumen-tarjeta::after { content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+      background:var(--acc,#30363d); opacity:.9; }
+  /* Efecto hover: la tarjeta sube 3px y gana sombra. */
+  .resumen-tarjeta:hover { transform:translateY(-3px); border-color:#30405a;
+      box-shadow:0 10px 26px rgba(0,0,0,.35); }
+  /* Fila superior de la tarjeta: título a la izquierda e ícono a la derecha. */
+  .resumen-copytrading-superior { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  /* Título de la tarjeta en mayúsculas pequeñas. */
+  .resumen-k { font-size:10.5px; color:#8b949e; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+  /* Caja del ícono; su fondo viene de la variable --icbg de la tarjeta. */
+  .resumen-copytrading-icono { width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+      background:var(--icbg,#182130); flex:0 0 auto; }
+  /* Glifo del ícono (Material Symbols); su color viene de --icfg. */
+  .resumen-copytrading-icono .m { font-family:'Material Symbols Rounded'; font-size:17px; line-height:1; color:var(--icfg,#8b949e); }
+  /* Valor grande de la tarjeta; tabular-nums mantiene los dígitos alineados al cambiar en vivo. */
+  .resumen-v { font-size:23px; font-weight:800; color:#e6edf3; margin-top:11px; font-variant-numeric:tabular-nums;
+      letter-spacing:-.3px; display:flex; align-items:baseline; gap:4px; }
+  /* Unidad o moneda pequeña junto al valor. */
+  .resumen-v .u { font-size:13px; font-weight:700; color:#6b7686; }
+  /* Variante más pequeña del valor (tarjetas compactas). */
+  .resumen-v.sm { font-size:19px; }
+  /* Línea de detalle al pie de la tarjeta. */
+  .resumen-pie { font-size:11.5px; color:#8b949e; margin-top:7px; font-variant-numeric:tabular-nums; line-height:1.45; }
+  /* Colores por signo (formato.clase_variacion): verde positivo, rojo negativo, claro neutro. */
+  .resumen-sube { color:#2ebd85; } .resumen-baja { color:#f6465d; } .resumen-neutro { color:#e6edf3; }
+  /* Flecha triangular que precede al valor en las tarjetas de P&L. */
+  .resumen-arrow { font-size:15px; margin-right:1px; }
+  /* Pastilla redondeada (p. ej. porcentaje de rentabilidad) junto al valor. */
+  .resumen-pastilla { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;
+      margin-left:7px; font-variant-numeric:tabular-nums; vertical-align:middle; }
+  /* Pastilla en verde cuando es positiva. */
+  .resumen-pastilla.up { background:rgba(46,189,133,.14); color:#2ebd85; }
+  /* Pastilla en rojo cuando es negativa. */
+  .resumen-pastilla.down { background:rgba(246,70,93,.14); color:#f6465d; }
+
+  /* ---- Bloques anchos (margen + curva + exposición) ---- */
+  /* TITULO BLOQUES ANCHOS: MARGEN, CURVA Y EXPOSICIÓN */
+  /* Panel ancho genérico (nivel de margen y exposición) con el mismo fondo que las tarjetas. */
+  .resumen-panel { background:linear-gradient(180deg,#111926,#0d131d); border:1px solid #202a37;
+      border-radius:16px; padding:18px 20px; box-sizing:border-box; }
+  /* Título de un panel; flex permite alinear a la derecha el dato de la clase right. */
+  .resumen-panel-t { font-size:14px; font-weight:800; color:#e6edf3; margin-bottom:12px;
+      display:flex; align-items:center; gap:8px; }
+  /* Texto aclaratorio pequeño dentro del título. */
+  .resumen-panel-t small { color:#8b949e; font-weight:600; font-size:11.5px; }
+  /* Dato empujado al extremo derecho del título (variación del periodo); su color viene de resumen-sube o resumen-baja. */
+  .resumen-panel-t .right { margin-left:auto; font-weight:700; font-size:12.5px; font-variant-numeric:tabular-nums; }
+
+  /* Barra de nivel de margen */
+  /* TITULO BARRA DE NIVEL DE MARGEN */
+  /* Fila superior con el porcentaje y la etiqueta (Saludable, Moderado o En riesgo). */
+  .resumen-nivel-margen-superior { display:flex; align-items:baseline; gap:10px; }
+  /* Porcentaje grande; el color lo fija un style en línea según el semáforo. */
+  .resumen-nivel-margen-v { font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; }
+  /* Etiqueta de estado con fondo translúcido definido en línea. */
+  .resumen-nivel-margen-etiqueta { font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; }
+  /* Pista de la barra; overflow hidden recorta el relleno a los bordes redondeados. */
+  .resumen-nivel-margen-barra { height:9px; border-radius:5px; background:#182130; overflow:hidden; margin:12px 0 6px; }
+  /* Relleno de la barra; su ancho y degradado se fijan en línea desde secciones.nivel_margen. */
+  .resumen-nivel-margen-fill { height:100%; border-radius:5px; }
+
+  /* TITULO TABLA DE EXPOSICIÓN POR ACTIVO */
+  /* Tabla de exposición (secciones.exposicion_por_activo): ancho completo y bordes colapsados. */
+  .resumen-exposicion { width:100%; border-collapse:collapse; }
+  /* Celdas y encabezados con relleno y línea inferior fina. */
+  .resumen-exposicion td, .resumen-exposicion th { padding:9px 6px; font-size:12.5px; border-bottom:1px solid #182130;
+      font-variant-numeric:tabular-nums; }
+  /* Encabezados en mayúsculas pequeñas y alineados a la derecha. */
+  .resumen-exposicion th { color:#8b949e; font-weight:700; text-transform:uppercase; font-size:10px;
+      letter-spacing:.5px; text-align:right; }
+  /* La primera columna (nombre del activo) se alinea a la izquierda. */
+  .resumen-exposicion th:first-child, .resumen-exposicion td:first-child { text-align:left; }
+  /* Transición suave del fondo al resaltar una fila. */
+  .resumen-exposicion tr { transition:background .12s ease; }
+  /* Resalta la fila bajo el cursor. */
+  .resumen-exposicion tbody tr:hover { background:#141c28; }
+  /* Color de texto de las celdas. */
+  .resumen-exposicion td { color:#c9d1d9; }
+  /* Nombre del activo en negrita y más claro. */
+  .resumen-exposicion .nm { font-weight:700; color:#e6edf3; }
+  /* Barra verde proporcional al nocional (su ancho se fija en línea). */
+  .resumen-exposicion .bar { height:7px; border-radius:4px; background:linear-gradient(90deg,#3fb950,#2ea043); }
+  /* Pista gris de la barra de exposición. */
+  .resumen-barwrap { background:#182130; border-radius:4px; overflow:hidden; width:100%; }
+
+  /* TITULO NOTAS Y ESTADO VACÍO */
+  /* Nota al pie con texto pequeño y gris (nivel de margen y nota final). */
+  .resumen-nota { color:#6b7686; font-size:11px; margin-top:8px; line-height:1.5; }
+  /* Mensaje cuando la curva no tiene suficientes datos (curva.py). */
+  .resumen-vacio { color:#8b949e; font-size:13px; padding:26px 10px; text-align:center; }
+
+  /* Panel de la curva: el selector de periodo + el gráfico como un solo bloque */
+  /* TITULO PANEL DE LA CURVA DE BALANCE */
+  /* Contenedor con clave resumen_curvapanel (secciones.curva_balance): une el selector y el gráfico en una tarjeta. */
+  .st-key-resumen_curvapanel { background:linear-gradient(180deg,#111926,#0d131d);
+      border:1px solid #202a37; border-radius:16px; padding:16px 20px 18px; box-sizing:border-box; }
+  /* Separación interna más ajustada entre selector y gráfico. */
+  .st-key-resumen_curvapanel [data-testid="stVerticalBlock"] { gap:14px; }
+  /* Quita el margen inferior del bloque Markdown; !important para vencer al estilo de Streamlit. */
+  .st-key-resumen_curvapanel div[data-testid="stMarkdownContainer"] { margin-bottom:0 !important; }
+  /* Selector de periodo de la curva (segmented_control) */
+  /* TITULO SELECTOR DE PERIODO */
+  /* Fondo oscuro del grupo de botones; !important porque BaseWeb aplica estilos en línea. */
+  .st-key-resumen_periodo [data-baseweb="segmented-control"],
+  .st-key-resumen_periodo [role="radiogroup"] { background:#0d131d !important; }
+  /* Botón del periodo activo resaltado en gris azulado con texto blanco. */
+  .st-key-resumen_periodo button[aria-checked="true"] { background:#1b2634 !important; color:#fff !important; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

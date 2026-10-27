@@ -1,0 +1,90 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   --------------------------------- INICIO Piña y Jara 70_comparar .CSS ---------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* [grafico] Comparar con otros símbolos: leyenda, ventana de búsqueda */
+    /* TITULO LEYENDA DE SÍMBOLOS COMPARADOS */
+    /* Lista de símbolos comparados bajo la leyenda principal. */
+    #tradingview-comparar-leyenda { display:flex; flex-direction:column; gap:2px; margin-top:2px; }
+    /* Fila de un símbolo comparado. */
+    #tradingview-comparar-leyenda .comparar-elemento { display:flex; align-items:center; gap:7px; font-size:12px; pointer-events:auto; }
+    /* Punto con el color de la serie. */
+    #tradingview-comparar-leyenda .comparar-punto { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    /* Símbolo en blanco y negrita. */
+    #tradingview-comparar-leyenda .comparar-simbolo { font-weight:700; color:#ffffff; }
+    /* Variación porcentual en monoespaciado. */
+    #tradingview-comparar-leyenda .comparar-porcentaje { font-family:ui-monospace,Consolas,monospace; font-weight:600; }
+    /* Botón de quitar la comparación. */
+    #tradingview-comparar-leyenda .comparar-x { background:transparent; border:none; color:#6e7681; cursor:pointer; font-size:12px; padding:0 3px; line-height:1; }
+    /* Botón en rojo al pasar el ratón. */
+    #tradingview-comparar-leyenda .comparar-x:hover { color:#f85149; }
+    /* Nota en cursiva. */
+    #tradingview-comparar-leyenda .comparar-nota { color:#6e7681; font-size:11px; font-style:italic; }
+    /* TITULO VENTANA DE COMPARAR (html/60_modal_comparar.html) */
+    /* Fondo oscuro de la ventana. */
+    #comparar-modal-superposicion { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:5000; align-items:center; justify-content:center; }
+    /* Caja de la ventana de búsqueda. */
+    #comparar-modal-caja { background:#161b22; border:1px solid #30363d; border-radius:10px; width:520px; max-width:94vw; max-height:84vh; display:flex; flex-direction:column; box-shadow:0 12px 40px rgba(0,0,0,0.6); font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+    /* Cabecera con título y botón de cerrar. */
+    #comparar-modal-caja .comparar-cabecera { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; border-bottom:1px solid #30363d; }
+    /* Título. */
+    #comparar-modal-caja .comparar-titulo { font-size:16px; font-weight:bold; color:#ffffff; }
+    /* Botón X. */
+    #comparar-modal-cerrar { background:transparent; border:none; color:#8b949e; font-size:18px; cursor:pointer; }
+    /* Caja de búsqueda. */
+    #comparar-modal-caja .comparar-buscar { display:flex; align-items:center; gap:8px; margin:12px 20px 6px; background:#0d1117; border:1px solid #30363d; border-radius:6px; padding:8px 12px; }
+    /* Campo de texto de búsqueda. */
+    #comparar-buscar-entrada { flex:1; background:transparent; border:none; color:#d1d4dc; font-size:14px; outline:none; }
+    /* Mensaje de error con alto mínimo reservado para no mover el contenido. */
+    #comparar-mensaje { min-height:16px; padding:0 20px; font-size:12px; color:#f85149; }
+    /* Lista desplazable de símbolos. */
+    #comparar-lista-contenedor { overflow-y:auto; padding:4px 0 8px; flex:1; min-height:120px; }
+    /* Fila de un símbolo. */
+    #comparar-lista-contenedor .comparar-fila { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 20px; cursor:pointer; }
+    /* Fila al pasar el ratón. */
+    #comparar-lista-contenedor .comparar-fila:hover { background:rgba(139,92,246,0.15); }
+    /* Fila no seleccionable (ya agregada). */
+    #comparar-lista-contenedor .comparar-fila.deshab { opacity:.5; cursor:default; }
+    /* Sin resaltado en filas deshabilitadas. */
+    #comparar-lista-contenedor .comparar-fila.deshab:hover { background:transparent; }
+    /* Columna de texto de la fila. */
+    #comparar-lista-contenedor .comparar-texto { display:flex; flex-direction:column; gap:1px; min-width:0; }
+    /* Nombre del símbolo. */
+    #comparar-lista-contenedor .comparar-nombre { font-size:13px; color:#d1d4dc; font-weight:600; }
+    /* Categoría en mayúsculas. */
+    #comparar-lista-contenedor .comparar-categoria { font-size:10px; color:#8b949e; font-weight:600; margin-left:6px; text-transform:uppercase; }
+    /* Descripción de una línea con puntos suspensivos. */
+    #comparar-lista-contenedor .comparar-descripcion { font-size:11px; color:#8b949e; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    /* Etiqueta de estado. */
+    #comparar-lista-contenedor .comparar-estado { font-size:12px; font-weight:bold; padding:3px 8px; border-radius:4px; background:rgba(255,255,255,0.06); color:#8b949e; flex-shrink:0; }
+    /* Estado activo en verde. */
+    #comparar-lista-contenedor .comparar-estado.on { background:rgba(63,185,80,0.2); color:#3fb950; }
+    /* Nota o mensaje dentro de la lista. */
+    #comparar-lista-contenedor .comparar-nota { padding:14px 20px; font-size:12px; color:#8b949e; }
+    /* Pie informativo. */
+    #comparar-modal-caja .comparar-pie { padding:10px 20px; border-top:1px solid #30363d; font-size:11px; color:#6e7681; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- FIN Piña y Jara 70_comparar .CSS ----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

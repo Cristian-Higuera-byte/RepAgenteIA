@@ -1,0 +1,117 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ---------------------------------- INICIO Piña y Jara 66_replay .CSS ----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+    /* TITULO REPLAY (práctica sobre el pasado): barra de control y panel de práctica sobre el gráfico (62/63_replay_*.js) */
+
+    /* Oculta los elementos del replay cuando el modo está apagado. */
+    .repeticion-oculto { display:none !important; }
+
+    /* TITULO BARRA DE CONTROL (arriba a la derecha del gráfico: deja libre la leyenda de precios de la izquierda y el eje de precios) */
+    /* Contenedor de la barra: flotante, arriba a la derecha (84px del borde para no tapar el eje de precios) y por encima de los dibujos. */
+    #repeticion-barra { position:absolute; right:84px; top:8px; z-index:40; display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; max-width:calc(100% - 520px); padding:6px 12px; background:#161b22; border:1px solid #30363d; border-radius:10px; box-shadow:0 6px 24px rgba(0,0,0,0.6); font-size:12.5px; color:#d1d4dc; font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+    /* Etiqueta "REPLAY" que identifica el modo. */
+    #repeticion-barra .repeticion-tag { font-weight:800; letter-spacing:.06em; color:#a78bfa; }
+    /* Mensaje de estado: instrucción del paso actual o fecha de la vela; va en una segunda fila para que la barra sea angosta y no tape la leyenda. */
+    #repeticion-barra .repeticion-estado { order:9; flex:1 1 100%; width:0; min-width:100%; text-align:right; color:#8b949e; font-size:12px; }
+    /* Grupo de controles (selector de inicio o reproducción). */
+    #repeticion-barra .repeticion-grupo { display:flex; align-items:center; gap:8px; }
+    /* Campo numérico de "velas hacia atrás" y selector de velocidad. */
+    #repeticion-barra input, #repeticion-barra select, #repeticion-panel input { background:#0d1117; color:#e6edf3; border:1px solid #30363d; border-radius:6px; padding:3px 6px; font-size:12.5px; }
+    #repeticion-barra input { width:72px; }
+
+    /* Barra plegada: solo quedan el botón de plegar, la etiqueta y Salir, como una pestaña pegada al borde superior. */
+    #repeticion-barra.repeticion-min { min-width:0; gap:6px; padding:3px 10px; border-top-left-radius:0; border-top-right-radius:0; top:0; }
+    #repeticion-barra.repeticion-min > :not(#repeticion-plegar):not(.repeticion-tag):not(#repeticion-salir) { display:none !important; }
+    /* Selector de unidad de tiempo del retroceso. */
+    #repeticion-barra select { padding:3px 4px; }
+
+    /* TITULO BOTONES */
+    /* Botón base del replay. */
+    .repeticion-btn { background:#21262d; color:#e6edf3; border:1px solid #30363d; border-radius:6px; padding:5px 11px; font-size:12.5px; font-weight:600; cursor:pointer; }
+    /* Resaltado al pasar el cursor. */
+    .repeticion-btn:hover:not(:disabled) { border-color:#58a6ff; }
+    /* Botón desactivado (fuera de la fase de práctica). */
+    .repeticion-btn:disabled { opacity:.4; cursor:not-allowed; }
+    /* Botón de icono (reproducir, siguiente vela). */
+    .repeticion-ico { min-width:34px; font-size:14px; padding:4px 8px; }
+    /* Botón principal (Empezar). */
+    .repeticion-prim { background:#238636; border-color:#2ea043; color:#fff; }
+    /* Botón de salida. */
+    .repeticion-sal { color:#f85149; }
+
+    /* TITULO PANEL DE PRÁCTICA (a la izquierda del gráfico, para no tapar las velas recientes que aparecen a la derecha) */
+    /* Contenedor del panel: flotante y con desplazamiento si no cabe. */
+    #repeticion-panel { position:absolute; left:12px; top:100px; z-index:40; width:240px; max-height:calc(100% - 140px); overflow-y:auto; padding:10px 12px; background:#161b22; border:1px solid #30363d; border-radius:10px; box-shadow:0 6px 24px rgba(0,0,0,0.6); font-size:12.5px; color:#d1d4dc; font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+    /* Título del panel: al pulsarlo se pliega o despliega el contenido. */
+    #repeticion-panel .repeticion-ph { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#8b949e; margin-bottom:6px; cursor:pointer; user-select:none; }
+    /* Panel plegado: solo se ve el título. */
+    #repeticion-panel.repeticion-min > :not(.repeticion-ph) { display:none !important; }
+    #repeticion-panel.repeticion-min .repeticion-ph { margin-bottom:0; }
+    /* Fila etiqueta + valor o campo. */
+    #repeticion-panel .repeticion-fila { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:3px 0; }
+    /* Campos del panel. */
+    #repeticion-panel input { width:86px; text-align:right; }
+    /* Fila de los botones COMPRAR / VENDER. */
+    #repeticion-panel .repeticion-ops { display:flex; gap:8px; margin:8px 0 6px; }
+    /* Botones de operar. */
+    #repeticion-panel .repeticion-ops .repeticion-btn { flex:1; padding:7px 4px; }
+    /* Comprar (verde). */
+    .repeticion-compra { background:#1b6e3a; border-color:#2ea043; color:#fff; }
+    /* Vender (rojo). */
+    .repeticion-venta { background:#a3262d; border-color:#da3633; color:#fff; }
+    /* Cerrar posición: ocupa todo el ancho. */
+    #repeticion-panel .repeticion-cierre { width:100%; margin-bottom:6px; }
+    /* Bloques de información y resumen separados por una línea. */
+    #repeticion-panel .repeticion-info, #repeticion-panel .repeticion-res { border-top:1px solid #30363d; margin-top:6px; padding-top:6px; }
+    /* Tabla de las últimas operaciones. */
+    #repeticion-panel .repeticion-hist table { width:100%; border-collapse:collapse; font-size:11.5px; margin-top:6px; }
+    /* Celdas de la tabla. */
+    #repeticion-panel .repeticion-hist th, #repeticion-panel .repeticion-hist td { padding:2px 3px; text-align:right; }
+    /* Encabezados de la tabla. */
+    #repeticion-panel .repeticion-hist th { color:#8b949e; font-weight:600; }
+    /* Nota de simulación. */
+    #repeticion-panel .repeticion-nota { margin-top:8px; font-size:11px; color:#6e7681; }
+    /* Selector de símbolo del panel (mismo estilo que los campos). */
+    #repeticion-panel select { background:#0d1117; color:#e6edf3; border:1px solid #30363d; border-radius:6px; padding:3px 6px; font-size:12.5px; max-width:110px; }
+    /* Subtítulo de la lista de posiciones abiertas. */
+    #repeticion-panel .repeticion-sub { font-size:11px; color:#8b949e; margin-top:4px; }
+    /* Botón ✕ para cerrar una posición de la lista. */
+    #repeticion-panel .repeticion-x { background:transparent; border:none; color:#8b949e; cursor:pointer; font-size:12px; padding:0 2px; }
+    #repeticion-panel .repeticion-x:hover { color:#f85149; }
+    /* Columna de texto alineada a la izquierda en la tabla. */
+    #repeticion-panel .repeticion-hist .repeticion-izq { text-align:left; }
+    /* Colores de ganancia y pérdida. */
+    .repeticion-pos { color:#3fb950; }
+    .repeticion-neg { color:#f85149; }
+
+    /* TITULO MODO REPLAY ACTIVO */
+    /* Oculta la capa de posiciones reales y los botones VENDER/COMPRAR reales: en replay NO se opera en la cuenta real. */
+    #tradingview-contenedor.repeticion-activo #pj-posicion, #tradingview-contenedor.repeticion-activo #pj-mercado { display:none !important; }
+    /* El botón Replay se ve activo mientras el modo está encendido. */
+    #tradingview-contenedor.repeticion-activo #boton-repeticion-abrir { border-color:#a78bfa; color:#a78bfa; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ FIN Piña y Jara 66_replay .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

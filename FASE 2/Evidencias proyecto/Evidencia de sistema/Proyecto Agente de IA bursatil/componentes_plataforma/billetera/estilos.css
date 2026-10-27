@@ -1,0 +1,55 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* TITULO CONTENEDOR GENERAL DE LA VISTA BILLETERA */
+  /* Contenedor raíz (st.container(key="billetera_contenedor") en panel.py): centrado, ancho máximo de 1200px y 16px entre bloques. */
+  .st-key-billetera_contenedor { max-width:1200px; margin-left:auto; margin-right:auto; width:100%; }
+  .st-key-billetera_contenedor [data-testid="stVerticalBlock"] { gap:16px; }
+  /* Título, subtítulo y franja que avisa que el saldo es de prueba. */
+  .bil-titulo { font-size:22px; font-weight:800; color:#fff; letter-spacing:-.2px; }
+  .bil-subtitulo { font-size:13px; color:#8b949e; margin-top:2px; }
+  .bil-aviso { margin-top:12px; background:rgba(210,153,34,.10); border:1px solid rgba(210,153,34,.4); color:#e3b341; border-radius:12px; padding:10px 14px; font-size:13px; }
+
+  /* TITULO TARJETAS DE RESUMEN */
+  /* Tarjetas con el saldo, el plan actual y lo recargado en el mes. */
+  .bil-tarjeta { background:linear-gradient(180deg,#111926,#0d131d); border:1px solid #202a37; border-radius:16px; padding:16px 18px; box-sizing:border-box; }
+  .bil-etiqueta { font-size:12px; color:#8b949e; }
+  .bil-saldo { font-size:30px; font-weight:800; color:#2ebd85; margin-top:4px; font-variant-numeric:tabular-nums; }
+  .bil-valor { font-size:22px; font-weight:800; color:#e6edf3; margin-top:4px; font-variant-numeric:tabular-nums; }
+  .bil-nota { font-size:12px; color:#8b949e; margin-top:4px; }
+
+  /* TITULO SECCIONES Y PLANES */
+  /* Título de cada sección y mini tarjetas de los planes que se pueden comprar (la del plan actual lleva borde verde). */
+  .bil-seccion { font-size:15px; font-weight:700; color:#e6edf3; margin-top:6px; }
+  .bil-plan { background:#0d131d; border:1px solid #202a37; border-radius:12px; padding:12px 14px; }
+  .bil-plan-actual { border-color:#2ebd85; }
+  .bil-plan-nombre { font-size:15px; font-weight:800; color:#e6edf3; }
+  .bil-plan-precio { font-size:18px; font-weight:800; color:#2ebd85; font-variant-numeric:tabular-nums; }
+  .bil-plan-precio span { font-size:12px; font-weight:600; color:#8b949e; }
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ FIN Piña y Jara estilos .CSS -------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

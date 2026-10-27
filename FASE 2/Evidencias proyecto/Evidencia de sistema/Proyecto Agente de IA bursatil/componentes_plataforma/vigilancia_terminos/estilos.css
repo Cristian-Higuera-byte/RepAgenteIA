@@ -1,0 +1,66 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* TITULO VENTANA DE TERMINOS DE LA VIGILANCIA (dialogo.py; contenedor con key terminos_vigilancia_raiz) */
+  /* Panel del dialogo de Streamlit, solo cuando contiene terminos_vigilancia_raiz: fondo oscuro, borde y esquinas redondeadas (!important para ganar al tema) */
+  [data-testid="stDialog"]:has(.st-key-terminos_vigilancia_raiz) section {
+      background:#0d1117 !important; border:1px solid #30363d; border-radius:16px; }
+  /* Titulo de la ventana y boton de cerrar legibles sobre el fondo oscuro */
+  [data-testid="stDialog"]:has(.st-key-terminos_vigilancia_raiz) h2 { color:#e6edf3 !important; font-weight:700; }
+  [data-testid="stDialog"]:has(.st-key-terminos_vigilancia_raiz) button[aria-label="Close"] { color:#c9d1d9 !important; }
+  /* TITULO TEXTO LEGAL (terminos.html) */
+  /* Caja del texto: altura maxima de 52% de la ventana con desplazamiento vertical propio */
+  .vigilancia-terminos-texto { max-height:52vh; overflow-y:auto; padding:4px 14px 4px 2px; color:#c9d1d9;
+             font-size:13.5px; line-height:1.55; text-align:justify; }
+  /* Parrafos del texto legal */
+  .vigilancia-terminos-texto p { margin:0 0 12px; }
+  /* Titulo centrado de la autorizacion */
+  .vigilancia-terminos-c { text-align:center; font-weight:700; color:#e6edf3; font-size:14.5px; }
+  /* Cuadricula con las condiciones concretas de la vigilancia: tres columnas, tarjetas oscuras */
+  .vigilancia-terminos-resumen { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:0 0 14px; }
+  /* Cada condicion: etiqueta pequena arriba y valor en negrita debajo */
+  .vigilancia-terminos-resumen div { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:7px 10px;
+             text-align:left; }
+  .vigilancia-terminos-resumen span { display:block; color:#8b949e; font-size:11.5px; }
+  .vigilancia-terminos-resumen b { color:#e6edf3; font-size:14px; }
+  /* Parrafo en mayusculas destacado con barra naranja a la izquierda (advertencia principal) */
+  .vigilancia-terminos-may { color:#e6edf3; font-weight:600; background:#161b22; border-left:3px solid #ff8f00;
+             padding:9px 12px; border-radius:6px; }
+  /* Nota final pequena y apagada */
+  .vigilancia-terminos-nota { color:#8b949e; font-size:12px; }
+  /* En pantallas angostas la cuadricula pasa a dos columnas */
+  @media (max-width:640px) { .vigilancia-terminos-resumen { grid-template-columns:repeat(2,1fr); } }
+  /* TITULO BOTONES DE LA VENTANA (contenedores key terminos_vigilancia_rechazar y terminos_vigilancia_aceptar de dialogo.py) */
+  /* Degradado rojo a naranja que sustituye el estilo por defecto del boton de aceptar (!important) */
+  .st-key-terminos_vigilancia_aceptar button { background:linear-gradient(90deg,#ff4b4b,#ff8f00) !important;
+      border:none !important; color:#fff !important; font-weight:700; }
+  /* Boton de rechazar: contorno rojo suave sobre fondo oscuro */
+  .st-key-terminos_vigilancia_rechazar button { background:#161b22 !important; border:1px solid #ff4b4b88 !important;
+      color:#ff7b7b !important; }
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

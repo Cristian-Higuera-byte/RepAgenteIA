@@ -1,0 +1,133 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* Ocultar la barra propia de Streamlit */
+[data-testid="stHeader"] { display: none; }
+[data-testid="stToolbar"] { display: none; }
+
+/* Ajuste de márgenes generales de la página.
+   1er valor (padding-top) = hueco bajo la barra superior fija.
+   Súbelo/bájalo para más/menos espacio; debe ir acoplado con el
+   margin-top negativo de la barra lateral (más abajo, mismo número). */
+.block-container {
+    padding: 0.6rem 1.5rem 2rem 1.2rem !important;
+    max-width: 100%;
+}
+
+/* Sin atenuado mientras un fragmento se recarga: Streamlit marca los
+   elementos con data-stale="true" y les baja la opacidad, lo que en un
+   terminal de trading se ve como parpadeo cada refresco. */
+[data-stale="true"] { opacity: 1 !important; transition: none !important; }
+
+/* Contenedor del feed en vivo (componentes_plataforma/flujo_precios/): fuera del flujo,
+   sin ocupar espacio ni sumar separación. */
+.st-key-pj_flujo { position: absolute !important; width: 0 !important;
+                  height: 0 !important; overflow: hidden !important; }
+/* Botones invisibles que pulsa la ✕ de las líneas de posición del gráfico
+   (componentes_plataforma/posiciones/): mismo tratamiento. */
+.st-key-grafico_cerrar_wrap { position: absolute !important; width: 0 !important;
+                     height: 0 !important; overflow: hidden !important; }
+
+/* Fondo y tipografía base */
+.stApp { background-color: #0b0f19; color: #e6edf3; }
+html, body, [class*="css"] { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+
+/* Jerarquía de títulos discreta */
+h1 { font-size: 24px !important; font-weight: 700 !important; }
+h2 { font-size: 20px !important; font-weight: 700 !important; }
+h3 { font-size: 18px !important; font-weight: 700 !important; }
+
+/* Botones oscuros y compactos */
+div.stButton > button {
+    background-color: #161b22; color: #e6edf3; border: 1px solid #30363d;
+    border-radius: 6px; font-size: 13px !important; padding: 4px 10px;
+    min-height: 0; transition: all .15s ease;
+}
+div.stButton > button:hover { background-color: #21262d; border-color: #58a6ff; color: #ffffff; }
+
+/* Selectores oscuros */
+div[data-baseweb="select"] > div {
+    background-color: #161b22 !important; border-color: #30363d !important;
+}
+.stSelectbox label, .stTextInput label, .stSlider label {
+    font-size: 12px !important; color: #8b949e !important; font-weight: 600 !important;
+}
+
+/* Métricas */
+[data-testid="stMetricValue"] { font-size: 22px !important; }
+[data-testid="stMetricLabel"] { font-size: 18px !important; color: #8b949e !important; }
+
+/* Entrada del chat */
+.stChatInput textarea { background-color: #161b22 !important; }
+
+/* Tarjetas con borde */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #161b22;
+    border-radius: 8px;
+}
+
+/* Barra de navegación superior FIJA */
+.st-key-barra_navegacion_fija {
+    position: fixed !important;
+    top: 0; left: 70px; right: 0;
+    width: calc(100% - 70px) !important;
+    z-index: 100000;
+    background: #0d1117;
+    border-bottom: 1px solid #1b2430;
+    padding: 10px 24px;
+    box-sizing: border-box;
+}
+.st-key-barra_navegacion_fija [data-testid="stVerticalBlock"] { gap: 0 !important; }
+.st-key-barra_navegacion_fija [data-testid="stVerticalBlockBorderWrapper"],
+.st-key-barra_navegacion_fija [data-testid="stVerticalBlock"] {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* Barra lateral izquierda extendida sin forzar paddings excesivos */
+div[data-testid="stColumn"]:has(.pj-navegacion),
+div[data-testid="column"]:has(.pj-navegacion) {
+    background: #0d1117 !important;
+    border-right: 1px solid #30363d;
+    min-height: 100vh;
+    margin-top: -3rem !important;  /* acoplado al padding-top de .block-container: la barra lateral queda en el mismo sitio */
+    padding-top: 0 !important;
+    z-index: 100001;
+}
+
+/* Separador fino entre la fila del gráfico y la del chat del agente (vista_operativa.py). */
+.pj-separador { border-top: 1px solid #30363d; height: 0; margin: 0; }
+
+/* Alinea el logo P&J con el buscador de la barra superior.
+   Ajusta este valor (negativo = sube) si necesitas moverlo un poco más. */
+.pj-logo {
+    margin-top: -0.5rem !important;
+}
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

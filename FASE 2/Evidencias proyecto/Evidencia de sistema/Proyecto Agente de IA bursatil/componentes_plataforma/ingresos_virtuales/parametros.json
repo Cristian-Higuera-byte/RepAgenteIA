@@ -1,0 +1,23 @@
+{
+  "activos": ["suscripcion", "recargo", "referido", "performance", "patrimonio"],
+  "dias": 365,
+  "suscripcion_mensual": 19.0,
+  "recargo_fijo": 0.5,
+  "recargo_por_lote": 0.5,
+  "spread_usd_por_lote": 6.0,
+  "referido_participacion": 0.3,
+  "performance_tasa": 0.2,
+  "patrimonio_tasa_anual": 0.0075,
+  "umbrales": {"min_operaciones": 30, "min_profit_factor": 1.2, "min_win_rate": 40, "max_caida_pct": 20},
+  "costo_fijo_usuario": 1.0,
+  "conversion_interes_a_pago": 0.1,
+  "precios_ia": {
+    "deepseek-flash": {"entrada_acierto": 0.0028, "entrada_fallo": 0.14, "salida": 0.28},
+    "deepseek-v4-pro": {"entrada_acierto": 0.145, "entrada_fallo": 1.74, "salida": 3.48}
+  },
+  "planes": [
+    {"nombre": "Gratis", "precio": 0.0, "tope_ia": 0.5},
+    {"nombre": "Pro", "precio": 19.0, "tope_ia": 6.0},
+    {"nombre": "Avanzado", "precio": 49.0, "tope_ia": 25.0}
+  ]
+}

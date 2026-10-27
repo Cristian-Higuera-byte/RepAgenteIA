@@ -1,0 +1,82 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* TITULO CONTENEDOR DEL PANEL DOM */
+  /* Tarjeta oscura que envuelve todo el panel; la clase la genera st.container(key="dom_panel") en panel.py. */
+  .st-key-dom_panel { background:#0f1620; border:1px solid #202a37; border-radius:14px;
+      padding:14px 12px; }
+
+  /* TITULO CABECERA DEL PANEL */
+  /* Título "Profundidad · SIMBOLO" (clase dom-h del HTML de panel.py). */
+  .dom-h { color:#e6edf3; font-weight:800; font-size:16px; margin:0 0 2px; }
+  /* Subtítulo "Libro de órdenes (DOM)" bajo el título. */
+  .dom-subtitulo { color:#8b949e; font-size:12px; margin:0 0 10px; }
+
+  /* TITULO ESCALERA: ENCABEZADO DE COLUMNAS */
+  /* Fila con las etiquetas Volumen y Precio (html_escalera en escalera.py). */
+  .dom-columnas { display:flex; justify-content:space-between; color:#8b949e; font-size:11px;
+      padding:0 2px 5px; }
+
+  /* TITULO ESCALERA: FILAS Y BARRAS DE VOLUMEN */
+  /* Fila de un nivel: barra de volumen a la izquierda y precio a la derecha. */
+  .dom-fila { display:flex; align-items:center; gap:7px; margin-bottom:3px; }
+  /* Fondo de la barra de volumen; position relative para ubicar la barra y el texto dentro de ella. */
+  .dom-barra { flex:1; height:19px; border-radius:3px; position:relative; }
+  /* Fondo de la barra del lado vendedor (Ask), tono rojizo oscuro. */
+  .dom-barra.ask { background:#1b1420; }
+  /* Fondo de la barra del lado comprador (Bid), tono verdoso oscuro. */
+  .dom-barra.bid { background:#111d17; }
+  /* Relleno proporcional al volumen (su ancho en porcentaje lo fija el style en línea de escalera.py). */
+  .dom-barra > div { position:absolute; right:0; top:0; height:19px; border-radius:3px; opacity:.6; }
+  /* Relleno rojo para Ask. */
+  .dom-barra.ask > div { background:#da3633; }
+  /* Relleno verde para Bid. */
+  .dom-barra.bid > div { background:#2ea043; }
+  /* Cifra de volumen superpuesta a la izquierda de la barra. */
+  .dom-barra span { position:absolute; left:6px; top:2px; font-size:11px; color:#e6edf3;
+      font-family:ui-monospace,Consolas,monospace; }
+
+  /* TITULO ESCALERA: PRECIOS */
+  /* Precio del nivel, alineado a la derecha con ancho mínimo para que las cifras no bailen. */
+  .dom-precio { font-size:11.5px; font-family:ui-monospace,Consolas,monospace; min-width:60px;
+      text-align:right; font-weight:600; }
+  /* Precio Ask en rojo y precio Bid en verde (se combinan con la clase dom-precio). */
+  .dom-precio.ask { color:#f85149; } .dom-precio.bid { color:#3fb950; }
+
+  /* TITULO ESCALERA: SPREAD Y NOTA */
+  /* Fila central con la etiqueta spread y su valor, entre los asks y los bids. */
+  .dom-spread { display:flex; align-items:center; justify-content:space-between;
+      background:#151c27; border:1px solid #2b3546; border-radius:6px; padding:4px 7px; margin:5px 0; }
+  /* Etiqueta "spread" de la fila central. */
+  .dom-spread .k { font-size:11px; color:#8b949e; }
+  /* Valor numérico del spread en fuente monoespaciada. */
+  .dom-spread .v { font-size:11.5px; color:#e6edf3; font-family:ui-monospace,Consolas,monospace; }
+  /* Nota al pie que aclara si la profundidad es real o demostrativa. */
+  .dom-nota { color:#8b949e; font-size:10.5px; margin-top:9px; padding-top:8px;
+      border-top:1px solid #202a37; line-height:1.4; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

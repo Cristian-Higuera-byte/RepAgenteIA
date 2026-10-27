@@ -1,0 +1,709 @@
+{
+ "paises": [
+  {
+   "id": "CL",
+   "nombre": "Chile",
+   "prefijo": "+56"
+  },
+  {
+   "id": "AR",
+   "nombre": "Argentina",
+   "prefijo": "+54"
+  },
+  {
+   "id": "BO",
+   "nombre": "Bolivia",
+   "prefijo": "+591"
+  },
+  {
+   "id": "BR",
+   "nombre": "Brasil",
+   "prefijo": "+55"
+  },
+  {
+   "id": "CO",
+   "nombre": "Colombia",
+   "prefijo": "+57"
+  },
+  {
+   "id": "CR",
+   "nombre": "Costa Rica",
+   "prefijo": "+506"
+  },
+  {
+   "id": "EC",
+   "nombre": "Ecuador",
+   "prefijo": "+593"
+  },
+  {
+   "id": "SV",
+   "nombre": "El Salvador",
+   "prefijo": "+503"
+  },
+  {
+   "id": "ES",
+   "nombre": "España",
+   "prefijo": "+34"
+  },
+  {
+   "id": "US",
+   "nombre": "Estados Unidos",
+   "prefijo": "+1"
+  },
+  {
+   "id": "GT",
+   "nombre": "Guatemala",
+   "prefijo": "+502"
+  },
+  {
+   "id": "HN",
+   "nombre": "Honduras",
+   "prefijo": "+504"
+  },
+  {
+   "id": "MX",
+   "nombre": "México",
+   "prefijo": "+52"
+  },
+  {
+   "id": "NI",
+   "nombre": "Nicaragua",
+   "prefijo": "+505"
+  },
+  {
+   "id": "PA",
+   "nombre": "Panamá",
+   "prefijo": "+507"
+  },
+  {
+   "id": "PY",
+   "nombre": "Paraguay",
+   "prefijo": "+595"
+  },
+  {
+   "id": "PE",
+   "nombre": "Perú",
+   "prefijo": "+51"
+  },
+  {
+   "id": "PT",
+   "nombre": "Portugal",
+   "prefijo": "+351"
+  },
+  {
+   "id": "DO",
+   "nombre": "República Dominicana",
+   "prefijo": "+1"
+  },
+  {
+   "id": "UY",
+   "nombre": "Uruguay",
+   "prefijo": "+598"
+  },
+  {
+   "id": "VE",
+   "nombre": "Venezuela",
+   "prefijo": "+58"
+  },
+  {
+   "id": "OT",
+   "nombre": "Otro país",
+   "prefijo": "+"
+  }
+ ],
+ "tipos_documento": [
+  {
+   "id": "rut",
+   "nombre": "RUT (Chile)"
+  },
+  {
+   "id": "cedula",
+   "nombre": "Cédula de identidad / DNI"
+  },
+  {
+   "id": "pasaporte",
+   "nombre": "Pasaporte"
+  },
+  {
+   "id": "extranjeria",
+   "nombre": "Carnet de extranjería"
+  }
+ ],
+ "generos": [
+  {
+   "id": "no_indica",
+   "nombre": "Prefiero no decirlo"
+  },
+  {
+   "id": "femenino",
+   "nombre": "Femenino"
+  },
+  {
+   "id": "masculino",
+   "nombre": "Masculino"
+  },
+  {
+   "id": "otro",
+   "nombre": "Otro"
+  }
+ ],
+ "situaciones_laborales": [
+  {
+   "id": "dependiente",
+   "nombre": "Empleado dependiente"
+  },
+  {
+   "id": "independiente",
+   "nombre": "Trabajador independiente"
+  },
+  {
+   "id": "empresario",
+   "nombre": "Empresario / dueño de empresa"
+  },
+  {
+   "id": "jubilado",
+   "nombre": "Jubilado"
+  },
+  {
+   "id": "estudiante",
+   "nombre": "Estudiante"
+  },
+  {
+   "id": "sin_empleo",
+   "nombre": "Sin empleo"
+  }
+ ],
+ "fuentes_fondos": [
+  {
+   "id": "sueldo",
+   "nombre": "Sueldo / honorarios"
+  },
+  {
+   "id": "negocio",
+   "nombre": "Ingresos de un negocio"
+  },
+  {
+   "id": "ahorros",
+   "nombre": "Ahorros"
+  },
+  {
+   "id": "inversiones",
+   "nombre": "Inversiones previas"
+  },
+  {
+   "id": "herencia",
+   "nombre": "Herencia o donación"
+  },
+  {
+   "id": "otra",
+   "nombre": "Otra"
+  }
+ ],
+ "rangos_ingresos": [
+  {
+   "id": "r1",
+   "nombre": "Menos de USD 10.000 al año"
+  },
+  {
+   "id": "r2",
+   "nombre": "USD 10.000 – 30.000"
+  },
+  {
+   "id": "r3",
+   "nombre": "USD 30.000 – 60.000"
+  },
+  {
+   "id": "r4",
+   "nombre": "USD 60.000 – 120.000"
+  },
+  {
+   "id": "r5",
+   "nombre": "Más de USD 120.000"
+  }
+ ],
+ "rangos_patrimonio": [
+  {
+   "id": "p1",
+   "nombre": "Menos de USD 10.000"
+  },
+  {
+   "id": "p2",
+   "nombre": "USD 10.000 – 50.000"
+  },
+  {
+   "id": "p3",
+   "nombre": "USD 50.000 – 250.000"
+  },
+  {
+   "id": "p4",
+   "nombre": "USD 250.000 – 1.000.000"
+  },
+  {
+   "id": "p5",
+   "nombre": "Más de USD 1.000.000"
+  }
+ ],
+ "experiencias": [
+  {
+   "id": "ninguna",
+   "nombre": "Ninguna (voy a empezar)"
+  },
+  {
+   "id": "menos_1",
+   "nombre": "Menos de 1 año"
+  },
+  {
+   "id": "1_3",
+   "nombre": "1 – 3 años"
+  },
+  {
+   "id": "3_5",
+   "nombre": "3 – 5 años"
+  },
+  {
+   "id": "mas_5",
+   "nombre": "Más de 5 años"
+  }
+ ],
+ "objetivos": [
+  {
+   "id": "corto_plazo",
+   "nombre": "Ganancias a corto plazo (trading)"
+  },
+  {
+   "id": "crecimiento",
+   "nombre": "Hacer crecer mi capital"
+  },
+  {
+   "id": "cobertura",
+   "nombre": "Cubrir otras inversiones"
+  },
+  {
+   "id": "ingreso",
+   "nombre": "Generar ingresos regulares"
+  },
+  {
+   "id": "aprender",
+   "nombre": "Aprender a operar"
+  }
+ ],
+ "tolerancias_riesgo": [
+  {
+   "id": "conservador",
+   "nombre": "Conservador: prefiero no perder capital"
+  },
+  {
+   "id": "moderado",
+   "nombre": "Moderado: acepto pérdidas pequeñas"
+  },
+  {
+   "id": "agresivo",
+   "nombre": "Agresivo: acepto pérdidas importantes por mayor rentabilidad"
+  }
+ ],
+ "instrumentos": [
+  {
+   "id": "forex",
+   "nombre": "Divisas (Forex)"
+  },
+  {
+   "id": "indices",
+   "nombre": "Índices"
+  },
+  {
+   "id": "materias",
+   "nombre": "Materias primas"
+  },
+  {
+   "id": "cripto",
+   "nombre": "Criptomonedas"
+  },
+  {
+   "id": "acciones",
+   "nombre": "Acciones"
+  },
+  {
+   "id": "etf",
+   "nombre": "ETF"
+  }
+ ],
+ "idiomas": [
+  {
+   "id": "es",
+   "nombre": "Español"
+  },
+  {
+   "id": "en",
+   "nombre": "English"
+  },
+  {
+   "id": "pt",
+   "nombre": "Português"
+  }
+ ],
+ "zonas_horarias": [
+  {
+   "id": "America/Santiago",
+   "nombre": "Santiago (GMT-3/-4)"
+  },
+  {
+   "id": "America/Argentina/Buenos_Aires",
+   "nombre": "Buenos Aires (GMT-3)"
+  },
+  {
+   "id": "America/Bogota",
+   "nombre": "Bogotá / Lima (GMT-5)"
+  },
+  {
+   "id": "America/Mexico_City",
+   "nombre": "Ciudad de México (GMT-6)"
+  },
+  {
+   "id": "America/New_York",
+   "nombre": "Nueva York (GMT-5/-4)"
+  },
+  {
+   "id": "Europe/Madrid",
+   "nombre": "Madrid (GMT+1/+2)"
+  },
+  {
+   "id": "UTC",
+   "nombre": "UTC"
+  }
+ ],
+ "monedas": [
+  {
+   "id": "USD",
+   "nombre": "USD – Dólar estadounidense"
+  },
+  {
+   "id": "EUR",
+   "nombre": "EUR – Euro"
+  },
+  {
+   "id": "CLP",
+   "nombre": "CLP – Peso chileno"
+  }
+ ],
+ "notificaciones": [
+  {
+   "id": "ordenes_agente",
+   "nombre": "Órdenes y vigilancias del agente de IA",
+   "ayuda": "Propuestas, ejecuciones y bloqueos"
+  },
+  {
+   "id": "alertas_precio",
+   "nombre": "Alertas de precio",
+   "ayuda": "Cuando un activo llega a un nivel que definiste"
+  },
+  {
+   "id": "posiciones",
+   "nombre": "Cambios en mis posiciones",
+   "ayuda": "Stop loss, take profit y cierres"
+  },
+  {
+   "id": "noticias",
+   "nombre": "Noticias de mis activos",
+   "ayuda": "Titulares importantes de los activos que sigues"
+  },
+  {
+   "id": "correo_resumen",
+   "nombre": "Resumen semanal por correo",
+   "ayuda": "Rendimiento y operaciones de la semana"
+  }
+ ],
+ "secciones": [
+  {
+   "id": "personal",
+   "titulo": "Datos personales",
+   "icono": "person",
+   "descripcion": "Tus datos tal como figuran en tu documento de identidad.",
+   "campos": [
+    {
+     "id": "nombres",
+     "etiqueta": "Nombres",
+     "tipo": "texto",
+     "requerido": true,
+     "max": 60
+    },
+    {
+     "id": "apellidos",
+     "etiqueta": "Apellidos",
+     "tipo": "texto",
+     "requerido": true,
+     "max": 60
+    },
+    {
+     "id": "apodo",
+     "etiqueta": "Apodo",
+     "tipo": "texto",
+     "requerido": false,
+     "max": 30,
+     "ayuda": "Opcional. De 3 a 30 caracteres: letras, números, espacios, punto, guion y guion bajo. Debe ser único."
+    },
+    {
+     "id": "fecha_nacimiento",
+     "etiqueta": "Fecha de nacimiento",
+     "tipo": "fecha",
+     "requerido": true,
+     "ayuda": "Debes ser mayor de 18 años para operar."
+    },
+    {
+     "id": "nacionalidad",
+     "etiqueta": "Nacionalidad",
+     "tipo": "select",
+     "opciones": "paises",
+     "requerido": true
+    },
+    {
+     "id": "genero",
+     "etiqueta": "Género (opcional)",
+     "tipo": "select",
+     "opciones": "generos",
+     "requerido": false
+    }
+   ]
+  },
+  {
+   "id": "documento",
+   "titulo": "Documento de identidad",
+   "icono": "badge",
+   "descripcion": "Las plataformas de trading exigen un documento válido para operar. Tu número se guarda enmascarado en pantalla.",
+   "campos": [
+    {
+     "id": "tipo_documento",
+     "etiqueta": "Tipo de documento",
+     "tipo": "select",
+     "opciones": "tipos_documento",
+     "requerido": true
+    },
+    {
+     "id": "numero_documento",
+     "etiqueta": "Número de documento",
+     "tipo": "documento",
+     "requerido": true,
+     "max": 20
+    },
+    {
+     "id": "pais_documento",
+     "etiqueta": "País emisor",
+     "tipo": "select",
+     "opciones": "paises",
+     "requerido": true
+    },
+    {
+     "id": "vencimiento_documento",
+     "etiqueta": "Vencimiento (opcional)",
+     "tipo": "fecha",
+     "requerido": false
+    }
+   ]
+  },
+  {
+   "id": "contacto",
+   "titulo": "Contacto y dirección",
+   "icono": "home_pin",
+   "descripcion": "Usamos estos datos para avisarte de tu cuenta y para verificar tu domicilio.",
+   "campos": [
+    {
+     "id": "telefono_movil",
+     "etiqueta": "Celular",
+     "tipo": "telefono",
+     "requerido": true,
+     "ayuda": "Solo números, sin espacios ni guiones."
+    },
+    {
+     "id": "telefono_alterno",
+     "etiqueta": "Teléfono alterno (opcional)",
+     "tipo": "texto",
+     "requerido": false,
+     "max": 20
+    },
+    {
+     "id": "pais",
+     "etiqueta": "País de residencia",
+     "tipo": "select",
+     "opciones": "paises",
+     "requerido": true
+    },
+    {
+     "id": "region",
+     "etiqueta": "Región / estado",
+     "tipo": "texto",
+     "requerido": true,
+     "max": 60
+    },
+    {
+     "id": "ciudad",
+     "etiqueta": "Ciudad / comuna",
+     "tipo": "texto",
+     "requerido": true,
+     "max": 60
+    },
+    {
+     "id": "direccion",
+     "etiqueta": "Dirección",
+     "tipo": "texto",
+     "requerido": true,
+     "max": 120
+    },
+    {
+     "id": "codigo_postal",
+     "etiqueta": "Código postal (opcional)",
+     "tipo": "texto",
+     "requerido": false,
+     "max": 12
+    }
+   ]
+  },
+  {
+   "id": "inversor",
+   "titulo": "Perfil de inversor",
+   "icono": "query_stats",
+   "descripcion": "Las plataformas reguladas piden estos datos para conocer tu experiencia y tu tolerancia al riesgo antes de operar.",
+   "campos": [
+    {
+     "id": "situacion_laboral",
+     "etiqueta": "Situación laboral",
+     "tipo": "select",
+     "opciones": "situaciones_laborales",
+     "requerido": true
+    },
+    {
+     "id": "ocupacion",
+     "etiqueta": "Ocupación (opcional)",
+     "tipo": "texto",
+     "requerido": false,
+     "max": 80
+    },
+    {
+     "id": "fuente_fondos",
+     "etiqueta": "Origen de los fondos",
+     "tipo": "select",
+     "opciones": "fuentes_fondos",
+     "requerido": true
+    },
+    {
+     "id": "rango_ingresos",
+     "etiqueta": "Ingresos anuales",
+     "tipo": "select",
+     "opciones": "rangos_ingresos",
+     "requerido": true
+    },
+    {
+     "id": "rango_patrimonio",
+     "etiqueta": "Patrimonio (opcional)",
+     "tipo": "select",
+     "opciones": "rangos_patrimonio",
+     "requerido": false
+    },
+    {
+     "id": "experiencia",
+     "etiqueta": "Experiencia operando",
+     "tipo": "select",
+     "opciones": "experiencias",
+     "requerido": true
+    },
+    {
+     "id": "objetivo",
+     "etiqueta": "Objetivo de inversión",
+     "tipo": "select",
+     "opciones": "objetivos",
+     "requerido": true
+    },
+    {
+     "id": "tolerancia_riesgo",
+     "etiqueta": "Tolerancia al riesgo",
+     "tipo": "select",
+     "opciones": "tolerancias_riesgo",
+     "requerido": true
+    },
+    {
+     "id": "instrumentos",
+     "etiqueta": "Instrumentos que has operado",
+     "tipo": "multi",
+     "opciones": "instrumentos",
+     "requerido": false
+    },
+    {
+     "id": "es_pep",
+     "etiqueta": "Soy o fui una persona expuesta políticamente (PEP)",
+     "tipo": "bool",
+     "requerido": false
+    }
+   ]
+  },
+  {
+   "id": "preferencias",
+   "titulo": "Preferencias",
+   "icono": "tune",
+   "descripcion": "Idioma, zona horaria y avisos que quieres recibir.",
+   "campos": [
+    {
+     "id": "idioma",
+     "etiqueta": "Idioma",
+     "tipo": "select",
+     "opciones": "idiomas",
+     "requerido": false,
+     "defecto": "es"
+    },
+    {
+     "id": "zona_horaria",
+     "etiqueta": "Zona horaria",
+     "tipo": "select",
+     "opciones": "zonas_horarias",
+     "requerido": false,
+     "defecto": "America/Santiago"
+    },
+    {
+     "id": "moneda_visualizacion",
+     "etiqueta": "Moneda para mostrar montos",
+     "tipo": "select",
+     "opciones": "monedas",
+     "requerido": false,
+     "defecto": "USD"
+    },
+    {
+     "id": "notificaciones",
+     "etiqueta": "Notificaciones",
+     "tipo": "notificaciones",
+     "requerido": false
+    }
+   ]
+  },
+  {
+   "id": "seguridad",
+   "titulo": "Seguridad",
+   "icono": "lock",
+   "descripcion": "Protege el acceso a tu cuenta.",
+   "campos": []
+  },
+  {
+   "id": "cuenta",
+   "titulo": "Cuenta de trading",
+   "icono": "account_balance",
+   "descripcion": "La cuenta del bróker conectada a tu usuario.",
+   "campos": []
+  }
+ ],
+ "requeridos_completitud": [
+  "nombres",
+  "apellidos",
+  "fecha_nacimiento",
+  "nacionalidad",
+  "tipo_documento",
+  "numero_documento",
+  "pais_documento",
+  "telefono_movil",
+  "pais",
+  "region",
+  "ciudad",
+  "direccion",
+  "situacion_laboral",
+  "fuente_fondos",
+  "rango_ingresos",
+  "experiencia",
+  "objetivo",
+  "tolerancia_riesgo"
+ ]
+}

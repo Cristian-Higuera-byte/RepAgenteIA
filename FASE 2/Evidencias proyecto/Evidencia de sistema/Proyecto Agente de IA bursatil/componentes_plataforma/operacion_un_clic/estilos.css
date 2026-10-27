@@ -1,0 +1,54 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* TITULO VENTANA DE TERMINOS ONE-CLICK (dialogo.py; contenedor con key terminos_un_clic_raiz) */
+  /* Panel del dialogo de Streamlit, solo cuando contiene terminos_un_clic_raiz: fondo oscuro, borde y esquinas redondeadas (!important para ganar al tema) */
+  [data-testid="stDialog"]:has(.st-key-terminos_un_clic_raiz) section {
+      background:#0d1117 !important; border:1px solid #30363d; border-radius:16px; }
+  /* TITULO TEXTO LEGAL (terminos.html) */
+  /* Caja del texto: altura maxima de 52% de la ventana con desplazamiento vertical propio */
+  .terminos-un-clic-texto { max-height:52vh; overflow-y:auto; padding:4px 14px 4px 2px; color:#c9d1d9;
+             font-size:13.5px; line-height:1.55; text-align:justify; }
+  /* Parrafos del texto legal */
+  .terminos-un-clic-texto p { margin:0 0 12px; }
+  /* Lista de situaciones en que se envia la orden sin confirmar; margen superior negativo para pegarla al parrafo previo */
+  .terminos-un-clic-texto ul { margin:-4px 0 12px 18px; padding:0; }
+  /* Elementos de la lista */
+  .terminos-un-clic-texto li { margin:2px 0; }
+  /* Titulo centrado "Renuncia de responsabilidades" */
+  .terminos-un-clic-c { text-align:center; font-weight:700; color:#e6edf3; font-size:14.5px; }
+  /* Parrafo en mayusculas destacado con barra naranja a la izquierda (advertencia principal) */
+  .terminos-un-clic-may { color:#e6edf3; font-weight:600; background:#161b22; border-left:3px solid #ff8f00;
+             padding:9px 12px; border-radius:6px; }
+  /* Nota final pequena y apagada */
+  .terminos-un-clic-nota { color:#8b949e; font-size:12px; }
+  /* TITULO BOTON DE ACEPTAR (contenedor key terminos_un_clic_aceptar de dialogo.py) */
+  /* Degradado rojo a naranja que sustituye el estilo por defecto del boton (!important) */
+  .st-key-terminos_un_clic_aceptar button { background:linear-gradient(90deg,#ff4b4b,#ff8f00) !important;
+      border:none !important; color:#fff !important; font-weight:700; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

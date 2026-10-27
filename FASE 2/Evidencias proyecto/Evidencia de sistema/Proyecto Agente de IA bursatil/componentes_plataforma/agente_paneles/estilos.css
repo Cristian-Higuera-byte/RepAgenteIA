@@ -1,0 +1,276 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* ESTILOS DE LOS PANELES DEL AGENTE
+     Archivo cargado por estilos.py (constante CSS) e inyectado con inyectar_estilos_agente().
+     Los selectores .st-key-XXX corresponden a los contenedores de Streamlit creados con
+     key="XXX" en historial.py (agh_), propuestas.py y vigilancias.py (agp_), y en el chat del
+     agente (agc_). */
+  /* ═══ Sección del agente (historial · chat · propuestas) ═══
+     Misma línea visual que "Lista de activos" y "Cartera": paneles #0d1117, filas #151c27,
+     cabecera con icono en degradado naranja y botones naranja / oscuro como el modal de cierre. */
+  /* TITULO PANELES: CONTENEDOR PRINCIPAL */
+  /* Tarjeta oscura redondeada de cada panel (historial, propuestas y chat). */
+  .st-key-agente_historial_panel, .st-key-agente_propuestas_panel, .st-key-agente_chat_panel { background:#0d1117; border:1px solid #1f2937;
+      border-radius:14px; padding:0 0 14px; overflow:hidden; } /* overflow recorta el contenido a las esquinas redondeadas */
+  /* Separación vertical entre los elementos apilados dentro de cada panel. */
+  .st-key-agente_historial_panel [data-testid="stVerticalBlock"], .st-key-agente_propuestas_panel [data-testid="stVerticalBlock"],
+  .st-key-agente_chat_panel [data-testid="stVerticalBlock"] { gap:10px; }
+  /* Quita el fondo y el borde de los contenedores internos de Streamlit para que no se dupliquen con el del panel. */
+  .st-key-agente_historial_panel div[data-testid="stVerticalBlockBorderWrapper"],
+  .st-key-agente_propuestas_panel div[data-testid="stVerticalBlockBorderWrapper"],
+  .st-key-agente_chat_panel div[data-testid="stVerticalBlockBorderWrapper"] { background:transparent !important; border:none !important; }
+
+  /* TITULO ZONAS CON SCROLL */
+  /* Zonas con scroll: dentro del panel, con márgenes laterales */
+  /* Área desplazable de cada panel: márgenes laterales de 14px y barra de scroll fina y discreta. */
+  .st-key-agente_historial_desplazamiento, .st-key-agente_propuestas_desplazamiento, .st-key-agente_chat_desplazamiento { margin:0 14px; width:calc(100% - 28px) !important; /* ancho total menos los dos márgenes */
+      scrollbar-width:thin; scrollbar-color:#2b3550 transparent; }
+
+  /* TITULO CABECERA DE PANEL */
+  /* Cabecera (igual que .lista-activos-cabecera / .cartera-cabecera) */
+  /* Fila de la cabecera: icono a la izquierda y textos a la derecha (HTML de cabecera_agente en formato.py). */
+  .agente-cabecera { display:flex; align-items:center; gap:11px; padding:16px 16px 2px; }
+  /* Cuadro del icono con degradado translúcido rojo-naranja. */
+  .agente-cabecera .ic { width:38px; height:38px; border-radius:11px; flex:0 0 auto; display:flex; align-items:center;
+      justify-content:center; background:linear-gradient(135deg,rgba(255,75,75,.16),rgba(255,143,0,.16));
+      border:1px solid #2a2320; }
+  /* Icono Material Symbols pintado con degradado naranja usando el texto como máscara. */
+  .agente-icono-material { font-family:'Material Symbols Rounded'; font-weight:400; font-size:21px; line-height:1;
+      background:linear-gradient(135deg,#ff6a3d,#ff8f00); -webkit-background-clip:text; background-clip:text; /* recorta el degradado a la forma del glifo */
+      color:transparent; } /* texto transparente para que se vea el degradado */
+  /* Título del panel. */
+  .agente-titulo { color:#fff; font-size:16px; font-weight:800; letter-spacing:.2px; line-height:1.1; }
+  /* Subtítulo explicativo bajo el título. */
+  .agente-subtitulo { color:#8b949e; font-size:11.5px; margin-top:2px; line-height:1.35; }
+
+  /* TITULO FILAS DEL HISTORIAL Y TARJETAS PENDIENTES */
+  /* Filas del historial y tarjetas pendientes */
+  /* Fila/tarjeta de una orden o vigilancia; position relative para anclar la franja lateral ::before. */
+  .agente-fila { position:relative; background:#151c27; border:1px solid #202a37; border-radius:12px;
+      padding:10px 12px 10px 16px; margin-bottom:8px; box-sizing:border-box; }
+  /* Franja lateral de color; gris por defecto y sobrescrita más abajo por las clases buy, sell y card_auto. */
+  .agente-fila::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+      border-radius:3px 0 0 3px; background:#3a4658; }
+  /* Línea superior de la fila: hora a la izquierda e insignia de estado a la derecha. */
+  .agente-superior { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+  /* Texto de la hora o del vencimiento. */
+  .agente-t { color:#8b949e; font-size:11px; }
+  /* Insignia de estado; el color, borde y fondo llegan en línea desde formato/historial.py. */
+  .agente-insignia { font-size:10px; font-weight:800; letter-spacing:.5px; padding:2px 9px; border-radius:999px;
+      border:1px solid; white-space:nowrap; } /* nowrap evita que la insignia se parta en dos líneas */
+  /* Título de la orden (lado, volumen y símbolo). */
+  .agente-principal { color:#fff; font-size:13.5px; font-weight:800; margin-top:5px; letter-spacing:.2px; }
+  /* Colores de compra (verde) y venta (rojo) dentro del título. */
+  .agente-principal .buy { color:#2ebd85; } .agente-principal .sell { color:#f6465d; }
+  /* Detalle o justificación corta de la orden en el historial. */
+  .agente-detalle { color:#8b949e; font-size:11.5px; margin-top:4px; line-height:1.4; overflow-wrap:anywhere; } /* permite partir textos largos sin romper el panel */
+
+  /* TITULO CUADRÍCULA DE DATOS DE LA PROPUESTA */
+  /* Datos de la propuesta en cuadritos (números en monoespaciada, como el ticket de orden) */
+  /* Cuadrícula responsiva de cuadritos clave/valor (columnas mínimas de 64px que se reparten el ancho). */
+  .agente-cuadricula { display:grid; grid-template-columns:repeat(auto-fit,minmax(64px,1fr)); gap:6px; margin-top:9px; }
+  /* Cuadrito individual etiqueta/valor generado por par_clave_valor. */
+  .agente-clave-valor { background:#0f1620; border:1px solid #202a37; border-radius:9px; padding:5px 7px; min-width:0; }
+  /* Etiqueta pequeña del cuadrito. */
+  .agente-clave-valor span { display:block; color:#8b949e; font-size:9.5px; letter-spacing:.2px; white-space:nowrap; }
+  /* Valor del cuadrito en fuente monoespaciada, truncado con puntos suspensivos si no cabe. */
+  .agente-clave-valor b { display:block; color:#e6edf3; font-size:12px; font-weight:700; margin-top:1px; white-space:nowrap;
+      font-family:ui-monospace,Consolas,monospace; overflow:hidden; text-overflow:ellipsis; }
+  /* Valor negativo (rojo) o positivo (verde), p. ej. stop loss y take profit. */
+  .agente-clave-valor b.neg { color:#f6465d; } .agente-clave-valor b.pos { color:#2ebd85; }
+  /* Línea de riesgo estimado de una apertura. */
+  .agente-riesgo { color:#c9d1d9; font-size:12px; margin-top:8px; }
+  /* Cifras de riesgo resaltadas en naranja. */
+  .agente-riesgo b { color:#ff8f00; font-family:ui-monospace,Consolas,monospace; }
+  /* Cita con la justificación del agente, con barra lateral gris. */
+  .agente-quote { color:#9aa5b1; font-size:11.5px; line-height:1.4; margin-top:8px; padding-left:9px;
+      border-left:2px solid #2b3546; overflow-wrap:anywhere; }
+
+  /* TITULO ESTADO VACIO */
+  /* Estado vacío (mismo recuadro punteado que "posición cerrada" de Cartera) */
+  /* Recuadro punteado que se muestra cuando no hay órdenes (función vacio en formato.py). */
+  .agente-vacio { margin:0 14px; padding:20px 14px; text-align:center; background:#12161d;
+      border:1px dashed #33425c; border-radius:12px; color:#8b949e; font-size:12.5px; line-height:1.45; }
+  /* Icono grande centrado sobre el texto del estado vacío. */
+  .agente-vacio .agente-icono-material { display:block; font-size:26px; margin-bottom:6px; }
+
+  /* TITULO PROPUESTAS: TARJETAS, INTERRUPTOR Y AVISOS */
+  /* Propuestas: tarjeta con botones, interruptor y avisos */
+  /* Contenedor Streamlit de cada tarjeta (clave agente_propuestas_tarjeta_*) que agrupa el HTML y sus botones. */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_tarjeta_"] { position:relative; background:#151c27; border:1px solid #202a37;
+      border-radius:12px; padding:12px 12px 12px 16px; overflow:hidden; }
+  /* Franja lateral de la tarjeta contenedora (gris por defecto). */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_tarjeta_"]::before { content:""; position:absolute; left:0; top:0; bottom:0;
+      width:3px; background:#3a4658; }
+  /* Espacio más compacto entre el HTML de la tarjeta y sus botones. */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_tarjeta_"] [data-testid="stVerticalBlock"] { gap:8px; }
+  /* Franja verde para compras (historial: .agente-fila.buy; propuestas: clave agente_propuestas_tarjeta_buy_*). */
+  .agente-fila.buy::before, .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_tarjeta_buy_"]::before {
+      background:linear-gradient(180deg,#3fb950,#2ea043); }
+  /* Franja roja para ventas (historial: .agente-fila.sell; propuestas: clave agente_propuestas_tarjeta_sell_*). */
+  .agente-fila.sell::before, .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_tarjeta_sell_"]::before {
+      background:linear-gradient(180deg,#f85149,#da3633); }
+  /* El .agente-fila interno de una tarjeta pendiente pierde su caja propia, porque ya la dibuja el contenedor. */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_tarjeta_"] .agente-fila { background:transparent; border:none; padding:0;
+      margin:0; }
+  /* Oculta la franja duplicada del .agente-fila interno. */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_tarjeta_"] .agente-fila::before { display:none; }
+  /* Caja del interruptor de emergencia Bloquear aperturas (clave agente_propuestas_parada_emergencia en propuestas.py). */
+  .st-key-agente_propuestas_parada_emergencia { margin:0 14px; width:calc(100% - 28px) !important; background:#0f1620; border:1px solid #202a37;
+      border-radius:12px; padding:9px 13px; }
+  /* Avisos de éxito o error tras confirmar, rechazar o autorizar. */
+  .st-key-agente_propuestas_panel [data-testid="stAlert"] { margin:0 14px; border-radius:12px; }
+
+  /* TITULO BOTONES */
+  /* Botones: principal = degradado naranja P&J, secundario = oscuro (igual que el modal "Cerrar posición") */
+  /* Botones principales (claves agente_propuestas_aceptar_*: Confirmar, Autorizar): degradado naranja; !important vence al tema de Streamlit. */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_aceptar_"] button { height:44px; border:none !important; border-radius:12px !important;
+      background:linear-gradient(135deg,#ff4b4b 0%,#ff8f00 100%) !important; color:#fff !important; }
+  /* Realce al pasar el cursor sobre el botón principal. */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_aceptar_"] button:hover { filter:brightness(1.1); }
+  /* Botones secundarios oscuros (claves agente_propuestas_no_*: Rechazar, Detener; y agente_chat_nueva del chat). */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_no_"] button, .st-key-agente_chat_panel .st-key-agente_chat_nueva button {
+      height:44px; border-radius:12px !important; background:#161b22 !important; border:1px solid #30363d !important;
+      color:#fff !important; }
+  /* Borde azul al pasar el cursor sobre los botones secundarios. */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_no_"] button:hover, .st-key-agente_chat_panel .st-key-agente_chat_nueva button:hover {
+      border-color:#58a6ff !important; background:#21262d !important; }
+  /* Texto de todos los botones anteriores: tamaño, grosor y color uniformes. */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_aceptar_"] button p, .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_no_"] button p,
+  .st-key-agente_chat_panel .st-key-agente_chat_nueva button p { font-size:14px !important; font-weight:700 !important;
+      color:#fff !important; }
+
+  /* TITULO RESPUESTA EN CURSO DEL CHAT */
+  /* Respuesta en curso: punto que late + fase actual + cronómetro */
+  /* Fila con punto, fase actual y cronómetro mientras el agente responde. */
+  .agente-live { display:flex; align-items:center; gap:9px; margin:0 0 8px; }
+  /* Punto naranja que late usando la animación ag-pulso. */
+  .agente-dot { width:8px; height:8px; border-radius:50%; background:#ff8f00; flex:0 0 auto;
+      animation:ag-pulso 1.4s infinite; }
+  /* Animación del halo del punto: crece y se desvanece en cada ciclo. */
+  @keyframes ag-pulso { 0% { box-shadow:0 0 0 0 rgba(255,143,0,.55); } 70% { box-shadow:0 0 0 8px rgba(255,143,0,0); }
+      100% { box-shadow:0 0 0 0 rgba(255,143,0,0); } }
+  /* Texto de la fase actual, recortado con puntos suspensivos. */
+  .agente-fase { color:#c9d1d9; font-size:12.5px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  /* Cronómetro en forma de píldora, alineado a la derecha (margin-left auto). */
+  .agente-reloj { margin-left:auto; flex:0 0 auto; font-family:ui-monospace,Consolas,monospace; font-size:12px;
+      font-weight:700; color:#ff8f00; background:rgba(255,143,0,.1); border:1px solid rgba(255,143,0,.3);
+      border-radius:999px; padding:2px 10px; }
+
+  /* TITULO BARRA DE USO DEL AGENTE (CUOTA DE TOKENS) */
+  /* Bloque con el título, el porcentaje, la barra y el detalle; el color de la barra sale de la variable --cuota-color según el nivel de uso. */
+  .cuota-ia { --cuota-color:#2ebd85; margin:0 0 10px; padding:9px 12px; border:1px solid #202a37; border-radius:12px; background:#0d131d; }
+  /* Nivel de aviso (uso alto): ámbar. */
+  .cuota-ia-limite { margin-top:7px; font-size:12px; color:#f6465d; }
+  .cuota-ia.cuota-ia-aviso { --cuota-color:#d29922; }
+  /* Nivel crítico (casi agotada o agotada): rojo. */
+  .cuota-ia.cuota-ia-critico { --cuota-color:#f6465d; }
+  /* Fila superior: título a la izquierda y porcentaje a la derecha. */
+  .cuota-ia-fila { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .cuota-ia-titulo { font-size:12px; font-weight:700; color:#c9d1d9; }
+  .cuota-ia-pct { font-size:12px; font-weight:800; color:var(--cuota-color); font-variant-numeric:tabular-nums; }
+  /* Pista de la barra y su relleno (el ancho lo fija el HTML en línea). */
+  .cuota-ia-barra { height:8px; border-radius:999px; background:#1b2634; overflow:hidden; margin:7px 0 6px; }
+  .cuota-ia-relleno { height:100%; border-radius:999px; background:var(--cuota-color); transition:width .4s ease; }
+  /* Detalle: tokens gastados sobre el total, restantes y renovación. */
+  .cuota-ia-detalle { font-size:11.5px; color:#8b949e; font-variant-numeric:tabular-nums; }
+
+  /* TITULO VIGILANCIA AUTOMATICA */
+  /* Vigilancia automática: sección, tarjeta (franja naranja) y marca AUTO del historial */
+  /* Rótulo de sección (Vigilancia automática / Órdenes pendientes) en mayúsculas pequeñas. */
+  .agente-seccion { color:#8b949e; font-size:10.5px; font-weight:800; letter-spacing:.8px; text-transform:uppercase;
+      margin:2px 2px 0; }
+  /* Etiqueta AUTO de las órdenes ejecutadas por una vigilancia (marca_auto en formato.py). */
+  .agente-auto { font-size:9px; font-weight:800; letter-spacing:.6px; padding:1px 6px; border-radius:5px; margin-left:7px;
+      color:#ff8f00; background:rgba(255,143,0,.12); border:1px solid rgba(255,143,0,.35); vertical-align:1px; }
+  /* Palabra VIGILANCIA del título de la tarjeta, en naranja. */
+  .agente-principal .auto { color:#ff8f00; }
+  /* Franja naranja de las tarjetas de vigilancia (clave agente_propuestas_tarjeta_auto_*). */
+  .st-key-agente_propuestas_panel [class*="st-key-agente_propuestas_tarjeta_auto_"]::before {
+      background:linear-gradient(180deg,#ff4b4b,#ff8f00); }
+  /* Texto de aviso al pie de la tarjeta de vigilancia. */
+  .agente-aviso { color:#c9d1d9; font-size:11.5px; line-height:1.4; margin-top:8px; }
+  /* Énfasis en naranja dentro del aviso. */
+  .agente-aviso b { color:#ff8f00; }
+
+  /* TITULO BOTON DETENER DEL CHAT */
+  /* Botón Detener (consulta en curso): compacto, oscuro y rojo al pasar el cursor */
+  /* Botón Detener (claves agente_chat_stop_*): compacto y oscuro. */
+  .st-key-agente_chat_panel [class*="st-key-agente_chat_stop_"] button { height:34px; min-height:34px; padding:0 14px;
+      border-radius:10px !important; background:#161b22 !important; border:1px solid #30363d !important;
+      color:#e6edf3 !important; }
+  /* Se pone rojo al pasar el cursor, salvo que esté deshabilitado. */
+  .st-key-agente_chat_panel [class*="st-key-agente_chat_stop_"] button:hover:not(:disabled) { border-color:#f85149 !important;
+      color:#f85149 !important; background:#21262d !important; }
+  /* Aspecto atenuado cuando está deshabilitado. */
+  .st-key-agente_chat_panel [class*="st-key-agente_chat_stop_"] button:disabled { opacity:.65; }
+  /* Texto del botón Detener. */
+  .st-key-agente_chat_panel [class*="st-key-agente_chat_stop_"] button p { font-size:13px !important; font-weight:700 !important; }
+
+  /* TITULO CHAT DEL AGENTE */
+  /* Chat */
+  /* Filas horizontales del chat (selector de modelo y botones) con márgenes y alineación vertical centrada. */
+  .st-key-agente_chat_panel [data-testid="stHorizontalBlock"] { padding:0 14px; gap:10px; align-items:center; }
+  /* Selector desplegable con el mismo estilo oscuro de los botones. */
+  .st-key-agente_chat_panel div[data-baseweb="select"] > div { min-height:44px; border-radius:12px !important;
+      background:#161b22 !important; border:1px solid #30363d !important; }
+  /* Zona con scroll de los mensajes del chat (clave agente_chat_desplazamiento). */
+  .st-key-agente_chat_desplazamiento { background:#0b0f19; border:1px solid #1f2937 !important; border-radius:12px; padding:10px; }
+  /* Burbuja de cada mensaje del chat. */
+  .st-key-agente_chat_panel [data-testid="stChatMessage"] { background:#151c27; border:1px solid #202a37; border-radius:12px;
+      padding:12px 14px; margin-bottom:8px; }
+  /* Mensajes del usuario: fondo y borde algo más claros que los del agente (:has detecta el avatar de usuario). */
+  .st-key-agente_chat_panel [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+      background:#19212e; border-color:#36465f; }
+  /* Avatar del usuario en azul. */
+  .st-key-agente_chat_panel [data-testid="stChatMessageAvatarUser"] { background:#1f6feb !important; color:#fff !important; }
+  /* Párrafos de los mensajes. */
+  .st-key-agente_chat_panel [data-testid="stChatMessage"] p { font-size:14px; line-height:1.5; }
+  /* Leyendas pequeñas de los mensajes en gris tenue. */
+  .st-key-agente_chat_panel [data-testid="stChatMessage"] [data-testid="stCaptionContainer"] { color:#6b7686; }
+  /* Si el modelo envuelve texto o cifras en comillas invertidas, no se muestran como código (verde y pequeño):
+     heredan la fuente, el tamaño y el color del texto normal. */
+  /* Código en línea: toma el aspecto del texto normal (ver nota anterior). */
+  .st-key-agente_chat_panel [data-testid="stChatMessage"] code { font-family:inherit !important; font-size:inherit !important;
+      color:inherit !important; background:transparent !important; padding:0 !important; }
+  /* Bloques de código reales: se conserva la fuente monoespaciada. */
+  .st-key-agente_chat_panel [data-testid="stChatMessage"] pre code { font-family:ui-monospace,Consolas,monospace !important;
+      font-size:13px !important; }
+  /* Caja de entrada del chat, alineada con los márgenes laterales del panel. */
+  .st-key-agente_chat_panel [data-testid="stChatInput"] { margin:0 14px; width:calc(100% - 28px); background:#0f1620 !important;
+      border:1px solid #2b3546 !important; border-radius:12px !important; box-shadow:none !important; }
+  /* Borde naranja cuando la caja de entrada tiene el foco. */
+  .st-key-agente_chat_panel [data-testid="stChatInput"]:focus-within { border-color:#ff8f00 !important; }
+  /* Fondo transparente y texto claro dentro del campo de entrada. */
+  .st-key-agente_chat_panel [data-testid="stChatInput"] > div, .st-key-agente_chat_panel [data-testid="stChatInput"] textarea {
+      background:transparent !important; color:#e6edf3 !important; }
+  /* Botón de enviar con degradado naranja de la marca. */
+  .st-key-agente_chat_panel [data-testid="stChatInputSubmitButton"] { background:linear-gradient(135deg,#ff4b4b,#ff8f00) !important;
+      color:#fff !important; border-radius:9px !important; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

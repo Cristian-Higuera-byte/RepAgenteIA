@@ -1,0 +1,95 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+    /* TITULO BOTONES DEL CARRUSEL (flechas anterior y siguiente; keys noticias_anterior y noticias_siguiente de secciones.py) */
+    /* Boton circular oscuro; !important porque debe ganar al estilo por defecto de los botones de Streamlit */
+    [class*="st-key-noticias_anterior"] button, [class*="st-key-noticias_siguiente"] button {
+        background:#161b22 !important; border:1px solid #30363d !important;
+        color:#e6edf3 !important; border-radius:50% !important; /* forma circular */
+        width:40px !important; height:40px !important; min-height:40px !important;
+        font-size:20px !important; padding:0 !important;
+    }
+    /* Al pasar el raton, borde y flecha en azul */
+    [class*="st-key-noticias_anterior"] button:hover, [class*="st-key-noticias_siguiente"] button:hover {
+        border-color:#58a6ff !important; color:#58a6ff !important;
+    }
+    /* TITULO TARJETAS Y NOTICIA PRINCIPAL CLICABLES */
+    /* Tarjeta / principal clicables: botón invisible que cubre todo.
+       Se fijan los 4 bordes explícitos (no el shorthand inset) — igual que en
+       watchlist.py — porque con inset el área clicable no se activa bien. */
+    /* Contenedores de la noticia principal (noticia_destacada), del carrusel (nc_N) y de Mas noticias (ync_N): referencia de posicion del boton */
+    .st-key-noticia_destacada, [class*="st-key-nc_"], [class*="st-key-ync_"] { position:relative; }
+    /* Contenedor del boton "abrir" de cada noticia: se estira sobre todo el contenedor padre y queda por encima del HTML */
+    [class*="st-key-noticia_destacada_boton"], [class*="st-key-ncb_"], [class*="st-key-yncb_"] {
+        position:absolute !important;
+        top:0 !important; right:0 !important; bottom:0 !important; left:0 !important;
+        width:100% !important; height:100% !important;
+        margin:0 !important; padding:0 !important; z-index:2; /* encima de la tarjeta para recibir el clic */
+    }
+    /* Todos los descendientes ocupan el 100% y pierden margenes, para que el boton cubra el area completa */
+    [class*="st-key-noticia_destacada_boton"] *, [class*="st-key-ncb_"] *, [class*="st-key-yncb_"] * {
+        width:100% !important; height:100% !important; min-height:0 !important;
+        margin:0 !important; padding:0 !important;
+    }
+    /* El boton es transparente: la tarjeta se ve pero el clic lo recibe el boton, que abre el modal de la noticia */
+    [class*="st-key-noticia_destacada_boton"] button, [class*="st-key-ncb_"] button, [class*="st-key-yncb_"] button {
+        opacity:0 !important; cursor:pointer !important;
+    }
+
+    /* TITULO VENTANA DE LA NOTICIA */
+    /* Panel del diálogo de Streamlit, solo cuando contiene una noticia (contenedor key noticia_raiz): fondo oscuro, borde y
+       esquinas redondeadas, igual que la ficha de mercados, con texto claro aunque Streamlit esté en tema claro. */
+    [data-testid="stDialog"]:has(.st-key-noticia_raiz) section {
+        background:#0d1117 !important; border:1px solid #30363d; border-radius:16px; color:#e6edf3; }
+    /* Título del diálogo («Noticia») y botón de cerrar legibles sobre el fondo oscuro. */
+    [data-testid="stDialog"]:has(.st-key-noticia_raiz) h2, [data-testid="stDialog"]:has(.st-key-noticia_raiz) button svg { color:#e6edf3 !important; }
+    /* Aviso de «artículo no disponible completo». */
+    [data-testid="stDialog"]:has(.st-key-noticia_raiz) [data-testid="stCaptionContainer"] { color:#8b949e !important; }
+
+    /* TITULO PANEL OTRAS FUENTES */
+    /* Lista lateral de noticias que solo se abren en su sitio (contenedor key noticias_ext): fondo oscuro, borde tenue y desplazamiento propio. */
+    .st-key-noticias_ext { background:#0b0f19; border:1px solid #1f2937; border-radius:12px; padding:6px 12px 12px !important; }
+    /* Botón con enlace al sitio de la noticia: discreto, de ancho completo, con borde tenue. */
+    .st-key-noticias_ext a[data-testid="stBaseLinkButton-secondary"] { background:#161b22 !important; border:1px solid #30363d !important;
+        color:#c9d1d9 !important; font-size:12px !important; min-height:32px !important; }
+    /* Resalta el botón al pasar el ratón con el verde de la plataforma. */
+    .st-key-noticias_ext a[data-testid="stBaseLinkButton-secondary"]:hover { border-color:#22c55e !important; color:#22c55e !important; }
+
+    /* TITULO SELECTOR DE IDIOMA */
+    /* Selector Español / English / Todos (widget con key noticias_idioma): alineado a la derecha y con el tema oscuro de la plataforma. */
+    .st-key-noticias_idioma { display:flex; justify-content:flex-end; }
+    /* Cada opción: fondo oscuro, borde tenue y texto gris. */
+    .st-key-noticias_idioma button { background:#0d1117 !important; border:1px solid #30363d !important; color:#8b949e !important;
+        font-size:13px !important; }
+    /* Resalta al pasar el ratón. */
+    .st-key-noticias_idioma button:hover { color:#e6edf3 !important; border-color:#484f58 !important; }
+    /* Opción activa: verde, como los iconos activos de la plataforma. */
+    .st-key-noticias_idioma button[aria-checked="true"], .st-key-noticias_idioma button[aria-pressed="true"],
+    .st-key-noticias_idioma button[data-testid="stBaseButton-segmented_controlActive"] {
+        background:rgba(34,197,94,0.15) !important; border-color:#22c55e !important; color:#22c55e !important; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

@@ -1,0 +1,92 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* TITULO CONTENEDOR GENERAL DEL LABORATORIO */
+  /* Contenedor raíz (st.container(key="laboratorio_contenedor") en panel.py): centrado, ancho máximo de 1200px y 18px entre bloques. */
+  .st-key-laboratorio_contenedor { max-width:1200px; margin-left:auto; margin-right:auto; width:100%; }
+  .st-key-laboratorio_contenedor [data-testid="stVerticalBlock"] { gap:18px; }
+
+  /* TITULO CABECERA */
+  /* Fila con el ícono, el título y el subtítulo de la vista. */
+  .lab-cabecera { display:flex; align-items:center; gap:12px; }
+  /* Caja redondeada del ícono. */
+  .lab-ic { width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+      background:linear-gradient(135deg,rgba(46,189,133,.18),rgba(56,139,253,.18)); border:1px solid #1f2b3a; }
+  /* Glifo Material Symbols con relleno degradado. */
+  .lab-m { font-family:'Material Symbols Rounded'; font-size:22px; line-height:1;
+      background:linear-gradient(135deg,#2ebd85,#388bfd); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lab-titulo { font-size:22px; font-weight:800; color:#fff; letter-spacing:-.2px; }
+  .lab-subtitulo-cab { font-size:12.5px; color:#8b949e; margin-top:2px; }
+
+  /* TITULO AVISO DE SIMULACION */
+  /* Franja verde que recuerda que es una simulación sobre la cuenta demo; la variante roja avisa de una cuenta real. */
+  .lab-aviso { background:rgba(46,189,133,.08); border:1px solid rgba(46,189,133,.35); color:#c9d1d9; border-radius:12px; padding:10px 14px; font-size:13px; }
+  .lab-aviso-real { background:rgba(246,70,93,.08); border-color:rgba(246,70,93,.4); }
+
+  /* TITULO TARJETAS */
+  /* Rejilla de 4 tarjetas de cifras; pasa a 2 columnas en pantallas de hasta 1100px. */
+  .lab-cuadricula { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  @media (max-width:1100px){ .lab-cuadricula { grid-template-columns:repeat(2,1fr); } }
+  .lab-tarjeta { background:linear-gradient(180deg,#111926,#0d131d); border:1px solid #202a37; border-radius:16px; padding:15px 17px 16px; box-sizing:border-box; }
+  .lab-k { font-size:10.5px; color:#8b949e; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+  .lab-v { font-size:22px; font-weight:800; color:#e6edf3; margin-top:9px; font-variant-numeric:tabular-nums; letter-spacing:-.3px; }
+  .lab-pie { font-size:11.5px; color:#8b949e; margin-top:7px; line-height:1.45; font-variant-numeric:tabular-nums; }
+  /* Colores por signo: verde positivo, rojo negativo. */
+  .lab-sube { color:#2ebd85; } .lab-baja { color:#f6465d; }
+
+  /* TITULO TABLAS */
+  /* Tabla de datos con encabezado en mayúsculas pequeñas y filas separadas por una línea fina. */
+  .lab-tabla { width:100%; border-collapse:collapse; font-size:13px; color:#c9d1d9; font-variant-numeric:tabular-nums; }
+  .lab-tabla th { text-align:left; font-size:10.5px; color:#8b949e; text-transform:uppercase; letter-spacing:.5px; padding:8px 10px; border-bottom:1px solid #202a37; }
+  .lab-tabla td { padding:9px 10px; border-bottom:1px solid #161e2a; }
+  .lab-tabla tr:hover td { background:rgba(255,255,255,.02); }
+
+  /* TITULO SUBTITULOS Y LISTA DE VERIFICACION */
+  .lab-subtitulo { font-size:14px; font-weight:700; color:#e6edf3; margin:6px 0; }
+  /* Lista de criterios: ✓ en verde si se cumple y ✗ en rojo si no. */
+  .lab-lista { list-style:none; padding:0; margin:0 0 6px; font-size:13px; color:#c9d1d9; }
+  .lab-lista li { padding:5px 0; }
+  .lab-lista li span { display:inline-block; width:18px; font-weight:800; }
+  .lab-ok span { color:#2ebd85; } .lab-no span { color:#f6465d; }
+  .lab-lista b { color:#e6edf3; margin-left:6px; }
+
+  /* TITULO GRAFICO DE BARRAS Y LEYENDA */
+  /* Leyenda bajo el gráfico: un cuadrito de color por modelo. */
+  .lab-leyenda { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:8px; font-size:12px; color:#8b949e; }
+  .lab-leyenda-item { display:inline-flex; align-items:center; gap:6px; }
+  .lab-leyenda-item i { width:10px; height:10px; border-radius:3px; display:inline-block; }
+
+  /* TITULO SELECTORES (periodo y operaciones incluidas) */
+  /* Mismo estilo oscuro que el selector de idioma de Noticias: fondo oscuro, borde tenue y opción activa en verde. */
+  .st-key-lab_periodo button, .st-key-lab_base button { background:#0d1117 !important; border:1px solid #30363d !important; color:#8b949e !important; font-size:13px !important; }
+  .st-key-lab_periodo button:hover, .st-key-lab_base button:hover { color:#e6edf3 !important; border-color:#484f58 !important; }
+  .st-key-lab_periodo button[aria-checked="true"], .st-key-lab_base button[aria-checked="true"],
+  .st-key-lab_periodo button[data-testid="stBaseButton-segmented_controlActive"], .st-key-lab_base button[data-testid="stBaseButton-segmented_controlActive"] {
+      background:rgba(34,197,94,0.15) !important; border-color:#22c55e !important; color:#22c55e !important; }
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

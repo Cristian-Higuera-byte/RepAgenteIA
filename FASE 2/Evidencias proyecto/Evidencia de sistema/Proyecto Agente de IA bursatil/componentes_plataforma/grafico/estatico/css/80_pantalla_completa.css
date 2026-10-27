@@ -1,0 +1,72 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------- INICIO Piña y Jara 80_pantalla_completa .CSS ----------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* [grafico] Pantalla completa: aspecto sin marco y selector de activo (cambiar de símbolo sin salir) */
+    /* TITULO PANTALLA COMPLETA */
+    /* La clase pj-fs la pone 55_pantalla_completa.js en #tradingview-contenedor; quita el marco redondeado. */
+    #tradingview-contenedor.pj-fs { border: none; border-radius: 0; }
+    /* Por defecto el símbolo de la leyenda no es clicable. */
+    #tradingview-leyenda .leyenda-simbolo { pointer-events: none; }
+    /* En pantalla completa el símbolo es clicable y abre el selector de activo. */
+    #tradingview-contenedor.pj-fs #tradingview-leyenda .leyenda-simbolo { pointer-events: auto; cursor: pointer; padding: 2px 6px; margin-left: -6px; border-radius: 5px; }
+    /* Resalta el símbolo al pasar el ratón. */
+    #tradingview-contenedor.pj-fs #tradingview-leyenda .leyenda-simbolo:hover { background: rgba(255,255,255,0.08); }
+    /* Triángulo que indica que hay una lista (carácter Unicode 25BE). */
+    #tradingview-contenedor.pj-fs #tradingview-leyenda .leyenda-simbolo::after { content: "\25BE"; margin-left: 6px; color: #8b949e; font-size: 11px; }
+    /* TITULO SELECTOR DE ACTIVO (html/70_selector_activo.html) */
+    /* Panel flotante oculto por defecto. */
+    #seleccion-activo { display: none; position: fixed; left: 56px; top: 92px; width: 340px; max-width: 92vw; max-height: 70vh; z-index: 5200;
+        flex-direction: column; background: #161b22; border: 1px solid #30363d; border-radius: 12px; box-shadow: 0 14px 40px rgba(0,0,0,0.65);
+        font-family: -apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+    /* Panel visible. */
+    #seleccion-activo.abierto { display: flex; }
+    /* Cabecera. */
+    #seleccion-activo .seleccion-cabecera { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 10px; color: #ffffff; font-size: 15px; font-weight: 700; }
+    /* Botón de cerrar. */
+    #seleccion-activo .seleccion-x { background: transparent; border: none; color: #8b949e; font-size: 17px; cursor: pointer; }
+    /* Botón de cerrar al pasar el ratón. */
+    #seleccion-activo .seleccion-x:hover { color: #ffffff; }
+    /* Lista desplazable de activos. */
+    #seleccion-activo-lista { overflow-y: auto; padding-bottom: 6px; }
+    /* Fila de un activo. */
+    #seleccion-activo .seleccion-fila { display: flex; align-items: center; gap: 12px; padding: 9px 16px; cursor: pointer; border-top: 1px solid #202a37; }
+    /* Fila al pasar el ratón. */
+    #seleccion-activo .seleccion-fila:hover { background: rgba(139,92,246,0.16); }
+    /* Contenedor del ícono. */
+    #seleccion-activo .seleccion-icono { width: 40px; display: flex; justify-content: center; flex-shrink: 0; }
+    /* Columna de texto. */
+    #seleccion-activo .seleccion-texto { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+    /* Nombre del activo. */
+    #seleccion-activo .seleccion-nombre { color: #e6edf3; font-size: 14px; font-weight: 700; }
+    /* Descripción de una línea. */
+    #seleccion-activo .seleccion-descripcion { color: #8b949e; font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    /* Marca verde del activo actual. */
+    #seleccion-activo .seleccion-aceptar { color: #3fb950; font-size: 16px; }
+    /* Mensaje de aviso. */
+    #seleccion-activo .seleccion-mensaje { padding: 0 16px 10px; min-height: 14px; color: #f0b90b; font-size: 12px; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------ FIN Piña y Jara 80_pantalla_completa .CSS ------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

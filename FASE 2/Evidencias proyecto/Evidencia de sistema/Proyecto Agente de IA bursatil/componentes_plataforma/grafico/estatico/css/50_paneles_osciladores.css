@@ -1,0 +1,52 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ---------------------------- INICIO Piña y Jara 50_paneles_osciladores .CSS ---------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* [grafico] Paneles de osciladores (RSI, MACD, Estocástico, ATR) */
+    /* TITULO PANELES DE OSCILADORES */
+    /* Paneles de osciladores (RSI, MACD, Estocástico, ATR): cada uno con su propia escala */
+    /* Contenedor #osc-paneles bajo el gráfico principal; oculto hasta agregar un oscilador y con scroll si pasa del 45 por ciento del alto. */
+    #osc-paneles { display: none; flex-direction: column; flex-shrink: 0; max-height: 45vh; overflow-y: auto; border-top: 1px solid #1b2430; }
+    /* Un panel individual de oscilador de 110 px de alto. */
+    .osc-panel { position: relative; height: 110px; border-bottom: 1px solid #1b2430; }
+    /* El último panel no lleva línea inferior. */
+    .osc-panel:last-child { border-bottom: none; }
+    /* Area interior donde se dibuja la escala del oscilador (ocupa todo el panel). */
+    .osc-cuerpo { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+    /* Título del panel (nombre y valores) flotando arriba a la izquierda. */
+    .osc-titulo { position: absolute; top: 3px; left: 8px; z-index: 5; display: flex; align-items: center; gap: 6px;
+        font: 600 11px -apple-system,"Segoe UI",Roboto,Arial,sans-serif; color: #8b949e; pointer-events: none; }
+    /* Botón pequeño del título (ajustes o cerrar); reactiva el ratón aunque el título lo ignore. */
+    .osc-x { pointer-events: auto; background: none; border: none; color: #8b949e; cursor: pointer; font-size: 14px; line-height: 1; padding: 0 3px; }
+    /* Botón más claro al pasar el ratón. */
+    .osc-x:hover { color: #d1d4dc; }
+    /* Botón de quitar el panel: rojo al pasar el ratón. */
+    .osc-quitar:hover { color: #f85149; }
+    /* Nombre del oscilador con un pequeño margen derecho. */
+    .osc-nombre { margin-right: 2px; }
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------- FIN Piña y Jara 50_paneles_osciladores .CSS -----------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

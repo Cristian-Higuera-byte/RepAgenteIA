@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "ticker": "NVDA",
+        "condicion": "menor",
+        "valor_objetivo": 2500.0,
+        "fecha_creacion": "2026-09-22 10:13:59",
+        "activa": true
+    },
+    {
+        "id": 2,
+        "ticker": "TSLA",
+        "condicion": "menor",
+        "valor_objetivo": 250.0,
+        "fecha_creacion": "2026-09-22 10:19:01",
+        "activa": true
+    },
+    {
+        "id": 3,
+        "ticker": "RBLX",
+        "condicion": "menor",
+        "valor_objetivo": 43.0,
+        "fecha_creacion": "2026-09-28 11:54:00",
+        "activa": true
+    },
+    {
+        "id": 4,
+        "ticker": "RBLX",
+        "condicion": "menor",
+        "valor_objetivo": 38.0,
+        "fecha_creacion": "2026-09-28 11:54:00",
+        "activa": true
+    },
+    {
+        "id": 5,
+        "ticker": "VGZ",
+        "condicion": "menor",
+        "valor_objetivo": 2.3,
+        "fecha_creacion": "2026-09-29 09:24:04",
+        "activa": true
+    }
+]

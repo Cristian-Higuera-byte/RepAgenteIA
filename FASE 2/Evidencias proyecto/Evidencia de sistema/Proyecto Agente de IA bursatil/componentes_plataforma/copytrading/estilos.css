@@ -1,0 +1,140 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* TITULO CONTENEDOR GENERAL DE LA VISTA */
+  /* Contenedor raiz (clave copytrading_contenedor en panel.py): ancho maximo centrado para el listado y la ficha. */
+  .st-key-copytrading_contenedor { max-width:1180px; margin-left:auto; margin-right:auto; width:100%; }
+  /* Titulo "Copy trading" sobre el listado. */
+  .copytrading-titulo { color:#e6edf3; font-size:22px; font-weight:800; margin:0 0 10px; }
+
+  /* TITULO TARJETA DEL LISTADO */
+  /* Tarjeta de una estrategia (HTML de tarjeta.tarjeta_html); height:100% iguala alturas en la fila. */
+  .copytrading-tarjeta { background:#0f1620; border:1px solid #202a37; border-radius:16px;
+             padding:16px 18px; height:100%; box-sizing:border-box; transition:border-color .15s; }
+  /* Realce del borde al pasar el cursor por el contenedor de la tarjeta (clave ctrow_ de panel.py). */
+  [class*="st-key-ctrow_"]:hover .copytrading-tarjeta { border-color:#2f3d4f; }
+  /* Cabecera de la tarjeta: avatar, nombre e insignia de riesgo. */
+  .copytrading-cabecera { display:flex; align-items:center; gap:10px; }
+  /* Avatar circular con las iniciales de la estrategia. */
+  .copytrading-av { width:40px; height:40px; border-radius:50%; background:#1b2430; flex:0 0 auto;
+           display:flex; align-items:center; justify-content:center; font-weight:800; color:#a78bfa; }
+  /* Nombre de la estrategia. */
+  .copytrading-nombre { color:#e6edf3; font-weight:800; font-size:15px; line-height:1.1; }
+  /* Alias del gestor. */
+  .copytrading-gestion { color:#8b949e; font-size:12px; }
+  /* Insignia de riesgo, empujada al extremo derecho; el color lo da rb, rm o ra. */
+  .copytrading-insignia { margin-left:auto; font-size:11px; font-weight:700; padding:3px 10px; border-radius:8px; }
+  /* Riesgo bajo (verde). */
+  .copytrading-insignia.rb { color:#3fb950; border:1px solid #2ea043; }
+  /* Riesgo medio (amarillo). */
+  .copytrading-insignia.rm { color:#f0b429; border:1px solid #d29922; }
+  /* Riesgo alto (rojo). */
+  .copytrading-insignia.ra { color:#f85149; border:1px solid #da3633; }
+  /* Franja central: sparkline a la izquierda y rentabilidad a la derecha. */
+  .copytrading-medio { display:flex; justify-content:space-between; align-items:flex-end; margin:14px 0; }
+  /* Etiqueta "Rentabilidad 1 mes". */
+  .copytrading-rentabilidad-etiqueta { color:#8b949e; font-size:12px; }
+  /* Valor de la rentabilidad en verde. */
+  .copytrading-rentabilidad { color:#3fb950; font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; }
+  /* Cuadricula de metricas: tres columnas iguales. */
+  .copytrading-cuadricula { display:grid; grid-template-columns:repeat(3,1fr); gap:10px 8px; }
+  /* Nombre de cada metrica. */
+  .copytrading-cuadricula .k { color:#8b949e; font-size:11px; }
+  /* Valor de cada metrica. */
+  .copytrading-cuadricula .v { color:#e6edf3; font-size:14px; font-weight:700; font-variant-numeric:tabular-nums; }
+
+  /* TITULO BOTON INVISIBLE SUPERPUESTO (CLIC EN TODA LA TARJETA) */
+  /* overlay clic en toda la tarjeta */
+  /* El contenedor de la tarjeta sirve de referencia para posicionar el boton. */
+  [class*="st-key-ctrow_"] { position:relative; }
+  /* Boton de seleccion (clave ctsel_ de panel.py): cubre toda la tarjeta, por encima de su contenido (z-index 3). */
+  [class*="st-key-ctsel_"] { position:absolute !important; top:0 !important; right:0 !important;
+      bottom:0 !important; left:0 !important; width:100% !important; height:100% !important;
+      margin:0 !important; padding:0 !important; z-index:3; }
+  /* Todo lo interno del boton ocupa el 100 por ciento y sin espacios. */
+  [class*="st-key-ctsel_"] * { width:100% !important; height:100% !important; min-height:0 !important;
+      margin:0 !important; padding:0 !important; }
+  /* El boton es transparente pero clicable. */
+  [class*="st-key-ctsel_"] button { opacity:0; cursor:pointer; }
+
+  /* TITULO FICHA DE DETALLE */
+  /* Ficha */
+  /* Avatar grande circular de la ficha (ficha.py), centrado. */
+  .ficha-av { width:84px; height:84px; border-radius:50%; background:#1b2430; margin:0 auto;
+            display:flex; align-items:center; justify-content:center; font-weight:800;
+            font-size:28px; color:#a78bfa; }
+  /* Nombre de la estrategia en la ficha. */
+  .ficha-nombre { color:#e6edf3; font-size:24px; font-weight:800; text-align:center; margin-top:8px; }
+  /* Alias del gestor en la ficha. */
+  .ficha-gestion { color:#8b949e; font-size:13px; text-align:center; }
+  /* Chip informativo (tipo, categoria, apalancamiento, comisiones...). */
+  .ficha-chip { display:inline-block; background:#161b22; border:1px solid #30363d; color:#c9d1d9;
+              font-size:12px; padding:5px 12px; border-radius:10px; margin:0 6px 6px 0; }
+  /* Titulo pequeno de seccion de la ficha. */
+  .ficha-seccion { color:#8b949e; font-size:12px; margin:12px 0 2px; }
+  /* Texto de biografia y descripcion. */
+  .ficha-texto { color:#e6edf3; font-size:14px; }
+  /* Rentabilidad destacada, alineada a la derecha. */
+  .ficha-rentabilidad { color:#3fb950; font-size:26px; font-weight:800; text-align:right; }
+  /* Texto central de la dona de victorias: margen negativo que lo sube sobre la imagen (graficos.rosquilla). */
+  .don-centro { text-align:center; margin-top:-128px; margin-bottom:70px; }
+  /* Numero de operaciones totales. */
+  .don-centro .n { color:#e6edf3; font-size:26px; font-weight:800; }
+  /* Etiqueta bajo el numero. */
+  .don-centro .l { color:#8b949e; font-size:12px; }
+
+  /* TITULO REPARTO POR TIPO DE ACTIVO (ficha real) */
+  /* Fila con el tipo de activo, una barra proporcional y el porcentaje. */
+  .fic-rep { display:flex; align-items:center; gap:12px; margin:8px 0; }
+  .fic-rep .k { width:140px; color:#c9d1d9; font-size:13px; }
+  .fic-rep .b { flex:1; height:10px; background:#1b2330; border-radius:999px; overflow:hidden; }
+  .fic-rep .b i { display:block; height:100%; background:#e3b341; border-radius:999px; }
+  .fic-rep .v { width:56px; text-align:right; color:#e6edf3; font-size:13px; font-weight:700; }
+
+  /* TITULO AREA DE GESTOR */
+  /* Título de sección, lista de requisitos (✓ cumplido, ✗ pendiente) y nota final. */
+  .ges-seccion { font-size:16px; font-weight:800; color:#e6edf3; margin:14px 0 6px; }
+  .ges-req { display:flex; align-items:center; gap:10px; padding:6px 0; border-bottom:1px solid #1b2330; font-size:13px; }
+  .ges-req .ok { color:#3fb950; font-weight:800; width:16px; }
+  .ges-req .no { color:#f85149; font-weight:800; width:16px; }
+  .ges-req .t { color:#c9d1d9; flex:1; }
+  .ges-req .d { color:#8b949e; font-size:12px; }
+  .ges-nota { margin-top:8px; font-size:12.5px; color:#8b949e; }
+  .ges-nota.ok { color:#3fb950; }
+  /* Cabecera de una estrategia propia: nombre, insignia de estado, tipo y cifras. */
+  .ges-cab { display:flex; align-items:center; gap:10px; }
+  .ges-nombre { font-size:17px; font-weight:800; color:#e6edf3; }
+  .ges-estado { font-size:11px; font-weight:700; border-radius:999px; padding:2px 9px; }
+  .ges-estado.p { color:#3fb950; background:rgba(63,185,80,.14); }
+  .ges-estado.b { color:#8b949e; background:rgba(139,148,158,.16); }
+  .ges-estado.m { color:#e3b341; background:rgba(227,179,65,.14); }
+  .ges-estado.c { color:#f85149; background:rgba(248,81,73,.14); }
+  .ges-tipo { font-size:12px; color:#8b949e; }
+  .ges-cifras { font-size:12.5px; color:#8b949e; margin:4px 0 8px; }
+  .ges-cifras b { color:#e6edf3; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
