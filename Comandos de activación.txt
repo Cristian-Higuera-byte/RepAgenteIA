@@ -1,0 +1,2 @@
+env\Scripts\python.exe src/servidor_datos.py
+env\Scripts\python.exe -m streamlit run src/app.py
