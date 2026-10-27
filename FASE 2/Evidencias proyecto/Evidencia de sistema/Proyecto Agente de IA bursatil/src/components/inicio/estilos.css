@@ -1,0 +1,288 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* LAYOUT GENERAL DE INICIO */
+  /* Contenedor principal (clave ini_wrap de panel.py): centrado con ancho máximo de 1180 px. */
+  .st-key-ini_wrap { max-width:1180px; margin-left:auto; margin-right:auto; /* centrado horizontal */ width:100%; }
+  /* Separación vertical de 18 px entre los bloques de la vista. */
+  .st-key-ini_wrap [data-testid="stVerticalBlock"] { gap:18px; }
+  /* Glifo de la fuente Material Symbols Rounded (icono_material en formato.py); las propiedades de ligadura convierten el nombre en ícono. */
+  .mi { font-family:'Material Symbols Rounded'; font-weight:400; font-style:normal;
+        line-height:1; letter-spacing:normal; text-transform:none; white-space:nowrap;
+        direction:ltr; -webkit-font-smoothing:antialiased; font-feature-settings:'liga'; }
+
+  /* ===== Encabezado ===== */
+  /* ENCABEZADO */
+  /* Saludo pequeño sobre el título (cuenta.py). */
+  .ini-hola { color:#8b949e; font-size:14px; margin:0; }
+  /* Título grande "Resumen de tu cuenta". */
+  .ini-title { color:#e6edf3; font-size:26px; font-weight:800; margin:2px 0 0; letter-spacing:-.3px; }
+  /* Botón chip de cuenta (clave ini_sel): píldora oscura que abre el modal de cuentas. */
+  .st-key-ini_sel button { background:#161b22 !important; border:1px solid #30363d !important;
+      border-radius:999px !important; /* forma de píldora */ color:#e6edf3 !important; padding:6px 16px !important;
+      min-height:40px !important; box-shadow:none !important; }
+  /* Texto del chip de cuenta. */
+  .st-key-ini_sel button p { font-size:13px !important; font-weight:600 !important; }
+  /* Resalta el borde en azul al pasar el cursor. */
+  .st-key-ini_sel button:hover { border-color:#58a6ff !important; }
+  /* Botón "Operar" (clave ini_operar): píldora verde con degradé y sombra que lleva a la vista de trading. */
+  .st-key-ini_operar button { background:linear-gradient(135deg,#3fb950,#2ea043) !important;
+      border:none !important; border-radius:999px !important; min-height:40px !important;
+      box-shadow:0 4px 14px rgba(46,160,67,.25) !important; }
+  /* Texto blanco en negrita del botón Operar. */
+  .st-key-ini_operar button p { color:#fff !important; font-weight:700 !important; font-size:14px !important; }
+
+  /* ===== Tarjetas base ===== */
+  /* TARJETAS BASE */
+  /* Estilo común de la tarjeta principal (ini_hero) y de Salud de la cuenta (ini_salud); height:100% las iguala en alto. */
+  .st-key-ini_hero, .st-key-ini_salud {
+      background:#0f1620; border:1px solid #202a37; border-radius:18px;
+      padding:22px 24px; height:100%; /* iguala el alto de ambas tarjetas */ box-sizing:border-box; position:relative; /* ancla de la franja y del ojo */ overflow:hidden; }
+  /* Franja decorativa roja-naranja de 3 px en el borde superior de la tarjeta principal. */
+  .st-key-ini_hero::before { content:""; /* pseudo-elemento sin texto */ position:absolute; left:0; top:0; right:0; height:3px;
+      background:linear-gradient(90deg,#ff4b4b,#ff8f00); }
+  /* Espacio vertical de 10 px entre los elementos internos de ambas tarjetas. */
+  .st-key-ini_hero [data-testid="stVerticalBlock"],
+  .st-key-ini_salud [data-testid="stVerticalBlock"] { gap:10px; }
+
+  /* Equity */
+  /* EQUITY */
+  /* Fila superior de la tarjeta principal: etiqueta "Equity" y tipo de cuenta. */
+  .hero-top { display:flex; align-items:center; gap:10px; }
+  /* Etiqueta "EQUITY" en mayúsculas pequeñas. */
+  .hero-lbl { color:#8b949e; font-size:13px; font-weight:600; letter-spacing:.3px; text-transform:uppercase; }
+  /* Pastilla dorada con el tipo de cuenta (Demo o Real). */
+  .hero-badge { background:rgba(240,180,41,.12); color:#f0b429; border:1px solid rgba(240,180,41,.35);
+      font-size:11px; font-weight:700; padding:2px 9px; border-radius:999px; }
+  /* Cifra grande del equity; tabular-nums evita que el ancho cambie al actualizarse en vivo. */
+  .hero-eq { color:#ffffff; font-size:44px; font-weight:800; line-height:1.05; margin-top:4px;
+      letter-spacing:-1px; font-variant-numeric:tabular-nums; /* cifras de ancho fijo */ }
+  /* Moneda junto al equity, más pequeña y gris. */
+  .hero-eq small { font-size:16px; font-weight:600; color:#8b949e; margin-left:6px; letter-spacing:0; }
+  /* Pastilla del P/G flotante. */
+  .hero-pl { display:inline-flex; align-items:center; gap:6px; margin-top:10px;
+      padding:5px 12px; border-radius:999px; font-size:13px; font-weight:700; }
+  /* Variante positiva: fondo y texto verdes. */
+  .hero-pl.up { background:rgba(63,185,80,.12); color:#3fb950; }
+  /* Variante negativa: fondo y texto rojos. */
+  .hero-pl.dn { background:rgba(248,81,73,.12); color:#f85149; }
+  /* Texto "P/G flotante" en gris dentro de la pastilla. */
+  .hero-pl .t { color:#8b949e; font-weight:500; }
+  /* Cuadrícula de 3 columnas iguales con los indicadores (saldo, margen libre y usado). */
+  .kpis { display:grid; grid-template-columns:repeat(3,1fr); /* 3 columnas iguales */ gap:12px; margin-top:18px; }
+  /* Cada indicador: caja con fondo y borde sutiles. */
+  .kpi { background:#151c27; border:1px solid #252f3d; border-radius:12px; padding:12px 14px; }
+  /* Etiqueta del indicador. */
+  .kpi .k { color:#8b949e; font-size:12px; }
+  /* Valor del indicador en fuente monoespaciada y sin salto de línea. */
+  .kpi .v { color:#e6edf3; font-size:17px; font-weight:700; margin-top:4px;
+      font-family:ui-monospace,Consolas,monospace; white-space:nowrap; }
+  /* Ojo (ocultar montos) arriba a la derecha de la tarjeta */
+  /* Botón de ojo (ocultar montos): se coloca en la esquina superior derecha de la tarjeta principal. */
+  .st-key-ini_hero .st-key-ini_ojo { position:absolute !important; top:16px; right:16px;
+      width:auto !important; z-index:3; }
+  /* Aspecto del botón de ojo. */
+  .st-key-ini_ojo button { background:#151c27 !important; border:1px solid #252f3d !important;
+      border-radius:10px !important; min-height:34px !important; padding:0 10px !important; }
+  /* Borde azul al pasar el cursor. */
+  .st-key-ini_ojo button:hover { border-color:#58a6ff !important; }
+
+  /* ===== Salud de la cuenta ===== */
+  /* SALUD DE LA CUENTA */
+  /* Título de la tarjeta. */
+  .sal-title { color:#e6edf3; font-size:15px; font-weight:700; }
+  /* Fila con etiqueta a la izquierda y valor o estado a la derecha. */
+  .sal-nivel { display:flex; align-items:baseline; justify-content:space-between; margin-top:6px; }
+  /* Etiqueta "Nivel de margen". */
+  .sal-nivel .k { color:#8b949e; font-size:13px; }
+  /* Porcentaje grande del nivel de margen (su color lo fija el estilo en línea del semáforo). */
+  .sal-nivel .v { font-size:28px; font-weight:800; font-variant-numeric:tabular-nums; }
+  /* Pastilla con el estado del semáforo (Saludable, Atención, Riesgo); el fondo se define en línea. */
+  .sal-estado { font-size:12px; font-weight:700; padding:2px 10px; border-radius:999px; }
+  /* Línea de texto sobre la barra de margen usado. */
+  .sal-bar-lbl { display:flex; justify-content:space-between; color:#8b949e; font-size:12px; margin-top:12px; }
+  /* Porcentaje resaltado en blanco. */
+  .sal-bar-lbl b { color:#e6edf3; }
+  /* Pista gris de la barra de margen usado. */
+  .sal-bar { height:8px; border-radius:8px; background:#21262d; overflow:hidden; margin-top:6px; }
+  /* Relleno azul de la barra; su ancho lo actualiza el feed con data-pj-bar. */
+  .sal-bar > div { height:100%; border-radius:8px; background:linear-gradient(90deg,#2f81f7,#58a6ff);
+      transition:width .3s ease; }
+  /* Contenedor de las filas de datos técnicos (apalancamiento, crédito, servidor). */
+  .sal-rows { margin-top:14px; }
+  /* Fila de dato técnico con separador superior. */
+  .sal-row { display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #1b2430;
+      font-size:13px; }
+  /* Nombre del dato. */
+  .sal-row .k { color:#8b949e; }
+  /* Valor del dato en fuente monoespaciada. */
+  .sal-row .v { color:#e6edf3; font-weight:600; font-family:ui-monospace,Consolas,monospace; }
+
+  /* ===== Secciones ===== */
+  /* SECCIONES */
+  /* Encabezado de sección: título a la izquierda y contador a la derecha; el margen inferior negativo lo acerca al contenido. */
+  .ini-sec { display:flex; align-items:center; justify-content:space-between; margin:8px 0 -4px; /* margen inferior negativo: acerca el contenido */ }
+  /* Título de sección (se fuerza el tamaño porque Streamlit estiliza los h3). */
+  .ini-sec h3 { color:#e6edf3; font-size:17px !important; font-weight:700 !important; margin:0; padding:0; }
+  /* Contador de elementos de la sección. */
+  .ini-sec .s { color:#8b949e; font-size:13px; }
+
+  /* ===== Accesos rápidos ===== */
+  /* ACCESOS RÁPIDOS */
+  /* Tarjeta de acceso rápido (panel.py). */
+  .acc-card { display:flex; align-items:center; gap:14px; background:#0f1620; border:1px solid #202a37;
+      border-radius:14px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  /* Efecto hover: borde más claro y elevación de 1 px. */
+  [class*="st-key-accrow_"]:hover .acc-card { border-color:#2f3d4f; transform:translateY(-1px); }
+  /* Cuadro del ícono; el color de fondo se define en línea. */
+  .acc-ic { flex:0 0 42px; /* ancho fijo, no se encoge */ width:42px; height:42px; border-radius:12px; display:flex;
+      align-items:center; justify-content:center; font-size:22px; }
+  /* Bloque de texto; min-width:0 permite recortar el subtítulo largo. */
+  .acc-tx { flex:1 1 auto; min-width:0; }
+  /* Título del acceso. */
+  .acc-t { color:#e6edf3; font-size:14px; font-weight:700; }
+  /* Subtítulo del acceso, recortado con puntos suspensivos. */
+  .acc-s { color:#8b949e; font-size:12px; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  /* Color de la flecha del acceso. */
+  .acc-go { color:#586174; font-size:20px; }
+  /* Cada acceso es contenedor relativo para superponer su botón. */
+  [class*="st-key-accrow_"] { position:relative; }
+  /* Contenedor del botón invisible que cubre toda la tarjeta. */
+  [class*="st-key-accsel_"] { position:absolute !important; inset:0 !important; /* pegado a los 4 bordes */ width:100% !important;
+      height:100% !important; margin:0 !important; padding:0 !important; z-index:3; /* por encima de la tarjeta */ }
+  /* Anula tamaños y márgenes de los descendientes para que el botón ocupe toda la tarjeta. */
+  [class*="st-key-accsel_"] * { width:100% !important; height:100% !important; min-height:0 !important;
+      margin:0 !important; padding:0 !important; }
+  /* Botón transparente pero clicable. */
+  [class*="st-key-accsel_"] button { opacity:0; cursor:pointer; }
+
+  /* ===== Promociones ===== */
+  /* PROMOCIONES */
+  /* Cuadrícula de 3 columnas para los banners. */
+  .promo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  /* Banner promocional; overflow oculto recorta el degradé decorativo. */
+  .promo-card { position:relative; overflow:hidden; border-radius:14px; padding:16px 18px;
+      background:#0f1620; border:1px solid #202a37; }
+  /* Capa decorativa de degradé a baja opacidad que cubre el banner. */
+  .promo-card::before { content:""; position:absolute; inset:0; opacity:.18; /* degradé muy tenue */ }
+  /* Variante a: degradé azul. */
+  .promo-card.a::before { background:linear-gradient(135deg,#2f81f7,transparent 70%); }
+  /* Variante b: degradé violeta. */
+  .promo-card.b::before { background:linear-gradient(135deg,#a371f7,transparent 70%); }
+  /* Variante c: degradé naranja. */
+  .promo-card.c::before { background:linear-gradient(135deg,#ff8f00,transparent 70%); }
+  /* Título del banner (position:relative lo deja por encima de la capa decorativa). */
+  .promo-card h4 { position:relative; margin:0 0 4px; color:#e6edf3; font-size:14px; font-weight:700; }
+  /* Descripción del banner. */
+  .promo-card p { position:relative; margin:0; color:#8b949e; font-size:12.5px; }
+  /* Ícono del banner, en su propia línea. */
+  .promo-card .mi { position:relative; font-size:22px; margin-bottom:8px; display:block; }
+
+  /* ===== Posiciones abiertas ===== */
+  /* POSICIONES ABIERTAS */
+  /* Tarjeta contenedora de la tabla de posiciones (posiciones.py). */
+  .st-key-ini_cartera { background:#0f1620; border:1px solid #202a37; border-radius:18px; padding:6px 0; }
+  /* Tabla compartida por posiciones e historial. */
+  table.pos { width:100%; border-collapse:collapse; /* bordes de celda unidos */ font-size:13px; }
+  /* Celdas de encabezado de la tabla. */
+  table.pos th { color:#8b949e; text-align:left; font-weight:600; font-size:12px;
+      padding:12px 18px; border-bottom:1px solid #1b2430; }
+  /* Celdas de datos. */
+  table.pos td { color:#e6edf3; padding:12px 18px; border-bottom:1px solid #141a22; }
+  /* Quita el borde inferior de la última fila. */
+  table.pos tr:last-child td { border-bottom:none; }
+  /* Columnas numéricas alineadas a la derecha y en fuente monoespaciada. */
+  table.pos .r { text-align:right; font-family:ui-monospace,Consolas,monospace; }
+  /* Celda de activo: ícono y símbolo en línea. */
+  .pos-sym { display:flex; align-items:center; gap:10px; font-weight:700; }
+  /* Pastilla del tipo de operación. */
+  .pos-side { font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; }
+  /* Compra en verde. */
+  .pos-side.buy { background:rgba(63,185,80,.12); color:#3fb950; }
+  /* Venta en rojo. */
+  .pos-side.sell { background:rgba(248,81,73,.12); color:#f85149; }
+  /* Texto de ganancia en verde. */
+  .car-up { color:#3fb950; font-weight:700; }
+  /* Texto de pérdida en rojo. */
+  .car-down { color:#f85149; font-weight:700; }
+  /* Refuerzo con !important para que el verde prevalezca sobre el color de celda y del resumen del historial. */
+  table.pos td.car-up, .hist-sum .v.car-up { color:#3fb950 !important; }
+  /* Refuerzo con !important para el rojo. */
+  table.pos td.car-down, .hist-sum .v.car-down { color:#f85149 !important; }
+  /* Mensaje de estado vacío (sin posiciones o sin historial), centrado en columna. */
+  .pos-empty { display:flex; flex-direction:column; align-items:center; gap:6px; padding:28px 10px;
+      color:#8b949e; font-size:13px; text-align:center; }
+  /* Ícono grande y gris del estado vacío. */
+  .pos-empty .mi { font-size:30px; color:#586174; }
+  /* Botón "Ver cartera" (clave ini_vercartera): píldora transparente. */
+  .st-key-ini_vercartera button { background:transparent !important; border:1px solid #30363d !important;
+      border-radius:999px !important; min-height:32px !important; padding:2px 14px !important; }
+  /* Texto del botón Ver cartera. */
+  .st-key-ini_vercartera button p { font-size:12.5px !important; color:#c9d1d9 !important; }
+
+  /* ===== Historial (operaciones cerradas) ===== */
+  /* HISTORIAL */
+  /* Tarjeta contenedora del historial (historial.py). */
+  .st-key-ini_hist { background:#0f1620; border:1px solid #202a37; border-radius:18px; padding:6px 0; }
+  /* Barra de resumen (P/G realizado, operaciones y ganadoras) que envuelve en pantallas angostas. */
+  .hist-sum { display:flex; gap:28px; padding:12px 18px 14px; border-bottom:1px solid #1b2430; flex-wrap:wrap; }
+  /* Cada métrica del resumen: etiqueta sobre valor. */
+  .hist-sum .it { display:flex; flex-direction:column; gap:2px; }
+  /* Etiqueta de la métrica en mayúsculas. */
+  .hist-sum .k { color:#8b949e; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.3px; }
+  /* Valor de la métrica. */
+  .hist-sum .v { color:#e6edf3; font-size:17px; font-weight:800; font-family:ui-monospace,Consolas,monospace; }
+  /* Columna de fecha de la tabla del historial. */
+  .hist-fch { color:#8b949e; font-size:12px; font-family:ui-monospace,Consolas,monospace; }
+  /* Botones "Ver más" y "Ver menos" (claves ini_vermas e ini_vermenos): píldoras transparentes. */
+  .st-key-ini_vermas button, .st-key-ini_vermenos button { background:transparent !important;
+      border:1px solid #30363d !important; border-radius:999px !important;
+      min-height:34px !important; padding:3px 18px !important; }
+  /* Texto de los botones Ver más y Ver menos. */
+  .st-key-ini_vermas button p, .st-key-ini_vermenos button p { font-size:12.5px !important; color:#c9d1d9 !important; }
+
+  /* ===== Modal selección de cuenta ===== */
+  /* MODAL SELECCIÓN DE CUENTA */
+  /* Tarjeta de cuenta dentro del modal (modal_cuentas.py). */
+  .selc-card { background:#0f1620; border:1px solid #202a37; border-radius:14px;
+      padding:14px 16px; margin-bottom:10px; }
+  /* Cuenta activa: borde azul. */
+  .selc-card.activa { border-color:#1f6feb; }
+  /* Fila superior: datos a la izquierda y etiqueta de tipo a la derecha. */
+  .selc-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  /* Etiqueta Real o Demo. */
+  .selc-tipo { font-size:11px; font-weight:700; padding:2px 10px; border-radius:8px; }
+  /* Cuenta real: verde. */
+  .selc-real { color:#3fb950; border:1px solid #3fb950; }
+  /* Cuenta demo: dorado. */
+  .selc-demo { color:#f0b429; border:1px solid #f0b429; }
+  /* Saldo grande de la cuenta. */
+  .selc-bal { color:#fff; font-size:22px; font-weight:800; margin:2px 0; }
+  /* Línea de metadatos (login, plataforma, servidor). */
+  .selc-meta { color:#8b949e; font-size:12px; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

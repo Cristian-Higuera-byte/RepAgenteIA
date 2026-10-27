@@ -1,0 +1,70 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- -------------------------------------------------------------------------------------------------------
+   -------------------------------- INICIO Piña y Jara usuario_menu .HTML --------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+        <!-- Menu del usuario: plantilla que barra.py rellena con las iniciales y el nombre. Se muestra en la ultima columna de la barra superior. -->
+        <!-- Contenedor alineado a la derecha -->
+        <div style='display:flex; align-items:center; justify-content:flex-end; white-space:nowrap;'>
+            <!-- Menu desplegable nativo (details): se abre al hacer clic en el nombre, sin recargar; estilos nav-user en estilos.css -->
+            <details class='nav-user' style='position:relative;'>
+                <!-- Parte siempre visible: avatar con iniciales, nombre y flecha -->
+                <summary style='display:flex; align-items:center; gap:8px; cursor:pointer;'>
+                    <!-- Avatar circular con las iniciales -->
+                    <div style='width:30px; height:30px; border-radius:50%;
+                                background:#1f6feb; color:#ffffff; display:flex;
+                                align-items:center; justify-content:center;
+                                font-weight:bold; font-size:12px;'>__INICIALES__</div>
+                    <!-- Nombre del usuario -->
+                    <span style='color:#e6edf3; font-size:13px;'>__USUARIO__</span>
+                    <!-- Flecha que gira al abrir (regla nav-user open en estilos.css) -->
+                    <span class='nav-flecha' style='color:#8b949e; font-size:11px;
+                          transition:transform .15s ease;'>▾</span>
+                </summary>
+                <!-- Panel flotante con las opciones -->
+                <div style='position:absolute; right:0; top:calc(100% + 10px);
+                            background:#161b22; border:1px solid #30363d; border-radius:8px;
+                            min-width:190px; padding:6px; z-index:3000;
+                            box-shadow:0 8px 24px rgba(0,0,0,0.5);'>
+                    <!-- Opcion Mi perfil (sin accion por ahora) -->
+                    <div class='nav-menu-item' style='display:flex; align-items:center; gap:10px;
+                         padding:9px 12px; border-radius:6px; color:#e6edf3; font-size:13px;
+                         cursor:pointer;'>👤 Mi perfil</div>
+                    <!-- Opcion Configuracion (sin accion por ahora) -->
+                    <div class='nav-menu-item' style='display:flex; align-items:center; gap:10px;
+                         padding:9px 12px; border-radius:6px; color:#e6edf3; font-size:13px;
+                         cursor:pointer;'>⚙️ Configuración</div>
+                    <!-- Linea separadora -->
+                    <div style='height:1px; background:#30363d; margin:4px 6px;'></div>
+                    <!-- Cerrar sesion: el parametro logout=1 lo procesa acceso/pantalla.py (requerir_login) -->
+                    <a href='?logout=1' target='_self' class='nav-menu-item'
+                       style='display:flex; align-items:center; gap:10px;
+                         padding:9px 12px; border-radius:6px; color:#f85149; font-size:13px;
+                         cursor:pointer; text-decoration:none;'>🚪 Cerrar sesión</a>
+                </div>
+            </details>
+        </div>
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ---------------------------------- FIN Piña y Jara usuario_menu .HTML ---------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->

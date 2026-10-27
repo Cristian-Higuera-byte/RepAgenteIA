@@ -1,0 +1,157 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   --------------------------------- INICIO Piña y Jara 65_backtest .CSS ---------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* [grafico] Backtest: ventana, formulario de estrategia y resultados */
+    /* VENTANA DE BACKTEST */
+    /* Fondo oscuro de la ventana de backtest (html/65_modal_backtest.html). */
+    #bt-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:5000; align-items:center; justify-content:center; }
+    /* Caja principal casi a pantalla completa con formulario a la izquierda y resultados a la derecha. */
+    #bt-box { background:#161b22; border:1px solid #30363d; border-radius:10px; width:1180px; max-width:97vw; height:92vh; display:flex; flex-direction:column; box-shadow:0 12px 40px rgba(0,0,0,0.8); font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#d1d4dc; }
+    /* Subtítulo junto al título. */
+    #bt-sub { font-size:12px; font-weight:500; color:#8b949e; margin-left:10px; }
+    /* Botón X para cerrar. */
+    #bt-close { background:transparent; border:none; color:#8b949e; font-size:18px; cursor:pointer; }
+    /* Área principal en fila: formulario y resultados. */
+    #bt-main { display:flex; flex:1; min-height:0; }
+    /* FORMULARIO DE ESTRATEGIA */
+    /* Columna del formulario con desplazamiento propio. */
+    #bt-form { width:400px; flex-shrink:0; overflow-y:auto; padding:6px 18px 18px; border-right:1px solid #30363d; }
+    /* Columna de resultados que ocupa el espacio restante. */
+    #bt-res { flex:1; min-width:0; overflow-y:auto; padding:14px 18px 18px; }
+    /* Diseño para pantallas estrechas: formulario y resultados se apilan. */
+    @media (max-width: 900px) { #bt-main { flex-direction:column; overflow-y:auto; } #bt-form { width:auto; border-right:none; border-bottom:1px solid #30363d; overflow:visible; } #bt-res { overflow:visible; } }
+
+    /* Título de sección del formulario. */
+    #bt-form .bt-sec { font-size:11px; font-weight:700; color:#8b949e; text-transform:uppercase; letter-spacing:.05em; margin:16px 0 6px; }
+    /* Fila etiqueta-control. */
+    #bt-form .bt-fila { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:4px 0; font-size:13px; }
+    /* Campos numéricos y listas del formulario. */
+    #bt-form input[type=number], #bt-form select { background:#0d1117; border:1px solid #30363d; color:#d1d4dc; border-radius:5px; padding:5px 7px; font-size:13px; outline:none; }
+    /* Campo con foco en violeta. */
+    #bt-form input[type=number]:focus, #bt-form select:focus { border-color:#8b5cf6; }
+    /* Ancho fijo de los campos numéricos. */
+    #bt-form .bt-fila input[type=number] { width:96px; }
+    /* Ancho máximo de las listas. */
+    #bt-form .bt-fila select { max-width:210px; }
+    /* Nota pequeña de ayuda. */
+    #bt-form .bt-nota { font-size:11px; color:#6e7681; padding:2px 0 4px; }
+    /* Casilla con etiqueta. */
+    #bt-form .bt-check { display:flex; align-items:center; gap:8px; font-size:13px; padding:4px 0; cursor:pointer; }
+    /* Casilla con acento azul. */
+    #bt-form .bt-check input { accent-color:#2962ff; }
+    /* Bloque de reglas (por ejemplo entrada larga, entrada corta). */
+    .bt-bloque { background:#0d1117; border:1px solid #21262d; border-radius:8px; padding:8px 10px; margin-bottom:8px; }
+    /* Cabecera del bloque con título y selector. */
+    .bt-bloque-cab { display:flex; align-items:center; justify-content:space-between; font-size:12px; font-weight:700; color:#d1d4dc; margin-bottom:4px; gap:8px; }
+    /* Selector pequeño en la cabecera. */
+    .bt-bloque-cab select { font-size:11px; padding:2px 4px; }
+    /* Condición individual dentro de un bloque. */
+    .bt-cond { border-top:1px solid #21262d; padding:7px 0 5px; display:flex; flex-direction:column; gap:5px; }
+    /* La primera condición no lleva línea superior. */
+    .bt-cond:first-of-type { border-top:none; }
+    /* Fila de un operando: lista de indicador y sus parámetros. */
+    .bt-oper { display:flex; align-items:center; flex-wrap:wrap; gap:5px; }
+    /* Ancho máximo de la lista de operandos. */
+    .bt-oper select { max-width:230px; }
+    /* Parámetro de un operando con su etiqueta. */
+    .bt-oper .bt-p { display:flex; align-items:center; gap:3px; font-size:11px; color:#8b949e; }
+    /* Campo numérico del parámetro. */
+    .bt-oper .bt-p input[type=number] { width:58px; padding:3px 5px; font-size:12px; }
+    /* Lista del parámetro. */
+    .bt-oper .bt-p select { padding:3px 4px; font-size:12px; }
+    /* Selector del operador (cruza, mayor que...) alineado a la izquierda. */
+    .bt-cond .bt-op-sel { align-self:flex-start; }
+    /* Botón de quitar la condición. */
+    .bt-cond-x { background:transparent; border:none; color:#6e7681; cursor:pointer; font-size:13px; align-self:flex-end; padding:0 2px; }
+    /* Botón de quitar en rojo al pasar el ratón. */
+    .bt-cond-x:hover { color:#f85149; }
+    /* Botón genérico del backtest. */
+    .bt-btn { background:rgba(255,255,255,0.06); border:1px solid #30363d; color:#d1d4dc; border-radius:6px; padding:5px 11px; font-size:12px; cursor:pointer; }
+    /* Botón al pasar el ratón. */
+    .bt-btn:hover { background:rgba(255,255,255,0.12); }
+    /* Botón principal de ejecutar, ancho completo y en violeta. */
+    .bt-btn.primario { background:#8b5cf6; border-color:#8b5cf6; color:#fff; font-size:14px; padding:9px 16px; font-weight:600; width:100%; margin-top:14px; }
+    /* Botón principal al pasar el ratón. */
+    .bt-btn.primario:hover { background:#7c4dea; }
+    /* Botón principal deshabilitado mientras se calcula. */
+    .bt-btn.primario:disabled { opacity:.6; cursor:default; }
+    /* Fila de botones secundarios que puede partirse. */
+    .bt-acciones { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+
+    /* RESULTADOS */
+    /* Mensaje inicial cuando aún no se ha ejecutado el backtest. */
+    .bt-vacio { color:#8b949e; font-size:14px; padding:40px 10px; text-align:center; }
+    /* Recuadro base de avisos del resultado. */
+    .bt-aviso { border-radius:7px; padding:8px 12px; font-size:12.5px; margin-bottom:8px; line-height:1.4; }
+    /* Aviso de error en rojo. */
+    .bt-aviso.error { background:rgba(248,81,73,0.14); border:1px solid rgba(248,81,73,0.4); color:#ff9b94; }
+    /* Aviso de advertencia en amarillo. */
+    .bt-aviso.aviso { background:rgba(210,153,34,0.14); border:1px solid rgba(210,153,34,0.4); color:#e3b341; }
+    /* Aviso informativo en azul. */
+    .bt-aviso.info { background:rgba(88,166,255,0.10); border:1px solid rgba(88,166,255,0.3); color:#9ccbff; }
+    /* Rejilla adaptable de indicadores clave del resultado. */
+    .bt-kpis { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin:6px 0 12px; }
+    /* Tarjeta de un indicador clave. */
+    .bt-kpi { background:#0d1117; border:1px solid #21262d; border-radius:8px; padding:8px 11px; }
+    /* Nombre del indicador. */
+    .bt-kpi .k { font-size:11px; color:#8b949e; }
+    /* Valor numérico grande en monoespaciado. */
+    .bt-kpi .v { font-size:19px; font-weight:700; margin-top:2px; font-family:ui-monospace,Consolas,monospace; }
+    /* Texto secundario del indicador. */
+    .bt-kpi .s { font-size:11px; color:#6e7681; margin-top:1px; }
+    /* Colores de valores: positivo (verde), negativo (rojo) y neutro. */
+    .bt-pos { color:#3fb950; } .bt-neg { color:#f85149; } .bt-neu { color:#d1d4dc; }
+    /* Contenedor de un gráfico de resultados (curva de capital o drawdown). */
+    .bt-grafico { background:#0d1117; border:1px solid #21262d; border-radius:8px; margin-bottom:8px; position:relative; }
+    /* Título superpuesto en el gráfico, sin capturar el ratón. */
+    .bt-grafico .bt-tit { position:absolute; top:5px; left:9px; z-index:3; font-size:11px; color:#8b949e; pointer-events:none; }
+    /* Alturas de los gráficos: curva de capital (#bt-eq) y caída máxima (#bt-dd). */
+    #bt-eq { height:240px; } #bt-dd { height:90px; }
+    /* Pestañas de resultados (operaciones, supuestos...). */
+    .bt-tabs { display:flex; gap:18px; border-bottom:1px solid #30363d; margin:10px 0 8px; }
+    /* Botón de pestaña con subrayado. */
+    .bt-tabs button { background:transparent; border:none; border-bottom:2px solid transparent; color:#8b949e; font-size:13px; font-weight:600; padding:7px 0; cursor:pointer; margin-bottom:-1px; }
+    /* Pestaña activa. */
+    .bt-tabs button.on { color:#fff; border-bottom-color:#d1d4dc; }
+    /* Tabla de operaciones en monoespaciado. */
+    .bt-tabla { width:100%; border-collapse:collapse; font-size:12px; font-family:ui-monospace,Consolas,monospace; }
+    /* Encabezados de la tabla, fijos arriba al desplazar (position:sticky). */
+    .bt-tabla th { text-align:right; color:#8b949e; font-weight:600; padding:5px 7px; border-bottom:1px solid #30363d; position:sticky; top:0; background:#161b22; }
+    /* Celdas de la tabla alineadas a la derecha. */
+    .bt-tabla td { text-align:right; padding:4px 7px; border-bottom:1px solid #21262d; white-space:nowrap; }
+    /* Las dos primeras columnas se alinean a la izquierda. */
+    .bt-tabla th:first-child, .bt-tabla td:first-child, .bt-tabla th:nth-child(2), .bt-tabla td:nth-child(2) { text-align:left; }
+    /* Lista de supuestos del backtest. */
+    .bt-supuestos { font-size:12px; color:#8b949e; line-height:1.55; padding:4px 2px; }
+    /* Separación entre supuestos. */
+    .bt-supuestos li { margin-bottom:3px; }
+    /* Botón de abrir el backtest en la barra superior mientras hay resultados (se combina con .tvbtn). */
+    #btn-bt-open.activo { border-color:#8b5cf6; color:#fff; }
+    /* Envoltorio con scroll horizontal para tablas anchas. */
+    .bt-tabla-wrap { overflow-x:auto; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- FIN Piña y Jara 65_backtest .CSS ----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

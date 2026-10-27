@@ -1,0 +1,169 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* CONTENEDOR GENERAL DE LA VISTA RESUMEN */
+  /* Contenedor raíz (st.container(key="rs_wrap") en panel.py): centrado y con ancho máximo de 1200px. */
+  .st-key-rs_wrap { max-width:1200px; margin-left:auto; margin-right:auto; width:100%; }
+  /* Separación vertical de 22px entre los bloques hijos que Streamlit apila dentro del contenedor. */
+  .st-key-rs_wrap [data-testid="stVerticalBlock"] { gap:22px; }
+  /* Ícono Material Symbols de la cabecera con relleno degradado naranja (el texto se recorta al fondo). */
+  .rmi { font-family:'Material Symbols Rounded'; font-weight:400; line-height:1;
+         background:linear-gradient(135deg,#ff6a3d,#ff8f00); -webkit-background-clip:text;
+         background-clip:text; color:transparent; font-size:20px; }
+
+  /* CABECERA DE LA VISTA */
+  /* Fila con el ícono, el título y el subtítulo (HTML de panel.py). */
+  .rs-head { display:flex; align-items:center; gap:12px; margin-bottom:2px; }
+  /* Caja redondeada del ícono; flex 0 0 auto evita que se encoja. */
+  .rs-head .ic { width:42px; height:42px; border-radius:12px; display:flex; align-items:center;
+      justify-content:center; background:linear-gradient(135deg,rgba(255,75,75,.16),rgba(255,143,0,.16));
+      border:1px solid #2a2320; flex:0 0 auto; }
+  /* Título "Resumen". */
+  .rs-title { font-size:22px; font-weight:800; color:#fff; letter-spacing:-.2px; }
+  /* Subtítulo descriptivo bajo el título. */
+  .rs-sub { font-size:12.5px; color:#8b949e; margin-top:2px; }
+
+  /* ---- Rejilla de tarjetas KPI ---- */
+  /* REJILLA DE TARJETAS KPI */
+  /* Rejilla de 4 columnas que contiene las 8 tarjetas generadas por secciones.tarjetas_kpi. */
+  .rs-grid { display:grid; grid-template-columns:repeat(4,1fr); column-gap:18px; row-gap:14px; }
+  /* En pantallas de hasta 1100px la rejilla pasa a 2 columnas. */
+  @media (max-width:1100px){ .rs-grid { grid-template-columns:repeat(2,1fr); column-gap:16px; row-gap:14px; } }
+  /* Tarjeta KPI (tarjetas.py): fondo degradado, borde y animación de elevación al pasar el cursor. */
+  .rs-card { background:linear-gradient(180deg,#111926,#0d131d); border:1px solid #202a37;
+      border-radius:16px; padding:15px 17px 16px; position:relative; overflow:hidden;
+      box-sizing:border-box; transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease; }
+  /* Franja de color de 3px a la izquierda; usa la variable --acc que fija cada tarjeta con style en línea. */
+  .rs-card::after { content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+      background:var(--acc,#30363d); opacity:.9; }
+  /* Efecto hover: la tarjeta sube 3px y gana sombra. */
+  .rs-card:hover { transform:translateY(-3px); border-color:#30405a;
+      box-shadow:0 10px 26px rgba(0,0,0,.35); }
+  /* Fila superior de la tarjeta: título a la izquierda e ícono a la derecha. */
+  .rs-ctop { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  /* Título de la tarjeta en mayúsculas pequeñas. */
+  .rs-k { font-size:10.5px; color:#8b949e; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+  /* Caja del ícono; su fondo viene de la variable --icbg de la tarjeta. */
+  .rs-cico { width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+      background:var(--icbg,#182130); flex:0 0 auto; }
+  /* Glifo del ícono (Material Symbols); su color viene de --icfg. */
+  .rs-cico .m { font-family:'Material Symbols Rounded'; font-size:17px; line-height:1; color:var(--icfg,#8b949e); }
+  /* Valor grande de la tarjeta; tabular-nums mantiene los dígitos alineados al cambiar en vivo. */
+  .rs-v { font-size:23px; font-weight:800; color:#e6edf3; margin-top:11px; font-variant-numeric:tabular-nums;
+      letter-spacing:-.3px; display:flex; align-items:baseline; gap:4px; }
+  /* Unidad o moneda pequeña junto al valor. */
+  .rs-v .u { font-size:13px; font-weight:700; color:#6b7686; }
+  /* Variante más pequeña del valor (tarjetas compactas). */
+  .rs-v.sm { font-size:19px; }
+  /* Línea de detalle al pie de la tarjeta. */
+  .rs-foot { font-size:11.5px; color:#8b949e; margin-top:7px; font-variant-numeric:tabular-nums; line-height:1.45; }
+  /* Colores por signo (formato.clase_variacion): verde positivo, rojo negativo, claro neutro. */
+  .rs-up { color:#2ebd85; } .rs-down { color:#f6465d; } .rs-neu { color:#e6edf3; }
+  /* Flecha triangular que precede al valor en las tarjetas de P&L. */
+  .rs-arrow { font-size:15px; margin-right:1px; }
+  /* Pastilla redondeada (p. ej. porcentaje de rentabilidad) junto al valor. */
+  .rs-pill { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;
+      margin-left:7px; font-variant-numeric:tabular-nums; vertical-align:middle; }
+  /* Pastilla en verde cuando es positiva. */
+  .rs-pill.up { background:rgba(46,189,133,.14); color:#2ebd85; }
+  /* Pastilla en rojo cuando es negativa. */
+  .rs-pill.down { background:rgba(246,70,93,.14); color:#f6465d; }
+
+  /* ---- Bloques anchos (margen + curva + exposición) ---- */
+  /* BLOQUES ANCHOS: MARGEN, CURVA Y EXPOSICIÓN */
+  /* Panel ancho genérico (nivel de margen y exposición) con el mismo fondo que las tarjetas. */
+  .rs-panel { background:linear-gradient(180deg,#111926,#0d131d); border:1px solid #202a37;
+      border-radius:16px; padding:18px 20px; box-sizing:border-box; }
+  /* Título de un panel; flex permite alinear a la derecha el dato de la clase right. */
+  .rs-panel-t { font-size:14px; font-weight:800; color:#e6edf3; margin-bottom:12px;
+      display:flex; align-items:center; gap:8px; }
+  /* Texto aclaratorio pequeño dentro del título. */
+  .rs-panel-t small { color:#8b949e; font-weight:600; font-size:11.5px; }
+  /* Dato empujado al extremo derecho del título (variación del periodo); su color viene de rs-up o rs-down. */
+  .rs-panel-t .right { margin-left:auto; font-weight:700; font-size:12.5px; font-variant-numeric:tabular-nums; }
+
+  /* Barra de nivel de margen */
+  /* BARRA DE NIVEL DE MARGEN */
+  /* Fila superior con el porcentaje y la etiqueta (Saludable, Moderado o En riesgo). */
+  .rs-ml-top { display:flex; align-items:baseline; gap:10px; }
+  /* Porcentaje grande; el color lo fija un style en línea según el semáforo. */
+  .rs-ml-v { font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; }
+  /* Etiqueta de estado con fondo translúcido definido en línea. */
+  .rs-ml-tag { font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; }
+  /* Pista de la barra; overflow hidden recorta el relleno a los bordes redondeados. */
+  .rs-ml-bar { height:9px; border-radius:5px; background:#182130; overflow:hidden; margin:12px 0 6px; }
+  /* Relleno de la barra; su ancho y degradado se fijan en línea desde secciones.nivel_margen. */
+  .rs-ml-fill { height:100%; border-radius:5px; }
+
+  /* TABLA DE EXPOSICIÓN POR ACTIVO */
+  /* Tabla de exposición (secciones.exposicion_por_activo): ancho completo y bordes colapsados. */
+  .rs-expo { width:100%; border-collapse:collapse; }
+  /* Celdas y encabezados con relleno y línea inferior fina. */
+  .rs-expo td, .rs-expo th { padding:9px 6px; font-size:12.5px; border-bottom:1px solid #182130;
+      font-variant-numeric:tabular-nums; }
+  /* Encabezados en mayúsculas pequeñas y alineados a la derecha. */
+  .rs-expo th { color:#8b949e; font-weight:700; text-transform:uppercase; font-size:10px;
+      letter-spacing:.5px; text-align:right; }
+  /* La primera columna (nombre del activo) se alinea a la izquierda. */
+  .rs-expo th:first-child, .rs-expo td:first-child { text-align:left; }
+  /* Transición suave del fondo al resaltar una fila. */
+  .rs-expo tr { transition:background .12s ease; }
+  /* Resalta la fila bajo el cursor. */
+  .rs-expo tbody tr:hover { background:#141c28; }
+  /* Color de texto de las celdas. */
+  .rs-expo td { color:#c9d1d9; }
+  /* Nombre del activo en negrita y más claro. */
+  .rs-expo .nm { font-weight:700; color:#e6edf3; }
+  /* Barra verde proporcional al nocional (su ancho se fija en línea). */
+  .rs-expo .bar { height:7px; border-radius:4px; background:linear-gradient(90deg,#3fb950,#2ea043); }
+  /* Pista gris de la barra de exposición. */
+  .rs-barwrap { background:#182130; border-radius:4px; overflow:hidden; width:100%; }
+
+  /* NOTAS Y ESTADO VACÍO */
+  /* Nota al pie con texto pequeño y gris (nivel de margen y nota final). */
+  .rs-note { color:#6b7686; font-size:11px; margin-top:8px; line-height:1.5; }
+  /* Mensaje cuando la curva no tiene suficientes datos (curva.py). */
+  .rs-empty { color:#8b949e; font-size:13px; padding:26px 10px; text-align:center; }
+
+  /* Panel de la curva: el selector de periodo + el gráfico como un solo bloque */
+  /* PANEL DE LA CURVA DE BALANCE */
+  /* Contenedor con clave rs_curvapanel (secciones.curva_balance): une el selector y el gráfico en una tarjeta. */
+  .st-key-rs_curvapanel { background:linear-gradient(180deg,#111926,#0d131d);
+      border:1px solid #202a37; border-radius:16px; padding:16px 20px 18px; box-sizing:border-box; }
+  /* Separación interna más ajustada entre selector y gráfico. */
+  .st-key-rs_curvapanel [data-testid="stVerticalBlock"] { gap:14px; }
+  /* Quita el margen inferior del bloque Markdown; !important para vencer al estilo de Streamlit. */
+  .st-key-rs_curvapanel div[data-testid="stMarkdownContainer"] { margin-bottom:0 !important; }
+  /* Selector de periodo de la curva (segmented_control) */
+  /* SELECTOR DE PERIODO */
+  /* Fondo oscuro del grupo de botones; !important porque BaseWeb aplica estilos en línea. */
+  .st-key-rs_periodo [data-baseweb="segmented-control"],
+  .st-key-rs_periodo [role="radiogroup"] { background:#0d131d !important; }
+  /* Botón del periodo activo resaltado en gris azulado con texto blanco. */
+  .st-key-rs_periodo button[aria-checked="true"] { background:#1b2634 !important; color:#fff !important; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

@@ -1,0 +1,29 @@
+{
+  "obtener_sentimiento_mercado": {
+    "descripcion": "Obtiene o calcula el Índice de Miedo y Codicia (Fear & Greed Index) global del mercado, combinando volatilidad, posicionamiento retail y sentimiento macro.",
+    "parametros": {
+      "mercado": {
+        "type": "string",
+        "description": "Mercado a evaluar ('CRYPTO', 'STOCKS', 'FOREX'). Por defecto 'STOCKS'."
+      }
+    },
+    "nombre": "obtener_sentimiento_mercado"
+  },
+  "analizar_sentimiento_noticias": {
+    "descripcion": "Analiza el sentimiento de un conjunto de titulares o noticias financieras recientes para un símbolo, generando un score numérico de NLP entre -1.0 (Muy Bajista) y +1.0 (Muy Alcista).",
+    "parametros": {
+      "simbolo": {
+        "type": "string",
+        "description": "Símbolo o mercado a consultar titulares (ej. 'EURUSD', 'USDCLP', 'BTC')."
+      },
+      "cantidad_noticias": {
+        "type": "integer",
+        "description": "Número de noticias a escanear. Por defecto 10."
+      }
+    },
+    "requeridos": [
+      "simbolo"
+    ],
+    "nombre": "analizar_sentimiento_noticias"
+  }
+}

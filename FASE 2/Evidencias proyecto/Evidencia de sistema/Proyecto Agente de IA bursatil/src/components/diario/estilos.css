@@ -1,0 +1,150 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* CONTENEDOR GENERAL Y CABECERA */
+  /* Contenedor raiz de la vista (clave jr_wrap en panel.py): ancho maximo centrado. */
+  .st-key-jr_wrap { max-width:1200px; margin-left:auto; margin-right:auto; width:100%; }
+  /* Separacion vertical entre bloques de la vista. */
+  .st-key-jr_wrap [data-testid="stVerticalBlock"] { gap:18px; }
+  /* Icono Material Symbols con relleno degradado naranja (cabecera y aviso de tabla vacia). */
+  .jrmi { font-family:'Material Symbols Rounded'; font-weight:400; line-height:1;
+         background:linear-gradient(135deg,#ff6a3d,#ff8f00); -webkit-background-clip:text;
+         background-clip:text; color:transparent; font-size:20px; } /* texto transparente: deja ver el degradado recortado */
+  /* Fila de cabecera: icono y titulos. */
+  .jr-head { display:flex; align-items:center; gap:12px; margin-bottom:2px; }
+  /* Recuadro del icono de la cabecera. */
+  .jr-head .ic { width:42px; height:42px; border-radius:12px; display:flex; align-items:center;
+      justify-content:center; background:linear-gradient(135deg,rgba(255,75,75,.16),rgba(255,143,0,.16));
+      border:1px solid #2a2320; flex:0 0 auto; }
+  /* Titulo "Diario". */
+  .jr-title { font-size:22px; font-weight:800; color:#fff; letter-spacing:-.2px; }
+  /* Subtitulo bajo el titulo. */
+  .jr-sub { font-size:12.5px; color:#8b949e; margin-top:2px; }
+
+  /* ENCABEZADOS DE SECCION */
+  /* Encabezado de seccion (titulo y descripcion en la misma linea base); lo usan tabla.py y ficha.py. */
+  .jr-sec { display:flex; align-items:baseline; gap:10px; padding:2px 2px 2px; }
+  /* Titulo de la seccion. */
+  .jr-sec h3 { margin:0; color:#e6edf3; font-size:15px; font-weight:800; }
+  /* Descripcion corta de la seccion. */
+  .jr-sec .s { color:#8b949e; font-size:12px; }
+
+  /* TARJETAS CONTENEDORAS */
+  /* Tarjeta contenedora (igual que el historial de Inicio) */
+  /* Tarjetas de la tabla (clave jr_card) y de la ficha (clave jr_ficha): fondo oscuro con borde redondeado. */
+  .st-key-jr_card, .st-key-jr_ficha {
+      background:#0f1620; border:1px solid #202a37; border-radius:18px; padding:6px 0; }
+  /* La ficha lleva mas relleno interior que la tabla (sobrescribe el padding anterior). */
+  .st-key-jr_ficha { padding:16px 18px 18px; }
+
+  /* RESUMEN DE METRICAS */
+  /* Resumen de métricas (estilo hist-sum de Inicio), repartido en todo el ancho */
+  /* Cuadricula de 6 columnas con las metricas (HTML de tabla.tabla_y_metricas). */
+  .jr-sum { display:grid; grid-template-columns:repeat(6,1fr); gap:18px;
+      padding:16px 20px 18px; border-bottom:1px solid #1b2430; }
+  /* En pantallas estrechas el resumen pasa a 3 columnas. */
+  @media (max-width:900px){ .jr-sum { grid-template-columns:repeat(3,1fr); } }
+  /* Cada metrica: titulo, valor y subtitulo apilados. */
+  .jr-sum .it { display:flex; flex-direction:column; gap:3px; min-width:0; }
+  /* Titulo de la metrica en mayusculas pequenas. */
+  .jr-sum .k { color:#8b949e; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.3px; }
+  /* Valor de la metrica en tipografia monoespaciada. */
+  .jr-sum .v { color:#e6edf3; font-size:19px; font-weight:800; font-family:ui-monospace,Consolas,monospace; }
+  /* Colores de valor positivo (verde) y negativo (rojo); !important vence al color base. */
+  .jr-sum .v.up { color:#3fb950 !important; } .jr-sum .v.down { color:#f85149 !important; }
+  /* Subtitulo de la metrica. */
+  .jr-sum .s { color:#6b7686; font-size:10.5px; }
+
+  /* TABLA DE OPERACIONES */
+  /* Tabla de operaciones (calco de table.pos de Inicio) */
+  /* Tabla de operaciones cerradas (clase jpos). */
+  table.jpos { width:100%; border-collapse:collapse; font-size:13px; }
+  /* Celdas de encabezado: mayusculas pequenas y grises. */
+  table.jpos th { color:#8b949e; text-align:left; font-weight:600; font-size:11.5px;
+      padding:11px 16px; border-bottom:1px solid #1b2430; text-transform:uppercase; letter-spacing:.3px; }
+  /* Celdas de datos. */
+  table.jpos td { color:#e6edf3; padding:11px 16px; border-bottom:1px solid #141a22; }
+  /* La ultima fila no lleva linea inferior. */
+  table.jpos tr:last-child td { border-bottom:none; }
+  /* Transicion suave del fondo al pasar el cursor. */
+  table.jpos tbody tr { transition:background .12s ease; }
+  /* Resalta la fila bajo el cursor. */
+  table.jpos tbody tr:hover { background:#131b27; }
+  /* Columnas numericas (clase r): alineadas a la derecha y monoespaciadas. */
+  table.jpos .r { text-align:right; font-family:ui-monospace,Consolas,monospace; }
+  /* Celda del activo: icono y nombre en una linea. */
+  .jpos-sym { display:flex; align-items:center; gap:10px; font-weight:700; white-space:nowrap; }
+  /* Pastilla BUY o SELL; tambien la usa la cabecera de la ficha (ficha.py). */
+  .jpos-side { font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; }
+  /* Pastilla de compra (verde). */
+  .jpos-side.buy { background:rgba(63,185,80,.12); color:#3fb950; }
+  /* Pastilla de venta (roja). */
+  .jpos-side.sell { background:rgba(248,81,73,.12); color:#f85149; }
+  /* Fecha de cierre en gris monoespaciado. */
+  .jpos-fch { color:#8b949e; font-family:ui-monospace,Consolas,monospace; }
+  /* Columna de estrategia en gris. */
+  .jpos-estr { color:#8b949e; }
+  /* Celda R/R con ganancia (verde) o perdida (roja). */
+  td.up { color:#3fb950 !important; font-weight:700; }
+  td.down { color:#f85149 !important; font-weight:700; }
+  /* Pastilla del resultado neto de la operacion. */
+  .jpos-res { font-weight:800; padding:3px 10px; border-radius:7px; font-family:ui-monospace,Consolas,monospace; }
+  /* Resultado positivo (verde). */
+  .jpos-res.up { background:rgba(63,185,80,.12); color:#3fb950; }
+  /* Resultado negativo (rojo). */
+  .jpos-res.down { background:rgba(248,81,73,.12); color:#f85149; }
+  /* Aviso de vacio centrado (sin operaciones o sin velas para el mini-grafico). */
+  .jr-empty { display:flex; flex-direction:column; align-items:center; gap:6px; padding:30px 10px;
+      color:#8b949e; font-size:13px; text-align:center; }
+
+  /* FICHA DE LA OPERACION */
+  /* Ficha */
+  /* Cabecera de la operacion: icono, activo, lado, metadatos y resultado. */
+  .jr-ophead { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:6px 0 12px;
+      padding:12px 14px; background:#0d131d; border:1px solid #1b2430; border-radius:12px; }
+  /* Activo con su icono. */
+  .jr-ophead .sym { display:flex; align-items:center; gap:10px; font-size:16px; font-weight:800; color:#fff; }
+  /* Lotes, fechas y duracion. */
+  .jr-ophead .meta { color:#8b949e; font-size:12.5px; font-family:ui-monospace,Consolas,monospace; }
+  /* Resultado neto, empujado al extremo derecho. */
+  .jr-ophead .res { margin-left:auto; font-size:18px; font-weight:800; font-family:ui-monospace,Consolas,monospace; }
+  /* Colores del resultado: verde y rojo. */
+  .jr-ophead .res.up { color:#3fb950; } .jr-ophead .res.down { color:#f85149; }
+  /* Linea de R/R planificado, R realizado y comision. */
+  .jr-rr { display:flex; gap:22px; flex-wrap:wrap; color:#8b949e; font-size:12.5px; margin:10px 2px 6px; }
+  /* Valores resaltados de la linea de R/R. */
+  .jr-rr b { color:#e6edf3; font-family:ui-monospace,Consolas,monospace; }
+  /* Colores del R realizado: verde y rojo. */
+  .jr-rr b.up { color:#3fb950; } .jr-rr b.down { color:#f85149; }
+  /* Marco del mini-grafico SVG (mini_grafico.py). */
+  .jr-chart { background:#0b1017; border:1px solid #1b2430; border-radius:12px; padding:6px 8px; }
+  /* Nota aclaratoria al pie de la vista. */
+  .jr-note { color:#6b7686; font-size:11px; margin-top:8px; line-height:1.5; }
+  /* Mensaje "Nota guardada." tras guardar. */
+  .jr-ok { color:#3fb950; font-size:13px; font-weight:600; margin-top:6px; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

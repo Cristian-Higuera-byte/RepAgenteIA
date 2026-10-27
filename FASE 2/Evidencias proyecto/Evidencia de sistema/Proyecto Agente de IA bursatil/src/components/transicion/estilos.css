@@ -1,0 +1,50 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+    /* CORTINA DE TRANSICIÓN */
+    /* El área de contenido (contenedor con clave pj_vista) se descubre con un fundido corto al terminar de cargar. */
+    .st-key-pj_vista { transition: opacity .16s ease; }
+    /* Mientras la clase pj-navegando está en html (la pone transicion.js al pulsar un botón de navegación), la vista se
+       oculta al instante: así no se ve el contenido viejo atenuado ni la vista nueva dibujándose a medias. */
+    html.pj-navegando .st-key-pj_vista { opacity: 0 !important; transition: none !important; pointer-events: none; }
+
+    /* BARRA DE PROGRESO */
+    /* Línea fina bajo la barra superior que indica que la sección está cargando; solo aparece con la cortina puesta. */
+    html.pj-navegando body::after {
+        content: ""; position: fixed; left: 70px; right: 0; top: 62px; height: 2px; z-index: 100001;
+        background: linear-gradient(90deg, transparent, #22c55e, transparent);
+        background-size: 40% 100%; background-repeat: no-repeat; animation: pj-carga 0.9s ease-in-out infinite;
+    }
+    /* Desplazamiento horizontal del brillo de la barra. */
+    @keyframes pj-carga { from { background-position: -40% 0; } to { background-position: 140% 0; } }
+
+    /* ENVOLTORIO DEL SCRIPT */
+    /* El iframe del script no ocupa lugar: su envoltorio sale del flujo para no sumar separación entre elementos. */
+    [data-testid="stLayoutWrapper"]:has(> .st-key-pj_transicionjs) { position: absolute !important; width: 0 !important; height: 0 !important; }
+    .st-key-pj_transicionjs { position: absolute !important; width: 0 !important; height: 0 !important; overflow: hidden !important; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ FIN Piña y Jara estilos .CSS -------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

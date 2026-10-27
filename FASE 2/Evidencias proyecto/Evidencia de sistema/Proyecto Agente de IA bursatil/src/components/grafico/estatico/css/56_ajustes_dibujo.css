@@ -1,0 +1,112 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------ INICIO Piña y Jara 56_ajustes_dibujo .CSS ------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* [grafico] Ventana de ajustes de dibujos: mismo aspecto que la de indicadores */
+    /* VENTANA DE AJUSTES DE DIBUJOS */
+    /* Fondo oscuro de la ventana de ajustes de dibujos (html/53_ajustes_dibujo.html); comparte el aspecto de 55_indicadores.css (que ya declara las reglas comunes de #ind-modal-overlay e #ind-modal-box). */
+    #dibcfg-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:5000; align-items:center; justify-content:center; }
+    /* Caja de la ventana (misma que la de indicadores). */
+    #dibcfg-box { background:#161b22; border:1px solid #30363d; border-radius:10px; max-width:94vw; max-height:86vh; display:flex; flex-direction:column; box-shadow:0 12px 40px rgba(0,0,0,0.8); font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#d1d4dc; }
+    /* Botón X para cerrar. */
+    #ind-modal-close, #dibcfg-close { background:transparent; border:none; color:#8b949e; font-size:18px; cursor:pointer; }
+    /* Cuerpo desplazable donde el JS inserta los ajustes. */
+    #dibcfg-cuerpo { padding:12px 20px 4px; overflow-y:auto; }
+    /* Fila etiqueta-control. */
+    #dibcfg-cuerpo .cfg-fila { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:6px 0; font-size:13px; }
+    /* Subtítulo de sección. */
+    #dibcfg-cuerpo .cfg-sec { font-size:10px; font-weight:700; color:#6e7681; text-transform:uppercase; letter-spacing:.04em; margin:12px 0 2px; }
+    /* Campos numéricos y listas del formulario. */
+    #dibcfg-cuerpo input[type=number], #dibcfg-cuerpo select { background:#0d1117; border:1px solid #30363d; color:#d1d4dc; border-radius:5px; padding:5px 8px; font-size:13px; width:150px; outline:none; }
+    /* Campo con foco en violeta. */
+    #dibcfg-cuerpo input[type=number]:focus, #dibcfg-cuerpo select:focus { border-color:#8b5cf6; }
+    /* Selector de color compacto. */
+    #dibcfg-cuerpo input[type=color] { width:44px; height:26px; padding:0; border:1px solid #30363d; border-radius:5px; background:#0d1117; cursor:pointer; }
+    /* PESTAÑAS Y CONTROLES */
+    /* Barra de pestañas de la ventana. */
+    #dibcfg-tabs { display:flex; gap:22px; padding:0 20px; border-bottom:1px solid #30363d; }
+    /* Pestaña con subrayado inferior; margin-bottom:-1px solapa el borde de la barra. */
+    #dibcfg-tabs .cfg-tab { background:transparent; border:none; border-bottom:2px solid transparent; color:#8b949e; font-size:13px; font-weight:600; padding:10px 0 8px; cursor:pointer; margin-bottom:-1px; }
+    /* Pestaña al pasar el ratón. */
+    #dibcfg-tabs .cfg-tab:hover { color:#d1d4dc; }
+    /* Pestaña activa. */
+    #dibcfg-tabs .cfg-tab.on { color:#ffffff; border-bottom-color:#d1d4dc; }
+    /* Alto mínimo y máximo del cuerpo para evitar saltos entre pestañas. */
+    #dibcfg-cuerpo { min-height:290px; max-height:56vh; }
+    /* Texto de ayuda o mensaje vacío. */
+    #dibcfg-cuerpo .cfg-vacio, #dibcfg-cuerpo .cfg-nota { font-size:12px; color:#8b949e; padding:14px 0; }
+    /* Casilla con etiqueta. */
+    #dibcfg-cuerpo .cfg-check { display:flex; align-items:center; gap:9px; font-size:13px; cursor:pointer; padding:5px 0; }
+    /* Casilla con color de acento azul. */
+    #dibcfg-cuerpo .cfg-check input { width:15px; height:15px; accent-color:#2962ff; cursor:pointer; }
+    /* Controles de estilo en fila. */
+    #dibcfg-cuerpo .cfg-estilo .cfg-controles { display:flex; align-items:center; gap:6px; }
+    /* Lista de estilo con ancho natural. */
+    #dibcfg-cuerpo .cfg-estilo select { width:auto; }
+    /* Fila de visibilidad por temporalidad. */
+    #dibcfg-cuerpo .cfg-vis { display:flex; align-items:center; gap:10px; padding:5px 0; }
+    /* Casilla de ancho fijo. */
+    #dibcfg-cuerpo .cfg-vis .cfg-check { width:104px; flex-shrink:0; }
+    /* Campos numéricos estrechos. */
+    #dibcfg-cuerpo .cfg-vis input[type=number] { width:64px; }
+    /* Pista del rango doble. */
+    #dibcfg-cuerpo .cfg-dual { position:relative; flex:1; height:4px; border-radius:2px; background:#3a3f47; }
+    /* Dos controles de rango superpuestos; pointer-events:none deja que solo los tiradores reciban clics. */
+    #dibcfg-cuerpo .cfg-dual input[type=range] { position:absolute; left:0; top:-7px; width:100%; height:18px; margin:0; background:transparent; pointer-events:none; -webkit-appearance:none; appearance:none; }
+    /* Tirador en Chrome y Safari. */
+    #dibcfg-cuerpo .cfg-dual input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; pointer-events:auto; width:14px; height:14px; border-radius:50%; background:#161b22; border:2px solid #d1d4dc; cursor:pointer; }
+    /* Tirador en Firefox. */
+    #dibcfg-cuerpo .cfg-dual input[type=range]::-moz-range-thumb { pointer-events:auto; width:10px; height:10px; border-radius:50%; background:#161b22; border:2px solid #d1d4dc; cursor:pointer; }
+    /* Pista nativa transparente. */
+    #dibcfg-cuerpo .cfg-dual input[type=range]::-webkit-slider-runnable-track { background:transparent; }
+
+    /* CONTROLES ESPECÍFICOS DE DIBUJOS */
+    /* Ancho de la ventana de ajustes de dibujo (470px, para los controles extra). */
+    #dibcfg-box { width:470px; }
+    /* Grupo de controles alineados en fila. */
+    #dibcfg-cuerpo .cfg-controles { display:flex; align-items:center; gap:8px; }
+    /* Campos de texto y número de los controles. */
+    #dibcfg-cuerpo .cfg-controles input[type=number], #dibcfg-cuerpo .cfg-controles input[type=text] { width:150px; }
+    /* Deslizador de opacidad o grosor con acento violeta. */
+    #dibcfg-cuerpo .cfg-controles input[type=range] { width:90px; accent-color:#8b5cf6; }
+    /* Campo de texto de un punto de anclaje (hora/fecha). */
+    #dibcfg-cuerpo .cfg-punto .cfg-controles input[type=text] { width:150px; }
+    /* Campo numérico (precio) de un punto de anclaje. */
+    #dibcfg-cuerpo .cfg-punto .cfg-controles input[type=number] { width:104px; }
+    /* Cuadro de texto de varias líneas para el texto del dibujo. */
+    #dibcfg-cuerpo input.cfg-texto, #dibcfg-cuerpo textarea.cfg-texto { width:100%; box-sizing:border-box; background:#0d1117; border:1px solid #30363d; color:#d1d4dc; border-radius:6px; padding:8px 10px; font-size:13px; outline:none; font-family:inherit; resize:vertical; }
+    /* Cuadrícula de dos columnas con los niveles de Fibonacci y similares. */
+    #dibcfg-cuerpo .cfg-niveles { display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; padding:4px 0 6px; }
+    /* Un nivel: casilla, valor y color en fila. */
+    #dibcfg-cuerpo .cfg-nivel { display:flex; align-items:center; gap:7px; }
+    /* Campo del valor del nivel. */
+    #dibcfg-cuerpo .cfg-nivel input[type=number] { width:76px; padding:4px 6px; }
+    /* Casilla para activar el nivel. */
+    #dibcfg-cuerpo .cfg-nivel input[type=checkbox] { width:15px; height:15px; accent-color:#2962ff; }
+    /* Color del nivel. */
+    #dibcfg-cuerpo .cfg-nivel input[type=color] { width:30px; height:24px; }
+
+/* -------------------------------------------------------------------------------------------------------
+   -------------------------------- FIN Piña y Jara 56_ajustes_dibujo .CSS -------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

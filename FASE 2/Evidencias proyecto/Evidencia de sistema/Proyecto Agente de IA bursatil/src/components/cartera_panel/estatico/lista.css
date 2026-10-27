@@ -1,0 +1,205 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ INICIO Piña y Jara lista .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* Estilos de la lista de Cartera (posiciones abiertas + tarjetas de cerradas).
+   Lo inyecta comun.css_lista(). OJO (gotcha Streamlit): sin etiquetas HTML en el CSS. */
+
+/* UTILIDADES Y PANEL CONTENEDOR */
+/* Panel principal de la Cartera (contenedor con clave ca_panel de lista.renderizar_cartera_lista). */
+.st-key-ca_panel { background:#0d1117; border:1px solid #1f2937; border-radius:14px; overflow:hidden; margin-top:-30px; } /* margen negativo: sube el panel para alinearlo con el watchlist */
+/* Elimina el espacio entre bloques verticales dentro del panel y del scroll. */
+.st-key-ca_panel, .st-key-ca_panel [data-testid="stVerticalBlock"],
+.st-key-ca_scroll { gap:0 !important; }
+/* Los contenedores con borde internos de Streamlit quedan transparentes y sin borde. */
+.st-key-ca_panel div[data-testid="stVerticalBlockBorderWrapper"] { background:transparent !important; border:none !important; }
+/* Los bloques markdown del panel no dejan margen inferior. */
+.st-key-ca_panel div[data-testid="stMarkdownContainer"] { margin-bottom:0 !important; }
+
+/* ---- Encabezado ---- */
+/* ENCABEZADO DEL PANEL */
+/* Fila del encabezado: ícono, título y subtítulo. */
+.ca-head { display:flex; align-items:center; gap:11px; padding:16px 16px 13px; position:relative; z-index:2; }
+/* Recuadro del ícono con fondo degradado tenue. */
+.ca-head .ic { width:38px; height:38px; border-radius:11px; flex:0 0 auto; display:flex;
+    align-items:center; justify-content:center;
+    background:linear-gradient(135deg,rgba(255,75,75,.16),rgba(255,143,0,.16)); border:1px solid #2a2320; }
+/* Ícono Material Symbols con relleno degradado naranja. */
+.ca-mi { font-family:'Material Symbols Rounded'; font-weight:400; font-size:21px; line-height:1;
+    background:linear-gradient(135deg,#ff6a3d,#ff8f00); -webkit-background-clip:text; background-clip:text; color:transparent; } /* texto transparente: deja ver el degradado recortado */
+/* Título "Cartera". */
+.ca-title { font-size:16px; font-weight:800; color:#fff; letter-spacing:.2px; line-height:1.1; }
+/* Subtítulo del encabezado. */
+.ca-sub { font-size:11.5px; color:#8b949e; margin-top:2px; }
+
+/* ---- P/G total (tarjeta) ---- */
+/* TARJETA DE P/G TOTAL */
+/* Tarjeta con el total de P/G y el contador de posiciones. */
+.ca-totals { margin:0 14px 6px; padding:13px 15px; border-radius:12px; background:#0f1620;
+    border:1px solid #202a37; display:flex; align-items:center; justify-content:space-between; position:relative; z-index:2; }
+/* Etiqueta "P/G total" en mayúsculas pequeñas. */
+.ca-totals .lbl { font-size:10.5px; color:#8b949e; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+/* Burbuja con el número de posiciones abiertas. */
+.ca-totals .cnt { margin-left:7px; font-size:10px; color:#aeb7c2; background:#1a2130;
+    border-radius:999px; padding:2px 8px; letter-spacing:0; }
+/* Valor del P/G total (el feed en vivo lo repinta y le aplica ca-up o ca-down). */
+.ca-totals .val { font-size:20px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:.2px; }
+
+/* ---- Lista ---- */
+/* ZONA DE SCROLL Y FILAS */
+/* Contenedor con scroll (clave ca_scroll, altura fija ALTURA_LISTA en lista.py): barra delgada y oscura. */
+.st-key-ca_scroll { scrollbar-gutter:stable both-edges; scrollbar-width:thin; scrollbar-color:#2b3550 transparent; /* reserva espacio para la barra y la hace fina */
+    padding:4px 14px 12px; }
+/* Ancho de la barra de scroll en navegadores WebKit. */
+.st-key-ca_scroll::-webkit-scrollbar { width:6px; }
+/* Pulgar de la barra de scroll en navegadores WebKit. */
+.st-key-ca_scroll::-webkit-scrollbar-thumb { background:#2b3550; border-radius:3px; }
+
+/* Contenedor de cada fila (clave carow_símbolo_n): referencia de posición para los botones superpuestos. */
+[class*="st-key-carow_"] { position:relative; overflow:hidden; margin-bottom:9px; }
+/* Quita márgenes de los envoltorios de Streamlit dentro de la fila. */
+[class*="st-key-carow_"] div[data-testid="stElementContainer"],
+[class*="st-key-carow_"] div[data-testid="element-container"],
+[class*="st-key-carow_"] div[data-testid="stMarkdownContainer"],
+[class*="st-key-carow_"] div[data-testid="stMarkdown"] { margin:0 !important; }
+
+/* ---- Tarjeta de posición ---- */
+/* TARJETA DE POSICION ABIERTA */
+/* Tarjeta visual de una posición (HTML generado en lista.py); el relleno derecho deja sitio a la X de cierre. */
+.ca-row { display:flex; align-items:center; gap:12px; padding:13px 44px 13px 15px;
+    background:#151c27; border:1px solid #202a37; border-radius:12px; box-sizing:border-box;
+    line-height:1.3; position:relative; overflow:hidden; transition:border-color .14s ease, background .14s ease; }
+/* Franja de color en el borde izquierdo de la tarjeta. */
+.ca-row::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:3px 0 0 3px; }
+/* Franja verde para compras. */
+.ca-row.buy::before  { background:linear-gradient(180deg,#3fb950,#2ea043); }
+/* Franja roja para ventas. */
+.ca-row.sell::before { background:linear-gradient(180deg,#f85149,#da3633); }
+/* Realce de la tarjeta al pasar el cursor sobre su contenedor. */
+[class*="st-key-carow_"]:hover .ca-row { border-color:#30405a; background:#192231; }
+/* Tarjeta seleccionada (detalle desplegado): esquinas inferiores rectas para unirse al detalle de detalle.css. */
+.ca-row.sel { border-color:#36465f; background:#19212e; border-radius:12px 12px 0 0; }
+
+/* Contenedor del ícono del activo. */
+.ca-ico { flex:0 0 auto; display:flex; align-items:center; }
+/* Zona central (símbolo y metadatos); min-width:0 permite recortar texto largo. */
+.ca-mid { flex:1 1 auto; min-width:0; overflow:hidden; }
+/* Nombre del símbolo con la insignia BUY o SELL al lado. */
+.ca-tk { font-size:14.5px; font-weight:700; color:#fff; white-space:nowrap; overflow:hidden;
+    text-overflow:ellipsis; display:flex; align-items:center; gap:7px; }
+/* Insignia pequeña del lado de la operación. */
+.ca-badge { font-size:9.5px; font-weight:800; letter-spacing:.6px; padding:2px 6px; border-radius:5px; flex:0 0 auto; }
+/* Insignia de compra (verde). */
+.ca-badge.buy  { background:rgba(63,185,80,.15);  color:#3fb950; }
+/* Insignia de venta (roja). */
+.ca-badge.sell { background:rgba(248,81,73,.15);  color:#f6465d; }
+/* Línea de metadatos (lotes y precio de apertura). */
+.ca-meta { font-size:11.5px; color:#8b949e; margin-top:4px; white-space:nowrap; overflow:hidden;
+    text-overflow:ellipsis; font-variant-numeric:tabular-nums; }
+/* Zona derecha: P/G y flecha del acordeón. */
+.ca-right { text-align:right; flex:0 0 auto; white-space:nowrap; display:flex; align-items:center; gap:8px; }
+/* P/G de la posición (el feed en vivo lo repinta con data-pj-pos). */
+.ca-pl { font-size:15.5px; font-weight:800; font-variant-numeric:tabular-nums; }
+/* Flecha que indica si el detalle está plegado o desplegado. */
+.ca-caret { color:#5a6676; font-size:11px; transition:color .14s ease; }
+/* La flecha se aclara al pasar el cursor por la fila. */
+[class*="st-key-carow_"]:hover .ca-caret { color:#8b949e; }
+/* Colores de ganancia (verde) y pérdida (rojo) para P/G; los usa también el total. */
+.ca-up { color:#2ebd85; } .ca-down { color:#f6465d; }
+
+/* BOTONES SUPERPUESTOS DE LA FILA */
+/* Botón de selección (clave casel_): se estira sobre toda la fila, invisible, para que cualquier clic despliegue el detalle. */
+[class*="st-key-casel_"] { position:absolute !important; top:0 !important; right:0 !important; bottom:0 !important;
+    left:0 !important; width:100% !important; height:100% !important; margin:0 !important; padding:0 !important; z-index:1; }
+/* Todo lo que hay dentro del botón de selección ocupa el 100 por ciento y sin espacios. */
+[class*="st-key-casel_"] * { width:100% !important; height:100% !important; min-height:0 !important; margin:0 !important; padding:0 !important; }
+/* El botón en sí es transparente pero clicable. */
+[class*="st-key-casel_"] button { opacity:0; cursor:pointer; }
+
+/* Botón X para cerrar la posición (por encima del overlay de selección) */
+/* Contenedor del botón X (clave cacls_): posicionado en la esquina derecha de la fila, sobre el overlay (z-index 2). */
+[class*="st-key-cacls_"] { position:absolute !important; right:11px; top:13px;
+    width:28px !important; margin:0 !important; z-index:2; }
+/* Sin márgenes en los elementos internos del botón X. */
+[class*="st-key-cacls_"] * { margin:0 !important; }
+/* Botón X: cuadrado pequeño, transparente y discreto. */
+[class*="st-key-cacls_"] button { width:28px !important; height:28px !important; min-height:28px !important;
+    padding:0 !important; background:transparent !important; border:none !important; box-shadow:none !important;
+    color:#6b7686 !important; border-radius:8px !important; font-size:14px !important; cursor:pointer;
+    transition:background .14s ease, color .14s ease; }
+/* Botón X al pasar el cursor: fondo rojizo para indicar acción destructiva. */
+[class*="st-key-cacls_"] button:hover { background:rgba(248,81,73,0.16) !important; color:#f85149 !important; }
+
+/* MENSAJES Y ESTADO VACIO */
+/* Aviso de lista vacía. */
+.ca-empty { padding:40px 20px; text-align:center; color:#8b949e; font-size:13px; line-height:1.6; }
+/* Resultado puntual correcto (ca_result en st.session_state). */
+.ca-result-ok { color:#2ebd85; font-size:13px; padding:8px 14px; }
+/* Resultado puntual con error (por ejemplo, no se pudo cerrar). */
+.ca-result-err { color:#f85149; font-size:13px; padding:8px 14px; }
+
+/* ---- Tarjetas de posiciones CERRADAS (aviso con "Aceptar") ---- */
+/* TARJETAS DE POSICIONES CERRADAS */
+/* Contenedor de cada tarjeta de cerrada (clave cacerr_ticket). */
+[class*="st-key-cacerr_"] { margin:0 0 9px; }
+/* Sin márgenes en los envoltorios de Streamlit de la tarjeta. */
+[class*="st-key-cacerr_"] div[data-testid="stElementContainer"],
+[class*="st-key-cacerr_"] div[data-testid="stMarkdownContainer"] { margin:0 !important; }
+/* Tarjeta de cerrada: borde punteado que la distingue de las abiertas. */
+.ca-closed { background:#12161d; border:1px dashed #33425c; border-radius:12px; padding:12px 14px;
+    box-sizing:border-box; width:100%; overflow:hidden; }
+/* Fila superior: ícono, símbolo, etiqueta y P/G. */
+.cc-top { display:flex; align-items:center; gap:10px; }
+/* Ícono atenuado del activo. */
+.cc-ico { flex:0 0 auto; display:flex; align-items:center; opacity:.8; }
+/* Nombre del símbolo en tono apagado. */
+.cc-sym { font-size:14px; font-weight:700; color:#c3ccd6; display:flex; align-items:center; gap:7px; min-width:0; }
+/* Insignia BUY o SELL en tonos apagados. */
+.cc-badge { font-size:9px; font-weight:800; letter-spacing:.6px; padding:2px 6px; border-radius:5px; }
+/* Insignia de compra apagada. */
+.cc-badge.buy  { background:rgba(63,185,80,.12); color:#5fae6a; }
+/* Insignia de venta apagada. */
+.cc-badge.sell { background:rgba(248,81,73,.12); color:#c56a66; }
+/* Etiqueta "CERRADA". */
+.cc-tag { font-size:9px; font-weight:800; letter-spacing:.6px; padding:2px 6px; border-radius:5px;
+    background:#232e42; color:#8b9bb4; }
+/* P/G final de la posición cerrada, empujado a la derecha (se combina con ca-up o ca-down). */
+.cc-pl { margin-left:auto; font-size:15px; font-weight:800; font-variant-numeric:tabular-nums; }
+/* Cuadrícula de datos (cantidad, apertura, cierre y hora). */
+.cc-grid { margin-top:9px; border-top:1px solid #1c2531; padding-top:8px;
+    display:flex; flex-wrap:wrap; gap:4px 18px; }
+/* Cada dato de la cuadrícula. */
+.cc-grid .it { font-size:12px; color:#8b949e; }
+/* Valor resaltado dentro del dato. */
+.cc-grid .it b { color:#c9d1d9; font-weight:600; font-variant-numeric:tabular-nums; }
+/* Botón "Aceptar" de la tarjeta cerrada (clave cacerr_ok_ticket, dentro del contenedor cacerr_). */
+[class*="st-key-cacerr_"] button { background:#1a2130 !important; border:1px solid #33425c !important;
+    color:#c3ccd6 !important; height:34px !important; min-height:34px !important;
+    border-radius:9px !important; margin-top:9px !important; font-size:13px !important; }
+/* Realce del botón "Aceptar" al pasar el cursor. */
+[class*="st-key-cacerr_"] button:hover { border-color:#58a6ff !important; color:#fff !important; background:#21304a !important; }
+
+/* -------------------------------------------------------------------------------------------------------
+   -------------------------------------- FIN Piña y Jara lista .CSS -------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

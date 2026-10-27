@@ -1,0 +1,15 @@
+{
+  "feeds": {
+    "general": "https://es.investing.com/rss/news.rss",
+    "mercados": "https://es.investing.com/rss/market_overview.rss",
+    "forex": "https://es.investing.com/rss/news_1.rss",
+    "acciones": "https://es.investing.com/rss/news_25.rss",
+    "cripto": "https://es.investing.com/rss/news_301.rss",
+    "economia": "https://es.investing.com/rss/news_14.rss"
+  },
+  "aviso_fuente": "Noticias en tiempo real obtenidas de Investing.com (en español).",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+  }
+}

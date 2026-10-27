@@ -1,0 +1,117 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ------------------------------ INICIO Piña y Jara 10_barra_superior .HTML -----------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!-- [grafico] Barra superior: temporalidades, tipo de gráfico, indicadores y acciones -->
+    <!-- Barra superior #tv-topbar (estilos en css/10_base_y_barra_superior.css). Los botones los conecta el JS de estado y acciones (01_estado_y_configuracion.js y 50_tiempo_real_y_acciones.js). -->
+    <div id="tv-topbar">
+        <!-- Botones de temporalidad (clase tvtf): data-tf es el timeframe de MT5 y data-n la cantidad de velas que se piden; la clase active marca la temporalidad actual. -->
+        <div id="tv-tf" title="Temporalidad">
+            <button class="tvtf" data-tf="M1" data-n="1500">M1</button>
+            <button class="tvtf" data-tf="M5" data-n="1500">M5</button>
+            <button class="tvtf" data-tf="M15" data-n="1500">M15</button>
+            <button class="tvtf" data-tf="M30" data-n="1500">M30</button>
+            <button class="tvtf active" data-tf="H1" data-n="1500">H1</button>
+            <button class="tvtf" data-tf="H4" data-n="1500">H4</button>
+            <button class="tvtf" data-tf="D1" data-n="1000">D1</button>
+            <button class="tvtf" data-tf="W1" data-n="520">W1</button>
+            <button class="tvtf" data-tf="MN1" data-n="180">MN</button>
+        </div>
+        <!-- Grupo de acciones de la derecha: tipo de gráfico, comparar, indicadores, backtest, captura y pantalla completa. -->
+        <div id="tv-actions">
+            <!-- Selector Tipo de Gráfico -->
+            <!-- Desplegable de tipo de gráfico: el botón #btn-type-select abre #type-menu (clase show, ver css/20_menus_desplegables.css). -->
+            <div class="tv-dropdown" id="type-dropdown">
+                <button class="tvbtn activo" id="btn-type-select" title="Cambiar tipo de gráfico">
+                    <svg viewBox="0 0 20 20"><path d="M6 3v3M6 14v3M14 5v2M14 15v2"/><rect x="4" y="6" width="4" height="8" rx=".6" fill="currentColor"/><rect x="12" y="7" width="4" height="8" rx=".6" fill="currentColor"/></svg>
+                    <span>Velas</span>
+                    <svg class="caret" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5"/></svg>
+                </button>
+                <!-- Menú con los tipos disponibles; data-type es el identificador que usa el JS y data-label el texto que se muestra en el botón. -->
+                <div class="tv-dropdown-content" id="type-menu">
+                    <div class="tv-drop-item" data-type="candlestick" data-label="Velas"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M6 3v3M6 14v3M14 5v2M14 15v2"/><rect x="4" y="6" width="4" height="8" rx=".6" fill="currentColor"/><rect x="12" y="7" width="4" height="8" rx=".6" fill="currentColor"/></svg>
+                        Velas Japonesas</span></div>
+                    <div class="tv-drop-item" data-type="hollow" data-label="Velas huecas"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M6 3v3M6 14v3M14 5v2M14 15v2"/><rect x="4" y="6" width="4" height="8" rx=".6"/><rect x="12" y="7" width="4" height="8" rx=".6"/></svg>
+                        Velas Huecas</span></div>
+                    <div class="tv-drop-item" data-type="bars" data-label="Barras"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M6 3v14M6 7H3.5M6 13h2.5M14 4v13M14 8h-2.5M14 13h2.5"/></svg>
+                        Barras (OHLC)</span></div>
+                    <div class="tv-drop-item" data-type="line" data-label="Línea"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M2.5 14l4.5-5 3.5 3L17.5 5"/></svg>
+                        Línea</span></div>
+                    <div class="tv-drop-item" data-type="area" data-label="Área"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M2.5 14l4.5-5 3.5 3L17.5 5V17H2.5z" fill="currentColor" fill-opacity=".18" stroke="none"/><path d="M2.5 14l4.5-5 3.5 3L17.5 5"/></svg>
+                        Área</span></div>
+                    <div class="tv-drop-item" data-type="heikin" data-label="Heikin Ashi"><span class="lbl">
+                        <svg viewBox="0 0 20 20"><path d="M4.5 4v2M4.5 13v3M10 3v3M10 12v2M15.5 6v2M15.5 15v2"/><rect x="3" y="6" width="3" height="7" rx=".5"/><rect x="8.5" y="6" width="3" height="6" rx=".5" fill="currentColor"/><rect x="14" y="8" width="3" height="7" rx=".5"/></svg>
+                        Heikin Ashi</span></div>
+                </div>
+            </div>
+
+            <!-- Comparar con otros símbolos (varias series en % sobre el mismo gráfico) -->
+            <!-- Botón que abre la ventana de comparar símbolos (html/60_modal_comparar.html, JS 35_comparar_simbolos.js). -->
+            <button class="tvbtn" id="btn-cmp-select" title="Comparar con otros símbolos">
+                <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6.5v7M6.5 10h7"/></svg>
+                <span>Comparar</span>
+            </button>
+
+            <!-- Selector de Indicadores Funcionales (Estilo Modal Búsqueda) -->
+            <!-- Contenedor del botón de indicadores; el botón #btn-ind-select abre la ventana de html/50_modal_indicadores.html. -->
+            <div class="tv-dropdown" id="ind-dropdown">
+                <button class="tvbtn" id="btn-ind-select" title="Añadir indicadores técnicos">
+                    <svg viewBox="0 0 20 20"><path d="M2.5 11c1.8-6 3.6-6 5.4 0s3.6 6 5.4 0 2.4-3 4.2-3"/></svg>
+                    <span>Indicadores</span>
+                    <svg class="caret" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5"/></svg>
+                </button>
+            </div>
+
+            <!-- Backtest: probar una estrategia con datos históricos -->
+            <!-- Botón que abre la ventana de backtest (html/65_modal_backtest.html, JS 61_backtest_ui.js). -->
+            <button class="tvbtn" id="btn-bt-open" title="Probar una estrategia con datos históricos (backtest)">
+                <svg viewBox="0 0 20 20"><path d="M3 16V4M3 16h14"/><path d="M6 12l3-3 2.5 2.5L16 6"/></svg>
+                <span>Backtest</span>
+            </button>
+
+            <!-- Botón que activa o desactiva el modo Replay: volver a un punto del pasado y practicar vela a vela (JS 62_replay_motor.js y 63_replay_ui.js, CSS 66_replay.css). -->
+            <button class="tvbtn" id="btn-rp-open" title="Replay: vuelve a un punto del pasado y practica operando vela a vela">
+                <svg viewBox="0 0 20 20"><path d="M10 4.5a5.5 5.5 0 1 1-5.2 3.7"/><path d="M3.5 4.5v4h4"/><path d="M8.5 7.5l4 2.5-4 2.5z" fill="currentColor"/></svg>
+                <span>Replay</span>
+            </button>
+
+            <!-- Botón que descarga una imagen del gráfico (JS 50_tiempo_real_y_acciones.js). -->
+            <button class="tvbtn icon" id="btn-shot" title="Descargar imagen del gráfico">
+                <svg viewBox="0 0 20 20"><path d="M3 7h2.8l1.2-2h6l1.2 2H17v9H3z"/><circle cx="10" cy="11.2" r="2.8"/></svg>
+            </button>
+            <!-- Botón de pantalla completa (JS 55_pantalla_completa.js; estilos en css/80_pantalla_completa.css). -->
+            <button class="tvbtn icon" id="btn-full" title="Pantalla completa">
+                <svg viewBox="0 0 20 20"><path d="M3 7.5V3h4.5M12.5 3H17v4.5M17 12.5V17h-4.5M7.5 17H3v-4.5"/></svg>
+            </button>
+        </div>
+    </div>
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ------------------------------- FIN Piña y Jara 10_barra_superior .HTML -------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->

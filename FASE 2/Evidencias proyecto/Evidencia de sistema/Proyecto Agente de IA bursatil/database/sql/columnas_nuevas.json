@@ -1,0 +1,10 @@
+[
+  [
+    "origen",
+    "TEXT DEFAULT 'agente'"
+  ],
+  [
+    "vigilancia_id",
+    "TEXT"
+  ]
+]
