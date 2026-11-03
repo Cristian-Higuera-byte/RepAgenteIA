@@ -1,0 +1,110 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ---------------------------------- INICIO Piña y Jara esqueleto .HTML ---------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+
+<!-- Esqueleto del gráfico: ensamblador.py reemplaza cada línea que empieza por el marcador de inclusión por el contenido de ese fragmento. Aquí van los estilos (css/); el orden importa porque las reglas posteriores pueden sobrescribir a las anteriores. -->
+<style>
+@@css/10_base_y_barra_superior.css
+@@css/20_menus_desplegables.css
+@@css/30_cuerpo_y_herramientas.css
+@@css/40_lienzo.css
+@@css/50_paneles_osciladores.css
+@@css/55_indicadores.css
+@@css/56_ajustes_dibujo.css
+@@css/60_barra_rangos.css
+@@css/70_comparar.css
+@@css/65_backtest.css
+@@css/66_replay.css
+@@css/80_pantalla_completa.css
+</style>
+
+<!-- Contenedor raíz del gráfico. Dentro van la barra superior, el cuerpo (herramientas, lienzo y osciladores), la barra de rangos y las ventanas modales. -->
+<div id="tradingview-contenedor">
+@@html/10_barra_superior.html
+    
+    <div id="tradingview-cuerpo">
+        <div id="tradingview-principal-lienzo-area">
+@@html/20_barra_herramientas.html
+@@html/30_lienzo.html
+            </div>
+        </div>
+        <!-- Contenedor de los paneles de osciladores (css/50_paneles_osciladores.css); el JS de indicadores lo llena. -->
+        <div id="osc-paneles"></div>
+    </div>
+
+@@html/40_barra_rangos.html
+    </div>
+    <!-- Las ventanas (indicadores y comparar) van DENTRO de #tradingview-contenedor: en pantalla completa solo se ve lo que
+         está dentro del elemento en pantalla completa; fuera de él no se abrirían -->
+@@html/50_modal_indicadores.html
+@@html/52_ajustes_indicador.html
+@@html/53_ajustes_dibujo.html
+@@html/60_modal_comparar.html
+@@html/65_modal_backtest.html
+@@html/70_selector_activo.html
+</div>
+
+<!-- Primer bloque de script: avisos de carga, independiente del resto para mostrar errores aunque falle la librería. -->
+<script>
+@@js/00_avisos_de_carga.js
+</script>
+
+<!-- Librería Lightweight Charts, necesaria antes del bloque principal. -->
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+@@js/01_estado_y_configuracion.js
+@@js/10_grafico_base.js
+@@js/20_dibujo_base.js
+@@js/21_dibujo_hit_y_render.js
+@@js/22_dibujo_interaccion.js
+@@js/23_dibujo_barra_estilos.js
+@@js/24_dibujo_texto.js
+@@js/25_dibujo_pincel_resaltador_flechas.js
+@@js/26_dibujo_extra_base.js
+@@js/27_dibujo_extra_lineas_patrones.js
+@@js/28_dibujo_extra_proyeccion_figuras_texto.js
+@@js/29_dibujo_fibonacci_gann.js
+@@js/29_dibujo_ajustes_herramienta.js
+@@js/29_dibujo_cursores.js
+@@js/30_indicadores_calculo.js
+@@js/31_indicadores_paneles.js
+@@js/32_indicadores_modal.js
+@@js/33_indicadores_catalogo.js
+@@js/35_comparar_simbolos.js
+@@js/40_datos_y_leyenda.js
+__POSICIONES_JS__
+
+@@js/50_tiempo_real_y_acciones.js
+@@js/55_pantalla_completa.js
+@@js/60_backtest_motor.js
+@@js/61_backtest_ui.js
+@@js/62_replay_motor.js
+@@js/63_replay_ui.js
+@@js/99_cierre.js
+</script>
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ----------------------------------- FIN Piña y Jara esqueleto .HTML -----------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->

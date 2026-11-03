@@ -1,0 +1,19 @@
+{
+  "simular_escenario_cartera": {
+    "descripcion": "Simula el impacto monetario y de margen en toda la cartera ante un escenario 'What-If' (ej: '¿Qué pasa si el USD/CLP sube 3%?' o '¿Qué ocurre si el EUR/USD cae 1.5%?'). Calcula el impacto directo, indirecto por correlación, la equidad proyectada, el nivel de margen resultante y detecta alertas de Margin Call o Stop Out.",
+    "parametros": {
+      "variaciones_pct": {
+        "type": "string",
+        "description": "Diccionario en texto o JSON con los activos a simular y sus variaciones porcentuales. Ejemplos: '{\"USDCLP\": 3.0}' o '{\"EURUSD\": -1.5, \"USDCLP\": 2.0}'."
+      },
+      "incluir_noticias_contexto": {
+        "type": "boolean",
+        "description": "Si es True, consulta Investing.com para traer contexto macroeconómico reciente. Por defecto True."
+      }
+    },
+    "requeridos": [
+      "variaciones_pct"
+    ],
+    "nombre": "simular_escenario_cartera"
+  }
+}

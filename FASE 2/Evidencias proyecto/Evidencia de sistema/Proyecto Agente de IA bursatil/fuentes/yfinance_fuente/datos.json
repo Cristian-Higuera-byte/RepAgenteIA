@@ -1,0 +1,99 @@
+{
+  "periodos": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ],
+  "intervalos": [
+    "1m",
+    "2m",
+    "5m",
+    "15m",
+    "30m",
+    "60m",
+    "90m",
+    "1h",
+    "1d",
+    "5d",
+    "1wk",
+    "1mo",
+    "3mo"
+  ],
+  "aviso_retraso": "Datos de Yahoo Finance; pueden tener retraso de hasta ~15 min según el mercado.",
+  "campos_texto": {
+    "nombre": "longName",
+    "sector": "sector",
+    "industria": "industry",
+    "pais": "country",
+    "moneda": "currency",
+    "sitio_web": "website"
+  },
+  "campos_num": {
+    "capitalizacion": "marketCap",
+    "per_trailing": "trailingPE",
+    "per_forward": "forwardPE",
+    "eps_trailing": "trailingEps",
+    "eps_forward": "forwardEps",
+    "precio_sobre_valor_libro": "priceToBook",
+    "dividendo_anual_por_accion": "dividendRate",
+    "beta": "beta",
+    "margen_bruto": "grossMargins",
+    "margen_operativo": "operatingMargins",
+    "margen_neto": "profitMargins",
+    "roe": "returnOnEquity",
+    "roa": "returnOnAssets",
+    "deuda_total": "totalDebt",
+    "caja_total": "totalCash",
+    "deuda_sobre_capital": "debtToEquity",
+    "ratio_corriente": "currentRatio",
+    "ingresos_totales": "totalRevenue",
+    "crecimiento_ingresos": "revenueGrowth",
+    "crecimiento_beneficios": "earningsGrowth",
+    "ebitda": "ebitda",
+    "flujo_caja_libre": "freeCashflow",
+    "empleados": "fullTimeEmployees"
+  },
+  "estados": {
+    "resultados": [
+      "income_stmt",
+      "quarterly_income_stmt",
+      [
+        "Total Revenue",
+        "Gross Profit",
+        "Operating Income",
+        "EBITDA",
+        "Net Income",
+        "Diluted EPS"
+      ]
+    ],
+    "balance": [
+      "balance_sheet",
+      "quarterly_balance_sheet",
+      [
+        "Total Assets",
+        "Total Liabilities Net Minority Interest",
+        "Stockholders Equity",
+        "Total Debt",
+        "Net Debt",
+        "Cash And Cash Equivalents"
+      ]
+    ],
+    "flujo_caja": [
+      "cashflow",
+      "quarterly_cashflow",
+      [
+        "Operating Cash Flow",
+        "Capital Expenditure",
+        "Free Cash Flow"
+      ]
+    ]
+  }
+}

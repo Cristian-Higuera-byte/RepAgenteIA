@@ -1,0 +1,55 @@
+{
+  "timeframes": {
+    "M1": 1,
+    "M5": 5,
+    "M15": 15,
+    "M30": 30,
+    "H1": 16385,
+    "H4": 16388,
+    "D1": 16408,
+    "W1": 32769,
+    "MN1": 49153
+  },
+  "funciones_permitidas": [
+    "account_info",
+    "copy_rates_from_pos",
+    "copy_rates_range",
+    "history_deals_get",
+    "history_deals_total",
+    "history_orders_get",
+    "history_orders_total",
+    "last_error",
+    "order_calc_margin",
+    "order_calc_profit",
+    "orders_get",
+    "orders_total",
+    "positions_get",
+    "positions_total",
+    "symbol_info",
+    "symbol_info_tick",
+    "symbol_select",
+    "symbols_get",
+    "symbols_total",
+    "terminal_info",
+    "version"
+  ],
+  "alias": {
+    "GOLD": [
+      "XAUUSD",
+      "GOLD"
+    ],
+    "XAUUSD": [
+      "XAUUSD",
+      "GOLD"
+    ],
+    "US500": [
+      "US500",
+      "SPX500",
+      "US500CASH"
+    ],
+    "EURUSD": [
+      "EURUSD",
+      "EURUSDmicro"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- -------------------------------------------------------------------------------------------------------
+   -------------------------------- INICIO Piña y Jara usuario_menu .HTML --------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+        <!-- Menu del usuario: plantilla que barra.py rellena con las iniciales y el nombre. Se muestra en la ultima columna de la barra superior. -->
+        <!-- Contenedor alineado a la derecha -->
+        <div style='display:flex; align-items:center; justify-content:flex-end; white-space:nowrap;'>
+            <!-- Menu desplegable nativo (details): se abre al hacer clic en el nombre, sin recargar; estilos navegacion-usuario en estilos.css -->
+            <details class='navegacion-usuario' style='position:relative;'>
+                <!-- Parte siempre visible: avatar con iniciales, nombre y flecha -->
+                <summary style='display:flex; align-items:center; gap:8px; cursor:pointer; user-select:none;'>
+                    <!-- Avatar circular con las iniciales -->
+                    <div style='width:30px; height:30px; border-radius:50%;
+                                background:#1f6feb; color:#ffffff; display:flex;
+                                align-items:center; justify-content:center;
+                                font-weight:bold; font-size:12px;'>__INICIALES__</div>
+                    <!-- Nombre del usuario -->
+                    <span style='color:#e6edf3; font-size:13px;'>__USUARIO__</span>
+                    <!-- Flecha que gira al abrir (regla navegacion-usuario open en estilos.css) -->
+                    <span class='navegacion-flecha' style='color:#8b949e; font-size:11px;
+                          transition:transform .15s ease;'>▾</span>
+                </summary>
+                <!-- Panel flotante con las opciones -->
+                <div style='position:absolute; right:0; top:calc(100% + 10px);
+                            background:#0f1620; border:1px solid #30363d; border-radius:10px;
+                            min-width:210px; padding:6px; z-index:3000;
+                            box-shadow:0 8px 24px rgba(0,0,0,0.5);'>
+                    <!-- Opcion Mi perfil: el parametro perfil=1 lo procesa acceso/pantalla.py (requerir_login); s conserva la sesion -->
+                    <a href='?perfil=1&s=__TOKEN__' target='_self' class='navegacion-menu-elemento'
+                       style='display:flex; align-items:center; gap:10px;
+                         padding:9px 12px; border-radius:6px; color:#e6edf3; font-size:13px;
+                         cursor:pointer; text-decoration:none;'><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' style='flex:none; color:#8b949e;'><path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/><circle cx='12' cy='7' r='4'/></svg>Mi perfil</a>
+                    <!-- Opcion Configuracion: abre el perfil en la seccion de preferencias -->
+                    <a href='?perfil=preferencias&s=__TOKEN__' target='_self' class='navegacion-menu-elemento'
+                       style='display:flex; align-items:center; gap:10px;
+                         padding:9px 12px; border-radius:6px; color:#e6edf3; font-size:13px;
+                         cursor:pointer; text-decoration:none;'><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' style='flex:none; color:#8b949e;'><line x1='21' y1='4' x2='14' y2='4'/><line x1='10' y1='4' x2='3' y2='4'/><line x1='21' y1='12' x2='12' y2='12'/><line x1='8' y1='12' x2='3' y2='12'/><line x1='21' y1='20' x2='16' y2='20'/><line x1='12' y1='20' x2='3' y2='20'/><line x1='14' y1='2' x2='14' y2='6'/><line x1='8' y1='10' x2='8' y2='14'/><line x1='16' y1='18' x2='16' y2='22'/></svg>Configuración</a>
+                    <!-- Linea separadora; a continuacion, en la MISMA linea, las entradas de cuentas (cambiar demo/real y Mis cuentas) que genera conectar_cuenta/menu.py: vacio con el modo multiusuario apagado. No separar en otra linea: una linea en blanco corta el bloque HTML de Markdown y el menu se ve como codigo -->
+                    <div style='height:1px; background:#30363d; margin:4px 6px;'></div>__ENTRADAS_CUENTA__
+                    <!-- Cerrar sesion: el parametro logout=1 lo procesa acceso/pantalla.py (requerir_login) -->
+                    <a href='?logout=1' target='_self' class='navegacion-menu-elemento'
+                       style='display:flex; align-items:center; gap:10px;
+                         padding:9px 12px; border-radius:6px; color:#f85149; font-size:13px;
+                         cursor:pointer; text-decoration:none;'><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' style='flex:none;'><path d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/><polyline points='16 17 21 12 16 7'/><line x1='21' y1='12' x2='9' y2='12'/></svg>Cerrar sesión</a>
+                </div>
+            </details>
+        </div>
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ---------------------------------- FIN Piña y Jara usuario_menu .HTML ---------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->

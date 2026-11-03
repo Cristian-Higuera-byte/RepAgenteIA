@@ -1,0 +1,187 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ---------------------------------- INICIO Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+    /* TITULO BURBUJA FLOTANTE */
+    /* Botón redondo fijo en la esquina inferior derecha (contenedor pj_chat_burbuja de panel.py), visible en todas las secciones. */
+    .st-key-pj_chat_burbuja { position: fixed !important; right: var(--pj-chat-der, 22px); bottom: 22px; width: 58px; height: 58px; z-index: 100001; transition: right .2s ease; }
+    .st-key-chat_burbuja_abrir button { width: 58px !important; height: 58px !important; min-height: 58px !important; padding: 0 !important; border-radius: 50% !important;
+        border: none !important; color: #fff !important; background: linear-gradient(135deg, #ff4b4b, #ff8f00) !important; position: relative;
+        box-shadow: 0 6px 20px rgba(255, 110, 0, .35), 0 2px 6px rgba(0, 0, 0, .5) !important; transition: transform .15s ease, box-shadow .15s ease; }
+    .st-key-chat_burbuja_abrir button:hover { transform: scale(1.07); box-shadow: 0 8px 26px rgba(255, 110, 0, .5), 0 2px 8px rgba(0, 0, 0, .5) !important; }
+    .st-key-chat_burbuja_abrir button:active { transform: scale(.96); }
+    /* Ícono del agente, grande y centrado. */
+    .st-key-chat_burbuja_abrir button span, .st-key-chat_burbuja_abrir button [data-testid="stIconMaterial"] { font-size: 30px !important; color: #fff !important; margin: 0 !important; }
+    /* Etiqueta al pasar el cursor (como el rail): el nombre sale a la izquierda de la burbuja. */
+    .st-key-chat_burbuja_abrir button::after { content: "Agente IA"; position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%);
+        padding: 5px 10px; border-radius: 8px; background: #161b22; border: 1px solid #30363d; color: #e6edf3; font-size: 12px; font-weight: 600; white-space: nowrap;
+        opacity: 0; pointer-events: none; transition: opacity .12s ease; }
+    .st-key-chat_burbuja_abrir button:hover::after { opacity: 1; }
+    /* El agente está respondiendo: un aro que late alrededor de la burbuja, aunque el chat esté cerrado. */
+    .st-key-pj_chat_burbuja:has(.pj-chat-ocupado) button::before { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #ff8f00;
+        animation: pj-chat-pulso 1.3s ease-out infinite; }
+    @keyframes pj-chat-pulso { 0% { transform: scale(.92); opacity: .9; } 100% { transform: scale(1.3); opacity: 0; } }
+    /* Con el chat abierto la burbuja sobra (se cierra con la X) y, con el gráfico ampliado, taparía sus controles. */
+    html.pj-chat-abierto .st-key-pj_chat_burbuja, html.pj-grafico-expandido .st-key-pj_chat_burbuja { display: none !important; }
+
+    /* TITULO PANEL DEL CHAT */
+    /* Ventana flotante sobre la esquina inferior derecha (contenedor pj_chat_flotante). Cerrada: invisible y sin clics; abierta (clase pj-chat-abierto en html): aparece subiendo. */
+    .st-key-pj_chat_flotante { position: fixed !important; right: var(--pj-chat-pop-der, 22px); bottom: 90px; width: 410px; height: min(640px, calc(100vh - 112px)); z-index: 100001;
+        display: flex !important; flex-direction: column; gap: 0 !important; background: #0b0f19; border: 1px solid #30363d; border-radius: 16px; overflow: hidden;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, .6); box-sizing: border-box;
+        visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(14px) scale(.98); transform-origin: bottom right;
+        transition: opacity .16s ease, transform .16s ease, visibility 0s linear .16s; }
+    html.pj-chat-abierto .st-key-pj_chat_flotante { visibility: visible; opacity: 1; pointer-events: auto; transform: none; transition-delay: 0s; }
+    /* Título de la ventana y botón de cerrar (arriba a la derecha). */
+    .pj-chat-titulo { display: flex; align-items: center; gap: 8px; padding: 12px 54px 10px 16px; color: #e6edf3; font-size: 15px; }
+    .pj-chat-titulo .agente-icono-material { color: #ff8f00; font-size: 22px; }
+    .st-key-chat_cerrar { position: absolute !important; top: 8px; right: 8px; width: 34px !important; z-index: 2; }
+    .st-key-chat_cerrar button { width: 34px !important; height: 34px !important; min-height: 34px !important; padding: 0 !important; border-radius: 10px !important;
+        background: transparent !important; border: none !important; color: #8b949e !important; }
+    .st-key-chat_cerrar button:hover { background: #21262d !important; color: #fff !important; }
+    /* La tarjeta del chat llena el resto de la ventana, sin marco propio: la zona de mensajes se estira y la caja de texto queda abajo. */
+    .st-key-pj_chat_flotante > [data-testid="stElementContainer"]:not(.st-key-chat_cerrar), .st-key-pj_chat_flotante > [data-testid="stLayoutWrapper"] { width: 100%; }
+    .st-key-pj_chat_flotante > [data-testid="stLayoutWrapper"]:has(> .st-key-agente_chat_panel_flot) { flex: 1 1 0; min-height: 0; }
+    .st-key-agente_chat_panel_flot { height: 100%; display: flex !important; flex-direction: column; gap: 8px !important; border: none !important; border-radius: 0 !important;
+        background: transparent !important; padding: 0 0 12px !important; min-height: 0; }
+    /* El chat es un fragmento y Streamlit lo envuelve en dos bloques más: la cadena de bloques que lleva la zona de mensajes hasta la tarjeta también reparte el alto (flex), para que
+       la zona de mensajes sea la que se achica y la caja de texto quede siempre a la vista, sin cortarse abajo. */
+    .st-key-agente_chat_panel_flot > [data-testid="stLayoutWrapper"]:has(.st-key-agente_chat_desplazamiento_flot) { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; }
+    .st-key-agente_chat_panel_flot > [data-testid="stLayoutWrapper"]:has(.st-key-agente_chat_desplazamiento_flot) > [data-testid="stVerticalBlock"] { flex: 1 1 0; min-height: 0; }
+    .st-key-agente_chat_panel_flot [data-testid="stLayoutWrapper"]:has(> .st-key-agente_chat_desplazamiento_flot) { flex: 1 1 0; min-height: 0; }
+    .st-key-agente_chat_desplazamiento_flot { height: 100% !important; }
+    .st-key-agente_chat_desplazamiento_flot { height: 100% !important; }
+    /* Nueva conversación y Límites siempre lado a lado (Streamlit apila las columnas en pantallas angostas). */
+    .st-key-agente_chat_panel_flot [data-testid="stHorizontalBlock"] { flex-direction: row !important; flex-wrap: nowrap !important; }
+    .st-key-agente_chat_panel_flot [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { min-width: 0 !important; flex: 1 1 0 !important; width: auto !important; }
+    /* Controles y barra de cuota con el mismo margen lateral que la caja de texto. */
+    .st-key-agente_chat_panel_flot .cuota-ia { margin: 0 14px; }
+
+    /* TITULO TABLAS DENTRO DEL CHAT ANGOSTO */
+    /* En el chat flotante y en el lateral las tablas del agente (varias columnas) eran más anchas que el mensaje y se salían corridas. Ahora la tabla no pasa del
+       ancho del mensaje: letra y espacios más chicos, textos que se parten en varias líneas y, si aun así no cabe, desplazamiento horizontal dentro de la propia tabla. */
+    .st-key-agente_chat_panel_flot [data-testid="stMarkdownContainer"] { min-width: 0; max-width: 100%; }
+    .st-key-agente_chat_panel_flot [data-testid="stMarkdownContainer"] table { display: block; max-width: 100%; overflow-x: auto; margin: 6px 0; border-collapse: collapse; font-size: 11.5px; line-height: 1.3; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+    .st-key-agente_chat_panel_flot [data-testid="stMarkdownContainer"] th, .st-key-agente_chat_panel_flot [data-testid="stMarkdownContainer"] td {
+        padding: 4px 5px !important; white-space: normal; overflow-wrap: break-word; vertical-align: top; font-size: 11.5px; max-width: 120px; }
+    .st-key-agente_chat_panel_flot [data-testid="stMarkdownContainer"] th { font-weight: 700; white-space: nowrap; background: transparent; }
+
+    /* TITULO BOTONES DE REFRESCO OCULTOS */
+    /* Cada fragmento del agente (chat, historial, órdenes propuestas, campana) lleva un botón sin presencia que un script pulsa para refrescarlo sin reiniciar la página
+       (componentes_plataforma/refresco_fragmentos.py). Quedan fuera del flujo para no sumar separación entre elementos. */
+    [class*="st-key-pj_refrescar_"] { display: none !important; }
+
+    /* TITULO ENVOLTORIOS FUERA DEL FLUJO */
+    /* Los contenedores de la burbuja, el panel y el script son fijos (no ocupan lugar): sus envoltorios salen del flujo para no sumar separación al final de la página. */
+    [data-testid="stLayoutWrapper"]:has(> .st-key-pj_chat_burbuja), [data-testid="stLayoutWrapper"]:has(> .st-key-pj_chat_flotante),
+    [data-testid="stLayoutWrapper"]:has(> .st-key-pj_chat_js) { position: absolute !important; width: 0 !important; height: 0 !important; }
+    .st-key-pj_chat_js { position: absolute !important; width: 0 !important; height: 0 !important; overflow: hidden !important; }
+
+
+/* pantallas grandes */
+@media (min-width: 1441px) {
+    /* Sin media */
+}
+
+/* laptops y pantallas estándar */
+@media (max-width: 1440px) {
+    /* Sin media */
+}
+
+/* pantallas medianas */
+@media (max-width: 1200px) {
+    /* Sin media */
+}
+
+/* tablets horizontales y pantallas medianas */
+@media (max-width: 992px) {
+    /* La barra de navegación pasa abajo (var(--pj-nav-h)): la burbuja y la ventana la dejan libre. --pj-vv-bottom sube todo sobre el teclado o las barras del navegador del celular. */
+    .st-key-pj_chat_burbuja { right: var(--pj-chat-der, 14px); bottom: calc(var(--pj-nav-h, 64px) + 14px + var(--pj-chat-aba, 0px) + var(--pj-vv-bottom, 0px)); width: 52px; height: 52px; }
+    .st-key-chat_burbuja_abrir button { width: 52px !important; height: 52px !important; min-height: 52px !important; }
+    .st-key-chat_burbuja_abrir button span, .st-key-chat_burbuja_abrir button [data-testid="stIconMaterial"] { font-size: 27px !important; }
+    /* Sin cursor no hay etiqueta al pasar. */
+    .st-key-chat_burbuja_abrir button::after { display: none; }
+    .st-key-pj_chat_flotante { right: var(--pj-chat-pop-der, 12px); bottom: calc(var(--pj-nav-h, 64px) + 12px + var(--pj-vv-bottom, 0px)); width: min(420px, calc(100vw - 24px));
+        height: min(600px, calc(100vh - var(--pj-top-h, 62px) - var(--pj-nav-h, 64px) - 24px)); }
+    /* Horizontal bajo (celulares de lado): la ventana ocupa todo el alto, por encima de las barras, a la derecha; el chat necesita el espacio y se cierra con la X. */
+    @media (orientation: landscape) and (max-height: 500px) {
+        .st-key-pj_chat_burbuja { bottom: calc(var(--pj-nav-h, 44px) + 8px + var(--pj-vv-bottom, 0px)); width: 44px; height: 44px; }
+        .st-key-chat_burbuja_abrir button { width: 44px !important; height: 44px !important; min-height: 44px !important; }
+        .st-key-chat_burbuja_abrir button span, .st-key-chat_burbuja_abrir button [data-testid="stIconMaterial"] { font-size: 23px !important; }
+        .st-key-pj_chat_flotante { top: 6px; right: 6px; bottom: calc(6px + var(--pj-vv-bottom, 0px)); width: min(440px, 72vw); height: auto; z-index: 100060; }
+        .pj-chat-titulo { padding: 6px 48px 4px 14px; font-size: 14px; }
+        .st-key-chat_cerrar { top: 4px; right: 6px; }
+        .st-key-agente_chat_panel_flot .cuota-ia { display: none; }
+        /* Controles más bajos para que a los mensajes les quede más alto. */
+        .st-key-agente_chat_panel_flot, .st-key-agente_chat_panel_flot [data-testid="stVerticalBlock"] { gap: 4px !important; }
+        .st-key-agente_chat_panel_flot { padding-bottom: 8px !important; }
+        .st-key-agente_chat_panel_flot div[data-baseweb="select"] > div { min-height: 34px !important; }
+        .st-key-agente_chat_panel_flot .stButton button, .st-key-agente_chat_panel_flot [data-testid="stPopover"] button { min-height: 32px !important; height: 32px !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+        /* Con 340 px de alto o menos (celular de lado con la barra del navegador a la vista) el título se achica a una línea. */
+        @media (max-height: 340px) {
+            html.pj-panel-agente .pj-chat-titulo { display: none; }
+            .pj-chat-titulo { padding: 3px 40px 2px 12px; font-size: 12.5px; }
+            .pj-chat-titulo .agente-icono-material { font-size: 18px; }
+            .st-key-chat_cerrar { top: 1px; right: 4px; width: 28px !important; }
+            .st-key-chat_cerrar button { width: 28px !important; height: 28px !important; min-height: 28px !important; }
+            .st-key-agente_chat_panel_flot div[data-baseweb="select"] > div { min-height: 30px !important; }
+            .st-key-agente_chat_panel_flot .stButton button, .st-key-agente_chat_panel_flot [data-testid="stPopover"] button { min-height: 28px !important; height: 28px !important; }
+            .st-key-agente_chat_panel_flot { padding-bottom: 6px !important; }
+            .st-key-agente_chat_panel_flot [data-testid="stChatInput"] { min-height: 40px !important; }
+            .st-key-agente_chat_panel_flot [data-testid="stChatInput"] textarea { min-height: 0 !important; padding-top: 8px !important; padding-bottom: 8px !important; }
+            .st-key-agente_chat_panel_flot [data-testid="stChatInput"] > div { padding-top: 3px !important; padding-bottom: 3px !important; }
+            .st-key-agente_chat_panel_flot [data-testid="stChatInput"] textarea::placeholder { font-size: 12.5px; }
+        }
+    }
+}
+
+/* tablets verticales */
+@media (max-width: 768px) {
+    /* Celular en vertical: el chat cubre toda la pantalla (con un margen de 8 px), por encima de las barras, y baja sobre el teclado con --pj-vv-bottom. */
+    @media (orientation: portrait) {
+        .st-key-pj_chat_flotante { top: 8px; left: 8px; right: 8px; bottom: calc(8px + var(--pj-vv-bottom, 0px)); width: auto; height: auto; z-index: 100060; border-radius: 14px; }
+    }
+}
+
+/* móviles grandes (iPhone 11, iPhone Plus/Max, Android grandes) */
+@media (max-width: 414px) {
+    /* «Nueva conversación» y «Límites» lado a lado: con menos relleno y letra de 13 px el texto cabe entero. */
+    .st-key-agente_chat_panel_flot .stButton button, .st-key-agente_chat_panel_flot [data-testid="stPopover"] button { padding-left: 8px !important; padding-right: 8px !important; }
+    .st-key-agente_chat_panel_flot [class*="st-key-agente_chat_nueva"] button p { font-size: 13px !important; }
+}
+
+/* móviles medianos (iPhone 12/13/14, Android gama media) */
+@media (max-width: 390px) {
+    /* Sin media */
+}
+
+/* móviles pequeños (Android estándar, iPhone SE) */
+@media (max-width: 360px) {
+    /* Sin media */
+}
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

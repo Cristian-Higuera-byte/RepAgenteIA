@@ -1,0 +1,111 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+    /* TITULO CORTINA DE TRANSICIÓN */
+    /* El área de contenido (contenedor con clave pj_vista) se descubre con un fundido corto al terminar de cargar. */
+    .st-key-pj_vista { transition: opacity .16s ease; }
+    /* Mientras la clase pj-navegando está en html (la pone transicion.js al pulsar un botón de navegación), la vista se
+       oculta al instante: así no se ve el contenido viejo atenuado ni la vista nueva dibujándose a medias. */
+    html.pj-navegando .st-key-pj_vista { opacity: 0 !important; transition: none !important; pointer-events: none; }
+
+    /* TITULO BARRA DE PROGRESO */
+    /* Línea fina bajo la barra superior que indica que la sección está cargando; solo aparece con la cortina puesta. */
+    html.pj-navegando body::after {
+        content: ""; position: fixed; left: 70px; right: 0; top: 62px; height: 2px; z-index: 100001;
+        background: linear-gradient(90deg, transparent, #22c55e, transparent);
+        background-size: 40% 100%; background-repeat: no-repeat; animation: pj-carga 0.9s ease-in-out infinite;
+    }
+    /* Desplazamiento horizontal del brillo de la barra. */
+    @keyframes pj-carga { from { background-position: -40% 0; } to { background-position: 140% 0; } }
+
+    /* TITULO AVISO DE CARGA */
+    /* Si la sección tarda más de 1 s, aparece al centro del área de contenido el texto «Cargando…» (con un fundido corto), para que la
+       pantalla vacía no parezca una falla. Con secciones rápidas nunca llega a verse. */
+    html.pj-navegando body::before {
+        content: "Cargando…"; position: fixed; left: 70px; right: 0; top: 42%; text-align: center; z-index: 100001;
+        color: #8b949e; font-size: 14px; opacity: 0; animation: pj-aparece .25s ease 1s forwards; pointer-events: none;
+    }
+    /* Aparición suave del aviso. */
+    @keyframes pj-aparece { from { opacity: 0; } to { opacity: 1; } }
+
+    /* TITULO RESPUESTA INMEDIATA DE LOS BOTONES */
+    /* Todo botón responde al instante al pulsarlo (hundimiento al presionar) y, hasta que la ejecución termina, muestra un anillo verde (clase pj-esperando,
+       que pone transicion.js). Así nunca parece que el clic no hizo nada, aunque el servidor tarde en contestar. */
+    button[data-testid^="stBaseButton"] { transition: transform .06s ease, box-shadow .12s ease, filter .12s ease; }
+    button[data-testid^="stBaseButton"]:active:not(:disabled) { transform: scale(.97); filter: brightness(1.15); }
+    button.pj-esperando, [data-testid="stCheckbox"] label.pj-esperando, [data-testid="stToggle"] label.pj-esperando {
+        box-shadow: 0 0 0 2px rgba(34, 197, 94, .65) !important; filter: brightness(1.12); cursor: progress; }
+    button.pj-esperando { transform: scale(.98); }
+
+    /* TITULO ENVOLTORIO DEL SCRIPT */
+    /* El iframe del script no ocupa lugar: su envoltorio sale del flujo para no sumar separación entre elementos. */
+    [data-testid="stLayoutWrapper"]:has(> .st-key-pj_transicionjs) { position: absolute !important; width: 0 !important; height: 0 !important; }
+    .st-key-pj_transicionjs { position: absolute !important; width: 0 !important; height: 0 !important; overflow: hidden !important; }
+
+
+/* pantallas grandes (monitores Full HD+, iMac, monitores gaming QHD/4K) */
+@media (min-width: 1441px) {
+    /* Sin media */
+}
+
+/* notebooks grandes (1600x900, 1920x1080) */
+@media (max-width: 1440px) {
+    /* Sin media */
+}
+
+/* notebooks comunes (1366x768, MacBook Air/Pro) */
+@media (max-width: 1200px) {
+    /* Sin media */
+}
+
+/* tablets horizontales / pantallas medianas (iPad Pro en horizontal, notebooks pequeños) */
+@media (max-width: 992px) {
+    /* Sin media */
+}
+
+/* tablets verticales (iPad clásico, tablets Android estándar) */
+@media (max-width: 768px) {
+    /* Sin media */
+}
+
+/* móviles grandes (iPhone 11, iPhone Plus/Max, Android grandes) */
+@media (max-width: 414px) {
+    /* Sin media */
+}
+
+/* móviles medianos (iPhone 12/13/14, Android gama media) */
+@media (max-width: 390px) {
+    /* Sin media */
+}
+
+/* móviles pequeños (Android estándar, iPhone SE) */
+@media (max-width: 360px) {
+    /* Sin media */
+}
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ FIN Piña y Jara estilos .CSS -------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

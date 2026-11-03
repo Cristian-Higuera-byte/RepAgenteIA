@@ -1,0 +1,50 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* TITULO PANTALLAS DE ACCESO (acceso/): inicio de sesión, registro, «Revisa tu correo», confirmación y recuperación de contraseña.
+   Se inyecta solo mientras se dibujan esas pantallas, así no afecta al panel. Una sola columna centrada de 460 px como máximo; en el celular ocupa
+   todo el ancho con un margen de 16 px y sube el contenido para que no quede una franja vacía arriba. */
+
+/* TITULO COLUMNA CENTRADA */
+[data-testid="stMainBlockContainer"].block-container {
+    max-width: 460px; margin-left: auto; margin-right: auto;
+    padding: 12vh 16px 40px !important; box-sizing: border-box; }
+
+/* TITULO TITULOS */
+[data-testid="stMainBlockContainer"] h2 { padding: 0; }
+
+/* TITULO BOTONES: el panel pinta oscuros todos los botones (div.stButton > button); aquí el principal vuelve al rojo de la marca y todos tienen un alto cómodo para el dedo */
+div.stButton > button { min-height: 40px; font-size: 14px !important; }
+div.stButton > button[kind="primary"] { background-color: #ff4b4b; border-color: #ff4b4b; color: #ffffff; font-weight: 600; }
+div.stButton > button[kind="primary"]:hover { background-color: #ff6363; border-color: #ff6363; color: #ffffff; }
+div.stButton > button[kind="primary"]:disabled { background-color: #2b3138; border-color: #2b3138; color: #8b949e; }
+
+/* TITULO CELULAR */
+@media (max-width: 480px) {
+    [data-testid="stMainBlockContainer"].block-container { padding-top: 32px !important; padding-bottom: 28px !important; } }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ FIN Piña y Jara estilos .CSS -------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

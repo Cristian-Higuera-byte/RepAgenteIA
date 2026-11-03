@@ -1,0 +1,5 @@
+alter table perfiles_usuario add column if not exists apodo text;
+
+create unique index if not exists perfiles_usuario_apodo_unico
+    on perfiles_usuario (lower(apodo))
+    where apodo is not null;

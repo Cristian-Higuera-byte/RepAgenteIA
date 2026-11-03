@@ -1,0 +1,235 @@
+{
+ "marca": "P&J Finance",
+ "nav": [
+  [
+   "Gráficos",
+   "graficos"
+  ],
+  [
+   "Agente IA",
+   "agente"
+  ],
+  [
+   "Mercados",
+   "activos"
+  ],
+  [
+   "Noticias",
+   "noticias"
+  ],
+  [
+   "Planes",
+   "planes"
+  ],
+  [
+   "Preguntas",
+   "faq"
+  ]
+ ],
+ "hero": {
+  "etiqueta": "Plataforma de trading con inteligencia artificial",
+  "titulo": "Opera con un agente de IA que analiza el mercado contigo",
+  "subtitulo": "Gráficos profesionales, noticias y cotizaciones en un solo lugar, y un agente que estudia el mercado, propone operaciones y espera tu confirmación. Pruébalo gratis en cuenta demo.",
+  "cta_principal": "Crear cuenta gratis",
+  "cta_secundario": "Iniciar sesión",
+  "puntos": [
+   "Cuenta demo, sin arriesgar capital",
+   "Tú decides qué puede ejecutar el agente",
+   "Sin tarjeta para empezar"
+  ]
+ },
+ "mercados": [
+  "EUR/USD",
+  "GBP/USD",
+  "USD/JPY",
+  "Oro",
+  "Petróleo",
+  "S&P 500",
+  "Nasdaq 100",
+  "Dow Jones",
+  "Bitcoin",
+  "Ethereum",
+  "Apple",
+  "Tesla",
+  "NVIDIA",
+  "Microsoft"
+ ],
+ "porque": {
+  "titulo": "¿Por qué elegir P&J Finance?",
+  "subtitulo": "Pensada para que tomes decisiones con más información y más calma.",
+  "tarjetas": [
+   [
+    "smart_toy",
+    "Un agente que trabaja contigo",
+    "Pregúntale por cualquier activo, pídele un gráfico o un análisis. El agente estudia los datos, propone la operación y tú decides si se ejecuta."
+   ],
+   [
+    "candlestick_chart",
+    "Gráficos con herramientas completas",
+    "Velas, indicadores, herramientas de dibujo, comparación de activos y modo replay para practicar sobre el pasado."
+   ],
+   [
+    "shield",
+    "Control total del riesgo",
+    "Define cuánto puede arriesgar el agente: riesgo por operación, pérdida diaria, volumen y apalancamiento. Nada se ejecuta sin tu autorización: confirmas cada orden o autorizas una vigilancia."
+   ]
+  ]
+ },
+ "agente": {
+  "etiqueta": "Agente IA",
+  "titulo": "Conversa con el mercado",
+  "texto": "Escribe en lenguaje natural lo que necesitas. El agente consulta los datos, genera el gráfico y, si encuentra una oportunidad, te propone la orden con su stop loss y su take profit.",
+  "puntos": [
+   [
+    "Análisis a pedido",
+    "Pídele el estado de un activo, comparaciones o un gráfico renderizado en imagen."
+   ],
+   [
+    "Órdenes propuestas",
+    "Revisas la propuesta y la confirmas o la rechazas con un clic."
+   ],
+   [
+    "Vigilancias automáticas",
+    "El agente puede observar un activo cada cierto tiempo y avisarte cuando aparezca una señal."
+   ],
+   [
+    "Tres perfiles",
+    "Rápido para consultas ágiles, Análisis para más detalle y Profundo para estudios complejos."
+   ]
+  ],
+  "captura": "Panel del agente: perfil de análisis, uso del plan, límites de riesgo y las órdenes que te propone."
+ },
+ "herramientas": {
+  "titulo": "Todo lo que necesitas para operar, en un solo lugar",
+  "subtitulo": "Desde el primer vistazo al mercado hasta el registro de tus operaciones.",
+  "items": [
+   [
+    "candlestick_chart",
+    "Gráficos",
+    "Velas, indicadores y dibujo, con replay para entrenar tu lectura del mercado."
+   ],
+   [
+    "monitoring",
+    "Mercados",
+    "Cotizaciones por categoría: divisas, índices, materias primas, criptomonedas y acciones."
+   ],
+   [
+    "newspaper",
+    "Noticias",
+    "Titulares de los principales medios financieros, en español e inglés, y lectura dentro de la plataforma."
+   ],
+   [
+    "work",
+    "Cartera",
+    "Tus posiciones abiertas, el resultado en vivo y el historial de operaciones."
+   ],
+   [
+    "menu_book",
+    "Diario de trading",
+    "Registra tus operaciones, escribe notas y revisa tus métricas para mejorar."
+   ],
+   [
+    "groups",
+    "Copy trading",
+    "Conoce estrategias de otros traders y sigue las que mejor se adapten a ti."
+   ]
+  ]
+ },
+ "pasos": {
+  "titulo": "Empieza en tres pasos",
+  "items": [
+   [
+    "1",
+    "Crea tu cuenta",
+    "Regístrate con tu correo. Es gratis y toma menos de un minuto."
+   ],
+   [
+    "2",
+    "Conecta tu cuenta",
+    "Vincula tu cuenta de Capital.com, demo o real. Empieza en demo para practicar sin arriesgar capital."
+   ],
+   [
+    "3",
+    "Opera con tu agente",
+    "Conversa con el agente, revisa sus propuestas y confirma las que te convenzan."
+   ]
+  ]
+ },
+ "planes": {
+  "titulo": "Empieza gratis, crece cuando lo necesites",
+  "subtitulo": "El agente va en todos los planes; cambian las consultas de cada semana y las funciones avanzadas.",
+  "nota": "Precios en USD por mes. Las consultas se renuevan cada domingo a las 18:00 (hora de Chile) y son aproximadas: el consumo real depende de cada consulta. El plan Gratis no requiere tarjeta."
+ },
+ "faq": {
+  "titulo": "Preguntas frecuentes",
+  "items": [
+   [
+    "¿Necesito dinero para empezar?",
+    "No. Puedes crear tu cuenta gratis y operar en una cuenta demo de Capital.com, que usa dinero virtual."
+   ],
+   [
+    "¿Cuándo se renuevan mis consultas del agente?",
+    "Cada semana, el domingo a las 18:00 (hora de Chile), tu cuota del agente vuelve a empezar desde cero. En la plataforma ves siempre cuánto llevas usado y cuándo se renueva."
+   ],
+   [
+    "¿El agente puede operar sin mi permiso?",
+    "No. El agente propone las órdenes y solo se ejecutan cuando tú las confirmas, o cuando autorizas una vigilancia automática, que opera dentro de los límites de riesgo que defines y que puedes detener cuando quieras."
+   ],
+   [
+    "¿Qué mercados puedo ver?",
+    "Divisas, índices, materias primas, criptomonedas y acciones, con gráficos, cotizaciones y noticias."
+   ],
+   [
+    "¿Es seguro conectar mi cuenta?",
+    "Tus credenciales se guardan cifradas y solo se usan para conectar tu cuenta con el bróker. Puedes desconectarla cuando quieras."
+   ],
+   [
+    "¿Puedo usarla desde el celular?",
+    "Sí. La plataforma se adapta a celulares, tablets y computadores."
+   ]
+  ]
+ },
+ "cta_final": {
+  "titulo": "Lleva tu trading al siguiente nivel",
+  "texto": "Crea tu cuenta gratis y conversa hoy mismo con tu agente de IA.",
+  "boton": "Crear cuenta gratis"
+ },
+ "riesgo": "Aviso de riesgo: operar con derivados como los CFD conlleva un alto riesgo de pérdida y puede no ser adecuado para todos los inversionistas. Esta plataforma ofrece herramientas de análisis y te permite operar en una cuenta demo o en tu cuenta real de Capital.com; en una cuenta real, las órdenes que confirmes usan tu dinero. Nada de lo que muestre el agente constituye asesoría financiera ni una recomendación de inversión.",
+ "graficos": {
+  "etiqueta": "Gráficos",
+  "titulo": "Gráficos profesionales, sin salir de la plataforma",
+  "texto": "Analiza cualquier activo con velas, indicadores y herramientas de dibujo, y practica sobre el pasado antes de arriesgar. Todo en la misma pantalla donde operas.",
+  "puntos": [
+   [
+    "Velas e indicadores",
+    "Medias móviles y otros indicadores sobre el gráfico, en los marcos de tiempo desde M1 hasta mensual."
+   ],
+   [
+    "Herramientas de dibujo",
+    "Tendencias, niveles, texto y más, con imanes y bloqueo para dibujar con precisión."
+   ],
+   [
+    "Comparar, Backtest y Replay",
+    "Compara activos, prueba una estrategia sobre datos históricos o reproduce el mercado vela a vela."
+   ],
+   [
+    "Captura y pantalla completa",
+    "Guarda una imagen de tu análisis o amplía el gráfico para verlo con todo el detalle."
+   ]
+  ]
+ },
+ "activos": {
+  "titulo": "Los mercados, a un vistazo",
+  "subtitulo": "Divisas, índices, materias primas, criptomonedas y acciones: sigue lo que te interesa y llévalo directo al gráfico.",
+  "boton": "Ver todos los mercados",
+  "nota_ejemplo": "Cotizaciones de ejemplo mientras se establece la conexión con el mercado. Dentro de la plataforma ves los precios y variaciones en tiempo real.",
+  "en_vivo": "Precios en vivo"
+ },
+ "noticias": {
+  "titulo": "Noticias que mueven el mercado",
+  "subtitulo": "Titulares de los principales medios financieros, en español e inglés, y lectura dentro de la plataforma.",
+  "boton": "Ver todas las noticias",
+  "espera": "Estamos cargando los últimos titulares. Dentro de la plataforma las noticias se actualizan de forma continua.",
+  "fuente": "Titulares de medios financieros; cada nota se abre en el sitio de su medio."
+ }
+}

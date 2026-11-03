@@ -1,0 +1,81 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- ------------------------------- INICIO Piña y Jara mantenimiento .HTML -------------------------------- -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Página que Apache muestra cuando la plataforma no responde (error 503), por ejemplo si el servidor se reinicia o se está actualizando.
+Se configura en el .htaccess del hosting (ver despliegue/htaccess.ejemplo): `ErrorDocument 503 /mantenimiento.html`.
+Es autónoma a propósito: todo el estilo va dentro de este archivo, porque con la plataforma caída cualquier otra ruta (logo, hojas de estilo)
+también devolvería el error. Se recarga sola cada 15 segundos, de modo que el usuario entra apenas la plataforma vuelva.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="20">
+    <title>P&amp;J · Estamos trabajando en la plataforma</title>
+    <style>
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
+        body {
+            display: flex; align-items: center; justify-content: center;
+            background: #0d1117; color: #e6edf3;
+            font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 24px;
+        }
+        .tarjeta {
+            width: 100%; max-width: 460px; text-align: center;
+            background: #161b22; border: 1px solid #30363d; border-radius: 14px;
+            padding: 40px 28px 32px;
+        }
+        .logo { font-size: 34px; font-weight: 800; letter-spacing: 1px; color: #f0883e; margin: 0 0 22px; }
+        h1 { font-size: 22px; margin: 0 0 10px; }
+        p { margin: 0 0 8px; color: #8b949e; font-size: 15px; line-height: 1.5; }
+        .estado { margin-top: 26px; font-size: 13px; color: #8b949e; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .punto { width: 10px; height: 10px; border-radius: 50%; background: #d29922; animation: latido 1.4s ease-in-out infinite; }
+        @keyframes latido { 0%, 100% { opacity: .25; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.1); } }
+        @media (prefers-reduced-motion: reduce) { .punto { animation: none; } }
+    </style>
+</head>
+<body>
+    <main class="tarjeta" role="main">
+        <div class="logo">P&amp;J</div>
+        <h1>Estamos trabajando en la plataforma</h1>
+        <p>En unos minutos volverá a estar disponible.</p>
+        <p>No necesitas hacer nada: esta página se actualiza sola.</p>
+        <div class="estado" aria-live="polite"><span class="punto"></span><span>Reintentando conexión…</span></div>
+    </main>
+    <script>
+        // Recarga la página original (la misma dirección que el usuario pidió): si la plataforma ya volvió, entra directo.
+        setTimeout(function () { location.reload(); }, 15000);
+    </script>
+</body>
+</html>
+
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- -------------------------------- FIN Piña y Jara mantenimiento .HTML ---------------------------------- -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->

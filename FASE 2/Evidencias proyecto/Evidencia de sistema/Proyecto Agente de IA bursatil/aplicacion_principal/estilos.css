@@ -1,0 +1,193 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* Alturas de las barras fijas del cascarón: los cajones, el gráfico y la barra de navegación las usan para ajustarse solas (con variables, para poder achicarlas todas a la vez en
+   celulares en horizontal, ver el bloque de 992 px al final). --pj-top-h: barra superior; --pj-nav-h: barra de navegación inferior (solo hasta 992 px); --pj-cab-h: espacio entre la
+   barra superior y el gráfico (cabecera de precio y sus márgenes); --pj-graf-min: alto mínimo del gráfico. */
+:root { --pj-top-h: 62px; --pj-nav-h: 64px; --pj-cab-h: 68px; --pj-graf-min: 220px; }
+
+/* Ocultar la barra propia de Streamlit */
+[data-testid="stHeader"] { display: none; }
+[data-testid="stToolbar"] { display: none; }
+
+/* Ajuste de márgenes generales de la página.
+   1er valor (padding-top) = hueco bajo la barra superior fija.
+   Súbelo/bájalo para más/menos espacio; debe ir acoplado con el
+   margin-top negativo de la barra lateral (más abajo, mismo número). */
+.block-container {
+    padding: 0.6rem 1.5rem 2rem 1.2rem !important;
+    max-width: 100%;
+}
+
+/* Sin atenuado mientras un fragmento se recarga: Streamlit marca los
+   elementos con data-stale="true" y les baja la opacidad, lo que en un
+   terminal de trading se ve como parpadeo cada refresco. */
+[data-stale="true"] { opacity: 1 !important; transition: none !important; }
+
+/* Contenedor del feed en vivo (componentes_plataforma/flujo_precios/): fuera del flujo,
+   sin ocupar espacio ni sumar separación. */
+.st-key-pj_flujo { position: absolute !important; width: 0 !important;
+                  height: 0 !important; overflow: hidden !important; }
+/* Botones invisibles que pulsa la ✕ de las líneas de posición del gráfico
+   (componentes_plataforma/posiciones/): mismo tratamiento. */
+.st-key-grafico_cerrar_wrap { position: absolute !important; width: 0 !important;
+                     height: 0 !important; overflow: hidden !important; }
+
+/* Fondo y tipografía base */
+.stApp { background-color: #0b0f19; color: #e6edf3; }
+html, body, [class*="css"] { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+
+/* Jerarquía de títulos discreta */
+h1 { font-size: 24px !important; font-weight: 700 !important; }
+h2 { font-size: 20px !important; font-weight: 700 !important; }
+h3 { font-size: 18px !important; font-weight: 700 !important; }
+
+/* Botones oscuros y compactos */
+div.stButton > button {
+    background-color: #161b22; color: #e6edf3; border: 1px solid #30363d;
+    border-radius: 6px; font-size: 13px !important; padding: 4px 10px;
+    min-height: 0; transition: all .15s ease;
+}
+div.stButton > button:hover { background-color: #21262d; border-color: #58a6ff; color: #ffffff; }
+
+/* Selectores oscuros */
+div[data-baseweb="select"] > div {
+    background-color: #161b22 !important; border-color: #30363d !important;
+}
+.stSelectbox label, .stTextInput label, .stSlider label {
+    font-size: 12px !important; color: #8b949e !important; font-weight: 600 !important;
+}
+
+/* Métricas */
+[data-testid="stMetricValue"] { font-size: 22px !important; }
+[data-testid="stMetricLabel"] { font-size: 18px !important; color: #8b949e !important; }
+
+/* Entrada del chat */
+.stChatInput textarea { background-color: #161b22 !important; }
+
+/* Tarjetas con borde */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #161b22;
+    border-radius: 8px;
+}
+
+/* Barra de navegación superior FIJA */
+.st-key-barra_navegacion_fija {
+    position: fixed !important;
+    top: 0; left: 70px; right: 0;
+    width: calc(100% - 70px) !important;
+    z-index: 100000;
+    background: #0d1117;
+    border-bottom: 1px solid #1b2430;
+    padding: 10px 24px;
+    box-sizing: border-box;
+}
+.st-key-barra_navegacion_fija [data-testid="stVerticalBlock"] { gap: 0 !important; }
+.st-key-barra_navegacion_fija [data-testid="stVerticalBlockBorderWrapper"],
+.st-key-barra_navegacion_fija [data-testid="stVerticalBlock"] {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* Barra lateral izquierda extendida sin forzar paddings excesivos */
+div[data-testid="stColumn"]:has(.pj-navegacion),
+div[data-testid="column"]:has(.pj-navegacion) {
+    background: #0d1117 !important;
+    border-right: 1px solid #30363d;
+    min-height: 100vh;
+    margin-top: -3rem !important;  /* acoplado al padding-top de .block-container: la barra lateral queda en el mismo sitio */
+    padding-top: 0 !important;
+    z-index: 100001;
+}
+
+/* Separador fino entre la fila del gráfico y la del chat del agente (vista_operativa.py). */
+.pj-separador { border-top: 1px solid #30363d; height: 0; margin: 0; }
+
+/* Alinea el logo P&J con el buscador de la barra superior.
+   Ajusta este valor (negativo = sube) si necesitas moverlo un poco más. */
+.pj-logo {
+    margin-top: -0.5rem !important;
+}
+
+
+/* pantallas grandes (monitores Full HD+, iMac, monitores gaming QHD/4K) */
+@media (min-width: 1441px) {
+    /* Sin media */
+}
+
+/* notebooks grandes (1600x900, 1920x1080) */
+@media (max-width: 1440px) {
+    /* Sin media */
+}
+
+/* notebooks comunes (1366x768, MacBook Air/Pro) */
+@media (max-width: 1200px) {
+    /* Sin media */
+}
+
+/* tablets horizontales / pantallas medianas (iPad Pro en horizontal, notebooks pequeños) */
+@media (max-width: 992px) {
+    /* TITULO HORIZONTAL BAJO (celulares en horizontal: hasta 500 px de alto): barras más bajas para que el gráfico tenga espacio */
+    /* Con 360 a 430 px de alto, las barras de 62 y 64 px, la cabecera de precio y las barras del gráfico se comían casi todo: el gráfico quedaba de ~120 px y las barras fijas tapaban su
+       borde inferior. Aquí cada barra baja a ~44 px y el resto de las hojas lee las alturas de estas variables. */
+    @media (orientation: landscape) and (max-height: 500px) {
+        :root { --pj-top-h: 44px; --pj-nav-h: 44px; --pj-cab-h: 44px; --pj-graf-min: 150px; }
+        /* La barra superior pierde relleno y el contenido sube lo que ella baja (la hoja del cascarón calcula la diferencia con sus 62 px de siempre). */
+        .st-key-barra_navegacion_fija { padding: 3px 12px !important; }
+        .st-key-pj_vista { margin-top: calc(var(--pj-top-h) - 62px + 4px); }
+    }
+
+    /* TITULO HORIZONTAL MUY BAJO (hasta 340 px de alto): con la barra del navegador a la vista un teléfono deja ~265 px de página */
+    /* Segundo nivel: las barras bajan a 38 y 32 px, la barra de navegación queda solo con íconos y el alto mínimo del gráfico a 100 px. */
+    @media (orientation: landscape) and (max-height: 340px) {
+        :root { --pj-top-h: 38px; --pj-nav-h: 32px; --pj-cab-h: 36px; --pj-graf-min: 100px; }
+    }
+}
+
+/* tablets verticales (iPad clásico, tablets Android estándar) */
+@media (max-width: 768px) {
+    /* Sin media */
+}
+
+/* móviles grandes (iPhone 11, iPhone Plus/Max, Android grandes) */
+@media (max-width: 414px) {
+    /* Sin media */
+}
+
+/* móviles medianos (iPhone 12/13/14, Android gama media) */
+@media (max-width: 390px) {
+    /* Sin media */
+}
+
+/* móviles pequeños (Android estándar, iPhone SE) */
+@media (max-width: 360px) {
+    /* Sin media */
+}
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

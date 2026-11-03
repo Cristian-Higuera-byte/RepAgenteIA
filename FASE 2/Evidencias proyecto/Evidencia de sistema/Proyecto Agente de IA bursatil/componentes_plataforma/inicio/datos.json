@@ -1,0 +1,55 @@
+{
+  "acciones": [
+    [
+      "candlestick_chart",
+      "#3fb950",
+      "Operar",
+      "Gráfico y ticket de órdenes",
+      "trading"
+    ],
+    [
+      "content_copy",
+      "#a371f7",
+      "Copy trading",
+      "Sigue estrategias",
+      "copytrading"
+    ],
+    [
+      "table_rows",
+      "#2f81f7",
+      "Cotizaciones",
+      "Mercados en vivo",
+      "cotizaciones"
+    ],
+    [
+      "newspaper",
+      "#ff8f00",
+      "Noticias",
+      "Lo último del mercado",
+      "noticias"
+    ]
+  ],
+  "promos": [
+    [
+      "a",
+      "redeem",
+      "#2f81f7",
+      "Reintegros en cada activo",
+      "Sin límites mientras dure la promoción."
+    ],
+    [
+      "b",
+      "emoji_events",
+      "#a371f7",
+      "Competiciones semanales",
+      "Gana premios operando cada semana."
+    ],
+    [
+      "c",
+      "group_add",
+      "#ff8f00",
+      "Programa de referidos",
+      "Invita y gana con cada amigo."
+    ]
+  ]
+}

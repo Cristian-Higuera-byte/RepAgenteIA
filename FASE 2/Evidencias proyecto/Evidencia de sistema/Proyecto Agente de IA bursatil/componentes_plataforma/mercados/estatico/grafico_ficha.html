@@ -1,0 +1,56 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- -------------------------------------------------------------------------------------------------------
+   -------------------------------- INICIO Piña y Jara grafico_ficha .HTML -------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+
+<!-- Plantilla del grafico de la ficha. grafico.py reemplaza los marcadores de doble guion bajo: el alto del grafico, los datos, los decimales, el simbolo y el JS. Se incrusta en un iframe con components.html -->
+<!-- Contenedor general: aplica la fuente de Streamlit al leyenda, pestanas y grafico -->
+<div id="wrap" style="font-family:'Source Sans Pro',system-ui,sans-serif;">
+  <!-- Barra superior: leyenda a la izquierda (rendimiento del periodo o valor bajo el cursor) y pestanas de periodo a la derecha -->
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+    <!-- Leyenda: el JS escribe aqui el porcentaje del periodo o el precio y fecha bajo el cursor -->
+    <div id="leyenda" style="color:#8b949e;font-size:12px;"></div>
+    <!-- Pestanas 1D/1S/1M/3M/6M/1A: el JS crea los botones dentro de este contenedor -->
+    <div id="tabs" style="display:flex;gap:2px;background:#0f1620;border:1px solid #202a37;border-radius:8px;padding:2px;"></div>
+  </div>
+  <!-- Lienzo donde Lightweight Charts dibuja la serie (el alto lo fija el marcador de alto) -->
+  <div id="chart" style="height:__H__px;"></div>
+</div>
+<!-- Estilos propios del iframe: fondo transparente y aspecto de los botones de periodo (clase "on" = activo) -->
+<style>
+  body { margin:0; background:transparent; }
+  #tabs button { background:transparent; border:none; color:#8b949e; font-size:12px; font-weight:600;
+                 padding:4px 11px; border-radius:6px; cursor:pointer; }
+  #tabs button:hover { color:#e6edf3; }
+  #tabs button.on { background:#202a37; color:#e6edf3; }
+</style>
+<!-- Libreria Lightweight Charts (version fija) desde CDN; si falla, el JS muestra un aviso -->
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<!-- Script del grafico (contenido de grafico_ficha.js, insertado donde esta el marcador del JS) -->
+<script>
+__JS__</script>
+
+<!-- -------------------------------------------------------------------------------------------------------
+   --------------------------------- FIN Piña y Jara grafico_ficha .HTML ---------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->

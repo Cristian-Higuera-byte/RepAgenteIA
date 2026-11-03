@@ -1,0 +1,27 @@
+{
+  "fuentes": [
+    {"nombre": "Investing", "idioma": "ES", "url": "https://es.investing.com/rss/news_25.rss", "condicional": true, "extraer": false, "lectura": false},
+    {"nombre": "Investing", "idioma": "ES", "url": "https://es.investing.com/rss/news.rss", "condicional": true, "extraer": false, "lectura": false},
+    {"nombre": "Investing", "idioma": "ES", "url": "https://es.investing.com/rss/news_285.rss", "condicional": true, "extraer": false, "lectura": false},
+    {"nombre": "FXStreet", "idioma": "ES", "url": "https://www.fxstreet.es/rss/news", "condicional": true, "extraer": true, "lectura": true},
+    {"nombre": "FXStreet", "idioma": "EN", "url": "https://www.fxstreet.com/rss/news", "condicional": true, "extraer": true, "lectura": true},
+    {"nombre": "MarketWatch", "idioma": "EN", "url": "https://feeds.marketwatch.com/marketwatch/topstories/", "condicional": true, "extraer": false, "lectura": false},
+    {"nombre": "Benzinga", "idioma": "EN", "url": "https://www.benzinga.com/feed", "condicional": true, "extraer": true, "lectura": true},
+    {"nombre": "Cinco Días", "idioma": "ES", "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/cincodias.elpais.com/portada", "condicional": false, "extraer": false, "lectura": true}
+  ],
+  "fuentes_mas": [
+    {"nombre": "Investing", "idioma": "ES", "url": "https://es.investing.com/rss/news_301.rss", "condicional": true, "extraer": false, "lectura": false},
+    {"nombre": "Investing", "idioma": "ES", "url": "https://es.investing.com/rss/news_1.rss", "condicional": true, "extraer": false, "lectura": false},
+    {"nombre": "Investing", "idioma": "ES", "url": "https://es.investing.com/rss/news_95.rss", "condicional": true, "extraer": false, "lectura": false},
+    {"nombre": "Expansión", "idioma": "ES", "url": "https://e00-expansion.uecdn.es/rss/mercados.xml", "condicional": false, "extraer": true, "lectura": true},
+    {"nombre": "Seeking Alpha", "idioma": "EN", "url": "https://seekingalpha.com/market_currents.xml", "condicional": true, "extraer": false, "lectura": false}
+  ],
+  "placeholder": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=60",
+  "por_pagina": 4,
+  "max_carrusel": 20,
+  "intervalo_condicional": 10,
+  "intervalo_normal": 60,
+  "max_por_fuente": 30,
+  "max_verificar_por_fuente": 15,
+  "max_externas_por_fuente": 8
+}

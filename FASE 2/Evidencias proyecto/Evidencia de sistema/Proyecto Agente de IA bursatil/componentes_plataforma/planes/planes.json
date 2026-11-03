@@ -1,0 +1,13 @@
+{
+  "titulos": {
+    "gratis": "Para probar el agente",
+    "basico": "Para usar el agente a diario",
+    "pro": "Para operar con apoyo constante",
+    "avanzado": "Para uso intensivo"
+  },
+  "perfiles": {
+    "rapido": "Rápido",
+    "analisis": "Análisis",
+    "profundo": "Profundo"
+  }
+}

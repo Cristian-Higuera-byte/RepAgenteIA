@@ -1,0 +1,47 @@
+{
+  "calcular_matriz_correlacion": {
+    "descripcion": "Calcula la matriz de correlación de Pearson entre un listado de activos. Permite identificar sobreexposición o coberturas cruzadas en la cartera.",
+    "parametros": {
+      "simbolos": {
+        "type": "string",
+        "description": "Lista de símbolos separados por coma (ej. 'EURUSD,GBPUSD,GOLD,USDCLP')."
+      },
+      "cantidad_dias": {
+        "type": "integer",
+        "description": "Número de días de histórico para el cálculo. Por defecto 90."
+      }
+    },
+    "requeridos": [
+      "simbolos"
+    ],
+    "nombre": "calcular_matriz_correlacion"
+  },
+  "simular_monte_carlo_cartera": {
+    "descripcion": "Ejecuta una simulación de Monte Carlo sobre la equidad de la cartera a N días. Calcula la distribución de retornos, el peor escenario esperado (Drawdown Máximo) y la probabilidad de pérdida.",
+    "parametros": {
+      "dias_proyeccion": {
+        "type": "integer",
+        "description": "Días a proyectar hacia el futuro (ej. 30). Por defecto 30."
+      },
+      "num_simulaciones": {
+        "type": "integer",
+        "description": "Número de trayectorias a simular (ej. 1000). Por defecto 1000."
+      },
+      "capital_inicial": {
+        "type": "number",
+        "description": "Capital en USD. Si no se especifica, toma la equidad actual de la cuenta."
+      }
+    },
+    "nombre": "simular_monte_carlo_cartera"
+  },
+  "evaluar_metricas_rendimiento": {
+    "descripcion": "Evalúa las métricas institucionales de rendimiento y riesgo de la cartera o historial: Sharpe Ratio, Sortino Ratio, Profit Factor, Win Rate, y Value at Risk (VaR 95% y 99%).",
+    "parametros": {
+      "tasa_libre_riesgo_anual": {
+        "type": "number",
+        "description": "Tasa libre de riesgo anualizada (ej. 0.04 para 4%). Por defecto 0.04."
+      }
+    },
+    "nombre": "evaluar_metricas_rendimiento"
+  }
+}

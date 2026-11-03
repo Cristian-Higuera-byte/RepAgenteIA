@@ -1,0 +1,30 @@
+{
+  "generar_tabla_reporte": {
+    "descripcion": "Genera tablas de datos financieras y reportes formateados en Markdown, HTML o CSV descargables. Permite estructurar reportes de 'posiciones_abiertas', 'riesgo_cartera', 'matriz_escenarios' o datos personalizados para exportación al usuario o dashboard.",
+    "parametros": {
+      "tipo_reporte": {
+        "type": "string",
+        "enum": [
+          "posiciones_abiertas",
+          "riesgo_cartera",
+          "datos_personalizados"
+        ],
+        "description": "Tipo de contenido a tabular. Por defecto 'posiciones_abiertas'."
+      },
+      "formato": {
+        "type": "string",
+        "enum": [
+          "markdown",
+          "html",
+          "csv"
+        ],
+        "description": "Formato de salida de la tabla. Por defecto 'markdown'."
+      },
+      "datos_json": {
+        "type": "string",
+        "description": "Cadena JSON opcional con datos estructurados si tipo_reporte='datos_personalizados'."
+      }
+    },
+    "nombre": "generar_tabla_reporte"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "estrategias": [
+    "—",
+    "Breakout",
+    "Pullback",
+    "Tendencia",
+    "Rango",
+    "Soporte/Resistencia",
+    "Noticia",
+    "Scalping",
+    "Otra"
+  ],
+  "emociones": [
+    "—",
+    "Confianza",
+    "Calma",
+    "Duda",
+    "FOMO",
+    "Miedo",
+    "Avaricia",
+    "Impaciencia",
+    "Revancha"
+  ]
+}

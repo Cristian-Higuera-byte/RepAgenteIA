@@ -1,0 +1,127 @@
+{
+  "proponer_orden": {
+    "descripcion": "Propone abrir una operación (compra o venta) en la cuenta demo. NO la ejecuta: queda pendiente y el usuario debe confirmarla con un botón en el dashboard. Úsala solo cuando el usuario te pida una operación o autorice operar tras tu análisis; si solo pide una opinión, no propongas órdenes. El stop loss es OBLIGATORIO. No calcules el tamaño del lote: indica 'riesgo_pct' (porcentaje del equity que se perdería si salta el stop loss) y el sistema calcula el lote. Si el sistema rechaza la propuesta por riesgo, explica el motivo al usuario y, si procede, ajusta y vuelve a intentar.",
+    "parametros": {
+      "simbolo": {
+        "type": "string",
+        "description": "Cualquier activo disponible en la cuenta del broker (divisas, metales, índices, energía, cripto, acciones...). Se aceptan equivalentes entre brókers (XAUUSD/GOLD). Si no conoces el nombre exacto, búscalo antes con mt5_buscar_simbolos."
+      },
+      "lado": {
+        "type": "string",
+        "enum": [
+          "compra",
+          "venta"
+        ],
+        "description": "Dirección de la operación."
+      },
+      "stop_loss": {
+        "type": "number",
+        "description": "Precio del stop loss (obligatorio)."
+      },
+      "take_profit": {
+        "type": "number",
+        "description": "Precio del take profit (opcional pero recomendado)."
+      },
+      "riesgo_pct": {
+        "type": "number",
+        "description": "% del equity a arriesgar si salta el stop loss (ej. 0.5). Por defecto 0.5."
+      },
+      "justificacion": {
+        "type": "string",
+        "description": "Razonamiento breve de por qué conviene esta operación (queda en el registro de auditoría)."
+      }
+    },
+    "requeridos": [
+      "simbolo",
+      "lado",
+      "stop_loss",
+      "justificacion"
+    ],
+    "nombre": "proponer_orden"
+  },
+  "proponer_cierre_posicion": {
+    "descripcion": "Propone cerrar una posición abierta de la cuenta demo. NO la cierra: queda pendiente y el usuario debe confirmarla con un botón en el dashboard. Obtén el ticket con 'ver_posiciones'.",
+    "parametros": {
+      "ticket": {
+        "type": ["integer", "string"],
+        "description": "Ticket de la posición a cerrar, tal como lo entrega ver_posiciones (número en MetaTrader 5, texto en Capital.com)."
+      },
+      "justificacion": {
+        "type": "string",
+        "description": "Por qué conviene cerrarla (queda en el registro)."
+      }
+    },
+    "requeridos": [
+      "ticket",
+      "justificacion"
+    ],
+    "nombre": "proponer_cierre_posicion"
+  },
+  "ver_posiciones": {
+    "descripcion": "Consulta la cuenta del broker (MetaTrader 5 o Capital.com; tipo demo/real, balance, equity, margen libre) y las posiciones abiertas con su ticket, stop loss, take profit y resultado actual.",
+    "parametros": {},
+    "requeridos": [],
+    "nombre": "ver_posiciones"
+  },
+  "ver_limites_riesgo": {
+    "descripcion": "Consulta los límites de riesgo que el USUARIO definió para ti (riesgo máximo por operación y total, pérdida diaria máxima, volumen y apalancamiento máximos, posiciones abiertas máximas; un valor null significa sin límite) y las restricciones de símbolos (por defecto ninguna, se puede operar cualquier activo del broker) y el estado actual (pérdida del día, posiciones abiertas, interruptor de emergencia). Úsala antes de proponer una operación si dudas de qué está permitido.",
+    "parametros": {},
+    "requeridos": [],
+    "nombre": "ver_limites_riesgo"
+  },
+  "proponer_vigilancia": {
+    "descripcion": "Prepara una VIGILANCIA AUTOMÁTICA de un activo: el sistema lo analizará cada cierto tiempo y, SOLO si el usuario la autoriza con el botón «Autorizar» del panel, comprará o venderá por su cuenta dentro de los límites indicados (cuenta demo, stop loss obligatorio, riesgo acotado). Úsala únicamente cuando el usuario pida EXPRESAMENTE que vigiles de forma continua un activo y operes por él (p. ej. 'vigila el oro y compra o vende solo cuando sea el mejor momento'). Un análisis puntual, una opinión o una orden concreta NO son una vigilancia. No ejecuta nada por sí sola: queda pendiente de autorización. Si el usuario no indica un valor, omite el parámetro (hay valores por defecto prudentes).",
+    "parametros": {
+      "simbolo": {
+        "type": "string",
+        "description": "El activo que el usuario pidió vigilar (cualquiera disponible en el broker; XAUUSD/GOLD equivalen)."
+      },
+      "instruccion": {
+        "type": "string",
+        "description": "Lo que pidió el usuario con sus palabras: criterios, estilo, restricciones. Se le muestra al análisis."
+      },
+      "riesgo_pct": {
+        "type": "number",
+        "description": "% del equity a arriesgar por operación (por defecto 0.5)."
+      },
+      "max_operaciones": {
+        "type": "integer",
+        "description": "Máximo de aperturas durante la vigilancia (por defecto 3)."
+      },
+      "duracion_horas": {
+        "type": "number",
+        "description": "Cuánto dura la vigilancia desde que se autoriza (por defecto 8 h, máx. 24)."
+      },
+      "intervalo_min": {
+        "type": "integer",
+        "description": "Cada cuántos minutos se analiza el activo (por defecto 15, mín. 5)."
+      }
+    },
+    "requeridos": [
+      "simbolo",
+      "instruccion"
+    ],
+    "nombre": "proponer_vigilancia"
+  },
+  "detener_vigilancia": {
+    "descripcion": "Detiene una vigilancia automática del usuario (por activo o por id). Es inmediato y no necesita confirmación. No cierra posiciones que ya estén abiertas.",
+    "parametros": {
+      "simbolo": {
+        "type": "string",
+        "description": "Activo de la vigilancia a detener (opcional si das el id)."
+      },
+      "id": {
+        "type": "string",
+        "description": "Id de la vigilancia (opcional si das el activo)."
+      }
+    },
+    "requeridos": [],
+    "nombre": "detener_vigilancia"
+  },
+  "ver_vigilancias": {
+    "descripcion": "Lista las vigilancias automáticas del usuario (vigentes y las últimas terminadas) con su estado, operaciones realizadas, próximo chequeo y el resumen de su último análisis.",
+    "parametros": {},
+    "requeridos": [],
+    "nombre": "ver_vigilancias"
+  }
+}

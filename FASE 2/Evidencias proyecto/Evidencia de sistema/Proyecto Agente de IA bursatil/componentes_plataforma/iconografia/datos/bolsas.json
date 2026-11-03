@@ -1,0 +1,40 @@
+{
+  "sufijo": {
+    "OQ": "",
+    "O": "",
+    "N": "",
+    "A": "",
+    "K": "",
+    "P": "",
+    "DE": ".DE",
+    "F": ".F",
+    "PA": ".PA",
+    "L": ".L",
+    "AS": ".AS",
+    "MI": ".MI",
+    "MC": ".MC",
+    "SW": ".SW",
+    "S": ".SW",
+    "HK": ".HK",
+    "T": ".T",
+    "TO": ".TO",
+    "ST": ".ST",
+    "CO": ".CO",
+    "HE": ".HE",
+    "OL": ".OL",
+    "BR": ".BR",
+    "VI": ".VI",
+    "LS": ".LS",
+    "I": ".IR"
+  },
+  "clase_minuscula": [
+    "CO",
+    "HE",
+    "OL",
+    "ST"
+  ],
+  "menos_una_letra": [
+    "HE",
+    "VI"
+  ]
+}

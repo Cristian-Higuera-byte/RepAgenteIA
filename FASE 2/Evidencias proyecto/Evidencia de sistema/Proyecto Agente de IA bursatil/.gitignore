@@ -1,0 +1,45 @@
+# === Secretos y credenciales (NUNCA subir) ===
+.env
+*.env
+
+# === Entorno virtual de Python ===
+env/
+venv/
+.venv/
+
+# === Cache de Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# === Carpetas de herramientas de IA / skills (NO subir) ===
+.agents/
+.claude/
+
+# === Archivos generados por el programa ===
+outputs/
+downloads/
+data/*.json
+data/*.jsonl
+
+# === Respaldos locales ===
+_backup_pre_mt5_*/
+
+# === Sistema operativo / editor ===
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+# === Base de datos de órdenes del agente (se genera sola) ===
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# Copias de respaldo manuales
+*.bak
+
+# === Multiusuario: datos de cada usuario y sesiones de Capital.com (nunca se suben) ===
+data/usuarios/
+data/sesiones_capital/

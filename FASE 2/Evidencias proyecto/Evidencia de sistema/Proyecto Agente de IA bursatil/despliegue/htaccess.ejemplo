@@ -1,0 +1,63 @@
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.
+
+
+# -------------------------------------------------------------------------------------------------------
+# ------------------------------------ INICIO Piña y Jara htaccess .EJEMPLO -----------------------------
+# -------------------------------------------------------------------------------------------------------
+
+# Plantilla del .htaccess que usa el hosting cPanel (pyj.rmcabogados.cl). En el servidor se copia como `.htaccess` en la carpeta del proyecto;
+# ese archivo no está en el repositorio, así que esta copia sirve para recuperarlo si el servidor se pierde.
+#
+# Puertos: Streamlit escucha en 28501 y el servidor de precios en 28000 (los fija revivir_procesos.py y servidor_precios/constantes.py).
+# OJO: en el servidor, servidor_precios/constantes.py tiene PUERTO = 28000 (cambio local, el repositorio dice 8000). No descartarlo con
+# `git checkout` ni `git stash`: sin él el servidor de precios arranca en otro puerto y esta configuración no lo encuentra.
+
+# TITULO PROTEGER ARCHIVOS SENSIBLES
+
+<FilesMatch "^\.(env|git.*)">
+    Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/\.git
+
+RewriteEngine On
+
+# TITULO PAGINA DE MANTENIMIENTO
+
+# Si la plataforma no responde (503), Apache muestra mantenimiento.html. La regla de abajo la sirve directo, sin pasarla a Streamlit:
+# sin ella, la propia página de error se enviaría al proxy caído y volvería a dar 503.
+ErrorDocument 503 /mantenimiento.html
+RewriteRule ^mantenimiento\.html$ - [L]
+
+# TITULO SERVIDOR DE PRECIOS (el navegador lo consulta directo)
+
+RewriteRule ^t/(.*)$ http://127.0.0.1:28000/t/$1 [P,L]
+RewriteRule ^salud$ http://127.0.0.1:28000/salud [P,L]
+
+# TITULO WEBSOCKET DE STREAMLIT
+
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteCond %{HTTP:Connection} upgrade [NC]
+RewriteRule ^_stcore/stream$ ws://127.0.0.1:28501/_stcore/stream [P,L]
+
+# TITULO TODO LO DEMAS VA A STREAMLIT
+
+RewriteRule ^(.*)$ http://127.0.0.1:28501/$1 [P,L]
+
+
+# -------------------------------------------------------------------------------------------------------
+# ------------------------------------- FIN Piña y Jara htaccess .EJEMPLO -------------------------------
+# -------------------------------------------------------------------------------------------------------
+
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.
