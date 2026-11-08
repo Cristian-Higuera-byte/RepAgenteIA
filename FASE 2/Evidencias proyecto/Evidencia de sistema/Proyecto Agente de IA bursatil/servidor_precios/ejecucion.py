@@ -24,7 +24,7 @@ from herramientas import token_datos
 from herramientas.backends import sesiones_capital
 from herramientas.puente_mt5 import PROVEEDOR, inicializar_mt5
 
-from .constantes import INTERVALO_TICKS, PUERTO
+from .constantes import HOST, INTERVALO_TICKS, PUERTO
 from .manejador import Manejador
 from .motor import MOTORES
 
@@ -55,7 +55,7 @@ def ejecutar() -> None:
     Modo de un solo usuario: inicializa la conexión con el broker y deja encendido el motor de la cuenta del .env.
     Modo multiusuario (`CAPITAL_MULTIUSUARIO=true`): no hay cuenta propia; cada motor nace cuando un usuario se conecta
     (o cuando tiene vigilancias activas, que un hilo revisa cada pocos segundos). Luego levanta un ThreadingHTTPServer
-    en 127.0.0.1:PUERTO (solo local; en producción va detrás de un proxy HTTPS) con el Manejador, que atiende cada
+    en HOST:PUERTO (por defecto 127.0.0.1, solo local; en producción va detrás de un proxy HTTPS; en Docker, 0.0.0.0) con el Manejador, que atiende cada
     petición en su propio hilo. Imprime avisos en consola y bloquea en serve_forever().
     """
     # Con Capital.com el límite de 10 peticiones por segundo es de la sesión, que comparten este servidor y el dashboard:
@@ -71,8 +71,8 @@ def ejecutar() -> None:
         # Conecta con el broker y deja encendido el motor de la cuenta del .env antes de aceptar peticiones
         inicializar_mt5()
         MOTORES.de(("legado",))
-    # Servidor HTTP solo en loopback; un hilo por petición (SSE mantiene conexiones largas)
-    servidor = ThreadingHTTPServer(("127.0.0.1", PUERTO), Manejador)
+    # Servidor HTTP en HOST (por defecto solo loopback); un hilo por petición (SSE mantiene conexiones largas)
+    servidor = ThreadingHTTPServer((HOST, PUERTO), Manejador)
     servidor.daemon_threads = True
     # Mensajes informativos de arranque
     modo = "multiusuario" if sesiones_capital.MULTIUSUARIO else "un solo usuario"

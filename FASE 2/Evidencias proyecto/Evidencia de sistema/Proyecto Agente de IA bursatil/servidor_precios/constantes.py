@@ -22,8 +22,11 @@ import threading
 from herramientas.puente_mt5 import PROVEEDOR
 from proveedores.selector_mt5 import mt5  # type: ignore[import-untyped]
 
-# Puerto TCP local (127.0.0.1) en el que escucha el servidor de datos
+# Puerto TCP en el que escucha el servidor de datos
 PUERTO = 8000
+# Dirección en la que escucha: por defecto solo el equipo local (127.0.0.1). En Docker se define SERVIDOR_HOST=0.0.0.0 para que el navegador pueda llegar al
+# puerto publicado; en el hosting se mantiene el valor por defecto y el acceso público pasa por el proxy HTTPS.
+HOST = os.environ.get("SERVIDOR_HOST", "127.0.0.1").strip() or "127.0.0.1"
 # Versión de la API. Se sube cuando cambian rutas o datos que usa el navegador:
 # el gráfico la compara (GET /salud) y avisa si este proceso quedó desactualizado.
 # 3 = órdenes pendientes con caducidad (POST /orden/modificar con "caducidad").

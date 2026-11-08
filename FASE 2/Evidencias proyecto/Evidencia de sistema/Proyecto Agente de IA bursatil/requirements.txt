@@ -1,21 +1,29 @@
-# requirements.txt
-yfinance>=0.2.40
-tzdata>=2024.1          # zonas horarias en Windows (reinicio semanal de la cuota de la IA)
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.
+
+# Dependencias del sistema. Instalar con:  python -m pip install -r requirements.txt
+# (La lista anterior mezclaba comandos `pip install` con paquetes y no se podía instalar así.)
+streamlit>=1.40
 pandas>=2.0.0
 numpy>=1.24.0
 requests>=2.31.0
 websockets>=12.0
+yfinance>=0.2.40
+python-dotenv>=1.0.0
+openai>=1.40.0
+supabase>=2.0.0
+psycopg2-binary>=2.9
+cryptography>=42.0.0
+matplotlib>=3.8.0
+certifi>=2024.2.2
+trafilatura>=1.8.0
+curl_cffi>=0.7.0
+tzdata>=2024.1
 
-# Pip Instalaciones
-pip install python-dotenv
-pip install yfinance
-pip install pandas
-pip install numpy
-pip install groq
-pip install openai
-python -m pip install supabase
-python -m pip install curl_cffi
-python -m pip install matplotlib
-pip install --upgrade openai
-pip install MetaTrader5
-pip install plotly
+# Solo con MetaTrader 5 (PROVEEDOR=mt5): el paquete existe únicamente en Windows.
+MetaTrader5>=5.0.45; sys_platform == "win32"

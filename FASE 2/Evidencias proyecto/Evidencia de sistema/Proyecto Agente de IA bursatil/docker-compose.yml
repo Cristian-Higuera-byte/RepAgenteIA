@@ -1,0 +1,28 @@
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.
+
+# Levanta la plataforma completa con un comando:  docker compose up -d --build
+# Antes hay que crear el archivo .env a partir de .env.example:  cp .env.example .env   (en Windows: copy .env.example .env)
+# Dashboard: http://localhost:8501      Servidor de precios (lo consulta el navegador): http://localhost:8000/salud
+services:
+  plataforma:
+    build: .
+    image: repagenteia/plataforma:1.0
+    container_name: repagenteia
+    env_file: .env
+    environment:
+      SERVIDOR_HOST: "0.0.0.0"
+    ports:
+      - "8501:8501"
+      - "8000:8000"
+    volumes:
+      - datos:/app/data          # órdenes y vigilancias del agente (SQLite) y carpetas de los usuarios
+    restart: unless-stopped
+
+volumes:
+  datos:

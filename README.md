@@ -24,7 +24,7 @@ RepAgenteIA es una plataforma web de trading para operar y analizar activos fina
 
 El agente consulta datos de mercado y noticias, calcula indicadores, resume información, guarda memoria de las conversaciones con cada usuario y entrega análisis e ideas de inversión según el estado del mercado.
 
-**El agente no opera por su cuenta.** Solo *propone* órdenes, que se validan contra límites de riesgo definidos en el código (no en el prompt) y quedan registradas con su justificación. Únicamente el usuario, con el botón «Confirmar» de la plataforma, envía una orden al bróker.
+**El agente no opera por su cuenta.** Solo *propone* órdenes, que se validan contra los límites de riesgo del usuario, aplicados en el código (no en el prompt), con stop loss obligatorio, y quedan registradas con su justificación. Únicamente el usuario, con el botón «Confirmar» de la plataforma, envía una orden al bróker.
 
 ### Funcionalidades principales
 
@@ -52,7 +52,7 @@ Corte al **4 de noviembre de 2026** (semana 14 de 18). El proyecto se organiza e
 | Fase 3 · Acceso seguro, publicación, pruebas y entrega final | En curso (Sprint 7) |
 
 - **Product Backlog:** 12 épicas y 50 historias de usuario (276 puntos). Hechas: 34 historias (179 puntos).
-- **Pendiente para la entrega final:** modelo de datos y diagramas UML, requisitos no funcionales, Docker, plan y pruebas (unitarias, de integración, de rendimiento, de seguridad y de usabilidad), manual técnico, evaluación de alucinaciones del agente e informe final.
+- **Pendiente para la entrega final:** prueba de carga con varios usuarios, pruebas de usabilidad con usuarios reales, evaluación de alucinaciones del agente e informe final.
 - **Tablero de tareas:** [Trello · RepAgenteIA - Capstone](https://trello.com/b/QPZrJH9t/repagenteia-capstone).
 - **Evidencias de la Fase 2:** carpeta `FASE 2/` (guía de la fase, diarios y autoevaluaciones, sistema y documentación).
 
@@ -102,9 +102,12 @@ Proyecto Agente de IA bursatil/
 ├── servidor_precios/            Servidor de precios en vivo, velas, OCO y stop dinámico
 ├── fuentes/                     Fuentes de datos: Yahoo Finance, Investing.com y MetaTrader 5
 ├── prompts/                     Prompt de sistema del agente
-├── despliegue/                  Plantilla del .htaccess para el hosting
+├── despliegue/                  Plantilla del .htaccess para el hosting y scripts de arranque y salud para Docker
+├── tests/                       Pruebas automáticas (pytest): unitarias, de integración, seguridad, rendimiento y despliegue
+├── Dockerfile · docker-compose.yml · .env.example   Ejecución en contenedor y variables de ejemplo
 ├── .streamlit/                  Configuración de Streamlit
-└── requirements.txt             Lista de dependencias (ver nota en la sección 5)
+├── requirements.txt             Lista de dependencias (se instala con `pip install -r`)
+└── requirements-dev.txt         Dependencias para correr las pruebas
 ```
 
 ## 5. Instrucciones para ejecutar el proyecto localmente
@@ -130,14 +133,12 @@ env\Scripts\activate
 
 # 3. Instalar las dependencias
 python -m pip install --upgrade pip
-python -m pip install streamlit pandas numpy python-dotenv requests websockets yfinance openai supabase matplotlib certifi trafilatura cryptography curl_cffi
-python -m pip install psycopg2-binary   # solo si usas PostgreSQL (BASE_DATOS=postgres)
-python -m pip install MetaTrader5       # solo si usas MetaTrader 5 (únicamente Windows)
+python -m pip install -r requirements.txt   # MetaTrader5 solo se instala en Windows (ya está condicionado en el archivo)
 ```
 
-> **Nota:** el archivo `requirements.txt` del proyecto todavía no se puede instalar con `pip install -r` (contiene comandos `pip` en lugar de paquetes). Por eso las dependencias se instalan con el comando del paso 3; corregir ese archivo está en el plan del Sprint 8.
+> Para correr las pruebas automáticas: `python -m pip install -r requirements-dev.txt` y luego `python -m pytest tests` (134 pruebas, sin red ni `.env`).
 
-En Linux o macOS: `python3 -m venv env`, `source env/bin/activate` y la misma lista de librerías (sin `MetaTrader5`).
+En Linux o macOS: `python3 -m venv env`, `source env/bin/activate` y el mismo `pip install -r requirements.txt`.
 
 Si PowerShell bloquea la activación del entorno, ejecuta una vez `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, o usa `env\Scripts\activate.bat` desde `cmd`.
 
@@ -246,6 +247,18 @@ python consola_agente.py
 | `ModuleNotFoundError` | El entorno virtual no está activo o faltan librerías del paso de instalación (por ejemplo `psycopg2-binary` si usas PostgreSQL). |
 | Error de certificados SSL en Windows | Ocurre si la ruta del proyecto tiene tildes; usa una copia del certificado en una ruta sin tildes. |
 
+### Ejecución con Docker
+
+Una sola imagen levanta el dashboard (8501) y el servidor de precios (8000):
+
+```bash
+cp .env.example .env            # completar los valores
+docker compose up -d --build
+docker compose ps               # estado de salud
+```
+
+Los datos del agente (SQLite) quedan en el volumen `datos`. Detalle en el *Manual Técnico*.
+
 ## 6. Despliegue en un hosting
 
 La plataforma se publicó en un hosting cPanel con PostgreSQL. Lo esencial:
@@ -331,7 +344,7 @@ flowchart LR
 ## 10. Seguridad
 
 - El agente **solo propone** órdenes; solo el usuario las confirma.
-- Los límites de riesgo están en el código y el modelo no puede modificarlos.
+- Los límites de riesgo los define cada usuario (según su plan) y se aplican en el código: el modelo no puede cambiarlos ni saltárselos. El stop loss es siempre obligatorio.
 - Cada propuesta queda registrada con su justificación como auditoría, y existe un interruptor de emergencia (*kill switch*).
 - Las credenciales de Capital.com de cada usuario se guardan **cifradas** (Fernet); la clave maestra vive solo en el `.env` del servidor.
 - Los enlaces de verificación de correo y de recuperación son de un solo uso, vencen y solo se guarda su *hash*; hay un límite de envíos por usuario.

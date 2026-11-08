@@ -1,0 +1,11 @@
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.
+
+# Dependencias para ejecutar las pruebas:  python -m pip install -r requirements-dev.txt   y luego   python -m pytest tests -q
+-r requirements.txt
+pytest>=8.0

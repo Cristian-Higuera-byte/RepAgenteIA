@@ -1,0 +1,25 @@
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.
+
+# Archivos que no deben entrar en la imagen
+.env
+*.env
+.git
+.gitignore
+.claude
+.agents
+env/
+venv/
+.venv/
+__pycache__/
+*.pyc
+data/
+outputs/
+downloads/
+tests/_resultados/
+*.log
