@@ -1,7 +1,0 @@
-{
-  "informe_cartera": {
-    "descripcion": "Informe integral de la cartera abierta en una sola llamada: exposición actual (por activo y por divisa, en dinero), riesgo total y por posición, volatilidad (ATR diario), distancia al stop, correlaciones relevantes entre las posiciones, noticias macro de alto impacto y escenarios de la cartera, más una lista de alertas. Úsala cuando pregunten cómo está la cartera, el riesgo general o la exposición total.",
-    "parametros": {},
-    "nombre": "informe_cartera"
-  }
-}
