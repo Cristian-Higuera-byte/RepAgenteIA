@@ -43,18 +43,37 @@ El agente consulta datos de mercado y noticias, calcula indicadores, resume info
 
 ## 2. Estado del proyecto
 
-Corte al **4 de noviembre de 2026** (semana 14 de 18). El proyecto se organiza en 9 sprints de 2 semanas y se entrega en la semana 18.
+Corte al **16 de noviembre de 2026** (semana 16 de 18). El proyecto se organiza en 9 sprints de 2 semanas; las pruebas y la documentación final están completas y el informe final está en revisión.
 
 | Fase | Estado |
 |---|---|
 | Fase 1 · Definición, backlog y planificación | Completada |
 | Fase 2 · MVP operativo sobre Capital.com | Cerrada el 23/10 |
-| Fase 3 · Acceso seguro, publicación, pruebas y entrega final | En curso (Sprint 7) |
+| Fase 3 · Acceso seguro, publicación, pruebas y entrega final | Pruebas y publicación completadas; informe final en revisión |
 
-- **Product Backlog:** 12 épicas y 50 historias de usuario (276 puntos). Hechas: 34 historias (179 puntos).
-- **Pendiente para la entrega final:** prueba de carga con varios usuarios, pruebas de usabilidad con usuarios reales, evaluación de alucinaciones del agente e informe final.
+- **Product Backlog:** 12 épicas y 60 historias de usuario (329 puntos). Hechas: 59 historias (321 puntos). Queda en revisión el informe final (US-41).
 - **Tablero de tareas:** [Trello · RepAgenteIA - Capstone](https://trello.com/b/QPZrJH9t/repagenteia-capstone).
-- **Evidencias de la Fase 2:** carpeta `FASE 2/` (guía de la fase, diarios y autoevaluaciones, sistema y documentación).
+- **Evidencias:** carpetas `FASE 1/`, `FASE 2/` y `FASE 3/` (guías, informe final, presentaciones, diarios y autoevaluaciones, sistema y documentación).
+
+### Pruebas y calidad (resultados al 16/11/2026)
+
+El detalle está en el [Plan de Pruebas](<FASE 2/Evidencias proyecto/Evidencia de documentación/Plan_de_Pruebas.docx>).
+
+| Prueba | Resultado |
+|---|---|
+| Pruebas automáticas (pytest) | 211 aprobadas (unitarias, integración, seguridad, rendimiento y despliegue) |
+| Auditoría de seguridad | Corregidos V01, V03, V05, V06 (parte 1) y V07, con pruebas de aceptación |
+| Sitio publicado | Calificación TLS A (SSL Labs); redirección a HTTPS y método TRACE rechazado |
+| Evaluación del agente (15 preguntas) | 15 respuestas correctas, 0 con datos inventados, 11 con la fuente citada |
+| Usabilidad (5 personas, 6 tareas) | Todas las tareas completadas sin ayuda; puntaje SUS de 71,5 |
+| Prueba de carga | Responde bien hasta unas 5 conexiones simultáneas desde una IP; se degrada desde 10 |
+
+### Limitaciones conocidas
+
+- Capacidad del despliegue actual: unas 5 conexiones simultáneas desde una misma IP (causa por determinar: hosting, proxy o límite por IP).
+- De la auditoría de seguridad quedan sin cerrar V06 (parte 2) y V08 a V22.
+- Cabeceras de seguridad adicionales (HSTS de un año, Permissions-Policy y ocultar `Server`) propuestas, no aplicadas.
+- El agente no cuenta con un calendario económico y no cita fuente en los indicadores calculados ni en los datos de la cuenta.
 
 ## 3. Tecnologías utilizadas
 
@@ -64,6 +83,7 @@ Corte al **4 de noviembre de 2026** (semana 14 de 18). El proyecto se organiza e
 - **Base de datos:** Supabase o PostgreSQL, a elección con la variable `BASE_DATOS` (usuarios, perfiles, favoritos, billetera, memoria del agente y base de conocimiento), y SQLite local (órdenes y vigilancias del agente)
 - **Fuentes de datos y bróker:** Capital.com (API REST y WebSocket), Yahoo Finance (`yfinance`) e Investing.com. MetaTrader 5 queda como proveedor opcional (solo Windows).
 - **Correo:** envío por SMTP (confirmación de correo y recuperación de contraseña)
+- **Calidad y despliegue:** pytest (211 pruebas), Docker y hosting cPanel con proxy
 - **Gestión del proyecto:** Scrum, Trello, GitHub y Visual Studio Code
 
 ## 4. Estructura del repositorio
@@ -74,13 +94,16 @@ RepAgenteIA/
 ├── FASE 1/
 │   ├── EVIDENCIAS GRUPALES/              Guía de la fase, formativa y presentación de la Fase 1
 │   └── EVIDENCIAS INDIVIDUALES/          Autoevaluaciones y diarios de reflexión
-└── FASE 2/
-    ├── Grupales/                         Guía 2.4 de la Fase 2 (español e inglés)
-    ├── Individuales/                     Diarios de reflexión y autoevaluaciones
-    └── Evidencias proyecto/
-        ├── Evidencia de sistema/
-        │   └── Proyecto Agente de IA bursatil/    Código fuente de la plataforma
-        └── Evidencia de documentación/            Metodología Scrum, informe de investigación y capturas
+├── FASE 2/
+│   ├── Grupales/                         Guía 2.4, informe final (2.6) y presentación de avance
+│   ├── Individuales/                     Diarios de reflexión y autoevaluaciones
+│   └── Evidencias proyecto/
+│       ├── Evidencia de sistema/
+│       │   └── Proyecto Agente de IA bursatil/    Código fuente de la plataforma
+│       └── Evidencia de documentación/            Documentos de metodología, pruebas y arquitectura, y capturas
+└── FASE 3/
+    ├── Grupales/                         Presentación final (español e inglés)
+    └── Individuales/                     Diarios de reflexión y autoevaluaciones de la Fase 3
 ```
 
 ### El sistema (`Proyecto Agente de IA bursatil/`)
@@ -136,7 +159,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt   # MetaTrader5 solo se instala en Windows (ya está condicionado en el archivo)
 ```
 
-> Para correr las pruebas automáticas: `python -m pip install -r requirements-dev.txt` y luego `python -m pytest tests` (172 pruebas, sin red ni `.env`).
+> Para correr las pruebas automáticas: `python -m pip install -r requirements-dev.txt` y luego `python -m pytest tests` (211 pruebas, sin red ni `.env`).
 
 En Linux o macOS: `python3 -m venv env`, `source env/bin/activate` y el mismo `pip install -r requirements.txt`.
 
@@ -351,6 +374,8 @@ flowchart LR
 - Las contraseñas exigen 8 o más caracteres con mayúscula, minúscula, número y símbolo, y no pueden ser claves comunes.
 - El usuario puede cerrar sesión en todos sus dispositivos y quitar su API de Capital.com cuando quiera; al quitarla, el acceso a esa cuenta se corta.
 - Las credenciales viven solo en el `.env`, que no se sube a git.
+- El sitio publicado usa HTTPS con TLS 1.3 (calificación A en SSL Labs).
+- **Auditoría de seguridad (noviembre de 2026):** las propuestas de órdenes están aisladas por usuario y cuenta; la API del servidor de precios exige un token firmado, incluso en modo legado; el token se revoca al cerrar sesión o cambiar la contraseña y los flujos en vivo se revisan cada 5 s; la sesión ya no viaja en la dirección; y una orden no se envía dos veces ante un doble clic, un tiempo agotado o una caída (idempotencia, hallazgo V05).
 - La plataforma opera en **cuenta demo** durante el piloto. Puede conectarse una cuenta real bajo un aviso de riesgo, y toda orden exige confirmación del usuario.
 
 ## 11. Sección de innovación
