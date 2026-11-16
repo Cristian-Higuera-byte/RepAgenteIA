@@ -1,0 +1,16 @@
+{
+  "evaluar_riesgo_noticias_proximas": {
+    "descripcion": "Detecta, en los titulares recientes de Investing.com, noticias sobre eventos macroeconómicos de alto impacto (empleo, inflación, bancos centrales, PIB...) para una divisa o para todo el mercado, y da una señal de cautela. NO es un calendario económico: no entrega horas ni cifras previstas.",
+    "parametros": {
+      "divisa": {
+        "type": "string",
+        "description": "Divisa a filtrar (ej. 'USD', 'EUR', 'GBP', 'JPY', 'XAU') o 'ALL'. Por defecto 'ALL'."
+      },
+      "cantidad_titulares": {
+        "type": "integer",
+        "description": "Titulares a revisar por categoría (máximo 30). Por defecto 20."
+      }
+    },
+    "nombre": "evaluar_riesgo_noticias_proximas"
+  }
+}

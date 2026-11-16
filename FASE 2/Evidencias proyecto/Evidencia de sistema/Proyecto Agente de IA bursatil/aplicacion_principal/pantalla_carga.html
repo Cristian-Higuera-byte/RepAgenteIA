@@ -1,0 +1,51 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- -------------------------------------------------------------------------------------------------------
+   ------------------------------- INICIO Piña y Jara pantalla_carga .HTML -------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<style>
+    @keyframes pj-giro { to { transform: rotate(360deg); } }
+    @keyframes pj-pulso { 0%, 100% { opacity: .35; transform: scale(.85); } 50% { opacity: 1; transform: scale(1); } }
+    @keyframes pj-brillo { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,143,0,.0); } 50% { box-shadow: 0 0 36px 4px rgba(255,143,0,.28); } }
+    @media (prefers-reduced-motion: reduce) { .pj-carga-anillo, .pj-carga-punto, .pj-carga-logo { animation: none !important; } }
+</style>
+<div style='position:fixed; inset:0; background:radial-gradient(circle at 50% 42%, #141b2b 0%, #0b0f19 62%); z-index:2147483000;
+            display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; color:#8b949e;'>
+    <div style='position:relative; width:96px; height:96px; display:flex; align-items:center; justify-content:center;'>
+        <div class='pj-carga-anillo' style='position:absolute; inset:0; border-radius:50%; border:3px solid rgba(255,255,255,.07);
+                    border-top-color:#ff8f00; border-right-color:#ff4b4b; animation:pj-giro 1s linear infinite;'></div>
+        <div class='pj-carga-logo' style='position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:66px; height:66px; border-radius:50%; background:#101624; display:flex; align-items:center; justify-content:center;
+                    font-size:22px; font-weight:800; letter-spacing:.5px; color:#ff8f00; animation:pj-brillo 2.2s ease-in-out infinite;'>P&amp;J</div>
+    </div>
+    <div style='font-size:19px; font-weight:700; color:#e6edf3;'>Cargando terminal…</div>
+    <div style='font-size:13px;'>Conectando con el bróker</div>
+    <div style='display:flex; gap:7px;'>
+        <span class='pj-carga-punto' style='width:7px; height:7px; border-radius:50%; background:#ff8f00; animation:pj-pulso 1.2s ease-in-out infinite;'></span>
+        <span class='pj-carga-punto' style='width:7px; height:7px; border-radius:50%; background:#ff8f00; animation:pj-pulso 1.2s ease-in-out .2s infinite;'></span>
+        <span class='pj-carga-punto' style='width:7px; height:7px; border-radius:50%; background:#ff8f00; animation:pj-pulso 1.2s ease-in-out .4s infinite;'></span>
+    </div>
+</div>
+
+<!-- -------------------------------------------------------------------------------------------------------
+   --------------------------------- FIN Piña y Jara pantalla_carga .HTML --------------------------------
+   ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->

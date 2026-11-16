@@ -1,0 +1,128 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------- INICIO Piña y Jara 60_barra_rangos .CSS -------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* [grafico] Barra inferior: rangos y temporalidades */
+    /* TITULO BARRA INFERIOR DE RANGOS Y TEMPORALIDADES */
+    /* Barra inferior #tradingview-rangebar (html/40_barra_rangos.html). */
+    #tradingview-rangebar {
+        display:flex; align-items:center; gap:4px; padding:8px 12px;
+        border-top:1px solid #1b2430; background:#0d1117;
+        font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+        flex-shrink: 0; overflow-x: auto; z-index: 20; /* puede desplazarse en horizontal si no cabe */
+    }
+    /* Botón de rango de tiempo (1D, 5D, 1M...). */
+    .tvrange {
+        background:transparent; border:1px solid transparent; color:#8b949e; font-size:13px;
+        font-weight:600; padding:6px 12px; border-radius:6px; cursor:pointer; white-space: nowrap;
+        transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    /* Rango al pasar el ratón. */
+    .tvrange:hover { background:rgba(255,255,255,0.08); color:#ffffff; }
+    /* Rango seleccionado, resaltado en azul. */
+    .tvrange.active { background:rgba(88,166,255,0.18); color:#58a6ff; border-color:rgba(88,166,255,0.3); }
+    /* Grupo de botones de temporalidad. */
+    #tradingview-temporalidad { display:flex; align-items:center; gap:2px; font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+    /* Botón de temporalidad (M1, H1, D1...), más compacto que .tvrange. */
+    .tvtf {
+        background:transparent; border:1px solid transparent; color:#8b949e; font-size:12px;
+        font-weight:600; padding:5px 8px; border-radius:6px; cursor:pointer; white-space:nowrap;
+        transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    /* Temporalidad al pasar el ratón. */
+    .tvtf:hover { background:rgba(255,255,255,0.08); color:#ffffff; }
+    /* Temporalidad seleccionada, en azul. */
+    .tvtf.active { background:rgba(88,166,255,0.18); color:#58a6ff; border-color:rgba(88,166,255,0.3); }
+    /* Boton para ampliar el grafico (solo pantallas tactiles): fijo a la derecha de la barra de rangos, que se desplaza por debajo. */
+    #boton-expandir-movil { display:none; position:sticky; right:0; margin-left:auto; flex-shrink:0; background:#0d1117; }
+    html.pj-tactil #boton-expandir-movil { display:flex; }
+    #boton-expandir-movil .ic-contraer { display:none; }
+    /* Deshacer y Rehacer pasan a esta barra en pantallas tactiles (js/23_dibujo_barra_estilos.js) y quedan fijos a la derecha junto al boton de ampliar. */
+    #tradingview-rangebar #boton-deshacer, #tradingview-rangebar #boton-rehacer { position:sticky; flex-shrink:0; background:#0d1117; }
+    #tradingview-rangebar #boton-deshacer { right:78px; margin-left:auto; }
+    #tradingview-rangebar #boton-rehacer { right:39px; }
+    #tradingview-rangebar #boton-rehacer + #boton-expandir-movil { margin-left:0; }
+    #tradingview-contenedor.pj-fs #boton-expandir-movil .ic-expandir { display:none; }
+    #tradingview-contenedor.pj-fs #boton-expandir-movil .ic-contraer { display:block; }
+    /* Etiqueta de texto que rotula cada grupo de la barra. */
+    .tradingview-rangelabel { color:#6e7681; font-size:12px; font-weight:600; padding:0 8px 0 2px; white-space:nowrap; }
+
+
+/* pantallas grandes (monitores Full HD+, iMac, monitores gaming QHD/4K) */
+@media (min-width: 1441px) {
+    /* Sin media */
+}
+
+/* notebooks grandes (1600x900, 1920x1080) */
+@media (max-width: 1440px) {
+    /* Sin media */
+}
+
+/* notebooks comunes (1366x768, MacBook Air/Pro) */
+@media (max-width: 1200px) {
+    /* Sin media */
+}
+
+/* tablets horizontales / pantallas medianas (iPad Pro en horizontal, notebooks pequeños) */
+@media (max-width: 992px) {
+    /* TITULO ALTO BAJO (iframe de hasta 360 px de alto: celulares en horizontal): barra de rangos más baja */
+    @media (max-height: 360px) {
+        #tradingview-rangebar { padding: 3px 10px; }
+        .tvrange { padding: 3px 10px; font-size: 12px; }
+    }
+
+    /* TITULO ALTO MUY BAJO (iframe de hasta 230 px de alto): la barra de rangos deja de ocupar una fila */
+    /* Los rangos de tiempo (1D, 5D, 1 mes...) se ocultan y deshacer, rehacer y ampliar quedan flotando abajo a la derecha del lienzo: el gráfico gana toda esa fila. */
+    @media (max-height: 230px) {
+        #tradingview-contenedor { position: relative; }
+        #tradingview-rangebar { position: absolute; right: 6px; bottom: 4px; width: auto; padding: 0; border: 0; background: transparent; overflow: visible; gap: 4px; }
+        #tradingview-rangebar .tvrange, #tradingview-rangebar .tradingview-rangelabel { display: none; }
+        #tradingview-rangebar #boton-deshacer, #tradingview-rangebar #boton-rehacer, #tradingview-rangebar #boton-expandir-movil { position: static; margin: 0; }
+    }
+}
+
+/* tablets verticales (iPad clásico, tablets Android estándar) */
+@media (max-width: 768px) {
+    /* Sin media */
+}
+
+/* móviles grandes (iPhone 11, iPhone Plus/Max, Android grandes) */
+@media (max-width: 414px) {
+    /* Sin media */
+}
+
+/* móviles medianos (iPhone 12/13/14, Android gama media) */
+@media (max-width: 390px) {
+    /* Sin media */
+}
+
+/* móviles pequeños (Android estándar, iPhone SE) */
+@media (max-width: 360px) {
+    /* Sin media */
+}
+
+
+/* -------------------------------------------------------------------------------------------------------
+   --------------------------------- FIN Piña y Jara 60_barra_rangos .CSS --------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

@@ -1,0 +1,27 @@
+[
+  [
+    ":material/swap_vert:",
+    "order",
+    "Operar"
+  ],
+  [
+    ":material/reorder:",
+    "dom",
+    "Profundidad de mercado (DOM)"
+  ],
+  [
+    ":material/star:",
+    "fav",
+    "Favoritos"
+  ],
+  [
+    ":material/pending_actions:",
+    "ordenes",
+    "Órdenes del agente"
+  ],
+  [
+    ":material/smart_toy:",
+    "agente",
+    "Agente IA"
+  ]
+]

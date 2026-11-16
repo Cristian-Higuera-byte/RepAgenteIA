@@ -1,0 +1,93 @@
+{
+  "_EVENTOS": [
+    "nóminas",
+    "nominas",
+    "nfp",
+    "empleo",
+    "desempleo",
+    "inflación",
+    "inflacion",
+    "ipc",
+    "cpi",
+    "pce",
+    "pib",
+    "gdp",
+    "fomc",
+    "reserva federal",
+    "la fed",
+    "powell",
+    "bce",
+    "lagarde",
+    "banco de inglaterra",
+    "banco de japón",
+    "banco de japon",
+    "tipos de interés",
+    "tasas de interés",
+    "tasas de interes",
+    "decisión de tipos",
+    "decision de tipos",
+    "ventas minoristas",
+    "pmi",
+    "opep",
+    "opec"
+  ],
+  "_DIVISAS": {
+    "USD": [
+      "dólar",
+      "dolar",
+      "ee.uu.",
+      "estados unidos",
+      "fed",
+      "reserva federal",
+      "powell",
+      "usd"
+    ],
+    "EUR": [
+      "euro",
+      "eurozona",
+      "bce",
+      "lagarde",
+      "alemania",
+      "eur"
+    ],
+    "GBP": [
+      "libra",
+      "reino unido",
+      "banco de inglaterra",
+      "gbp"
+    ],
+    "JPY": [
+      "yen",
+      "japón",
+      "japon",
+      "banco de japón",
+      "jpy"
+    ],
+    "CAD": [
+      "canadá",
+      "canada",
+      "dólar canadiense",
+      "cad"
+    ],
+    "AUD": [
+      "australia",
+      "aud"
+    ],
+    "CHF": [
+      "franco suizo",
+      "suiza",
+      "chf"
+    ],
+    "CLP": [
+      "chile",
+      "peso chileno",
+      "clp",
+      "cobre"
+    ],
+    "XAU": [
+      "oro",
+      "xau",
+      "gold"
+    ]
+  }
+}

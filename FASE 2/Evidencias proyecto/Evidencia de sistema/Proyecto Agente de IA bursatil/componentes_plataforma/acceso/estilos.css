@@ -1,0 +1,113 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* TITULO PANTALLAS DE ACCESO (acceso/): inicio de sesión, registro, «Revisa tu correo», confirmación y recuperación de contraseña.
+   Se inyecta solo mientras se dibujan esas pantallas, así no afecta al panel. Una sola columna centrada de 460 px como máximo; en el celular ocupa
+   todo el ancho con un margen de 16 px y sube el contenido para que no quede una franja vacía arriba. */
+
+/* TITULO COLUMNA CENTRADA */
+[data-testid="stMainBlockContainer"].block-container {
+    max-width: 460px; margin-left: auto; margin-right: auto;
+    padding: 12vh 16px 40px !important; box-sizing: border-box; }
+
+/* TITULO TITULOS */
+[data-testid="stMainBlockContainer"] h2 { padding: 0; }
+
+/* TITULO BOTONES: el panel pinta oscuros todos los botones (div.stButton > button); aquí el principal vuelve al rojo de la marca y todos tienen un alto cómodo para el dedo */
+div.stButton > button { min-height: 40px; font-size: 14px !important; }
+div.stButton > button[kind="primary"] { background-color: #ff4b4b; border-color: #ff4b4b; color: #ffffff; font-weight: 600; }
+div.stButton > button[kind="primary"]:hover { background-color: #ff6363; border-color: #ff6363; color: #ffffff; }
+div.stButton > button[kind="primary"]:disabled { background-color: #2b3138; border-color: #2b3138; color: #8b949e; }
+
+/* TITULO PANTALLA DIVIDIDA (inicio de sesión y registro): con el contenedor de clave acceso_dividido la columna se ensancha a 1280 px; el formulario va a la izquierda
+   y se queda fijo al bajar, y los planes van a la derecha. Hasta 1100 px de ancho las dos columnas se apilan (formulario arriba, planes abajo). */
+[data-testid="stMainBlockContainer"].block-container:has(.st-key-acceso_dividido) { max-width: 1280px; padding-top: 5vh !important; }
+.st-key-acceso_dividido [data-testid="stHorizontalBlock"] { gap: 56px; align-items: flex-start; }
+.st-key-acceso_dividido [data-testid="stColumn"]:first-child { position: sticky; top: 24px; }
+/* El formulario ocupa una columna fija de 480 px y los planes todo el resto; con 1500 px de pantalla o más, el contenedor sube a 1640 px para que quepan las cuatro tarjetas en una fila. */
+@media (min-width: 1101px) {
+    .st-key-acceso_dividido [data-testid="stColumn"]:first-child { flex: 0 0 480px !important; width: 480px !important; min-width: 480px !important; }
+    .st-key-acceso_dividido [data-testid="stColumn"]:last-child { flex: 1 1 0 !important; width: auto !important; min-width: 0 !important; } }
+@media (min-width: 1500px) {
+    [data-testid="stMainBlockContainer"].block-container:has(.st-key-acceso_dividido) { max-width: 1640px; } }
+@media (max-width: 1100px) {
+    .st-key-acceso_dividido [data-testid="stHorizontalBlock"] { flex-direction: column; gap: 8px; }
+    .st-key-acceso_dividido [data-testid="stColumn"] { width: 100% !important; flex: 1 1 100% !important; min-width: 100% !important; }
+    .st-key-acceso_dividido [data-testid="stColumn"]:first-child { position: static; max-width: 460px; margin: 0 auto; }
+    [data-testid="stMainBlockContainer"].block-container:has(.st-key-acceso_dividido) { padding-top: 32px !important; } }
+
+/* TITULO FORMULARIOS MAS CUIDADOS (inicio de sesión, registro y pantallas de correo): fondo con luz, tarjeta con relieve, pestañas tipo selector, campos altos con foco naranja y botón con el degradado de la marca */
+.stApp:has(.acc-cabecera) { background: radial-gradient(900px 520px at 16% 0%, rgba(255, 107, 53, .14), transparent 62%), radial-gradient(800px 560px at 96% 34%, rgba(88, 166, 255, .07), transparent 60%), #0a0e17 !important; }
+.acc-cabecera { text-align: center; margin: 0 0 22px; }
+.acc-cabecera .acc-titulo { margin: 10px 0 6px; font-size: 28px; line-height: 1.15; font-weight: 800; letter-spacing: -.5px; color: #fff; }
+.acc-cabecera .acc-sub { font-size: 14.5px; line-height: 1.45; color: #9aa4b2; }
+[data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .acc-pestanas),
+[data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .acc-tarjeta) { border: 1px solid #263041 !important; border-radius: 22px !important; padding: 10px 14px 12px; background: linear-gradient(180deg, #121a27 0%, #0d131d 100%);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .02) inset; }
+.acc-tarjeta { display: none; }
+/* Botones de enlace (por ejemplo «Ir a iniciar sesión» tras confirmar el correo) con el mismo degradado de los botones del formulario */
+.st-key-acceso_centrado [data-testid="stLinkButton"] a { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 800; border: 0; color: #fff !important; background: linear-gradient(135deg, #ff4b4b, #ff8f00);
+    display: flex; align-items: center; justify-content: center; transition: transform .2s ease, filter .2s ease, box-shadow .2s ease; }
+.st-key-acceso_centrado [data-testid="stLinkButton"] a:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 16px 36px rgba(255, 107, 53, .55); }
+.acc-pestanas { display: flex; gap: 6px; padding: 5px; margin: 4px 0 20px; border-radius: 14px; background: #0a0f18; border: 1px solid #1f2837; }
+.acc-pest { flex: 1; text-align: center; padding: 11px 8px; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none !important; color: #8b949e !important; transition: color .15s ease, background .15s ease; }
+.acc-pest:hover { color: #e6edf3 !important; }
+.acc-pest-activa { color: #fff !important; background: linear-gradient(135deg, #ff4b4b, #ff8f00); box-shadow: 0 6px 18px rgba(255, 107, 53, .35); }
+/* Selectores (fecha de nacimiento y género) con la misma letra y altura que los campos de texto. Las columnas de la fecha no se apilan ni se ensanchan con las reglas de la
+   pantalla dividida: esas reglas son para sus dos columnas principales, no para las anidadas del formulario. */
+.acc-etiqueta { font-size: 13px; font-weight: 600; color: #9aa4b2; margin: 2px 0 6px; }
+[data-testid="stSelectbox"] label p { font-size: 13px; font-weight: 600; color: #9aa4b2; }
+[data-testid="stSelectbox"], [data-testid="stSelectbox"] input, [data-testid="stSelectbox"] button { font-family: "Source Sans", sans-serif; }
+[data-testid="stSelectbox"] div[role="group"] { min-height: 46px; height: 46px; }
+[data-testid="stSelectbox"] input[role="combobox"] { font-size: 15px; height: 44px; }
+.st-key-acceso_dividido [data-testid="stColumn"] [data-testid="stHorizontalBlock"] { flex-direction: row !important; gap: 10px !important; }
+.st-key-acceso_dividido [data-testid="stColumn"] [data-testid="stHorizontalBlock"] [data-testid="stColumn"] { flex: 1 1 0 !important; width: auto !important; min-width: 0 !important;
+    position: static; max-width: none; margin: 0; }
+[data-testid="stTextInput"] label p { font-size: 13px; font-weight: 600; color: #9aa4b2; }
+[data-testid="stTextInputRootElement"] { min-height: 48px; border-radius: 12px; background: #0a0f18; border: 1px solid #263041; transition: border-color .15s ease, box-shadow .15s ease; }
+[data-testid="stTextInputRootElement"]:focus-within { border-color: #ff8f00; box-shadow: 0 0 0 3px rgba(255, 143, 0, .18); }
+[data-testid="stTextInputField"] { height: 46px; font-size: 15px; }
+[data-testid="stFormSubmitButton"] button { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 800; border: 0; color: #fff; background: linear-gradient(135deg, #ff4b4b, #ff8f00);
+    box-shadow: 0 12px 28px rgba(255, 107, 53, .4); transition: transform .15s ease, box-shadow .15s ease, filter .15s ease; }
+[data-testid="stFormSubmitButton"] button:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 16px 36px rgba(255, 107, 53, .55); color: #fff; }
+
+/* TITULO CELULAR */
+@media (max-width: 480px) {
+    [data-testid="stMainBlockContainer"].block-container { padding-top: 32px !important; padding-bottom: 28px !important; } }
+
+.acc-separador { display: flex; align-items: center; gap: 12px; margin: 2px 0 18px; color: #8b949e; font-size: 13px; }
+.acc-separador::before, .acc-separador::after { content: ""; flex: 1; height: 1px; background: #3d4655; }
+
+/* TITULO BOTON DE GOOGLE: mismo alto y esquinas que el botón principal, pero sobrio (fondo de campo, borde fino) para que el degradado siga siendo el protagonista; al pasar el cursor el borde toma el naranja de la marca */
+[class*="st-key-google_entrar"] button, [class*="st-key-google_crear"] button { min-height: 52px; border-radius: 14px; font-size: 15px; font-weight: 700; color: #e6edf3; background: #0a0f18; border: 1px solid #263041;
+    display: flex; align-items: center; justify-content: center; gap: 12px; transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease; }
+[class*="st-key-google_entrar"] button::before, [class*="st-key-google_crear"] button::before { content: ""; width: 20px; height: 20px; flex: none; background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2048%2048%27%3E%3Cpath%20fill%3D%27%23EA4335%27%20d%3D%27M24%209.5c3.54%200%206.71%201.22%209.21%203.6l6.85-6.85C35.9%202.38%2030.47%200%2024%200%2014.62%200%206.51%205.38%202.56%2013.22l7.98%206.19C12.43%2013.72%2017.74%209.5%2024%209.5z%27%2F%3E%3Cpath%20fill%3D%27%234285F4%27%20d%3D%27M46.98%2024.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58%202.96-2.26%205.48-4.78%207.18l7.73%206c4.51-4.18%207.09-10.36%207.09-17.65z%27%2F%3E%3Cpath%20fill%3D%27%23FBBC05%27%20d%3D%27M10.53%2028.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92%2016.46%200%2020.12%200%2024c0%203.88.92%207.54%202.56%2010.78l7.97-6.19z%27%2F%3E%3Cpath%20fill%3D%27%2334A853%27%20d%3D%27M24%2048c6.48%200%2011.93-2.13%2015.89-5.81l-7.73-6c-2.15%201.45-4.92%202.3-8.16%202.3-6.26%200-11.57-4.22-13.47-9.91l-7.98%206.19C6.51%2042.62%2014.62%2048%2024%2048z%27%2F%3E%3C%2Fsvg%3E") center / contain no-repeat; }
+[class*="st-key-google_entrar"] button:hover, [class*="st-key-google_crear"] button:hover { border-color: #ff8f00; color: #fff; box-shadow: 0 0 0 3px rgba(255, 143, 0, .16); transform: translateY(-1px); }
+.st-key-google_cancelar button { min-height: 44px; border-radius: 12px; background: transparent; border: 1px solid #263041; color: #9aa4b2; }
+.st-key-google_cancelar button:hover { border-color: #ff8f00; color: #fff; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ FIN Piña y Jara estilos .CSS -------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

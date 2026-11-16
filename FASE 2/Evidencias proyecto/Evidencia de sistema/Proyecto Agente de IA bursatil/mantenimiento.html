@@ -1,0 +1,86 @@
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->
+
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- ------------------------------- INICIO Piña y Jara mantenimiento .HTML -------------------------------- -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Página que Apache muestra cuando la plataforma no responde (error 503), por ejemplo si el servidor se reinicia o se está actualizando.
+Se configura en el .htaccess del hosting (ver despliegue/htaccess.ejemplo): `ErrorDocument 503 /mantenimiento.html`.
+Es autónoma a propósito: todo el estilo va dentro de este archivo, porque con la plataforma caída cualquier otra ruta (logo, hojas de estilo)
+también devolvería el error. Se recarga sola cada 15 segundos, de modo que el usuario entra apenas la plataforma vuelva.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="20">
+    <title>P&amp;J · Estamos trabajando en la plataforma</title>
+    <style>
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
+        body {
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at 50% 42%, #141b2b 0%, #0b0f19 62%); color: #e6edf3;
+            font-family: "Source Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 24px;
+        }
+        .contenido { width: 100%; max-width: 460px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+        .reloj { position: relative; width: 96px; height: 96px; }
+        .anillo { position: absolute; inset: 0; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .07); border-top-color: #ff8f00; border-right-color: #ff4b4b;
+            animation: giro 1s linear infinite; }
+        .logo { position: absolute; top: 15px; left: 15px; width: 66px; height: 66px; margin: 0; border-radius: 50%; background: #101624; color: #ff8f00;
+            display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; letter-spacing: .5px; animation: brillo 2.2s ease-in-out infinite; }
+        h1 { font-size: 24px; font-weight: 700; margin: 6px 0 0; color: #e6edf3; }
+        p { margin: 0; color: #8b949e; font-size: 15px; line-height: 1.5; }
+        .estado { margin-top: 8px; font-size: 13px; color: #8b949e; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .puntos { display: flex; gap: 7px; }
+        .punto { width: 7px; height: 7px; border-radius: 50%; background: #ff8f00; animation: pulso 1.2s ease-in-out infinite; }
+        .punto:nth-child(2) { animation-delay: .2s; }
+        .punto:nth-child(3) { animation-delay: .4s; }
+        @keyframes giro { to { transform: rotate(360deg); } }
+        @keyframes pulso { 0%, 100% { opacity: .35; transform: scale(.85); } 50% { opacity: 1; transform: scale(1); } }
+        @keyframes brillo { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 143, 0, 0); } 50% { box-shadow: 0 0 36px 4px rgba(255, 143, 0, .28); } }
+        @media (prefers-reduced-motion: reduce) { .anillo, .punto, .logo { animation: none; } }
+    </style>
+</head>
+<body>
+    <main class="contenido" role="main">
+        <div class="reloj"><div class="anillo"></div><div class="logo">P&amp;J</div></div>
+        <h1>Estamos trabajando en la plataforma</h1>
+        <p>En unos minutos volverá a estar disponible.</p>
+        <p>No necesitas hacer nada: esta página se actualiza sola.</p>
+        <div class="estado" aria-live="polite"><div class="puntos"><span class="punto"></span><span class="punto"></span><span class="punto"></span></div><span>Reintentando conexión…</span></div>
+    </main>
+    <script>
+        // Recarga la página original (la misma dirección que el usuario pidió): si la plataforma ya volvió, entra directo.
+        setTimeout(function () { location.reload(); }, 15000);
+    </script>
+</body>
+</html>
+
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- -------------------------------- FIN Piña y Jara mantenimiento .HTML ---------------------------------- -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+<!--
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+-->

@@ -1,0 +1,98 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ---------------------------------- INICIO Piña y Jara estilos .CSS ------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* TITULO PANTALLA «CONECTAR MI CUENTA» (conectar_cuenta/pantalla.py): mismo estilo que el inicio de sesión y el registro. Se inyecta solo mientras se dibuja esa pantalla.
+   El formulario va a la izquierda en una tarjeta con relieve y la guía de 4 pasos a la derecha; en pantallas angostas se apilan (primero la guía). Prefijo cc-. */
+
+/* TITULO FONDO Y ANCHO */
+.stApp:has(.st-key-conectar_dividido) { background: radial-gradient(900px 520px at 16% 0%, rgba(255, 107, 53, .14), transparent 62%), radial-gradient(800px 560px at 96% 34%, rgba(88, 166, 255, .07), transparent 60%), #0a0e17 !important; }
+[data-testid="stMainBlockContainer"].block-container:has(.st-key-conectar_dividido) { max-width: 1200px; margin-left: auto; margin-right: auto; padding: 5vh 24px 40px !important; box-sizing: border-box; }
+
+/* TITULO CABECERA */
+.cc-cabecera { text-align: center; margin: 0 0 28px; }
+.cc-logo { font-size: 38px; font-weight: 800; letter-spacing: 1px; color: #ff6b35; }
+.cc-titulo { margin: 10px 0 8px; font-size: 30px; line-height: 1.15; font-weight: 800; letter-spacing: -.5px; color: #fff; }
+.cc-sub { max-width: 660px; margin: 0 auto; font-size: 15px; line-height: 1.5; color: #9aa4b2; }
+
+/* TITULO DOS COLUMNAS: el formulario ocupa 520 px y la guía el resto (solo el bloque que contiene la tarjeta del formulario) */
+[data-testid="stHorizontalBlock"]:has(.st-key-conectar_formulario) { gap: 40px; align-items: flex-start; }
+[data-testid="stHorizontalBlock"]:has(.st-key-conectar_formulario) > [data-testid="stColumn"]:first-child { flex: 0 0 520px !important; width: 520px !important; min-width: 520px !important; }
+[data-testid="stHorizontalBlock"]:has(.st-key-conectar_formulario) > [data-testid="stColumn"]:last-child { flex: 1 1 0 !important; width: auto !important; min-width: 0 !important; }
+
+/* TITULO TARJETA DEL FORMULARIO */
+.st-key-conectar_formulario { padding: 26px 26px 22px; border-radius: 22px; box-sizing: border-box; background: linear-gradient(180deg, #121a27 0%, #0d131d 100%); border: 1px solid #263041;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .02) inset; }
+.st-key-conectar_formulario [data-testid="stTextInput"] label p { font-size: 13px; font-weight: 600; color: #9aa4b2; }
+.st-key-conectar_formulario [data-testid="stTextInputRootElement"] { min-height: 48px; border-radius: 12px; background: #0a0f18; border: 1px solid #263041; transition: border-color .15s ease, box-shadow .15s ease; }
+.st-key-conectar_formulario [data-testid="stTextInputRootElement"]:focus-within { border-color: #ff8f00; box-shadow: 0 0 0 3px rgba(255, 143, 0, .18); }
+.st-key-conectar_formulario [data-testid="stTextInputField"] { height: 46px; font-size: 15px; }
+.st-key-conectar_formulario [data-testid="stAlert"] { border-radius: 14px; }
+
+/* TITULO BOTONES: «Probar conexión» y «Desconectar» con contorno naranja; «Guardar y continuar» con el degradado de la marca */
+.st-key-conectar_formulario div.stButton > button { min-height: 50px; border-radius: 14px; font-size: 15px; font-weight: 800; background: transparent; border: 1px solid #ff8f00; color: #ffb067;
+    transition: transform .15s ease, background .15s ease, box-shadow .15s ease, filter .15s ease; }
+.st-key-conectar_formulario div.stButton > button:hover:not(:disabled) { transform: translateY(-2px); background: rgba(255, 143, 0, .12); border-color: #ffa01a; color: #ffc58a; }
+.st-key-conectar_formulario div.stButton > button[kind="primary"] { border: 0; color: #fff; background: linear-gradient(135deg, #ff4b4b, #ff8f00); box-shadow: 0 12px 28px rgba(255, 107, 53, .4); }
+.st-key-conectar_formulario div.stButton > button[kind="primary"]:hover:not(:disabled) { color: #fff; filter: brightness(1.08); box-shadow: 0 16px 36px rgba(255, 107, 53, .55); }
+.st-key-conectar_formulario div.stButton > button:disabled { background: #151c27; border: 1px solid #263041; color: #6b7686; box-shadow: none; opacity: 1; }
+
+/* TITULO CUENTAS CONECTADAS (una fila por cuenta con su estado) */
+.cc-cuenta { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #0a0f18; border: 1px solid #1f2837; }
+.cc-cuenta b { font-size: 14.5px; color: #e6edf3; }
+.cc-estado { margin-left: auto; padding: 4px 11px; border-radius: 999px; font-size: 12px; font-weight: 800; color: #8b949e; background: #151c27; border: 1px solid #263041; }
+.cc-estado-ok { color: #04210c; background: #3fb950; border-color: #3fb950; }
+
+/* TITULO GUIA DE 4 PASOS (a la derecha) */
+.cc-guia { padding: 26px 28px; border-radius: 22px; background: linear-gradient(180deg, #111926, #0d131d); border: 1px solid #222c3b; }
+.cc-guia-titulo { margin: 0 0 4px; font-size: 20px; font-weight: 800; color: #fff; }
+.cc-guia-sub { margin: 0 0 22px; font-size: 14px; color: #9aa4b2; }
+.cc-pasos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+.cc-pasos li { position: relative; display: flex; gap: 16px; padding: 0 0 22px; }
+.cc-pasos li:last-child { padding-bottom: 0; }
+.cc-pasos li::before { content: ''; position: absolute; left: 17px; top: 38px; bottom: 4px; width: 2px; background: linear-gradient(180deg, #ff8f00, rgba(255, 143, 0, .08)); }
+.cc-pasos li:last-child::before { display: none; }
+.cc-n { flex: 0 0 36px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #fff;
+    background: linear-gradient(135deg, #ff4b4b, #ff8f00); box-shadow: 0 6px 16px rgba(255, 107, 53, .4); }
+.cc-pasos b { display: block; margin-top: 6px; font-size: 15px; color: #e6edf3; }
+.cc-pasos p { margin: 4px 0 0; font-size: 13.5px; line-height: 1.5; color: #9aa4b2; }
+.cc-pasos p strong { color: #ffb067; }
+.cc-seguridad { margin-top: 24px; padding: 14px 16px; border-radius: 14px; font-size: 13.5px; line-height: 1.5; color: #c9d1d9; background: rgba(63, 185, 80, .09); border: 1px solid rgba(63, 185, 80, .4); }
+.cc-seguridad b { color: #3fb950; }
+.cc-despues { margin-top: 14px; font-size: 13px; line-height: 1.5; color: #8b949e; }
+.cc-pie { margin: 18px 0 0; text-align: center; font-size: 14px; color: #8b949e; }
+.cc-legal { margin: 6px 0 0; text-align: center; font-size: 12px; }
+
+/* TITULO PANTALLAS ANGOSTAS: se apilan y la guía va primero (hay que crear la key antes de escribirla) */
+@media (max-width: 1000px) {
+    [data-testid="stHorizontalBlock"]:has(.st-key-conectar_formulario) { flex-direction: column-reverse; gap: 22px; }
+    [data-testid="stHorizontalBlock"]:has(.st-key-conectar_formulario) > [data-testid="stColumn"]:first-child, [data-testid="stHorizontalBlock"]:has(.st-key-conectar_formulario) > [data-testid="stColumn"]:last-child { flex: 1 1 100% !important; width: 100% !important; min-width: 0 !important; max-width: 100% !important; }
+    [data-testid="stMainBlockContainer"].block-container:has(.st-key-conectar_dividido) { padding-top: 28px !important; }
+    .cc-guia { padding: 20px 18px; }
+    .st-key-conectar_formulario { padding: 20px 16px 18px; }
+    .cc-titulo { font-size: 26px; } }
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- FIN Piña y Jara estilos .CSS --------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

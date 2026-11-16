@@ -1,0 +1,104 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ----------------------------------- INICIO Piña y Jara estilos .CSS -----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+  /* TITULO CONTENEDOR GENERAL DE LA VISTA BILLETERA */
+  /* Contenedor raíz (st.container(key="billetera_contenedor") en panel.py): centrado, ancho máximo de 1200px y 16px entre bloques. */
+  .st-key-billetera_contenedor { max-width:1200px; margin-left:auto; margin-right:auto; width:100%; }
+  .st-key-billetera_contenedor [data-testid="stVerticalBlock"] { gap:16px; }
+  /* Título, subtítulo y franja que avisa que el saldo es de prueba. */
+  .bil-titulo { font-size:22px; font-weight:800; color:#fff; letter-spacing:-.2px; }
+  .bil-subtitulo { font-size:13px; color:#8b949e; margin-top:2px; }
+  .bil-aviso { margin-top:12px; background:linear-gradient(135deg,rgba(255,75,75,.12),rgba(255,143,0,.12)); border:1px solid rgba(255,143,0,.38); color:#ffb067; border-radius:12px; padding:10px 14px; font-size:13px; font-weight:600; }
+  /* Mismo recuadro para el aviso de que el pago con Flow llega pronto. */
+  .bil-flow { background:linear-gradient(135deg,rgba(255,75,75,.12),rgba(255,143,0,.12)); border:1px solid rgba(255,143,0,.38); color:#ffb067; border-radius:14px; padding:14px 16px; font-size:14px; line-height:1.5; }
+  .bil-flow b { color:#fff; }
+
+  /* TITULO TARJETAS DE RESUMEN */
+  /* Tarjetas con el saldo, el plan actual y lo recargado en el mes. */
+  .bil-tarjeta { background:linear-gradient(180deg,#131b29,#0d131d); border:1px solid #263041; border-radius:18px; padding:18px 20px; box-sizing:border-box; transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+  .bil-tarjeta:hover { transform:translateY(-3px); border-color:#ff8f00; box-shadow:0 14px 34px rgba(0,0,0,.5),0 0 0 1px rgba(255,143,0,.5); }
+  .bil-etiqueta { font-size:12px; color:#8b949e; }
+  .bil-saldo { font-size:32px; font-weight:800; margin-top:4px; font-variant-numeric:tabular-nums; background:linear-gradient(135deg,#ff4b4b,#ff8f00); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .bil-valor { font-size:22px; font-weight:800; color:#e6edf3; margin-top:4px; font-variant-numeric:tabular-nums; }
+  .bil-nota { font-size:12px; color:#8b949e; margin-top:4px; }
+
+  /* TITULO SECCIONES Y PLANES */
+  /* Título de cada sección y mini tarjetas de los planes que se pueden comprar (la del plan actual lleva borde verde). */
+  .bil-seccion { font-size:15px; font-weight:700; color:#e6edf3; margin-top:6px; padding-left:10px; border-left:3px solid #ff8f00; }
+  /* Botones principales y selector de monto de la vista en el degradado de la marca. */
+  .st-key-billetera_contenedor button[kind="primary"] { background:linear-gradient(135deg,#ff4b4b,#ff8f00) !important; border:none !important; color:#fff !important; font-weight:700; border-radius:12px !important; }
+  .st-key-billetera_contenedor button[kind="primary"]:hover { filter:brightness(1.08); }
+  .st-key-billetera_contenedor [data-testid="stSegmentedControl"] button[aria-checked="true"], .st-key-billetera_contenedor [data-testid="stSegmentedControl"] button[aria-pressed="true"] { border-color:#ff8f00 !important; color:#ffb067 !important; background:rgba(255,143,0,.14) !important; }
+  .bil-plan { background:#0d131d; border:1px solid #202a37; border-radius:12px; padding:12px 14px; }
+  .bil-plan-actual { border-color:#ff8f00; }
+  .bil-plan-nombre { font-size:15px; font-weight:800; color:#e6edf3; }
+  .bil-plan-precio { font-size:18px; font-weight:800; color:#2ebd85; font-variant-numeric:tabular-nums; }
+  .bil-plan-precio span { font-size:12px; font-weight:600; color:#8b949e; }
+
+
+/* pantallas grandes (monitores Full HD+, iMac, monitores gaming QHD/4K) */
+@media (min-width: 1441px) {
+    /* Sin media */
+}
+
+/* notebooks grandes (1600x900, 1920x1080) */
+@media (max-width: 1440px) {
+    /* Sin media */
+}
+
+/* notebooks comunes (1366x768, MacBook Air/Pro) */
+@media (max-width: 1200px) {
+    /* Sin media */
+}
+
+/* tablets horizontales / pantallas medianas (iPad Pro en horizontal, notebooks pequeños) */
+@media (max-width: 992px) {
+    /* Sin media */
+}
+
+/* tablets verticales (iPad clásico, tablets Android estándar) */
+@media (max-width: 768px) {
+    /* Sin media */
+}
+
+/* móviles grandes (iPhone 11, iPhone Plus/Max, Android grandes) */
+@media (max-width: 414px) {
+    /* Sin media */
+}
+
+/* móviles medianos (iPhone 12/13/14, Android gama media) */
+@media (max-width: 390px) {
+    /* Sin media */
+}
+
+/* móviles pequeños (Android estándar, iPhone SE) */
+@media (max-width: 360px) {
+    /* Sin media */
+}
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ FIN Piña y Jara estilos .CSS -------------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

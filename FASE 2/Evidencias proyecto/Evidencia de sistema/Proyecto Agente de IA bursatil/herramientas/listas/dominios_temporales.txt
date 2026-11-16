@@ -1,0 +1,1 @@
+# Dominios de correo temporal (uno por linea). Lo rellena actualizar_dominios_temporales.py; se suma a la lista integrada.

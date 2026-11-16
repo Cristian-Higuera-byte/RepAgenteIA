@@ -1,0 +1,18 @@
+[
+  [
+    "origen",
+    "TEXT DEFAULT 'agente'"
+  ],
+  [
+    "vigilancia_id",
+    "TEXT"
+  ],
+  [
+    "usuario_id",
+    "TEXT"
+  ],
+  [
+    "cuenta",
+    "TEXT"
+  ]
+]

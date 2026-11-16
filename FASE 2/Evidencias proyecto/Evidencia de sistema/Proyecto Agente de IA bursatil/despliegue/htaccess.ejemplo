@@ -1,0 +1,141 @@
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.
+
+
+# -------------------------------------------------------------------------------------------------------
+# ------------------------------------ INICIO Piña y Jara htaccess .EJEMPLO -----------------------------
+# -------------------------------------------------------------------------------------------------------
+
+# Plantilla del .htaccess que usa el hosting cPanel (pyj.rmcabogados.cl). En el servidor se copia como `.htaccess` en la carpeta del proyecto;
+# ese archivo no está en el repositorio, así que esta copia sirve para recuperarlo si el servidor se pierde.
+#
+# Puertos: Streamlit escucha en 28501 y el servidor de precios en 28000 (los fija revivir_procesos.py y servidor_precios/constantes.py).
+# OJO: en el servidor, servidor_precios/constantes.py tiene PUERTO = 28000 (cambio local, el repositorio dice 8000). No descartarlo con
+# `git checkout` ni `git stash`: sin él el servidor de precios arranca en otro puerto y esta configuración no lo encuentra.
+
+# ENDURECIMIENTO (auditoría 09-11-2026: V04 y secciones 11 y 12). Orden de las reglas: archivos sensibles, HTTPS, métodos, cabeceras, límites, WebSocket, proxy.
+# Antes de reemplazar el .htaccess del servidor guardar una copia (`cp .htaccess .htaccess.bak`): si algo falla, se vuelve con `cp .htaccess.bak .htaccess`
+# (LiteSpeed relee el archivo solo, no hay que reiniciar nada).
+
+# TITULO PROTEGER ARCHIVOS SENSIBLES
+
+<FilesMatch "^\.(env|git.*)">
+    Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/\.git
+
+# TITULO CABECERAS DE SEGURIDAD
+
+# · HSTS: solo para ESTE subdominio (sin includeSubDomains ni preload: el dominio principal rmcabogados.cl es de otra empresa). Empieza en 7 días;
+#   cuando se confirme que el certificado se renueva solo (AutoSSL) y todo funciona, subir a 31536000 (1 año).
+# · Anti-clickjacking: frame-ancestors 'self' y X-Frame-Options SAMEORIGIN impiden que OTRA web incruste la plataforma (sección 11.5). Se usa 'self' y no
+#   'none'/DENY porque Streamlit y el gráfico pueden cargar contenido propio dentro de marcos del mismo sitio; con 'none' esas piezas dejarían de verse.
+# · No hay una CSP completa: Streamlit y los componentes usan scripts y estilos en línea y se rompería. Si se quiere, probarla antes en modo
+#   `Content-Security-Policy-Report-Only`.
+# · Server y X-Powered-By se quitan si el servidor lo permite (LiteSpeed puede dejar su propia cabecera Server).
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=604800"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Content-Security-Policy "frame-ancestors 'self'"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always unset Server
+    Header always unset X-Powered-By
+</IfModule>
+
+RewriteEngine On
+
+# TITULO PAGINAS DE ERROR (IMPRESCINDIBLE, VA PRIMERO)
+
+# Cuando una regla rechaza una petición (403, 404, 413...), Apache hace una petición interna a la página de error de ese código. Esa petición volvería a pasar por
+# este archivo y caería en la regla final del proxy: Streamlit contestaría con su página y el cliente vería un 200 en vez del rechazo. Estas dos líneas dejan
+# esas peticiones internas fuera del proxy. Sin ellas NINGUNA regla de rechazo de abajo funciona (comprobado el 13-11-2026: TRACE, salud y cuerpo grande daban 200).
+RewriteCond %{ENV:REDIRECT_STATUS} ^[0-9]+$
+RewriteRule .* - [L]
+
+# TITULO RENOVACION DEL CERTIFICADO (AutoSSL)
+
+# La validación del certificado pide archivos en /.well-known/: se sirven directo desde la carpeta, sin pasarlos a Streamlit ni redirigirlos.
+RewriteRule ^\.well-known/ - [L]
+
+# TITULO REDIRIGIR HTTP A HTTPS
+
+# Todo lo que llegue por el puerto 80 se manda a la misma ruta en HTTPS con 308 (conserva el método: un POST no se convierte en GET).
+# En el servidor la redirección que se ve (301) la hace Apache por el interruptor «Forzar redireccionamiento HTTPS» de cPanel (Dominios), que actúa antes
+# que este archivo: dejar ese interruptor activado. Esta regla queda como respaldo.
+RewriteCond %{SERVER_PORT} ^80$
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=308,L]
+
+# TITULO BLOQUEAR TRACE Y TRACK
+
+# Métodos de depuración que reflejan la petición: se rechazan siempre (el servidor responde 405). GET, POST, HEAD y OPTIONS no se tocan.
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)$ [NC]
+RewriteRule .* - [F,L]
+
+# TITULO PAGINA DE MANTENIMIENTO
+
+# Si la plataforma no responde (503), Apache muestra mantenimiento.html. La regla de abajo la sirve directo, sin pasarla a Streamlit:
+# sin ella, la propia página de error se enviaría al proxy caído y volvería a dar 503.
+ErrorDocument 503 /mantenimiento.html
+RewriteRule ^mantenimiento\.html$ - [L]
+
+# TITULO LIMITE DE TAMANO DE LAS PETICIONES AL SERVIDOR DE PRECIOS
+
+# Las órdenes pesan menos de 1 KB y la aplicación ya rechaza más de 16 KB (413). Aquí se corta antes, sin molestar a Python, todo POST que declare
+# 100 000 bytes o más (6 dígitos o más en Content-Length). Responde 413. OJO: un cuerpo enviado «por partes» no declara Content-Length y pasa a la aplicación.
+RewriteCond %{REQUEST_METHOD} =POST
+RewriteCond %{HTTP:Content-Length} ^[0-9]{6,}$
+RewriteRule ^t/ - [R=413,L]
+
+# TITULO SERVIDOR DE PRECIOS (el navegador lo consulta directo)
+
+RewriteRule ^t/(.*)$ http://127.0.0.1:28000/t/$1 [P,L]
+RewriteRule ^salud$ http://127.0.0.1:28000/salud [P,L]
+
+# TITULO RUTA DE SALUD DE STREAMLIT
+
+# /_stcore/health lo consulta el propio navegador de la plataforma (para saber si el servidor volvió) y revivir_procesos.py, este por el puerto 28501
+# directo (no pasa por aquí). Una consulta pública sin Referer del propio sitio recibe 403 (sección 12.4).
+RewriteCond %{HTTP_REFERER} !^https://pyj\.rmcabogados\.cl/ [NC]
+RewriteRule ^_stcore/health$ - [F,L]
+
+# TITULO WEBSOCKET DE STREAMLIT
+
+# Solo abre el canal una página de este sitio (Origin propio). Un Origin externo recibe 403 (sección 12.3). Sin Origin (clientes que no son un
+# navegador) pasa igual que antes: el riesgo que se corta es que OTRA web use la sesión del usuario desde su navegador.
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteCond %{HTTP:Origin} !^$
+RewriteCond %{HTTP:Origin} !^https://pyj\.rmcabogados\.cl$ [NC]
+RewriteRule ^_stcore/stream$ - [F,L]
+
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteCond %{HTTP:Connection} upgrade [NC]
+RewriteRule ^_stcore/stream$ ws://127.0.0.1:28501/_stcore/stream [P,L]
+
+# TITULO TODO LO DEMAS VA A STREAMLIT
+
+RewriteRule ^(.*)$ http://127.0.0.1:28501/$1 [P,L]
+
+# TITULO LO QUE NO SE PUEDE LIMITAR AQUI
+
+# Tiempos de espera del proxy, límite de conexiones y de peticiones por minuto no se configuran en un .htaccess de cPanel: la aplicación ya los aplica
+# (30 s por conexión, 150 conexiones, 6 streams por cuenta, 600 lecturas y 30 órdenes por minuto; ver servidor_precios/limites.py). Si Netexplora lo
+# permite, pedirles un límite de conexiones por IP y un tiempo máximo de lectura de cabeceras (protección contra conexiones lentas).
+
+# -------------------------------------------------------------------------------------------------------
+# ------------------------------------- FIN Piña y Jara htaccess .EJEMPLO -------------------------------
+# -------------------------------------------------------------------------------------------------------
+
+# Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+# Dirección: José Joaquín Prieto #5373 -
+# San Miguel - Santiago - Chile
+# contacto.pinayjara@gmail.com
+# https://www.pinayjara.cl
+# Creado, Programado y Diseñado por Piña y Jara
+# Transportes y Servicios Ltda.

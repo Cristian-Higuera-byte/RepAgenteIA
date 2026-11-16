@@ -1,0 +1,33 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------ INICIO Piña y Jara recaptcha .CSS --------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* Casillero «No soy un robot» (v2): oculto hasta que el servidor lo pide; centrado y con aire arriba y abajo cuando aparece. */
+.pj-rc-v2 { display: none; justify-content: center; margin: 4px 0 12px; min-height: 78px; }
+/* La insignia flotante de Google se oculta; en su lugar cada formulario muestra el aviso legal que Google exige. */
+.grecaptcha-badge { visibility: hidden !important; }
+
+/* -------------------------------------------------------------------------------------------------------
+   ------------------------------------- FIN Piña y Jara recaptcha .CSS ----------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/

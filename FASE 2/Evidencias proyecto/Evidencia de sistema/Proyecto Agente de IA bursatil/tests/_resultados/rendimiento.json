@@ -1,0 +1,37 @@
+{
+ "validar_contrasena": {
+  "operaciones": 10000,
+  "segundos": 0.0605,
+  "microsegundos_por_operacion": 6.0
+ },
+ "emitir_y_verificar_token": {
+  "operaciones": 2000,
+  "segundos": 0.0251,
+  "microsegundos_por_operacion": 12.6
+ },
+ "cifrar_y_descifrar_credencial": {
+  "operaciones": 500,
+  "segundos": 0.0131,
+  "microsegundos_por_operacion": 26.2
+ },
+ "armar_consulta_sql": {
+  "operaciones": 2000,
+  "segundos": 0.0058,
+  "microsegundos_por_operacion": 2.9
+ },
+ "ejecutar_herramienta": {
+  "operaciones": 5000,
+  "segundos": 0.0108,
+  "microsegundos_por_operacion": 2.2
+ },
+ "crear_y_consumir_enlace": {
+  "operaciones": 300,
+  "segundos": 0.0417,
+  "microsegundos_por_operacion": 139.0
+ },
+ "insertar_orden_sqlite": {
+  "operaciones": 300,
+  "segundos": 0.354,
+  "microsegundos_por_operacion": 1179.9
+ }
+}

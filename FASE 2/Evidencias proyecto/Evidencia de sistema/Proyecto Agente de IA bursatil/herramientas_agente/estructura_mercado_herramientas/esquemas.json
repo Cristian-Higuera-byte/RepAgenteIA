@@ -1,0 +1,69 @@
+{
+  "detectar_niveles_clave": {
+    "descripcion": "Detecta soportes y resistencias clave, Swing Highs/Lows y Puntos Pivote institucionales en un símbolo y temporalidad determinados.",
+    "parametros": {
+      "simbolo": {
+        "type": "string",
+        "description": "Símbolo del activo (ej. 'EURUSD', 'GBPUSD', 'XAUUSD')."
+      },
+      "timeframe": {
+        "type": "string",
+        "description": "Temporalidad para el análisis ('M15', 'H1', 'H4', 'D1'). Por defecto 'H1'."
+      },
+      "cantidad_velas": {
+        "type": "integer",
+        "description": "Número de velas para evaluar la estructura. Por defecto 100."
+      }
+    },
+    "requeridos": [
+      "simbolo"
+    ],
+    "nombre": "detectar_niveles_clave"
+  },
+  "identificar_order_blocks_fvg": {
+    "descripcion": "Identifica desbalances de precio (Fair Value Gaps - FVG) e ineficiencias, así como Order Blocks (bloques de órdenes institucionales) alcistas y bajistas.",
+    "parametros": {
+      "simbolo": {
+        "type": "string",
+        "description": "Símbolo a analizar (ej. 'EURUSD', 'XAUUSD')."
+      },
+      "timeframe": {
+        "type": "string",
+        "description": "Temporalidad ('M15', 'H1', 'H4'). Por defecto 'H1'."
+      },
+      "cantidad_velas": {
+        "type": "integer",
+        "description": "Cantidad de velas históricas a escanear. Por defecto 60."
+      }
+    },
+    "requeridos": [
+      "simbolo"
+    ],
+    "nombre": "identificar_order_blocks_fvg"
+  },
+  "calcular_perfil_volumen": {
+    "descripcion": "Calcula el perfil de volumen acumulado (Point of Control - POC, Value Area High - VAH, Value Area Low - VAL) para identificar las zonas de mayor liquidez transaccionada.",
+    "parametros": {
+      "simbolo": {
+        "type": "string",
+        "description": "Símbolo del activo a evaluar (ej. 'EURUSD', 'USDCLP')."
+      },
+      "timeframe": {
+        "type": "string",
+        "description": "Temporalidad ('M15', 'H1', 'D1'). Por defecto 'H1'."
+      },
+      "cantidad_velas": {
+        "type": "integer",
+        "description": "Número de velas para construir el perfil de volumen. Por defecto 100."
+      },
+      "niveles_precio": {
+        "type": "integer",
+        "description": "Número de franjas/bins de precio. Por defecto 24."
+      }
+    },
+    "requeridos": [
+      "simbolo"
+    ],
+    "nombre": "calcular_perfil_volumen"
+  }
+}

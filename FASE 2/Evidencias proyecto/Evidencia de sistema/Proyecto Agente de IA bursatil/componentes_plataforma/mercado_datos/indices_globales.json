@@ -1,0 +1,30 @@
+{
+  "defecto": {
+    "SP500": {
+      "valor": 5432.18,
+      "var": "+0.84%",
+      "sube": true
+    },
+    "NASDAQ": {
+      "valor": 17742.9,
+      "var": "+1.22%",
+      "sube": true
+    },
+    "DOW": {
+      "valor": 39310.44,
+      "var": "-0.31%",
+      "sube": false
+    },
+    "BTC": {
+      "valor": 67204.0,
+      "var": "+2.90%",
+      "sube": true
+    }
+  },
+  "yfinance": {
+    "SP500": "^GSPC",
+    "NASDAQ": "^IXIC",
+    "DOW": "^DJI",
+    "BTC": "BTC-USD"
+  }
+}

@@ -1,0 +1,190 @@
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
+
+
+/* -------------------------------------------------------------------------------------------------------
+   -------------------------------- INICIO Piña y Jara vitrina_planes .CSS -------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/* TITULO VITRINA DE PLANES (acceso/vitrina_planes.py): los cuatro planes con su detalle, bajo los formularios de inicio de sesión y de registro.
+   Sale de la columna de 460 px de esas pantallas y se centra en la ventana (hasta 1180 px). Prefijo vp-. */
+
+/* TITULO ENLACE «VER PLANES» bajo el formulario */
+.vp-pista { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 14px 0 2px; padding: 11px 16px; border-radius: 12px; text-decoration: none !important;
+    background: linear-gradient(135deg, rgba(255, 75, 75, .14), rgba(255, 143, 0, .14)); border: 1px solid rgba(255, 143, 0, .38); color: #ffb067 !important;
+    font-size: 14px; font-weight: 700; transition: transform .15s ease, border-color .15s ease; }
+.vp-pista:hover { transform: translateY(-2px); border-color: #ff8f00; }
+.vp-pista b { display: inline-block; animation: vp-rebote 1.4s ease-in-out infinite; }
+
+/* TITULO AVISO DEL PLAN ELEGIDO (arriba del formulario de registro) */
+.vp-elegido { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; padding: 12px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.4; color: #c9d1d9;
+    background: rgba(63, 185, 80, .10); border: 1px solid rgba(63, 185, 80, .45); }
+.vp-elegido b { color: #fff; }
+.vp-elegido i { font-style: normal; font-size: 20px; }
+
+/* TITULO SECCION: ancho de la ventana, centrada respecto de la columna angosta */
+.vp { position: relative; width: 100%; margin: 0 0 8px; box-sizing: border-box; color: #e6edf3; }
+.vp * { box-sizing: border-box; }
+.vp-cabecera { text-align: center; margin-bottom: 34px; }
+.vp-etiqueta { display: inline-block; padding: 6px 14px; border-radius: 999px; border: 1px solid #3a2a22; background: rgba(255, 107, 53, .10); color: #ff9a6b; font-size: 12.5px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; }
+.vp-titulo { margin: 14px 0 10px; font-size: 36px !important; line-height: 1.12 !important; line-height: 1.12; font-weight: 800; letter-spacing: -.8px; color: #fff; }
+.vp-titulo span { background: linear-gradient(135deg, #ff4b4b, #ff8f00); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.vp-sub { margin: 0 auto; max-width: 640px; font-size: 17px; line-height: 1.55; color: #9aa4b2; }
+
+/* TITULO REJILLA DE TARJETAS */
+.vp-rejilla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: stretch; padding-top: 14px; }
+.vp-cuatro { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+/* Orden en la rejilla de dos columnas: Gratis y Profesional arriba (lo primero que se ve), Básico y Avanzado debajo. En la de cuatro, el orden natural. */
+.vp-rejilla .vp-gratis { order: 1; } .vp-rejilla .vp-pro { order: 2; } .vp-rejilla .vp-basico { order: 3; } .vp-rejilla .vp-avanzado { order: 4; }
+.vp-cuatro .vp-basico { order: 2; } .vp-cuatro .vp-pro { order: 3; }
+.vp-tarjeta { --acento: #3fb950; --acento-suave: rgba(63, 185, 80, .13); position: relative; display: flex; flex-direction: column; padding: 30px 22px 24px; border-radius: 22px;
+    background: linear-gradient(180deg, #131b29 0%, #0d131d 100%); border: 1px solid #263041;
+    animation: vp-entra .6s cubic-bezier(.2, .8, .2, 1) backwards; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.vp-tarjeta:nth-child(1) { animation-delay: .05s; } .vp-tarjeta:nth-child(2) { animation-delay: .15s; }
+.vp-tarjeta:nth-child(3) { animation-delay: .25s; } .vp-tarjeta:nth-child(4) { animation-delay: .35s; }
+.vp-tarjeta:hover { transform: translateY(-6px) !important; border-color: var(--acento); box-shadow: 0 18px 44px rgba(0, 0, 0, .55), 0 0 0 1px var(--acento); }
+.vp-gratis { --acento: #3fb950; --acento-suave: rgba(63, 185, 80, .13); }
+.vp-basico { --acento: #58a6ff; --acento-suave: rgba(88, 166, 255, .13); }
+.vp-pro { --acento: #ff8f00; --acento-suave: rgba(255, 143, 0, .15); }
+.vp-avanzado { --acento: #a371f7; --acento-suave: rgba(163, 113, 247, .14); }
+
+/* TITULO PLAN DESTACADO («Más elegido») */
+.vp-destacada { border: 1px solid #ff8f00; background: linear-gradient(180deg, #1c1712 0%, #12151d 55%, #0d131d 100%); box-shadow: 0 0 0 1px rgba(255, 143, 0, .55), 0 22px 60px rgba(255, 107, 53, .28);
+    animation: vp-entra .6s cubic-bezier(.2, .8, .2, 1) .25s backwards, vp-aura 3s ease-in-out 1s infinite; }
+.vp-cinta { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); padding: 7px 18px; border-radius: 999px; white-space: nowrap; font-size: 12px; font-weight: 800; letter-spacing: .8px;
+    color: #fff; background: linear-gradient(135deg, #ff4b4b, #ff8f00); box-shadow: 0 8px 22px rgba(255, 107, 53, .5); }
+.vp-eleccion { position: absolute; top: 25px; right: 14px; padding: 4px 10px; border-radius: 999px; font-size: 11px; white-space: nowrap; font-weight: 800; color: #04210c; background: #3fb950; box-shadow: 0 6px 18px rgba(63, 185, 80, .45); }
+.vp-elegida { border-color: #3fb950; box-shadow: 0 0 0 2px rgba(63, 185, 80, .7), 0 18px 44px rgba(63, 185, 80, .18); }
+
+/* TITULO ENCABEZADO DE CADA TARJETA */
+.vp-nombre { margin: 0; padding: 0; font-size: 13px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--acento); }
+.vp-lema { margin: 6px 0 18px; min-height: 40px; font-size: 14px; line-height: 1.4; color: #9aa4b2; }
+.vp-precio { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin: 0 0 4px; }
+.vp-precio b { font-size: 46px; line-height: 1; font-weight: 800; letter-spacing: -1.5px; color: #fff; font-variant-numeric: tabular-nums; }
+.vp-precio span { font-size: 14px; color: #8b949e; }
+.vp-nota { margin: 0 0 18px; min-height: 18px; font-size: 12.5px; color: #8b949e; }
+
+/* TITULO PREGUNTAS AL AGENTE: la cifra que más pesa en la decisión */
+.vp-preguntas { display: flex; align-items: center; gap: 12px; margin: 0 0 18px; padding: 12px 14px; border-radius: 14px; background: var(--acento-suave); border: 1px solid var(--acento); }
+.vp-preguntas strong { font-size: 34px; line-height: 1; font-weight: 800; color: var(--acento); font-variant-numeric: tabular-nums; }
+.vp-preguntas span { font-size: 13px; line-height: 1.3; font-weight: 600; color: #e6edf3; }
+
+/* TITULO BOTON DE CADA TARJETA */
+.vp-boton { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 16px; margin: 0 0 20px; border-radius: 14px; border: 1px solid var(--acento);
+    font-size: 15px; font-weight: 800; text-decoration: none !important; color: var(--acento) !important; background: transparent; transition: transform .15s ease, background .15s ease, box-shadow .15s ease; }
+.vp-boton:hover { transform: translateY(-2px); background: var(--acento-suave); }
+.vp-boton-lleno { border-color: transparent; color: #fff !important; background: linear-gradient(135deg, #ff4b4b, #ff8f00); box-shadow: 0 10px 28px rgba(255, 107, 53, .4); position: relative; overflow: hidden; }
+.vp-boton-lleno:hover { background: linear-gradient(135deg, #ff5c5c, #ffa01a); box-shadow: 0 14px 36px rgba(255, 107, 53, .6); }
+.vp-boton-lleno::after { content: ''; position: absolute; top: 0; left: -75%; width: 45%; height: 100%; pointer-events: none; transform: skewX(-20deg);
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .55) 50%, rgba(255, 255, 255, 0) 100%); animation: vp-brillo 3s ease-in-out infinite; }
+
+/* TITULO LISTA DE VENTAJAS */
+.vp-lista { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid #222c3b; display: flex; flex-direction: column; gap: 11px; }
+.vp-lista li { position: relative; padding-left: 26px; font-size: 14px; line-height: 1.4; color: #d3dae3; }
+.vp-lista li::before { content: '✓'; position: absolute; left: 0; top: 1px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; color: #04210c; background: var(--acento); }
+.vp-lista li b { color: #fff; }
+.vp-lista li.vp-no { color: #6b7686; text-decoration: line-through; text-decoration-color: #3a4558; }
+.vp-lista li.vp-no::before { content: '✕'; color: #8b949e; background: #1b2332; }
+.vp-lista li.vp-plus { padding: 8px 10px 8px 34px; margin-left: -4px; border-radius: 10px; background: var(--acento-suave); }
+.vp-lista li.vp-plus::before { left: 8px; top: 9px; }
+
+/* TITULO TODOS LOS PLANES INCLUYEN */
+.vp-comun { margin-top: 30px; padding: 24px 22px; border-radius: 20px; background: linear-gradient(180deg, #111926, #0d131d); border: 1px solid #222c3b; }
+.vp-comun-titulo { margin: 0 0 14px; font-size: 16px; font-weight: 800; color: #fff; text-align: center; }
+.vp-comun ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; }
+.vp-comun li { padding: 9px 14px 9px 12px; border-radius: 999px; font-size: 13.5px; color: #d3dae3; background: #151d2b; border: 1px solid #263041; }
+.vp-comun li::before { content: '✓'; margin-right: 8px; font-weight: 800; color: #3fb950; }
+.vp-confianza { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; margin: 22px 0 0; font-size: 14px; color: #9aa4b2; }
+.vp-confianza span::before { content: '●'; margin-right: 8px; font-size: 9px; color: #ff8f00; vertical-align: 2px; }
+.vp-pie { margin: 14px 0 0; text-align: center; font-size: 12px; color: #6b7686; }
+
+/* TITULO TARJETAS DENTRO DE LA APP (vista Planes): contenedores con clave vpc_NOMBRE (y vpc_NOMBRE_actual para el plan que el usuario ya tiene); los botones reales de Streamlit
+   van entre la cabecera y la lista de ventajas */
+[class*="st-key-vpc_"] { --acento: #3fb950; --acento-suave: rgba(63, 185, 80, .13); position: relative; padding: 30px 22px 22px !important; border-radius: 22px; box-sizing: border-box;
+    background: linear-gradient(180deg, #131b29 0%, #0d131d 100%); border: 1px solid #263041; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+[class*="st-key-vpc_"] [data-testid="stVerticalBlock"] { gap: 0; }
+[class*="st-key-vpc_"] [data-testid="stButton"] { margin: 0 0 10px; }
+[class*="st-key-vpc_"]:hover { transform: translateY(-4px); border-color: var(--acento); box-shadow: 0 18px 44px rgba(0, 0, 0, .55), 0 0 0 1px var(--acento); }
+[class*="st-key-vpc_basico"] { --acento: #58a6ff; --acento-suave: rgba(88, 166, 255, .13); }
+[class*="st-key-vpc_pro"] { --acento: #ff8f00; --acento-suave: rgba(255, 143, 0, .15); border-color: #ff8f00; background: linear-gradient(180deg, #1c1712 0%, #12151d 55%, #0d131d 100%);
+    box-shadow: 0 0 0 1px rgba(255, 143, 0, .55), 0 22px 60px rgba(255, 107, 53, .28); animation: vp-aura 3s ease-in-out infinite; }
+[class*="st-key-vpc_avanzado"] { --acento: #a371f7; --acento-suave: rgba(163, 113, 247, .14); }
+[class*="st-key-vpc_"][class*="_actual"] { border-color: #3fb950; box-shadow: 0 0 0 2px rgba(63, 185, 80, .7), 0 18px 44px rgba(63, 185, 80, .18); }
+.st-key-planes_contenedor .vp-titulo { font-size: 34px; }
+
+/* TITULO BOTONES DE LAS TARJETAS DE LA APP: mismo lenguaje que los botones de la vitrina (borde y color del plan, esquinas de 14 px, relleno suave al pasar el mouse) */
+[class*="st-key-vpc_"] div.stButton > button { min-height: 50px; border-radius: 14px !important; font-size: 15px !important; font-weight: 800 !important; letter-spacing: .1px;
+    background: transparent !important; border: 1px solid var(--acento) !important; color: var(--acento) !important; box-shadow: none; transition: transform .15s ease, background .15s ease, box-shadow .15s ease; }
+[class*="st-key-vpc_"] div.stButton > button p { font-size: 15px; font-weight: 800; }
+[class*="st-key-vpc_"] div.stButton > button:hover:not(:disabled) { transform: translateY(-2px); background: var(--acento-suave) !important; }
+/* El botón secundario (comprar con la billetera, pasar al plan Gratis) es más discreto: borde gris hasta pasar el mouse */
+[class*="st-key-vpc_"] div.stButton > button[kind="secondary"] { border-color: #30363d !important; color: #c9d1d9 !important; min-height: 44px; }
+[class*="st-key-vpc_"] div.stButton > button[kind="secondary"] p { font-size: 14px; font-weight: 700; }
+[class*="st-key-vpc_"] div.stButton > button[kind="secondary"]:hover:not(:disabled) { border-color: var(--acento) !important; color: var(--acento) !important; }
+[class*="st-key-vpc_"] [data-testid="stPopover"] > button { min-height: 44px; border-radius: 14px !important; font-size: 14px; font-weight: 700; background: transparent !important; border: 1px solid #30363d !important; color: #c9d1d9 !important; }
+[class*="st-key-vpc_"] [data-testid="stPopover"] > button:hover { border-color: var(--acento) !important; color: var(--acento) !important; background: var(--acento-suave) !important; }
+.vp-vence { margin: -2px 0 10px; text-align: center; font-size: 12.5px; font-weight: 600; color: #3fb950; }
+/* El plan destacado lleva el botón principal con el degradado de la marca y brillo; el plan actual, un botón verde apagado */
+[class*="st-key-vpc_pro"] div.stButton > button[kind="primary"] { background: linear-gradient(135deg, #ff4b4b, #ff8f00) !important; border-color: transparent !important; color: #fff !important;
+    box-shadow: 0 10px 28px rgba(255, 107, 53, .4); }
+[class*="st-key-vpc_pro"] div.stButton > button[kind="primary"]:hover:not(:disabled) { background: linear-gradient(135deg, #ff5c5c, #ffa01a) !important; box-shadow: 0 14px 36px rgba(255, 107, 53, .6); }
+[class*="st-key-vpc_"] div.stButton > button:disabled { min-height: 50px; background: rgba(63, 185, 80, .12) !important; border-color: #3fb950 !important; color: #3fb950 !important; opacity: 1; cursor: default; }
+/* Dentro de la tarjeta de la app, la cinta y el sello cuelgan del recuadro del HTML (30 px más abajo que el borde de la tarjeta): se compensa */
+[class*="st-key-vpc_"] .vp-cinta { top: -45px; }
+[class*="st-key-vpc_"] .vp-lista { margin-top: 6px; }
+/* TITULO BENEFICIOS bajo el formulario (llenan la columna izquierda) */
+.vp-beneficios { margin: 18px 0 0; padding: 20px 22px; border-radius: 18px; background: linear-gradient(180deg, #111926, #0d131d); border: 1px solid #222c3b; }
+.vp-ben-titulo { margin: 0 0 14px; font-size: 15px; font-weight: 800; color: #fff; }
+.vp-beneficios ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.vp-beneficios li { position: relative; padding-left: 34px; }
+.vp-beneficios li::before { content: '\2713'; position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: #04210c; background: #3fb950; }
+.vp-beneficios li b { display: block; font-size: 14px; color: #e6edf3; }
+.vp-beneficios li span { display: block; margin-top: 2px; font-size: 13px; line-height: 1.4; color: #9aa4b2; }
+
+/* TITULO ANIMACIONES */
+@keyframes vp-entra { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes vp-aura { 0%, 100% { box-shadow: 0 0 0 1px rgba(255, 143, 0, .55), 0 22px 60px rgba(255, 107, 53, .25); } 50% { box-shadow: 0 0 0 2px rgba(255, 143, 0, .85), 0 26px 80px rgba(255, 107, 53, .5); } }
+@keyframes vp-brillo { 0% { left: -75%; } 55% { left: 130%; } 100% { left: 130%; } }
+@keyframes vp-rebote { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+@media (prefers-reduced-motion: reduce) { .vp-tarjeta, .vp-destacada { animation: none; opacity: 1; transform: none; } .vp-boton-lleno::after, .vp-pista b { animation: none; } }
+
+/* TITULO TABLETA Y CELULAR */
+@media (max-width: 1100px) {
+    .vp-cuatro { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 30px; }
+    .vp-titulo { font-size: 32px; } }
+@media (min-width: 1101px) { .vp-pista { display: none; } }
+/* Rejilla adaptable (panel de acceso): dos columnas y, desde 1500 px de pantalla, las cuatro tarjetas en una fila con su orden natural */
+@media (min-width: 1500px) {
+    .vp-adaptable { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .vp-adaptable .vp-basico { order: 2; } .vp-adaptable .vp-pro { order: 3; } }
+@media (max-width: 640px) {
+    .vp-rejilla, .vp-cuatro { grid-template-columns: minmax(0, 1fr); }
+    .vp-titulo { font-size: 28px; letter-spacing: -.4px; }
+    .vp-sub { font-size: 15.5px; }
+    .vp-tarjeta { padding: 28px 18px 20px; }
+    .vp-precio b { font-size: 40px; }
+    .vp-lema, .vp-nota { min-height: 0; }
+    .vp-rejilla .vp-destacada { order: -1; } }
+
+/* -------------------------------------------------------------------------------------------------------
+   --------------------------------- FIN Piña y Jara vitrina_planes .CSS ---------------------------------
+   ------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por Piña y Jara Transportes y Servicios Ltda.
+Dirección: José Joaquín Prieto #5373 -
+San Miguel - Santiago - Chile
+contacto.pinayjara@gmail.com
+https://www.pinayjara.cl
+Creado, Programado y Diseñado por Piña y Jara
+Transportes y Servicios Ltda.
+*/
