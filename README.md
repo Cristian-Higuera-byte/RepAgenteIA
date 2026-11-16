@@ -136,7 +136,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt   # MetaTrader5 solo se instala en Windows (ya está condicionado en el archivo)
 ```
 
-> Para correr las pruebas automáticas: `python -m pip install -r requirements-dev.txt` y luego `python -m pytest tests` (134 pruebas, sin red ni `.env`).
+> Para correr las pruebas automáticas: `python -m pip install -r requirements-dev.txt` y luego `python -m pytest tests` (172 pruebas, sin red ni `.env`).
 
 En Linux o macOS: `python3 -m venv env`, `source env/bin/activate` y el mismo `pip install -r requirements.txt`.
 

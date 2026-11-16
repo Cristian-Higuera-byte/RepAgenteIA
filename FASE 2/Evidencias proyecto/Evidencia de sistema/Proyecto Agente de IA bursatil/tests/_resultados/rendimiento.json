@@ -1,37 +1,37 @@
 {
  "validar_contrasena": {
   "operaciones": 10000,
-  "segundos": 0.0605,
-  "microsegundos_por_operacion": 6.0
+  "segundos": 0.0521,
+  "microsegundos_por_operacion": 5.2
  },
  "emitir_y_verificar_token": {
   "operaciones": 2000,
-  "segundos": 0.0251,
-  "microsegundos_por_operacion": 12.6
+  "segundos": 0.0218,
+  "microsegundos_por_operacion": 10.9
  },
  "cifrar_y_descifrar_credencial": {
   "operaciones": 500,
-  "segundos": 0.0131,
-  "microsegundos_por_operacion": 26.2
+  "segundos": 0.0111,
+  "microsegundos_por_operacion": 22.3
  },
  "armar_consulta_sql": {
   "operaciones": 2000,
-  "segundos": 0.0058,
-  "microsegundos_por_operacion": 2.9
+  "segundos": 0.005,
+  "microsegundos_por_operacion": 2.5
  },
  "ejecutar_herramienta": {
   "operaciones": 5000,
-  "segundos": 0.0108,
-  "microsegundos_por_operacion": 2.2
+  "segundos": 0.0084,
+  "microsegundos_por_operacion": 1.7
  },
  "crear_y_consumir_enlace": {
   "operaciones": 300,
-  "segundos": 0.0417,
-  "microsegundos_por_operacion": 139.0
+  "segundos": 0.0348,
+  "microsegundos_por_operacion": 116.0
  },
  "insertar_orden_sqlite": {
   "operaciones": 300,
-  "segundos": 0.354,
-  "microsegundos_por_operacion": 1179.9
+  "segundos": 0.5233,
+  "microsegundos_por_operacion": 1744.4
  }
 }

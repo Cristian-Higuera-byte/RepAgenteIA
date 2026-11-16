@@ -30,7 +30,7 @@ PATRONES_SECRETOS = {
     "clave de AWS": re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
     "token JWT": re.compile(r"\beyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\."),
     "llave privada": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
-    "asignación de secreto": re.compile(r"(?i)(?:api[_-]?key|secret|password|contrasena|token)\s*[=:]\s*['\"][A-Za-z0-9_\-/+]{24,}['\"]"),
+    "asignación de secreto": re.compile(r"(?i)(?:api[_-]?key|secret|password|contrasena|token)\s*[=:]\s*['\"](?!PEGAR_AQUI)[A-Za-z0-9_\-/+]{24,}['\"]"),
 }
 
 
@@ -85,8 +85,8 @@ def test_parametros_de_sesion_persistente():
 
 
 def test_parametros_de_los_enlaces_de_correo():
-    assert vc.HORAS_VERIFICACION == 24 and vc.MINUTOS_RECUPERACION == 60
-    assert vc.SEGUNDOS_ENTRE_ENVIOS == 60 and vc.MAXIMO_ENVIOS_POR_DIA == 5
+    assert vc.HORAS_VERIFICACION == 24 and vc.MINUTOS_RECUPERACION == 5
+    assert vc.SEGUNDOS_ENTRE_ENVIOS == {"verificacion": 60, "recuperacion": 1800} and vc.MAXIMO_ENVIOS_POR_DIA == 5
 
 
 def test_los_hash_guardados_nunca_son_el_token():

@@ -49,11 +49,11 @@ def test_el_enlace_de_verificacion_sirve_antes_de_vencer(cliente_memoria):
     assert vc.consumir(cliente_memoria, token, vc.VERIFICACION, BASE + timedelta(hours=23, minutes=59)) == 7
 
 
-def test_el_enlace_de_recuperacion_vence_a_los_60_minutos(cliente_memoria):
+def test_el_enlace_de_recuperacion_vence_a_los_5_minutos(cliente_memoria):
     t1 = vc.crear_enlace(cliente_memoria, 7, vc.RECUPERACION, BASE)
-    assert vc.consumir(cliente_memoria, t1, vc.RECUPERACION, BASE + timedelta(minutes=61)) is None
+    assert vc.consumir(cliente_memoria, t1, vc.RECUPERACION, BASE + timedelta(minutes=6)) is None
     t2 = vc.crear_enlace(cliente_memoria, 8, vc.RECUPERACION, BASE)
-    assert vc.consumir(cliente_memoria, t2, vc.RECUPERACION, BASE + timedelta(minutes=59)) == 8
+    assert vc.consumir(cliente_memoria, t2, vc.RECUPERACION, BASE + timedelta(minutes=4)) == 8
 
 
 def test_un_enlace_no_sirve_para_otro_tipo(cliente_memoria):
