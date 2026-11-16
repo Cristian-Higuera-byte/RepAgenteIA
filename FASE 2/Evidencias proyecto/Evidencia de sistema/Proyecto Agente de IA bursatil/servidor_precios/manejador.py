@@ -41,6 +41,7 @@ from herramientas.puente_mt5 import (colocar_orden_pendiente, ejecutar_orden_mer
 
 from herramientas.tickets import ticket as _tk
 from . import limites
+from .idempotencia import IDEMPOTENCIA
 from .constantes import CANDADO_MT5, HOSTS_PERMITIDOS, PING_SSE, VERSION_API
 from .motor import MOTORES
 from .simbolos import listar_simbolos
@@ -402,6 +403,18 @@ class Manejador(BaseHTTPRequestHandler):
                 limites.auditar(id_correlacion, actor, ruta, "rechazada_solicitud")
                 self._rechazar(400, limites.mensaje_con_id(limites.MENSAJE_SOLICITUD_INVALIDA, id_correlacion))
                 return
+            # V05: si la solicitud trae identificador y ya se vio, el bróker NO se vuelve a llamar (respuesta guardada o aviso de resultado incierto)
+            clave_solicitud = datos.pop("id_solicitud", None)
+            if clave_solicitud:
+                estado_solicitud, resultado_previo = IDEMPOTENCIA.reservar(actor, ruta, clave_solicitud)
+                if estado_solicitud == "repetida":
+                    limites.auditar(id_correlacion, actor, ruta, "repetida")
+                    self._responder(resultado_previo)
+                    return
+                if estado_solicitud == "en_curso":
+                    limites.auditar(id_correlacion, actor, ruta, "repetida_en_curso")
+                    self._rechazar(409, "La solicitud ya se envió y su resultado aún no es seguro: revisa tu cuenta antes de reintentar.")
+                    return
             with CANDADO_MT5:   # mismo candado que el motor: la API de MT5 no es thread-safe
                 if ruta == "sltp":
                     resultado = modificar_sltp(_tk(datos["ticket"]), datos["sl"], datos["tp"])
@@ -413,6 +426,8 @@ class Manejador(BaseHTTPRequestHandler):
                     resultado = eliminar_orden(_tk(datos["ticket"]))
                 else:
                     resultado = ejecutar_orden_mercado(datos["symbol"], datos["lado"], datos["volumen"])
+            if clave_solicitud:
+                IDEMPOTENCIA.guardar(actor, ruta, clave_solicitud, resultado)
             limites.auditar(id_correlacion, actor, ruta, "error" if isinstance(resultado, dict) and resultado.get("error") else "ok",
                             datos.get("symbol"), datos.get("lado"), datos.get("volumen"))
             self._responder(resultado)

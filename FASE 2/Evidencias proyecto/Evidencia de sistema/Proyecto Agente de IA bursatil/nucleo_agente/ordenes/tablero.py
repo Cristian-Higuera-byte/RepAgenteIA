@@ -15,6 +15,8 @@
 
 Lo usa el panel de órdenes (componentes_plataforma/agente_paneles/) y el motor de vigilancia. Todas las
 transiciones de estado se hacen con UPDATE condicionales para que cada propuesta se procese una sola vez."""
+import sys
+import time
 from datetime import datetime, timedelta
 from typing import Any
 
@@ -113,11 +115,30 @@ def confirmar_orden(id_orden: str) -> dict[str, Any]:
         resultado = {"ok": False, "estado": "ERROR", "mensaje": f"Error inesperado (revisa {NOMBRE_BROKER} por si la orden se envió): {e}"}
 
     # Paso 3: se registra el resultado final (EJECUTADA u otro estado de fallo) y el ticket devuelto.
-    _ejecutar(
-        "UPDATE ordenes SET estado = ?, detalle = ?, ticket_resultado = ? WHERE id = ?" + dueno,
-        ("EJECUTADA" if resultado["ok"] else resultado.get("estado", "ERROR"), resultado["mensaje"], resultado.get("ticket"), id_orden, *valores),
-    )
+    # Si la base falla justo después de enviar, se reintenta; si sigue fallando NO se lanza el error ni se vuelve a enviar nada
+    # (la orden queda EJECUTANDO y expirar_vencidas() la pasa a ERROR con aviso): así un fallo al guardar nunca duplica el envío.
+    if not _guardar_resultado(id_orden, dueno, valores, resultado):
+        resultado = {**resultado, "mensaje": resultado["mensaje"] + f" No se pudo guardar el estado: revisa en {NOMBRE_BROKER} antes de reintentar."}
     return resultado
+
+
+# TITULO GUARDAR RESULTADO
+
+def _guardar_resultado(id_orden: str, dueno: str, valores: tuple, resultado: dict[str, Any]) -> bool:
+    """Guarda el estado final de una orden enviada con hasta 3 intentos; devuelve False si no se pudo (nunca lanza el error).
+
+    Es la parte más delicada de la idempotencia (V05): la orden YA salió hacia el bróker, así que un fallo aquí no puede provocar un segundo envío."""
+    for intento in range(3):
+        try:
+            _ejecutar(
+                "UPDATE ordenes SET estado = ?, detalle = ?, ticket_resultado = ? WHERE id = ?" + dueno,
+                ("EJECUTADA" if resultado["ok"] else resultado.get("estado", "ERROR"), resultado["mensaje"], resultado.get("ticket"), id_orden, *valores),
+            )
+            return True
+        except Exception as error:  # noqa: BLE001
+            print(f"[órdenes] No se pudo guardar el estado de {id_orden} (intento {intento + 1}/3): {error}", file=sys.stderr, flush=True)
+            time.sleep(0.2 * (intento + 1))
+    return False
 
 
 # -------------------------------------------------------------------------------------------------------

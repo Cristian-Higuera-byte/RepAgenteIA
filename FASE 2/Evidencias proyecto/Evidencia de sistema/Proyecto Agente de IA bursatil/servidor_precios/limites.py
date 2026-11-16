@@ -197,7 +197,7 @@ def _fecha_opcional(valor, nombre: str):
     return valor
 
 
-def validar_orden(ruta: str, datos) -> dict:
+def _validar_orden_base(ruta: str, datos) -> dict:
     """Valida el cuerpo de un POST de trading según su ruta y devuelve los valores ya limpios; lanza ErrorSolicitud si algo no cuadra.
 
     Rutas: sltp, orden, orden/modificar, orden/eliminar y mercado. Se llama ANTES de tocar el bróker."""
@@ -225,6 +225,21 @@ def validar_orden(ruta: str, datos) -> dict:
         return {"symbol": simbolo_valido(datos.get("symbol")), "lado": lado.upper(),
                 "volumen": _numero(datos.get("volumen"), "volumen", minimo_exclusivo=0, maximo=MAX_VOLUMEN)}
     raise ErrorSolicitud("ruta desconocida")
+
+
+# TITULO VALIDAR ORDEN
+
+def validar_orden(ruta: str, datos) -> dict:
+    """Valida el cuerpo de un POST de trading (ver `_validar_orden_base`) y conserva el identificador de solicitud opcional `id_solicitud`.
+
+    El identificador (de 8 a 64 caracteres: letras, números, guion y guion bajo) permite que una repetición de la misma solicitud no vuelva a llegar al bróker (V05)."""
+    limpio = _validar_orden_base(ruta, datos)
+    if "id_solicitud" in datos:
+        valor = datos["id_solicitud"]
+        if not isinstance(valor, str) or not re.match(r"^[A-Za-z0-9_-]{8,64}$", valor):
+            raise ErrorSolicitud("id_solicitud: no válido")
+        limpio["id_solicitud"] = valor
+    return limpio
 
 
 # TITULO AUDITORIA
