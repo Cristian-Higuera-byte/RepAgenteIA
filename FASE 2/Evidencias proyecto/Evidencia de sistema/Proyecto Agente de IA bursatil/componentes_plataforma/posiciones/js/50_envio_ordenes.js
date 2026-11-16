@@ -22,11 +22,20 @@ Transportes y Servicios Ltda.
       function post(ruta, cuerpo){
         // En modo Replay (práctica sobre el pasado) NUNCA se envía nada al servidor: se rechaza antes de salir.
         if (repeticionActivo) return Promise.resolve({error: 'Modo Replay: las órdenes reales están desactivadas'});
+        // Doble clic: mientras la misma solicitud sigue en vuelo se devuelve la misma promesa y no sale una segunda petición.
+        var huella = ruta + JSON.stringify(cuerpo);
+        if (ENVIANDO[huella]) return ENVIANDO[huella];
+        // Identificador único de la solicitud: si se repite (reintento tras perder la respuesta) el servidor no vuelve a llamar al bróker.
+        var datos = Object.assign({}, cuerpo, {id_solicitud: 'q' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12)});
         // text/plain = petición "simple" (sin preflight CORS)
-        return fetch(API + ruta, {method: 'POST', headers: {'Content-Type': 'text/plain'}, body: JSON.stringify(cuerpo)})
+        var envio = fetch(API + ruta, {method: 'POST', headers: {'Content-Type': 'text/plain'}, body: JSON.stringify(datos)})
           .then(function(r){ return r.json(); })
           .catch(function(){ return {error: 'Sin conexión con el servidor de datos'}; });
+        ENVIANDO[huella] = envio;
+        envio.then(function(){ delete ENVIANDO[huella]; });
+        return envio;
       }
+      var ENVIANDO = {};   // solicitudes en vuelo, por ruta y contenido
 
       // TITULO CAMBIAR NIVEL
 
