@@ -1,0 +1,11 @@
+Fecha: 2026-11-16 15:22:19
+URL: https://pyj.rmcabogados.cl/salud
+Hilos simultáneos: 50
+Solicitudes: 200
+Duración total: 46.39 s
+Solicitudes por segundo: 4.3
+Tiempo medio: 10830 ms
+Mediana: 15006 ms
+Percentil 95: 15055 ms
+Máximo: 15246 ms
+Códigos de respuesta: {200: 57, 'error': 143}

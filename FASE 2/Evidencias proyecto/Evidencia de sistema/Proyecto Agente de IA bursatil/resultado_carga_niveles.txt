@@ -1,0 +1,7 @@
+Fecha: 2026-11-16 15:26:05
+URL: https://pyj.rmcabogados.cl/salud
+Solicitudes por nivel: 40; espera máxima: 15 s
+  5 hilos | OK 40/40 | mediana OK 54 ms | 2.6 sol/s | 15.5 s | {'200': 40}
+ 10 hilos | OK 20/40 | mediana OK 44 ms | 1.3 sol/s | 30.1 s | {'200': 20, 'timeout': 20}
+ 20 hilos | OK 20/40 | mediana OK 53 ms | 2.7 sol/s | 15.1 s | {'200': 20, 'timeout': 20}
+ 50 hilos | OK 18/40 | mediana OK 70 ms | 2.7 sol/s | 15.0 s | {'200': 18, 'timeout': 22}
