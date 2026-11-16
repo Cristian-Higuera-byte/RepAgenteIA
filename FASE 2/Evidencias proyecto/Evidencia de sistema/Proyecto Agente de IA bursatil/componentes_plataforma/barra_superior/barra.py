@@ -40,7 +40,7 @@ _DIR = Path(__file__).parent
 
 # TITULO RENDERIZAR BARRA NAVEGACION
 
-def renderizar_barra_navegacion(usuario: str = "Emilio Fuentes",
+def renderizar_barra_navegacion(usuario: str = "Usuario",
                                 saldo: float | None = None,
                                 moneda: str = "USD",
                                 pl: float | None = None,
